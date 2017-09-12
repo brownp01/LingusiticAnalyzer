@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import Response, request, redirect
-import simplejson
 import requests
 
 app = Flask(__name__)
