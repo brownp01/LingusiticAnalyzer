@@ -2,9 +2,6 @@ from flask import Flask
 from flask import Response, request, redirect
 import simplejson
 import requests
-import json
-from pdfminer import converter
-from v1 import analyze
 
 app = Flask(__name__)
 
