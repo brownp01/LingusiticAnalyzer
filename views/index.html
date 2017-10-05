@@ -1,0 +1,77 @@
+<!--<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Linguistic Analyzer</h1>
+<h3>University of Colorado Denver 2017-2018</h3>
+<h5><b>Tyler Blanton  |  Paul Brown</b></h5>
+
+
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Linguistic Analyzer</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+
+            <h3 class="text-muted">Linguistic Analyzer</h3>
+        </div>
+
+
+        <div class="jumbotron">
+            <h1>Linguistic Analyzer</h1>
+            <p class="lead"></p>
+
+            <!-- UPLOAD BUTTON -->
+        <form action="/staticanalyze" enctype="multipart/form-data" method="post">
+        <p>
+            Please specify a file, or a set of files:<br>
+            <input type="file" name="datafile" size="40">
+        </p>
+            <div>
+                <input class="btn btn-lg btn-success" type="submit" value="Upload File">
+            </div>
+        </form>
+            <br>
+            <form action="/project" enctype="multipart/form-data" method="get">
+            <div>
+                <input class="btn btn-lg btn-info" type="submit" value="Info">
+            </div>
+        </form>
+
+        </div>
+
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Authors</h4>
+                <p>Tyler Blanton</p>
+                <p>Paul Brown</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Client</h4>
+                <p>Benjamin Pope</p>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; Company 2015</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
