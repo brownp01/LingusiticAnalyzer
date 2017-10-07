@@ -1,5 +1,3 @@
-from flask import Response
-
 
 def analyzeText(fileText):
 
@@ -9,12 +7,30 @@ def analyzeText(fileText):
 
 
 def scrapeText(fileText):
+    """
+    @param fileText:
+    @type fileText:
+    @return:
+    @rtype:
+    """
     pass
 
 
 def checkSimilarity(fileText):
+    """
+    @param fileText:
+    @type fileText:
+    @return:
+    @rtype:
+    """
     pass
 
 
 def createObjects(fileText):
+    """
+    @param fileText:
+    @type fileText:
+    @return:
+    @rtype:
+    """
     pass

@@ -1,14 +1,17 @@
 import os
+import PyPDF2
+import requests
 from flask import Flask
 from flask import Response, request
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStorage
-import requests
-import doxypypy
-import PyPDF2
-import analyze
+
+from functionsv1 import analyze_functions
+
 app = Flask(__name__)
 
+# TODO: Look into logging/implement
+
+UPLOAD_FOLDER = '/downloads'
 
 @app.route('/')
 def main():
@@ -33,6 +36,43 @@ def project():
     """
 
     f = open("views/info.html", "r")  # opens file with name of "index.html"
+    return Response(f.read(), mimetype='text/html')
+
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    """
+    @summary: Receives uploaded document and compares it to an existing document.
+    @return: Information regarding uploaded document's similarity to regulatory document
+    @rtype: html
+    """
+    file_text = []
+    if 'datafile' not in request.files:
+        print('No file found')
+    else:
+        file = request.files['datafile']
+        if file.filename[-3:] == 'pdf':
+            filename = secure_filename(file.filename)
+            f = open('downloads/' + filename, 'w+')    # Creates file with given filename
+            f.close()
+            file.save(os.path.join('', filename))   # saves uploaded file
+
+            pdfFileObj = open(filename, 'rb')       # Opens uploaded file
+            pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+            for i in range(0, pdfReader.numPages):
+                pageObject = pdfReader.getPage(i)
+
+                # saves text of uploaded pdf into a list of strings
+                file_text.append(pageObject.extractText().strip('\n'))
+
+            os.remove(filename)     # Removes created file from directory.
+
+            # Returns static HTML to user
+            f = open("views/processing.html", "r")
+            return Response(f.read(), mimetype='text/html')
+
+        # Returns error page
+    f = open("views/invalid_upload.html", "r")
     return Response(f.read(), mimetype='text/html')
 
 
@@ -62,24 +102,25 @@ def static_analyze():
     @return: Basic information about document
     @rtype: html
     """
-    # ---------
-    # Opening and reading the pdf file
-    # ---------
+
     try:
-        pdfFileObj = open('downloads/sample.pdf', 'rb')
+        # ---------
+        # Opening and reading the pdf file
+        # ---------
+        pdfFileObj = open('downloads/ipsum.pdf', 'rb')
         pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-        print(pdfReader.numPages)
-        pageObject = pdfReader.getPage(0)
-        pdfText = pageObject.extractText();
-        print(pageObject.extractText())
-        try:
-            print(analyze.analyzeText(pdfText))
-        except Exception as ex:
-            print(ex)
-    except:
+
+        for i in range(0, pdfReader.numPages):
+            pageObject = pdfReader.getPage(i)
+            pdfText = pageObject.extractText()
+            analyze_functions.printText(pageObject.extractText())
+
+
+    except Exception as ex:
         # ---------
         # In the event that something goes wrong, we return an error page.
         # ---------
+        print(ex)
         f = open("views/invalid_upload.html", "r")  # opens file with name of "index.html"
         return Response(f.read(), mimetype='text/html')
 
@@ -88,47 +129,6 @@ def static_analyze():
     # ---------
     f = open("views/index.html", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
-
-
-@app.route('/analyze', methods=['POST'])
-def analyze():
-    """
-    @summary: Receives uploaded document and compares it to an existing document.
-    @return: Information regarding uploaded document's similarity to regulatory document
-    @rtype: html
-    """
-
-    if 'datafile' not in request.files:
-        print('No file found')
-    else:
-        # ---------
-        # Reading file and printing contents. This is a testing area at the moment.
-        # ---------
-        file = request.files['datafile']
-        if file:
-            fileStuff = file.read()
-            print(repr(fileStuff))      # print representation of file bytes
-            fileRepr = repr(fileStuff)
-            print(fileRepr.replace('//', '/'))
-
-            # confirming that the type of the file is pdf
-            if file.filename[-3:] == 'pdf':
-                # ---------
-                # Experimenting with accessing pdf and converting its {bytes}
-                # ---------
-                filename = secure_filename(file.filename)
-                print(os.getcwd())
-                print(type(file))
-                print(file.read())
-                print(type(file.read()))
-                temp = file.read()
-                return Response(str(file.read()), mimetype="text/plain")
-
-    # ---------
-    # If the file is of an incorrect type, return error page
-    # ---------
-    f = open("views/invalid_upload.html", "r")  # opens file with name of "index.html"
-    return Response(f.read(), mimetype='text/plain')
 
 
 if __name__ == '__main__':
