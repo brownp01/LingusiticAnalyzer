@@ -4,14 +4,16 @@ import requests
 from flask import Flask
 from flask import Response, request
 from werkzeug.utils import secure_filename
-
+import logging
+from functionsv1 import common_functions
 from functionsv1 import analyze_functions
+# import textract
 
 app = Flask(__name__)
 
-# TODO: Look into logging/implement
 
-UPLOAD_FOLDER = '/downloads'
+UPLOAD_FOLDER = 'downloads/'
+loggerStart = 0
 
 @app.route('/')
 def main():
@@ -20,13 +22,14 @@ def main():
     the option to upload a document and submit it.
     @return: Home page
     @rtype: html
-
     """
+    # Creating new log file every time the program starts.
+    if common_functions.homeCount() == 0:
+        analyze_functions.declareLogger()
     f = open("views/index.html", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
 
 
-# Project route, with no additions to the URI
 @app.route('/project')
 def project():
     """
@@ -46,31 +49,29 @@ def analyze():
     @return: Information regarding uploaded document's similarity to regulatory document
     @rtype: html
     """
-    file_text = []
+
+    logging.info('Started in Analyze')
+    file_text = []  # List of strings containing document's text
+    keywords = []   # List of Keyword object
+
     if 'datafile' not in request.files:
+        logging.warning('cannot find "datafile" in request object')
         print('No file found')
     else:
         file = request.files['datafile']
+
         if file.filename[-3:] == 'pdf':
-            filename = secure_filename(file.filename)
-            f = open('downloads/' + filename, 'w+')    # Creates file with given filename
-            f.close()
-            file.save(os.path.join('', filename))   # saves uploaded file
-
-            pdfFileObj = open(filename, 'rb')       # Opens uploaded file
-            pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-            for i in range(0, pdfReader.numPages):
-                pageObject = pdfReader.getPage(i)
-
-                # saves text of uploaded pdf into a list of strings
-                file_text.append(pageObject.extractText().strip('\n'))
-
-            os.remove(filename)     # Removes created file from directory.
+            file_text = common_functions.extractpdftext(file, UPLOAD_FOLDER)
+        elif file.filename[-4:] == 'docx' or file.filename[-3:] == 'doc':
+            file_text = common_functions.extractmicrosoftdoctext(file, UPLOAD_FOLDER)
 
             # Returns static HTML to user
             f = open("views/processing.html", "r")
-            return Response(f.read(), mimetype='text/html')
-
+            returntext = f.read()
+            f.close()
+            return Response(returntext, mimetype='text/html')
+        else:
+            logging.info('Invalid File type ' + file.filename[-3:] + '. Responding with error page')
         # Returns error page
     f = open("views/invalid_upload.html", "r")
     return Response(f.read(), mimetype='text/html')
