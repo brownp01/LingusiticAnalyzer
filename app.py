@@ -25,7 +25,7 @@ def main():
     """
     # Creating new log file every time the program starts.
     if common_functions.homeCount() == 0:
-        analyze_functions.declareLogger()
+        analyze_functions.declarelogger()
     f = open("views/index.html", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
 
@@ -114,7 +114,7 @@ def static_analyze():
         for i in range(0, pdfReader.numPages):
             pageObject = pdfReader.getPage(i)
             pdfText = pageObject.extractText()
-            analyze_functions.printText(pageObject.extractText())
+            analyze_functions.printtext(pageObject.extractText())
 
 
     except Exception as ex:
