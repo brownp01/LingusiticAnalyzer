@@ -6,9 +6,13 @@ from flask import Response, request
 from werkzeug.utils import secure_filename
 import logging
 from functionsv1 import common_functions
+import docx
+import string
 from functionsv1 import analyze_functions
+from pdfrw import PdfReader
 # import textract
 
+UPLOAD_FOLDER = 'downloads/'
 
 def homeCount():
     returnVal = homeCount.counter
@@ -19,7 +23,7 @@ def homeCount():
 homeCount.counter = 0
 
 
-def extractpdftext(file, uploadfolder):
+def extractpdftext(file):
     """
     @summary:   extracts Text from PDF document referenced in given file argument
     @param file:    the object containing the file's information
@@ -30,17 +34,12 @@ def extractpdftext(file, uploadfolder):
     @rtype: string
     """
     file_text = []
+    savefile(file)
 
-    filename = secure_filename(file.filename)
-
-    common_functions.log('saving file "' + filename + '"')
-    file.save(os.path.join(uploadfolder, filename))  # saves uploaded files
-    common_functions.log('"' + filename + '" saved')
-
-    logging.info('opening file "' + filename + '"')  # Logging
+    filename = file.filename
 
     # TODO: Find other library to read PDFs with. PyPDF2 does not work for all files.
-    pdfFileObj = open(uploadfolder + filename, 'rb')  # Opens uploaded file
+    pdfFileObj = open(UPLOAD_FOLDER + filename, 'rb')  # Opens uploaded file
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
     for i in range(0, pdfReader.numPages):
         pageObject = pdfReader.getPage(i)
@@ -50,11 +49,11 @@ def extractpdftext(file, uploadfolder):
         file_text.append(pageObject.extractText().strip('\n'))
         # print(file_text[len(file_text) - 1])
 
-    os.remove(uploadfolder + filename)  # Removes created file from directory.
-    return file_text
+    os.remove(UPLOAD_FOLDER + filename)  # Removes created file from directory.
+    return cleantext(file_text)
 
 
-def extractmicrosoftdoctext(file, uploadfolder):
+def extractmicrosoftdocxtext(file):
     """
     @summary:
     @param file:
@@ -64,7 +63,17 @@ def extractmicrosoftdoctext(file, uploadfolder):
     @return:
     @rtype:
     """
-    return []
+    file_text = []
+    savefile(file)
+
+    doc = docx.Document(UPLOAD_FOLDER + file.filename)
+
+    for para in doc.paragraphs:
+        if len(para.text) != 0:
+            file_text.append(para.text.strip('\t'))
+
+    os.remove(UPLOAD_FOLDER + file.filename)  # Removes created file from directory.
+    return cleantext(file_text)
 
 
 def log(text):
@@ -82,3 +91,38 @@ def log(text):
     else:
         logging.info(text)
 
+
+def savefile(file):
+    filename = secure_filename(file.filename)
+
+    common_functions.log('saving file "' + filename + '"')
+    file.save(os.path.join(UPLOAD_FOLDER, filename))  # saves uploaded files
+    common_functions.log('"' + filename + '" saved')
+
+    logging.info('opening file "' + filename + '"')  # Logging
+
+def cleantext(textlist):
+    """
+    @summary:
+    @param textlist: a list of strings to remove strange characters from
+    @type textlist:
+    @return:
+    @rtype:
+    """
+    printable = set(string.printable)
+
+    for i in range(0, len(textlist)-1):
+        textlist[i] = ''.join(filter(lambda x: x in string.printable, textlist[i]))
+
+    return textlist
+
+def printStringList(textList):
+    """
+
+    @param textList:
+    @type textList:
+    @return:
+    @rtype:
+    """
+    for i in range(0, len(textList)-1):
+        print(textList[i])

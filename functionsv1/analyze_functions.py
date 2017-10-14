@@ -26,6 +26,7 @@ def identifykeywords(text):
     """
     return []
 
+
 def isgarbageword(word):
     """
     @summary: determines if the given word is a garbage word
