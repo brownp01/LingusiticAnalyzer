@@ -1,16 +1,11 @@
 import os
 import PyPDF2
-import requests
-from flask import Flask
-from flask import Response, request
 from werkzeug.utils import secure_filename
 import logging
 from functionsv1 import common_functions
 import docx
 import string
-from functionsv1 import analyze_functions
-from pdfrw import PdfReader
-# import textract
+
 
 UPLOAD_FOLDER = 'downloads/'
 

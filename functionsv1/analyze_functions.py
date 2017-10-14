@@ -1,6 +1,5 @@
 import logging
 import os
-import Keywords
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
 
