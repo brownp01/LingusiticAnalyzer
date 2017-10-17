@@ -20,6 +20,21 @@ class Keyword:
     def similarwordfrequency(self):
         return self._similarWordFrequency
 
+    def processdoctext(self, docTextList):
+        """
+        @summary: Runs throught the list of strings that contain the uploaded document's text and creates a Keyword
+        class for each of them
+        @param docTextList: the text of the uploaded document
+        @type docTextList:  list of string
+        @return: list of Keywords
+        @rtype: list of Keywords
+        """
+        keywordList = []
+
+        # for i in range(0, len(docTextList)-1):
+
+
+
     def isinsimilarlist(self, word):
         """
         @summary: # Checks if a given word is in the "similarWords" list
@@ -73,3 +88,15 @@ class Keyword:
         @return:
         @rtype:
         """
+
+    def issimilar(self, passedWord):
+        """
+        @summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
+        @param passedWord: word
+        @type passedWord: string
+        @return:
+        @rtype: bool
+        """
+        if(passedWord == self.word):
+            return True
+        # TODO: Implement some impressive algorithm here that checks synonyms?

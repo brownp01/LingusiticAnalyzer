@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 loggerStart = 0
 
+
 @app.route('/')
 def main():
     """
@@ -69,7 +70,7 @@ def analyze():
 
             # Returns static HTML to user
             f = open("views/processing.html", "r")
-            returnhtml = f.read().replace('#--#', file_text[0][:64])
+            returnhtml = f.read().replace('#--#', file_text[0][:128])
             f.close()
 
         elif file.filename[-4:] == 'docx':    # No ability to read '.doc' yet
@@ -111,6 +112,7 @@ def test():
         retJson = '{"Request.method" : "' + request.method + '"}'
         return Response(retJson, mimetype='application/json')
     """
+
 
 @app.route('/staticanalyze', methods=['POST'])
 def static_analyze():
