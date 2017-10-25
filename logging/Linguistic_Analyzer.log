@@ -1,2 +1,7 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [17/Oct/2017 14:02:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2017 22:10:15] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "DesignDoc.pdf"
+INFO:root:"DesignDoc.pdf" saved
+INFO:root:opening file "DesignDoc.pdf"
+INFO:root:PDF file processed

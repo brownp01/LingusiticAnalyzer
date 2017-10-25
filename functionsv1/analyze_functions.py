@@ -1,7 +1,13 @@
 import logging
 import os
+from google.cloud import language
+from google.cloud.language import enums
+from google.cloud.language import types
+from google.cloud import storage
+import six
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
+
 
 
 def printtext(text):
@@ -43,6 +49,41 @@ def removegarbagewords(text):
     @return: document's text without garbage words (a, I, the, it's)
     @rtype: string
     """
+    """Detects entities in the text."""
+
+    """implicit call for authentication: currently can't get key from GOOGLE_APPLICATION_CREDENTIALS"""
+    #client = language.LanguageServiceClient()
+
+    """Explicit call for authentication: Change file path of json file"""
+    client = storage.Client.from_service_account_json('/Users/Paul/Documents/googleNLP.json')
+
+    if isinstance(text, six.binary_type):
+        text = text.decode('utf-8')
+
+    # Instantiates a plain text document.
+    # [START migration_analyze_entities]
+    document = types.Document(
+        content=text,
+        type=enums.Document.Type.PLAIN_TEXT)
+
+    # Detects entities in the document. You can also analyze HTML with:
+    #   document.type == enums.Document.Type.HTML
+    entities = client.analyze_entities(document).entities
+
+    # entity types from enums.Entity.Type
+    entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
+                   'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
+
+    for entity in entities:
+        print('=' * 20)
+        print(u'{:<16}: {}'.format('name', entity.name))
+        print(u'{:<16}: {}'.format('type', entity_type[entity.type]))
+        print(u'{:<16}: {}'.format('metadata', entity.metadata))
+        print(u'{:<16}: {}'.format('salience', entity.salience))
+        #print(u'{:<16}: {}'.format('wikipedia_url',
+                                   #entity.metadata.get('wikipedia_url', '-')))
+        # [END migration_analyze_entities]
+        # [END def_entities_text]
 
 def wordsapi_getsynonym(word):
     """
