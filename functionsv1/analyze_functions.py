@@ -3,9 +3,7 @@ import os
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-from google.cloud import storage
 from oauth2client.service_account import ServiceAccountCredentials
-from httplib2 import Http
 import six
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
@@ -53,14 +51,16 @@ def removegarbagewords(text):
     """
     """Detects entities in the text."""
 
-    """implicit call for authentication: currently can't get key from GOOGLE_APPLICATION_CREDENTIALS"""
-    #client = language.LanguageServiceClient()
+    """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
+        in bash.profile and bash.profile_pysave"""
 
-    """Explicit call for authentication: Change file path of json file"""
+    client = language.LanguageServiceClient()
 
-    scopes = ['https://www.googleapis.com/auth/cloud-language']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
-    client = language.LanguageServiceClient(credentials=creds)
+    """Explicit call for authentication: Change file path of json file. Authentication is accepted but 
+       does not function properly for the Google Language API"""
+
+    #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
+    #client = language.LanguageServiceClient(credentials=creds)
 
 
     if isinstance(text, six.binary_type):
@@ -68,6 +68,7 @@ def removegarbagewords(text):
 
     # Instantiates a plain text document.
     # [START migration_analyze_entities]
+    # TODO: Issues start here in regards to prepping the text for the API. Run debugger. Without FLASK, code works.
     document = types.Document(
         content=text,
         type=enums.Document.Type.PLAIN_TEXT)
