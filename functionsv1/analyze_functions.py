@@ -4,6 +4,8 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 from google.cloud import storage
+from oauth2client.service_account import ServiceAccountCredentials
+from httplib2 import Http
 import six
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
@@ -55,7 +57,11 @@ def removegarbagewords(text):
     #client = language.LanguageServiceClient()
 
     """Explicit call for authentication: Change file path of json file"""
-    client = storage.Client.from_service_account_json('/Users/Paul/Documents/googleNLP.json')
+
+    scopes = ['https://www.googleapis.com/auth/cloud-language']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
+    client = language.LanguageServiceClient(credentials=creds)
+
 
     if isinstance(text, six.binary_type):
         text = text.decode('utf-8')
