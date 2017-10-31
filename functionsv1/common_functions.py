@@ -63,7 +63,7 @@ def extractpdftext(file):
         output.close
         # --------End of PDFMiner reading --------#
         logging.disable(logging.NOTSET) # This re-enables logging
-        log("PDF file processed");
+        log("PDF file processed")
 
 
         file_text = longstringtostringlist(text, 1024)  # Converting long string to list of strings of size 1024
@@ -156,7 +156,7 @@ def cleantext(textlist):
 
 def printStringList(textList):
     """
-
+    @summary:
     @param textList:
     @type textList:
     @return:
@@ -178,3 +178,36 @@ def longstringtostringlist(longstring, strsize):
 
     return_list = [longstring[i:i + strsize] for i in range(0, len(longstring), strsize)]
     return return_list
+
+def stringlisttolonglongstring(string_list):
+    """
+    @summary:
+    @param string_list:
+    @type string_list:
+    @return:
+    @rtype:
+    """
+    long_string = ""
+    for i in range(0, len(string_list)):
+        long_string += string_list[i]
+
+def createkeywordfromgoogleapientity(entity):
+    """
+    @summary: Creates a keyword from a single entity that is returned by the google API
+    @param entity: google API response entity
+    @type entity: google API response entity
+    @return: populated instance of Keyword class
+    @rtype: Keyword
+    """
+
+
+def appendtokeywordlist(kList, newK):
+    """
+    @summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list
+    @param kList: list of keywords.
+    @type kList:
+    @param newK:
+    @type newK:
+    @return:
+    @rtype:
+    """

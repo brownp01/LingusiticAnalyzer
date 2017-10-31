@@ -4,7 +4,9 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 from oauth2client.service_account import ServiceAccountCredentials
+from functionsv1 import common_functions
 import six
+import KeywordList
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
 
@@ -42,10 +44,10 @@ def isgarbageword(word):
     """
 
 
-def removegarbagewords(text):
+def identifykeywords(file_text):
     """
-    @param text: text of document
-    @type text: string
+    @param file_text: text of document
+    @type file_text: list of strings
     @return: document's text without garbage words (a, I, the, it's)
     @rtype: string
     """
@@ -54,43 +56,46 @@ def removegarbagewords(text):
     """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
         in bash.profile and bash.profile_pysave"""
 
+    keyword_list = KeywordList.KeywordList
+
     client = language.LanguageServiceClient()
 
     """Explicit call for authentication: Change file path of json file. Authentication is accepted but 
        does not function properly for the Google Language API"""
-
     #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
     #client = language.LanguageServiceClient(credentials=creds)
 
+    for i in range(0, len(file_text)):
 
-    if isinstance(text, six.binary_type):
-        text = text.decode('utf-8')
+        if isinstance(file_text[i], six.binary_type):
+            text = file_text[i].decode('utf-8')
 
-    # Instantiates a plain text document.
-    # [START migration_analyze_entities]
-    # TODO: Issues start here in regards to prepping the text for the API. Run debugger. Without FLASK, code works.
-    document = types.Document(
-        content=text,
-        type=enums.Document.Type.PLAIN_TEXT)
+            # Instantiates a plain text document.
+            # [START migration_analyze_entities]
+        document = types.Document(
+            content=file_text[i],
+            type=enums.Document.Type.PLAIN_TEXT)
 
-    # Detects entities in the document. You can also analyze HTML with:
-    #   document.type == enums.Document.Type.HTML
-    entities = client.analyze_entities(document).entities
+        # Detects entities in the document. You can also analyze HTML with:
+        #   document.type == enums.Document.Type.HTML
+        entities = client.analyze_entities(document).entities
 
-    # entity types from enums.Entity.Type
-    entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
-                   'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
+        # entity types from enums.Entity.Type
+        entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
+                       'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
 
-    for entity in entities:
-        print('=' * 20)
-        print(u'{:<16}: {}'.format('name', entity.name))
-        print(u'{:<16}: {}'.format('type', entity_type[entity.type]))
-        print(u'{:<16}: {}'.format('metadata', entity.metadata))
-        print(u'{:<16}: {}'.format('salience', entity.salience))
-        #print(u'{:<16}: {}'.format('wikipedia_url',
-                                   #entity.metadata.get('wikipedia_url', '-')))
-        # [END migration_analyze_entities]
-        # [END def_entities_text]
+        for entity in entities:
+            print('=' * 20)
+            print(u'{:<16}: {}'.format('name', entity.name))
+            print(u'{:<16}: {}'.format('type', entity_type[entity.type]))
+            print(u'{:<16}: {}'.format('metadata', entity.metadata))
+            print(u'{:<16}: {}'.format('salience', entity.salience))
+            #print(u'{:<16}: {}'.format('wikipedia_url',
+                                       #entity.metadata.get('wikipedia_url', '-')))
+            # [END migration_analyze_entities]
+            # [END def_entities_text]
+            keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity))
+
 
 def wordsapi_getsynonym(word):
     """

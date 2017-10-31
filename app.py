@@ -67,7 +67,7 @@ def analyze():
         if file.filename[-3:] == 'pdf':
             file_text = common_functions.extractpdftext(file)
             common_functions.printStringList(file_text)
-            analyze_functions.removegarbagewords(file_text)
+            analyze_functions.identifykeywords(file_text)
 
             # Returns static HTML to user
             f = open("views/processing.html", "r")
