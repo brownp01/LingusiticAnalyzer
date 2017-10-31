@@ -11,6 +11,7 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
+import Keyword
 import re
 
 
@@ -64,7 +65,6 @@ def extractpdftext(file):
         # --------End of PDFMiner reading --------#
         logging.disable(logging.NOTSET) # This re-enables logging
         log("PDF file processed")
-
 
         file_text = longstringtostringlist(text, 1024)  # Converting long string to list of strings of size 1024
 
@@ -199,6 +199,8 @@ def createkeywordfromgoogleapientity(entity):
     @return: populated instance of Keyword class
     @rtype: Keyword
     """
+    newKeyword = Keyword.Keyword(entity.name, entity.type)
+    return newKeyword
 
 
 def appendtokeywordlist(kList, newK):

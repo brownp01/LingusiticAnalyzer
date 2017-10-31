@@ -56,6 +56,7 @@ def analyze():
     logging.info('Started in Analyze')
     file_text = []  # List of strings containing document's text
     keywords = []   # List of Keyword object
+
     returnhtml = ""
 
     if 'datafile' not in request.files:
@@ -67,7 +68,12 @@ def analyze():
         if file.filename[-3:] == 'pdf':
             file_text = common_functions.extractpdftext(file)
             common_functions.printStringList(file_text)
-            analyze_functions.identifykeywords(file_text)
+
+            # Creating a KeywordList object
+            keyword_list = analyze_functions.identifykeywords(file_text)
+            for i in range(0, keyword_list.uniquekeywords):
+                print(keyword_list.list[i].word + '\t' + str(keyword_list.list[i].frequency))
+
 
             # Returns static HTML to user
             f = open("views/processing.html", "r")

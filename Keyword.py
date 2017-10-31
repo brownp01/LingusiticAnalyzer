@@ -1,11 +1,13 @@
 import doxypypy
 import logging
 
+
 class Keyword:
     """
     @summary: Class that stores a specific keyword and it's associated information
     """
     word = ""   # The given word
+    type = ""   # The type of the word (if it has one)
     similarWords = []   # Words that are semantically similar the that word.
     _wordFrequency = 0      # Number of times the "word" occurs (not any similar words)
     _similarWordFrequency = 0   # Instances of "word" and all similar words
@@ -13,6 +15,11 @@ class Keyword:
     def __init__(self, word):
         self.frequency = 1
         self.word = word
+
+    def __init__(self, nWord, nType):
+        self.frequency = 1
+        self.word = nWord
+        self.type = nType
 
     def wordfrequency(self):
         return self._wordFrequency
@@ -27,7 +34,7 @@ class Keyword:
         @param docTextList: the text of the uploaded document
         @type docTextList:  list of string
         @return: list of Keywords
-        @rtype: list of Keywords
+        @rtype: list of Keyword
         """
         keywordList = []
 

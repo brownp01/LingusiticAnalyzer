@@ -48,7 +48,7 @@ def identifykeywords(file_text):
     """
     @param file_text: text of document
     @type file_text: list of strings
-    @return: document's text without garbage words (a, I, the, it's)
+    @return: KeywordList object
     @rtype: string
     """
     """Detects entities in the text."""
@@ -95,7 +95,7 @@ def identifykeywords(file_text):
             # [END migration_analyze_entities]
             # [END def_entities_text]
             keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity))
-
+    return keyword_list
 
 def wordsapi_getsynonym(word):
     """
