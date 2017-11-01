@@ -74,6 +74,7 @@ def analyze():
             for i in range(0, keyword_list.uniquekeywords):
                 print(keyword_list.list[i].word + '\t' + str(keyword_list.list[i].frequency))
 
+            common_functions.outputkeywordtotext(keyword_list)
 
             # Returns static HTML to user
             f = open("views/processing.html", "r")

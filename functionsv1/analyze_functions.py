@@ -95,6 +95,7 @@ def identifykeywords(file_text):
             # [END migration_analyze_entities]
             # [END def_entities_text]
             keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity))
+
     return keyword_list
 
 def wordsapi_getsynonym(word):

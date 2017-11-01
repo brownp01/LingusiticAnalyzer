@@ -1,3 +1,4 @@
+
 class KeywordList:
     list = [] # List of keyword objects
     uniquekeywords = 0
@@ -23,7 +24,7 @@ class KeywordList:
             cls.list.append(keyword)
             cls.uniquekeywords += 1
         else:
-            index = cls.getindexofword(keyword)
+            index = cls.getindexofword(keyword.word)
             cls.list[index].frequency += 1
 
 

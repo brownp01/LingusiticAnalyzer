@@ -6,13 +6,14 @@ from functionsv1 import common_functions
 import docx
 import string
 
+
 import io
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 import Keyword
-import re
+import KeywordList
 
 
 UPLOAD_FOLDER = 'downloads/'
@@ -138,6 +139,24 @@ def savefile(file):
     common_functions.log('"' + filename + '" saved')
 
     logging.info('opening file "' + filename + '"')  # Logging
+
+
+def outputkeywordtotext(keylist):
+    """
+    @summary: This function will write keywords from an analyzed document to a .txt file
+    @param keylist: KeywordList object containing keywords from analyzed document
+    @type object: KeywordList
+    @return: void
+    """
+    #TODO create file using document title of originating keywords
+    file = open('Documents/test.txt', 'w')
+
+    #TODO determine best format and information needed to save from Keyword object for future use
+    for i in range(0, keylist.uniquekeywords):
+        file.write(keylist.list[i].word + "  " + str(keylist.list[i].frequency) + "\n")
+
+    file.close()
+
 
 def cleantext(textlist):
     """

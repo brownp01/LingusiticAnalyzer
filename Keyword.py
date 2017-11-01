@@ -9,7 +9,8 @@ class Keyword:
     word = ""   # The given word
     type = ""   # The type of the word (if it has one)
     similarWords = []   # Words that are semantically similar the that word.
-    _wordFrequency = 0      # Number of times the "word" occurs (not any similar words)
+    #_wordFrequency = 0      # Number of times the "word" occurs (not any similar words)
+    frequency = 0
     _similarWordFrequency = 0   # Instances of "word" and all similar words
 
     def __init__(self, word):
@@ -22,7 +23,8 @@ class Keyword:
         self.type = nType
 
     def wordfrequency(self):
-        return self._wordFrequency
+        #return self._wordFrequency
+        return self.frequency
 
     def similarwordfrequency(self):
         return self._similarWordFrequency
