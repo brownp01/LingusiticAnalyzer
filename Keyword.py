@@ -8,9 +8,11 @@ class Keyword:
     """
     word = ""   # The given word
     type = ""   # The type of the word (if it has one)
+    metadata = {} # list of string each of which contain metadata about the given Keyword
     similarWords = []   # Words that are semantically similar the that word.
     #_wordFrequency = 0      # Number of times the "word" occurs (not any similar words)
     frequency = 0
+    __score = 0
     _similarWordFrequency = 0   # Instances of "word" and all similar words
 
     def __init__(self, word):
@@ -22,16 +24,23 @@ class Keyword:
         self.word = nWord
         self.type = nType
 
+    @classmethod
+    def getscore(cls):
+        return cls.__score
+
+    @classmethod
     def wordfrequency(self):
         #return self._wordFrequency
         return self.frequency
 
+    @classmethod
     def similarwordfrequency(self):
         return self._similarWordFrequency
 
+    @classmethod
     def processdoctext(self, docTextList):
         """
-        @summary: Runs throught the list of strings that contain the uploaded document's text and creates a Keyword
+        @summary: Runs through the list of strings that contain the uploaded document's text and creates a Keyword
         class for each of them
         @param docTextList: the text of the uploaded document
         @type docTextList:  list of string
@@ -43,7 +52,7 @@ class Keyword:
         # for i in range(0, len(docTextList)-1):
 
 
-
+    @classmethod
     def isinsimilarlist(self, word):
         """
         @summary: # Checks if a given word is in the "similarWords" list
@@ -53,6 +62,7 @@ class Keyword:
         @rtype:
         """
 
+    @classmethod
     def determinesimilarity(self, word):
         """
         @summary: Checks if the given word is semantically similar to the main keyword
@@ -62,6 +72,7 @@ class Keyword:
         @rtype:
         """
 
+    @classmethod
     def distancetonearest(self, word):
         """
         @summary: distance from main "word" to nearest instance of parameter word
@@ -71,6 +82,7 @@ class Keyword:
         @rtype:
         """
 
+    @classmethod
     def distancefromkeywordtonearestkeyword(self, keyword):
         """
         @summary: distance from "word" OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS
@@ -80,6 +92,7 @@ class Keyword:
         @rtype:
         """
 
+    @classmethod
     def averagedistanceto(self, word):
         """
         "@summary:  average distanceBetween main "word" and parameter word
@@ -89,6 +102,7 @@ class Keyword:
         @rtype:
         """
 
+    @classmethod
     def averagedistancefromkeywordtokeyword(self, keyword):
         """
         @summary: averga distance from "word" OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS
@@ -98,6 +112,7 @@ class Keyword:
         @rtype:
         """
 
+    @classmethod
     def issimilar(self, passedWord):
         """
         @summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
@@ -106,6 +121,7 @@ class Keyword:
         @return:
         @rtype: bool
         """
-        if(passedWord == self.word):
+        if passedWord == self.word:
             return True
+
         # TODO: Implement some impressive algorithm here that checks synonyms?

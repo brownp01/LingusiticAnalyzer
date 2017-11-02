@@ -235,6 +235,8 @@ def createkeywordfromgoogleapientity(entity):
     @rtype: Keyword
     """
     newKeyword = Keyword.Keyword(entity.name, entity.type)
+    for key, value in entity.metadata.items():
+        newKeyword.metadata[key] = value
     return newKeyword
 
 

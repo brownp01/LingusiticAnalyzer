@@ -2,10 +2,15 @@
 class KeywordList:
     list = [] # List of keyword objects
     uniquekeywords = 0
+    __documentscore = 0
 
     def __init__(self):
         self.list = []
         self.uniquekeywords = 0
+
+    @classmethod
+    def getdocumentscore(cls):
+        return cls.__documentscore
 
     @classmethod
     def insertkeyword(cls, keyword):

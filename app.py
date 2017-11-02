@@ -72,13 +72,17 @@ def analyze():
             # Creating a KeywordList object
             keyword_list = analyze_functions.identifykeywords(file_text)
             for i in range(0, keyword_list.uniquekeywords):
-                print(keyword_list.list[i].word + '\t' + str(keyword_list.list[i].frequency))
+
+                # TODO:Fix frequencies, they are not accurate
+                print(keyword_list.list[i].word + '\t||\t' + str(keyword_list.list[i].frequency))
 
             common_functions.outputkeywordtotext(keyword_list)
 
             # Returns static HTML to user
-            f = open("views/processing.html", "r")
-            returnhtml = f.read().replace('#--#', file_text[0][:128])
+            # f = open("views/processing.html", "r")
+            f = open("views/score_response.html", "r")
+
+            returnhtml = f.read().replace('#--SCORE--#', str(keyword_list.getdocumentscore()))
             f.close()
 
         elif file.filename[-4:] == 'docx':    # No ability to read '.doc' yet
