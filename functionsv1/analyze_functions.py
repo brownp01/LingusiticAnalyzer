@@ -7,6 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
 import KeywordList
+import Keyword
 from collections import Counter
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
@@ -65,62 +66,55 @@ def identifykeywords(file_text):
     #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
     #client = language.LanguageServiceClient(credentials=creds)
 
-    for i in range(0, len(file_text)):
+    #for i in range(0, len(file_text)):
+    longlongtext = common_functions.stringlisttolonglongstring(file_text)
 
-        if isinstance(file_text[i], six.binary_type):
-            text = file_text[i].decode('utf-8')
+    if isinstance(longlongtext, six.binary_type):
+        text = longlongtext.decode('utf-8')
 
-            # Instantiates a plain text document.
-            # [START migration_analyze_entities]
-        document = types.Document(
-            content=file_text[i],
-            type=enums.Document.Type.PLAIN_TEXT)
+        # Instantiates a plain text document.
+        # [START migration_analyze_entities]
+    document = types.Document(
+        content=longlongtext,
+        type=enums.Document.Type.PLAIN_TEXT)
 
-        # Detects entities in the document. You can also analyze HTML with:
-        #   document.type == enums.Document.Type.HTML
-        entities = client.analyze_entities(document).entities
+    # Detects entities in the document. You can also analyze HTML with:
+    #   document.type == enums.Document.Type.HTML
+    entities = client.analyze_entities(document).entities
 
-        # entity types from enums.Entity.Type
-        entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
-                       'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
+    # entity types from enums.Entity.Type
+    entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
+                   'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
 
-        for entity in entities:
-            print('=' * 20)
-            print(u'{:<16}: {}'.format('name', entity.name))
-            print(u'{:<16}: {}'.format('type', entity_type[entity.type]))
-            print(u'{:<16}: {}'.format('metadata', entity.metadata))
-            print(u'{:<16}: {}'.format('salience', entity.salience))
-            #print(u'{:<16}: {}'.format('wikipedia_url',
-                                       #entity.metadata.get('wikipedia_url', '-')))
-            # [END migration_analyze_entities]
-            # [END def_entities_text]
-            keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
+    for entity in entities:
+        print('=' * 20)
+        print(u'{:<16}: {}'.format('name', entity.name))
+        print(u'{:<16}: {}'.format('type', entity_type[entity.type]))
+        print(u'{:<16}: {}'.format('metadata', entity.metadata))
+        print(u'{:<16}: {}'.format('salience', entity.salience))
+        #print(u'{:<16}: {}'.format('wikipedia_url',
+                                   #entity.metadata.get('wikipedia_url', '-')))
+        # [END migration_analyze_entities]
+        # [END def_entities_text]
+        keyword_list.insertkeyword(createkeywordfromgoogleapientity(entity, file_text))
 
-    return keyword_list
+    #return keyword_list
 
-def wordsapi_getsynonym(word):
+
+def createkeywordfromgoogleapientity(entity, file_text):
     """
-    @summary: This function calls to the wordsAPI "Synonym" endpoint docs: https://market.mashape.com/wordsapi/wordsapi
-    @param word: word to find synonyms of
-    @type word: string
-    @return: words that are synonymous with the parameter word
-    @rtype: list of strings
+    @summary: Creates a keyword from a single entity that is returned by the google API
+    @param entity: google API response entity
+    @type entity: google API response entity
+    @return: populated instance of Keyword class
+    @rtype: Keyword
     """
-    # TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY
-    apikey = ''
-    url = 'https://wordsapiv1.p.mashape.com/words/{word}/synonyms'
+    newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text))
 
-def wordsapi_getsimilar(word):
-    """
-    @summary: This function calls to the wordsAPI "Similar" endpoint docs: https://market.mashape.com/wordsapi/wordsapi
-    @param word: word to find similar words of
-    @type word: string
-    @return: all the words that are similar to the word parameter
-    @rtype: list of string
-    """
-    # TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY
-    apikey = ''
-    url = 'https://wordsapiv1.p.mashape.com/words/{word}/similar'
+    for key, value in entity.metadata.items():
+        newKeyword.metadata[key] = value
+    return newKeyword
+
 
 def getwordfrequency(word, file_text):
     """
@@ -136,3 +130,4 @@ def getwordfrequency(word, file_text):
     longlongfiletext = common_functions.stringlisttolonglongstring(file_text).replace('\n', '')
     test = longlongfiletext.count(word)
     return longlongfiletext.count(word)
+

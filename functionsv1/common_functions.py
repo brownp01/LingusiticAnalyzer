@@ -147,6 +147,7 @@ def outputkeywordtotext(keylist):
     @return: void
     """
     #TODO create file using document title of originating keywords
+
     file = open('Documents/Keywords.txt', 'w')
 
     #TODO determine best format and information needed to save from Keyword object for future use
@@ -228,19 +229,6 @@ def stringlisttolonglongstring(string_list):
         long_string += string_list[i].rstrip()
     return long_string
 
-def createkeywordfromgoogleapientity(entity, file_text):
-    """
-    @summary: Creates a keyword from a single entity that is returned by the google API
-    @param entity: google API response entity
-    @type entity: google API response entity
-    @return: populated instance of Keyword class
-    @rtype: Keyword
-    """
-    newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, analyze_functions.getwordfrequency(entity.name, file_text))
-
-    for key, value in entity.metadata.items():
-        newKeyword.metadata[key] = value
-    return newKeyword
 
 
 def appendtokeywordlist(kList, newK):

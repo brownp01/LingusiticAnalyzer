@@ -71,10 +71,10 @@ def analyze():
 
             # -----------IDENTIFYING KEYWORDS----------- #
             keyword_list = analyze_functions.identifykeywords(file_text)
-            for i in range(0, keyword_list.uniquekeywords):
-
-                # TODO:Fix frequencies, they are not accurate
-                print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
+            # for i in range(0, keyword_list.uniquekeywords):
+            #
+            #     # TODO:Fix frequencies, they are not accurate
+            #     print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
 
             common_functions.outputkeywordtotext(keyword_list)
 
