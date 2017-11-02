@@ -1,5 +1,5 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [01/Nov/2017 00:28:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Nov/2017 18:13:55] "GET / HTTP/1.1" 200 -
 INFO:root:Started in Analyze
 INFO:root:saving file "DesignDoc.pdf"
 INFO:root:"DesignDoc.pdf" saved
@@ -8,4 +8,4 @@ INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
 DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
-INFO:werkzeug:127.0.0.1 - - [01/Nov/2017 00:28:27] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Nov/2017 18:14:22] "POST /analyze HTTP/1.1" 200 -

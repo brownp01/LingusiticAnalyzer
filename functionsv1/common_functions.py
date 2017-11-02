@@ -153,7 +153,7 @@ def outputkeywordtotext(keylist):
 
     #TODO determine best format and information needed to save from Keyword object for future use
     for i in range(0, keylist.uniquekeywords):
-        file.write(keylist.list[i].word + "  " + str(keylist.list[i].frequency) + "\n")
+        file.write(keylist.list[i].word + "," + str(keylist.list[i].frequency) + "\n")
 
     file.close()
 
@@ -232,3 +232,8 @@ def appendtokeywordlist(kList, newK):
     @return:
     @rtype:
     """
+
+
+
+
+
