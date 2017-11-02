@@ -1,12 +1,9 @@
 import os
-import PyPDF2
 from werkzeug.utils import secure_filename
 import logging
 from functionsv1 import common_functions
 import docx
 import string
-
-
 import io
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
@@ -156,6 +153,25 @@ def outputkeywordtotext(keylist):
         file.write(keylist.list[i].word + "," + str(keylist.list[i].frequency) + "\n")
 
     file.close()
+
+def extractkeywordfromtxt(file):
+    """
+    @summary: This function will extract keyword information from .txt file and place into KeywordList object
+    @param file: location of .txt file
+    @type file: .txt
+    @return: void
+    """
+    keyword_list = KeywordList.KeywordList
+    i = 0
+
+    f = open(file, 'r')
+    for line in f:
+        line_list = line.split(',')
+        #TODO modify input to Keyword Object to fit overall needs
+        newKeyword = Keyword.Keyword(line_list[i], int(line_list[i+1].rstrip('\n')))
+        keyword_list.insertkeyword(newKeyword)
+
+    f.close()
 
 
 def cleantext(textlist):
