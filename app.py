@@ -69,12 +69,12 @@ def analyze():
             file_text = common_functions.extractpdftext(file)
             common_functions.printStringList(file_text)
 
-            # Creating a KeywordList object
+            # -----------IDENTIFYING KEYWORDS----------- #
             keyword_list = analyze_functions.identifykeywords(file_text)
             for i in range(0, keyword_list.uniquekeywords):
 
                 # TODO:Fix frequencies, they are not accurate
-                print(keyword_list.list[i].word + '\t||\t' + str(keyword_list.list[i].frequency))
+                print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
 
             common_functions.outputkeywordtotext(keyword_list)
 
@@ -82,7 +82,8 @@ def analyze():
             # f = open("views/processing.html", "r")
             f = open("views/score_response.html", "r")
 
-            returnhtml = f.read().replace('#--SCORE--#', str(keyword_list.getdocumentscore()))
+            returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())).\
+                replace('#--YULES_SCORE--#', str(keyword_list.getyuleskscore()))
             f.close()
 
         elif file.filename[-4:] == 'docx':    # No ability to read '.doc' yet
@@ -103,65 +104,6 @@ def analyze():
             returnhtml = f.read()
             f.close()
     return Response(returnhtml, mimetype='text/html')
-
-
-@app.route('/Test', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def test():
-    return Response('<script>alert("All your base are belong to us");</script>', mimetype='text/html')
-
-    """
-    if request.method == 'POST':
-        # This POST parses json data
-        jsonData = request.get_json()
-        print(jsonData["this"])
-        return Response('<p>POST response. </p>', mimetype='text/html')
-
-    elif request.method == 'GET':
-        # This GET samples calling to an API
-        r = requests.get('https://api.github.com/users/tlblanton')
-        return Response(r.text, mimetype='application/json')
-    else:
-        # in other cases, we return what type of request it was
-        retJson = '{"Request.method" : "' + request.method + '"}'
-        return Response(retJson, mimetype='application/json')
-    """
-
-
-@app.route('/staticanalyze', methods=['POST'])
-def static_analyze():
-    """
-    @summary: This endpoint is a placeholder. It currently reads an existing pdf (not the uploaded one).
-    This is so we can start the bulk of our algorithmic work immediately and focus on connections to UI in the future.
-    @return: Basic information about document
-    @rtype: html
-    """
-
-    try:
-        # ---------
-        # Opening and reading the pdf file
-        # ---------
-        pdfFileObj = open('downloads/ipsum.pdf', 'rb')
-        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-
-        for i in range(0, pdfReader.numPages):
-            pageObject = pdfReader.getPage(i)
-            pdfText = pageObject.extractText()
-            analyze_functions.printtext(pageObject.extractText())
-
-
-    except Exception as ex:
-        # ---------
-        # In the event that something goes wrong, we return an error page.
-        # ---------
-        print(ex)
-        f = open("views/invalid_upload.html", "r")  # opens file with name of "index.html"
-        return Response(f.read(), mimetype='text/html')
-
-    # ---------
-    # Redirecting the user back to the home page
-    # ---------
-    f = open("views/index.html", "r")  # opens file with name of "index.html"
-    return Response(f.read(), mimetype='text/html')
 
 
 if __name__ == '__main__':

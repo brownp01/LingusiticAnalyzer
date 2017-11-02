@@ -2,15 +2,20 @@
 class KeywordList:
     list = [] # List of keyword objects
     uniquekeywords = 0
-    __documentscore = 0
+    __keywordscore = 0
+    __yuleskscore = 0
 
     def __init__(self):
         self.list = []
         self.uniquekeywords = 0
 
     @classmethod
-    def getdocumentscore(cls):
-        return cls.__documentscore
+    def getkeywordscore(cls):
+        return cls.__keywordscore
+
+    @classmethod
+    def getyuleskscore(cls):
+        return cls.__yuleskscore
 
     @classmethod
     def insertkeyword(cls, keyword):
@@ -25,11 +30,11 @@ class KeywordList:
         # Check "similar words" lists
 
         # Check for exact "word"
-        if not cls.existsinlist(keyword.word):
+        if not cls.existsinlist(keyword.word.upper()):
             cls.list.append(keyword)
             cls.uniquekeywords += 1
         else:
-            index = cls.getindexofword(keyword.word)
+            index = cls.getindexofword(keyword.word.upper())
             cls.list[index].frequency += 1
 
 

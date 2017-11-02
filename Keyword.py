@@ -8,9 +8,8 @@ class Keyword:
     """
     word = ""   # The given word
     type = ""   # The type of the word (if it has one)
-    metadata = {} # list of string each of which contain metadata about the given Keyword
+    metadata = {}   # list of string each of which contain metadata about the given Keyword
     similarWords = []   # Words that are semantically similar the that word.
-    #_wordFrequency = 0      # Number of times the "word" occurs (not any similar words)
     frequency = 0
     __score = 0
     _similarWordFrequency = 0   # Instances of "word" and all similar words
@@ -24,13 +23,17 @@ class Keyword:
         self.word = nWord
         self.type = nType
 
+    def __init__(self, nWord, nType, nFreq):
+        self.word = nWord
+        self.type = nType
+        self.frequency = nFreq
+
     @classmethod
     def getscore(cls):
         return cls.__score
 
     @classmethod
     def wordfrequency(self):
-        #return self._wordFrequency
         return self.frequency
 
     @classmethod

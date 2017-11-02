@@ -2,6 +2,7 @@ import os
 from werkzeug.utils import secure_filename
 import logging
 from functionsv1 import common_functions
+from functionsv1 import analyze_functions
 import docx
 import string
 import io
@@ -146,7 +147,7 @@ def outputkeywordtotext(keylist):
     @return: void
     """
     #TODO create file using document title of originating keywords
-    file = open('Documents/test.txt', 'w')
+    file = open('Documents/Keywords.txt', 'w')
 
     #TODO determine best format and information needed to save from Keyword object for future use
     for i in range(0, keylist.uniquekeywords):
@@ -224,9 +225,10 @@ def stringlisttolonglongstring(string_list):
     """
     long_string = ""
     for i in range(0, len(string_list)):
-        long_string += string_list[i]
+        long_string += string_list[i].rstrip()
+    return long_string
 
-def createkeywordfromgoogleapientity(entity):
+def createkeywordfromgoogleapientity(entity, file_text):
     """
     @summary: Creates a keyword from a single entity that is returned by the google API
     @param entity: google API response entity
@@ -234,7 +236,8 @@ def createkeywordfromgoogleapientity(entity):
     @return: populated instance of Keyword class
     @rtype: Keyword
     """
-    newKeyword = Keyword.Keyword(entity.name, entity.type)
+    newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, analyze_functions.getwordfrequency(entity.name, file_text))
+
     for key, value in entity.metadata.items():
         newKeyword.metadata[key] = value
     return newKeyword

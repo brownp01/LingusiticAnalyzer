@@ -7,9 +7,9 @@ from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
 import KeywordList
+from collections import Counter
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
-
 
 
 def printtext(text):
@@ -94,7 +94,7 @@ def identifykeywords(file_text):
                                        #entity.metadata.get('wikipedia_url', '-')))
             # [END migration_analyze_entities]
             # [END def_entities_text]
-            keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity))
+            keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
 
     return keyword_list
 
@@ -121,3 +121,18 @@ def wordsapi_getsimilar(word):
     # TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY
     apikey = ''
     url = 'https://wordsapiv1.p.mashape.com/words/{word}/similar'
+
+def getwordfrequency(word, file_text):
+    """
+    @summary: determines frequency of the given word in the file's text
+    @param word: word to find freq. of
+    @type word: string
+    @param file_text: text of entire file
+    @type file_text: list of string
+    @return:
+    @rtype:
+    """
+    # TODO: Only populate longlongfiletext once, it is very inefficient the way it is now.
+    longlongfiletext = common_functions.stringlisttolonglongstring(file_text).replace('\n', '')
+    test = longlongfiletext.count(word)
+    return longlongfiletext.count(word)
