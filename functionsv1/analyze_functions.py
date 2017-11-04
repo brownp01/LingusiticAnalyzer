@@ -1,6 +1,8 @@
 import logging
 import os
+import sys
 from google.cloud import language
+from google.cloud import language_v1beta2
 from google.cloud.language import enums
 from google.cloud.language import types
 from oauth2client.service_account import ServiceAccountCredentials
@@ -68,7 +70,7 @@ def identifykeywords(file_text):
     for i in range(0, len(file_text)):
 
         if isinstance(file_text[i], six.binary_type):
-            text = file_text[i].decode('utf-8')
+            file_text[i] = file_text[i].decode('utf-8')
 
             # Instantiates a plain text document.
             # [START migration_analyze_entities]
@@ -79,6 +81,7 @@ def identifykeywords(file_text):
         # Detects entities in the document. You can also analyze HTML with:
         #   document.type == enums.Document.Type.HTML
         entities = client.analyze_entities(document).entities
+
 
         # entity types from enums.Entity.Type
         entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
@@ -94,6 +97,62 @@ def identifykeywords(file_text):
                                        #entity.metadata.get('wikipedia_url', '-')))
             # [END migration_analyze_entities]
             # [END def_entities_text]
+            keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
+
+    return keyword_list
+
+def identifykeywordswithsentiment(file_text):
+    """
+    @param file_text: text of document
+    @type file_text: list of strings
+    @return: KeywordList object
+    @rtype: string
+    """
+    """Detects entities in the text."""
+
+    """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
+        in bash.profile and bash.profile_pysave"""
+
+    keyword_list = KeywordList.KeywordList
+
+    client = language.LanguageServiceClient()
+
+
+    """Explicit call for authentication: Change file path of json file. Authentication is accepted but 
+       does not function properly for the Google Language API"""
+    #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
+    #client = language.LanguageServiceClient(credentials=creds)
+
+    for i in range(0, len(file_text)):
+
+        if isinstance(file_text[i], six.binary_type):
+            file_text[i] = file_text[i].decode('utf-8')
+
+            # Instantiates a plain text document.
+            # [START migration_analyze_entities]
+        document = types.Document(
+            content=file_text[i].encode('utf-8'),
+            type=enums.Document.Type.PLAIN_TEXT)
+
+        # Detect and send native Python encoding to receive correct word offsets.
+        encoding = enums.EncodingType.UTF32
+        if sys.maxunicode == 65535:
+            encoding = enums.EncodingType.UTF16
+
+        result = client.analyze_entity_sentiment(document, encoding)
+
+        for entity in result.entities:
+            print('Mentions: ')
+            print(u'Name: "{}"'.format(entity.name))
+            for mention in entity.mentions:
+                print(u'  Begin Offset : {}'.format(mention.text.begin_offset))
+                print(u'  Content : {}'.format(mention.text.content))
+                print(u'  Magnitude : {}'.format(mention.sentiment.magnitude))
+                print(u'  Sentiment : {}'.format(mention.sentiment.score))
+                print(u'  Type : {}'.format(mention.type))
+            print(u'Salience: {}'.format(entity.salience))
+            print(u'Sentiment: {}\n'.format(entity.sentiment))
+
             keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
 
     return keyword_list

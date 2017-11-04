@@ -70,7 +70,9 @@ def analyze():
             common_functions.printStringList(file_text)
 
             # -----------IDENTIFYING KEYWORDS----------- #
-            keyword_list = analyze_functions.identifykeywords(file_text)
+            #keyword_list = analyze_functions.identifykeywords(file_text)
+            keyword_list = analyze_functions.identifykeywordswithsentiment(file_text)
+
             for i in range(0, keyword_list.uniquekeywords):
 
                 # TODO:Fix frequencies, they are not accurate
