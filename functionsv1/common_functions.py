@@ -236,7 +236,12 @@ def createkeywordfromgoogleapientity(entity, file_text):
     @return: populated instance of Keyword class
     @rtype: Keyword
     """
-    newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, analyze_functions.getwordfrequency(entity.name, file_text), entity.sentiment.score)
+    eName = entity.name.upper()
+    eType = entity.type
+    eFreq = analyze_functions.getwordfrequency(eName, file_text)
+    eSent = entity.sentiment.score
+
+    newKeyword = Keyword.Keyword(eName, eType, eFreq, eSent)
 
     for key, value in entity.metadata.items():
         newKeyword.metadata[key] = value
