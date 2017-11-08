@@ -52,6 +52,10 @@ def analyze():
     @return: Information regarding uploaded document's similarity to regulatory document
     @rtype: html
     """
+    tempH = request.headers
+    tempD = request.data
+    tempF = request.files
+    localuploadfolder = None
 
     logging.info('Started in Analyze')
     file_text = []  # List of strings containing document's text
@@ -64,9 +68,12 @@ def analyze():
         print('No file found')
     else:
         file = request.files['datafile']
+        if request.headers.has_key('Test') and request.headers["Test"] == "True":
+            localuploadfolder = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
+/LinguisticAnalyzer/unit_tests/test_pdfs/'
 
         if file.filename[-3:] == 'pdf':
-            file_text = common_functions.extractpdftext(file)
+            file_text = common_functions.extractpdftext(file, localuploadfolder)
             common_functions.printStringList(file_text)
 
             # -----------IDENTIFYING KEYWORDS----------- #
@@ -74,7 +81,6 @@ def analyze():
             #keyword_list = analyze_functions.identifykeywordswithsentiment(file_text)
 
             for i in range(0, keyword_list.uniquekeywords):
-
                 # TODO:Fix frequencies, they are not accurate
                 print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
 
@@ -93,9 +99,17 @@ def analyze():
             file_text = common_functions.extractmicrosoftdocxtext(file)
             common_functions.printStringList(file_text)
 
-            # Returns static HTML to user
-            f = open("views/processing.html", "r")
-            returnhtml = f.read().replace('#--#', file_text[0][:64])
+            # -----------IDENTIFYING KEYWORDS----------- #
+            keyword_list = analyze_functions.identifykeywords(file_text)
+
+            for i in range(0, keyword_list.uniquekeywords):
+                # TODO:Fix frequencies, they are not accurate
+                print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
+
+            # Returns static HTML to users
+            f = open("views/score_response.html", "r")
+            returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())). \
+                replace('#--YULES_SCORE--#', str(keyword_list.getyuleskscore()))
             f.close()
 
         else:

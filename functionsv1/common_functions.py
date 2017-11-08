@@ -37,7 +37,6 @@ def extractpdftext(file, testupload_folder = None):
 
 
 
-
     file_text = []
     filename = file.filename
 
@@ -78,9 +77,6 @@ def extractpdftext(file, testupload_folder = None):
 
         file_text = longstringtostringlist(text, 1024)  # Converting long string to list of strings of size 1024
 
-        # ----------This is the PyPDF2 PDF Reader (Deprecated - does not work with all PDFs) ----------#
-
-
     except FileNotFoundError as fnfe:
         logging.info("**-- ERROR: unable to find file file --**")
         print(fnfe.strerror)
@@ -89,33 +85,38 @@ def extractpdftext(file, testupload_folder = None):
     return cleantext(file_text)
 
 
-
-
-
-def extractmicrosoftdocxtext(file):
+def extractmicrosoftdocxtext(file, testupload_folder=None):
     """
-    @summary:
-    @param file:
-    @type file:
-    @param uploadfolder:
-    @type uploadfolder:
+    @param file: doc file
+    @type file: werkzeug filestorage
+    @param testupload_folder: path to test upload folder if necessary
+    @type testupload_folder: string
     @return:
     @rtype:
     """
     file_text = []
-    savefile(file)
 
-    doc = docx.Document(UPLOAD_FOLDER + file.filename)
+    try:
+        if testupload_folder is None:
+            localupload_folder = UPLOAD_FOLDER
+            savefile(file, localupload_folder)
+        else:
+            localupload_folder = testupload_folder
 
-    for para in doc.paragraphs:
-        if len(para.text) != 0:
-            file_text.append(para.text.strip('\t'))
+        doc = docx.Document(localupload_folder + file.filename)
 
-    os.remove(UPLOAD_FOLDER + file.filename)  # Removes created file from directory.
+        for para in doc.paragraphs:
+            if len(para.text) != 0:
+                file_text.append(para.text.strip('\t'))
+    except FileNotFoundError as fnfe:
+        logging.info("**-- ERROR: unable to find file file --**")
+        print(fnfe.strerror)
+    if testupload_folder is None:
+        os.remove(UPLOAD_FOLDER + file.filename)  # Removes created file from directory.
     return cleantext(file_text)
 
 
-def savefile(file, upload_folder = None):
+def savefile(file, upload_folder=None):
 
     # -- This is for testing, do not remove -- #
     if(upload_folder is not None):
