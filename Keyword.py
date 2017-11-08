@@ -13,7 +13,7 @@ class Keyword:
     frequency = 0
     __score = 0
     _similarWordFrequency = 0   # Instances of "word" and all similar words
-    sentiment = 0
+    salience = 0
 
     def __init__(self, word):
         self.frequency = 1
@@ -24,11 +24,11 @@ class Keyword:
         self.word = nWord
         self.type = nType
 
-    def __init__(self, nWord, nType, nFreq, nSent):
+    def __init__(self, nWord, nType, nFreq, nSal):
         self.word = nWord
         self.type = nType
         self.frequency = nFreq
-        self.sentiment = nSent
+        self.salience = nSal
 
     @classmethod
     def getscore(cls):

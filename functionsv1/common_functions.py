@@ -25,7 +25,7 @@ def homeCount():
 homeCount.counter = 0
 
 
-def extractpdftext(file):
+def extractpdftext(file, testupload_folder = None):
     """
     @summary:   extracts Text from PDF document referenced in given file argument
     @param file:    the object containing the file's information
@@ -33,11 +33,22 @@ def extractpdftext(file):
     @return: list containing the text of the PDF
     @rtype: string
     """
+    localupload_folder = ''
+
+
+
+
     file_text = []
     filename = file.filename
 
     try:
-        savefile(file)
+        # -- This is for testing, do not remove -- #
+        if testupload_folder is None:
+            localupload_folder = UPLOAD_FOLDER
+            savefile(file, localupload_folder)
+        else:
+            localupload_folder = testupload_folder
+
 
         # PdfMiner writes an insane amount of logging statements (one per parsed word, it seems).
         # Remove the below line if you would like to see them.
@@ -54,7 +65,7 @@ def extractpdftext(file):
         converter = TextConverter(manager, output, laparams=LAParams())
         interpreter = PDFPageInterpreter(manager, converter)
 
-        infile = open(UPLOAD_FOLDER + file.filename, 'rb')
+        infile = open(localupload_folder + file.filename, 'rb')
         for page in PDFPage.get_pages(infile, pagenums):
             interpreter.process_page(page)
         infile.close()
@@ -63,27 +74,18 @@ def extractpdftext(file):
         output.close
         # --------End of PDFMiner reading --------#
         logging.disable(logging.NOTSET) # This re-enables logging
-        log("PDF file processed")
+        logging.info("PDF file processed")
 
         file_text = longstringtostringlist(text, 1024)  # Converting long string to list of strings of size 1024
 
         # ----------This is the PyPDF2 PDF Reader (Deprecated - does not work with all PDFs) ----------#
-        """
-        pdfFileObj = open(UPLOAD_FOLDER + filename, 'rb')  # Opens uploaded file
-        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-        for i in range(0, pdfReader.numPages):
-            pageObject = pdfReader.getPage(i)
 
-            # saves text of uploaded pdf into a list of strings
-            temp = pageObject.extractText()
-            file_text.append(pageObject.extractText().strip('\n'))
-            # print(file_text[len(file_text) - 1])
-        """
 
-    except RuntimeError:
-        file_text.append("**ERROR - unable to process file: " + RuntimeError + "**")
-        log("**ERROR - unable to process file: " + RuntimeError + "**")
-    os.remove(UPLOAD_FOLDER + filename)  # Removes created file from directory.
+    except FileNotFoundError as fnfe:
+        logging.info("**-- ERROR: unable to find file file --**")
+        print(fnfe.strerror)
+    if testupload_folder is None:       # If this is not a test, remove file
+        os.remove(localupload_folder + filename)  # Removes created file from directory.
     return cleantext(file_text)
 
 
@@ -113,28 +115,17 @@ def extractmicrosoftdocxtext(file):
     return cleantext(file_text)
 
 
-def log(text):
-    """
-    @summary: This function looks at string to be logged and decides the best way to log it. This function exists in
-    case we need to add more complex logging functionality and don't want to handle logging complexities inline, as
-    this would be ugly.
-    @param text: message to be logged
-    @type text: string
-    @return: void
-    @rtype: void
-    """
-    if "WARN" in text:
-        logging.warning(text)
-    else:
-        logging.info(text)
+def savefile(file, upload_folder = None):
 
+    # -- This is for testing, do not remove -- #
+    if(upload_folder is not None):
+        UPLOAD_FOLDER = upload_folder
 
-def savefile(file):
     filename = secure_filename(file.filename)
 
-    common_functions.log('saving file "' + filename + '"')
+    logging.info('saving file "' + filename + '"')
     file.save(os.path.join(UPLOAD_FOLDER, filename))  # saves uploaded files
-    common_functions.log('"' + filename + '" saved')
+    logging.info('"' + filename + '" saved')
 
     logging.info('opening file "' + filename + '"')  # Logging
 
@@ -151,9 +142,10 @@ def outputkeywordtotext(keylist):
 
     #TODO determine best format and information needed to save from Keyword object for future use
     for i in range(0, keylist.uniquekeywords):
-        file.write(keylist.list[i].word + "," + str(keylist.list[i].sentiment) + "," + str(keylist.list[i].frequency) + "\n")
+        file.write(keylist.list[i].word + "," + str(keylist.list[i].salience) + "," + str(keylist.list[i].frequency) + "\n")
 
     file.close()
+
 
 def extractkeywordfromtxt(file):
     """
@@ -175,7 +167,7 @@ def extractkeywordfromtxt(file):
     f.close()
 
 
-def cleantext(textlist):
+def cleantext(text_list):
     """
     @summary:
     @param textlist: a list of strings to remove strange characters from
@@ -185,10 +177,10 @@ def cleantext(textlist):
     """
     printable = set(string.printable)
 
-    for i in range(0, len(textlist)-1):
-        textlist[i] = ''.join(filter(lambda x: x in string.printable, textlist[i]))
+    for i in range(0, len(text_list)-1):
+        text_list[i] = ''.join(filter(lambda x: x in string.printable, text_list[i]))
 
-    return textlist
+    return text_list
 
 def printStringList(textList):
     """
@@ -228,7 +220,7 @@ def stringlisttolonglongstring(string_list):
         long_string += string_list[i].rstrip()
     return long_string
 
-def createkeywordfromgoogleapientity(entity, file_text):
+def createkeywordfromgoogleapientitysentiment(entity, file_text):
     """
     @summary: Creates a keyword from a single entity that is returned by the google API
     @param entity: google API response entity
@@ -248,6 +240,23 @@ def createkeywordfromgoogleapientity(entity, file_text):
     return newKeyword
 
 
+def createkeywordfromgoogleapientity(entity, file_text):
+    """
+    @summary: Creates a keyword from a single entity that is returned by the google API
+    @param entity: google API response entity
+    @type entity: google API response entity
+    @param file_text: entire file's text
+    @type file_text: list of strings
+    @return: populated instance of Keyword class
+    @rtype: Keyword
+    """
+    newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)
+
+    for key, value in entity.metadata.items():
+        newKeyword.metadata[key] = value
+    return newKeyword
+
+
 def appendtokeywordlist(kList, newK):
     """
     @summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list
@@ -258,6 +267,22 @@ def appendtokeywordlist(kList, newK):
     @return:
     @rtype:
     """
+
+
+def getwordfrequency(word, file_text):
+    """
+    @summary: determines frequency of the given word in the file's text
+    @param word: word to find freq. of
+    @type word: string
+    @param file_text: text of entire file
+    @type file_text: list of string
+    @return:
+    @rtype:
+    """
+    # TODO: Only populate longlongfiletext once, it is very inefficient the way it is now.
+    longlongfiletext = common_functions.stringlisttolonglongstring(file_text).replace('\n', '')
+    test = longlongfiletext.count(word)
+    return longlongfiletext.count(word)
 
 
 
