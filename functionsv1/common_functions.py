@@ -12,9 +12,11 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 import Keyword
 import KeywordList
+from matplotlib import pyplot
+import numpy as np
 
 
-UPLOAD_FOLDER = 'downloads/'
+DOWNLOAD_FOLDER = 'downloads/'
 
 def homeCount():
     returnVal = homeCount.counter
@@ -25,7 +27,7 @@ def homeCount():
 homeCount.counter = 0
 
 
-def extractpdftext(file, testupload_folder = None):
+def extractpdftext(file, testdownload_folder = None):
     """
     @summary:   extracts Text from PDF document referenced in given file argument
     @param file:    the object containing the file's information
@@ -33,7 +35,7 @@ def extractpdftext(file, testupload_folder = None):
     @return: list containing the text of the PDF
     @rtype: string
     """
-    localupload_folder = ''
+    localdownload_folder = ''
 
 
 
@@ -42,11 +44,11 @@ def extractpdftext(file, testupload_folder = None):
 
     try:
         # -- This is for testing, do not remove -- #
-        if testupload_folder is None:
-            localupload_folder = UPLOAD_FOLDER
-            savefile(file, localupload_folder)
+        if testdownload_folder is None:
+            localdownload_folder = DOWNLOAD_FOLDER
+            savefile(file, localdownload_folder)
         else:
-            localupload_folder = testupload_folder
+            localdownload_folder = testdownload_folder
 
 
         # PdfMiner writes an insane amount of logging statements (one per parsed word, it seems).
@@ -64,7 +66,7 @@ def extractpdftext(file, testupload_folder = None):
         converter = TextConverter(manager, output, laparams=LAParams())
         interpreter = PDFPageInterpreter(manager, converter)
 
-        infile = open(localupload_folder + file.filename, 'rb')
+        infile = open(localdownload_folder + file.filename, 'rb')
         for page in PDFPage.get_pages(infile, pagenums):
             interpreter.process_page(page)
         infile.close()
@@ -80,30 +82,30 @@ def extractpdftext(file, testupload_folder = None):
     except FileNotFoundError as fnfe:
         logging.info("**-- ERROR: unable to find file file --**")
         print(fnfe.strerror)
-    if testupload_folder is None:       # If this is not a test, remove file
-        os.remove(localupload_folder + filename)  # Removes created file from directory.
+    if testdownload_folder is None:       # If this is not a test, remove file
+        os.remove(localdownload_folder + filename)  # Removes created file from directory.
     return cleantext(file_text)
 
 
-def extractmicrosoftdocxtext(file, testupload_folder=None):
+def extractmicrosoftdocxtext(file, testdownload_folder=None):
     """
     @param file: doc file
     @type file: werkzeug filestorage
-    @param testupload_folder: path to test upload folder if necessary
-    @type testupload_folder: string
+    @param testdownload_folder: path to test upload folder if necessary
+    @type testdownload_folder: string
     @return:
     @rtype:
     """
     file_text = []
 
     try:
-        if testupload_folder is None:
-            localupload_folder = UPLOAD_FOLDER
-            savefile(file, localupload_folder)
+        if testdownload_folder is None:
+            localdownload_folder = DOWNLOAD_FOLDER
+            savefile(file, localdownload_folder)
         else:
-            localupload_folder = testupload_folder
+            localdownload_folder = testdownload_folder
 
-        doc = docx.Document(localupload_folder + file.filename)
+        doc = docx.Document(localdownload_folder + file.filename)
 
         for para in doc.paragraphs:
             if len(para.text) != 0:
@@ -111,21 +113,21 @@ def extractmicrosoftdocxtext(file, testupload_folder=None):
     except FileNotFoundError as fnfe:
         logging.info("**-- ERROR: unable to find file file --**")
         print(fnfe.strerror)
-    if testupload_folder is None:
-        os.remove(UPLOAD_FOLDER + file.filename)  # Removes created file from directory.
+    if testdownload_folder is None:
+        os.remove(DOWNLOAD_FOLDER + file.filename)  # Removes created file from directory.
     return cleantext(file_text)
 
 
-def savefile(file, upload_folder=None):
+def savefile(file, download_folder=None):
 
     # -- This is for testing, do not remove -- #
-    if(upload_folder is not None):
-        UPLOAD_FOLDER = upload_folder
+    if(download_folder is not None):
+        DOWNLOAD_FOLDER = download_folder
 
     filename = secure_filename(file.filename)
 
     logging.info('saving file "' + filename + '"')
-    file.save(os.path.join(UPLOAD_FOLDER, filename))  # saves uploaded files
+    file.save(os.path.join(DOWNLOAD_FOLDER, filename))  # saves uploaded files
     logging.info('"' + filename + '" saved')
 
     logging.info('opening file "' + filename + '"')  # Logging
@@ -285,6 +287,40 @@ def getwordfrequency(word, file_text):
     test = longlongfiletext.count(word)
     return longlongfiletext.count(word)
 
+def plotmostcommon(file_text, keyword_list):
+    """
+    @param file_text:
+    @type file_text: list of strings
+    @param keyword_list:
+    @type keyword_list: list of keywords
+    @return:
+    @rtype:
+    """
+
+    kwlist = list(keyword_list.list)
+    topkeywords = []
+    topKeywordfreqs = []
+
+    # This loop finds the 10 most common keywords in the keyword_list
+    i = 0
+    while i < 10 and len(kwlist) > 0:
+        topkeywordfreq = max(x.frequency for x in kwlist)
+        topKeywordfreqs.append(topkeywordfreq)
+
+        topkeyword = next(kw for kw in kwlist if kw.frequency == topkeywordfreq)
+        topkeywords.append(topkeyword)
+
+        kwlist[:] = [x for x in kwlist if x.word != topkeyword.word] # removes the previously added item so it does not get chosen again
+        i += 1
+
+    # TODO: Make graph display proper values and display in a more user-friendly way
+    x = np.arange(0, 15, 0.1)
+    y = np.sin(x)
+    pyplot.plot(x, y)
+    pyplot.title('Most Common Keywords In File')
+    pyplot.legend()
+    pyplot.tight_layout()
+    pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
 
 
 

@@ -52,13 +52,11 @@ def analyze():
     @return: Information regarding uploaded document's similarity to regulatory document
     @rtype: html
     """
-    tempH = request.headers
-    tempD = request.data
-    tempF = request.files
     localuploadfolder = None
 
     logging.info('Started in Analyze')
     file_text = []  # List of strings containing document's text
+    keyword_list = []
     keywords = []   # List of Keyword object
 
     returnhtml = ""
@@ -86,10 +84,9 @@ def analyze():
 
             common_functions.outputkeywordtotext(keyword_list)
 
-            # Returns static HTML to user
-            # f = open("views/processing.html", "r")
-            f = open("views/score_response.html", "r")
+            common_functions.plotmostcommon(file_text, keyword_list)
 
+            f = open("views/score_response.html", "r")
             returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())).\
                 replace('#--YULES_SCORE--#', str(keyword_list.getyuleskscore()))
             f.close()
