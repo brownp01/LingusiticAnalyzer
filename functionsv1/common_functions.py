@@ -314,9 +314,17 @@ def plotmostcommon(file_text, keyword_list):
         i += 1
 
     # TODO: Make graph display proper values and display in a more user-friendly way
-    x = np.arange(0, 15, 0.1)
-    y = np.sin(x)
-    pyplot.plot(x, y)
+    z = 0
+    y = np.empty(len(topkeywords))
+    my_xticks = []
+    for tk in topkeywords:
+        my_xtick = topkeywords[z].word
+        my_xticks.append(my_xtick)
+        y[z] = topkeywords[z].salience
+        z += 1
+    x = np.arange(z)
+    pyplot.bar(x, y)
+    pyplot.xticks(x, my_xticks, rotation=90)
     pyplot.title('Most Common Keywords In File')
     pyplot.legend()
     pyplot.tight_layout()

@@ -1,12 +1,14 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [08/Nov/2017 18:25:23] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Nov/2017 14:59:27] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/Nov/2017 14:59:28] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [13/Nov/2017 14:59:28] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [13/Nov/2017 14:59:28] "GET /apple-touch-icon.png HTTP/1.1" 404 -
 INFO:root:Started in Analyze
-INFO:root:saving file "small_sample.pdf"
-INFO:root:"small_sample.pdf" saved
-INFO:root:opening file "small_sample.pdf"
+INFO:root:saving file "DesignDoc.pdf"
+INFO:root:"DesignDoc.pdf" saved
+INFO:root:opening file "DesignDoc.pdf"
 INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
 DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
-INFO:werkzeug:127.0.0.1 - - [08/Nov/2017 18:25:37] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [08/Nov/2017 18:25:37] "GET /downloads/topkeyword.png HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [13/Nov/2017 14:59:52] "POST /analyze HTTP/1.1" 200 -

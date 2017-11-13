@@ -6,8 +6,7 @@ from functionsv1 import common_functions
 import logging
 import os
 
-DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
-/LinguisticAnalyzer/unit_tests/test_pdfs/'
+DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
 
 
 class TestExtractpdftext(TestCase):

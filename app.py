@@ -67,8 +67,7 @@ def analyze():
     else:
         file = request.files['datafile']
         if request.headers.has_key('Test') and request.headers["Test"] == "True":
-            localuploadfolder = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
-/LinguisticAnalyzer/unit_tests/test_pdfs/'
+            localuploadfolder = 'unit_tests/test_pdfs/'
 
         if file.filename[-3:] == 'pdf':
             file_text = common_functions.extractpdftext(file, localuploadfolder)
