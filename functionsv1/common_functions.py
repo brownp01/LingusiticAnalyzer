@@ -323,10 +323,15 @@ def plotmostcommon(file_text, keyword_list):
         y[z] = topkeywords[z].salience
         z += 1
     x = np.arange(z)
-    pyplot.bar(x, y)
-    pyplot.xticks(x, my_xticks, rotation=90)
-    pyplot.title('Most Common Keywords In File')
-    pyplot.legend()
+    colors = np.random.rand(z)
+    pyplot.bar(x, y, color='blue')
+    # pyplot.plot(x,y)
+    # pyplot.scatter(x,y,c=colors)
+    pyplot.xticks(x, my_xticks, fontsize=8, color='black', rotation=90)
+    pyplot.title('Most Common Keywords In File', fontweight='bold')
+    pyplot.xlabel('Keywords', fontsize=10, color='red')
+    pyplot.ylabel('Salience', fontsize=10, color='red')
+    # pyplot.legend()
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
 
