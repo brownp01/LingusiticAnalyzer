@@ -8,7 +8,7 @@ from google.cloud.language import types
 from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
-import KeywordList
+from KeywordList import KeywordList
 from collections import Counter
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
@@ -58,7 +58,7 @@ def identifykeywords(file_text):
     """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
         in bash.profile and bash.profile_pysave"""
 
-    keyword_list = KeywordList.KeywordList
+    keyword_list = KeywordList()
 
     client = language.LanguageServiceClient()
 
@@ -113,7 +113,7 @@ def identifykeywordswithsentiment(file_text):
     """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
         in bash.profile and bash.profile_pysave"""
 
-    keyword_list = KeywordList.KeywordList
+    keyword_list = KeywordList()
 
     client = language.LanguageServiceClient()
 

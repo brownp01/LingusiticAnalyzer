@@ -11,7 +11,7 @@ from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 import Keyword
-import KeywordList
+from KeywordList import KeywordList
 from matplotlib import pyplot
 import numpy as np
 
@@ -157,7 +157,7 @@ def extractkeywordfromtxt(file):
     @type file: .txt
     @return: void
     """
-    keyword_list = KeywordList.KeywordList
+    keyword_list = KeywordList()
     i = 0
 
     f = open(file, 'r')
@@ -287,7 +287,7 @@ def getwordfrequency(word, file_text):
     test = longlongfiletext.count(word)
     return longlongfiletext.count(word)
 
-def plotmostcommon(file_text, keyword_list):
+def kwhighestfrequencies(keyword_list):
     """
     @param file_text:
     @type file_text: list of strings
@@ -297,7 +297,7 @@ def plotmostcommon(file_text, keyword_list):
     @rtype:
     """
 
-    kwlist = list(keyword_list.list)
+    kwlist = keyword_list.list
     topkeywords = []
     topKeywordfreqs = []
 
@@ -313,16 +313,73 @@ def plotmostcommon(file_text, keyword_list):
         kwlist[:] = [x for x in kwlist if x.word != topkeyword.word] # removes the previously added item so it does not get chosen again
         i += 1
 
+    return topkeywords
+
+def plothighestfreqkeywords(kwlist1, kwlist2):
+
+    # TODO: Make graph display proper values and display in a more user-friendly way
+    d = 0
+    y = np.empty(len(kwlist1))
+    p = np.empty(len(kwlist2))
+    my_xticks = []
+    w = 0.3
+    for x in range(len(kwlist1)):
+        word = kwlist1[x].word
+        s=0
+        while s < len(kwlist2):
+            if kwlist2[s].word == word:
+                my_xtick = word
+                my_xticks.append(my_xtick)
+                y[x] = kwlist1[x].salience
+                p[x] = kwlist2[s].salience
+                d+=1
+                break
+            else:
+                s+=1
+
+    if d == 0:
+        pyplot.bar(x,y)
+        pyplot.title('NO KEYWORDS TO PLOT', fontweight='bold')
+        pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+        return
+    x = np.arange(d)
+    colors = np.random.rand(d)
+    pyplot.bar(x-w, y, width=w, color='blue', label='doc1')
+    pyplot.bar(x, p, width=w, color='r', label='doc2')
+    #pyplot.scatter(x - w, y, color='blue', label='doc1')
+    #pyplot.scatter(x, p, color='r', label='doc2')
+    #pyplot.plot(x,y)
+    #pyplot.plot(x - w, y, color='blue', label='doc1')
+    #pyplot.plot(x, p, color='r', label='doc2')
+    #pyplot.scatter(x,y,c=colors)
+    pyplot.xticks(x, my_xticks, fontsize=8, color='black', rotation=90)
+    pyplot.title('Most Common Keywords In File',fontweight='bold')
+    pyplot.xlabel('Keywords',fontsize=10, color='red')
+    pyplot.ylabel('Salience',fontsize=10, color='red')
+    pyplot.legend()
+    pyplot.tight_layout()
+    pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+
+def plotmostcommon(keyword_list):
+    """
+    @param file_text:
+    @type file_text: list of strings
+    @param keyword_list:
+    @type keyword_list: list of keywords
+    @return:
+    @rtype:
+    """
+
     # TODO: Make graph display proper values and display in a more user-friendly way
     z = 0
-    y = np.empty(len(topkeywords))
+    y = np.empty(len(keyword_list))
     my_xticks = []
-    for tk in topkeywords:
-        my_xtick = topkeywords[z].word
+    for z in range(len(keyword_list)):
+        my_xtick = keyword_list[z].word
         my_xticks.append(my_xtick)
-        y[z] = topkeywords[z].salience
-        z += 1
-    x = np.arange(z)
+        y[z] = keyword_list[z].salience
+        
+    x = np.arange(len(my_xticks))
     colors = np.random.rand(z)
     pyplot.bar(x, y, color='blue')
     # pyplot.plot(x,y)

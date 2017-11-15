@@ -82,8 +82,8 @@ def analyze():
                 print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
 
             common_functions.outputkeywordtotext(keyword_list)
-
-            common_functions.plotmostcommon(file_text, keyword_list)
+            kw1 = common_functions.kwhighestfrequencies(keyword_list)
+            common_functions.plotmostcommon(kw1)
 
             f = open("views/score_response.html", "r")
             returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())).\
