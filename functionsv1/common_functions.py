@@ -289,12 +289,10 @@ def getwordfrequency(word, file_text):
 
 def kwhighestfrequencies(keyword_list):
     """
-    @param file_text:
-    @type file_text: list of strings
     @param keyword_list:
     @type keyword_list: list of keywords
-    @return:
-    @rtype:
+    @return: topkeywords
+    @rtype: list of highest frequency keywords
     """
 
     kwlist = keyword_list.list
@@ -316,6 +314,14 @@ def kwhighestfrequencies(keyword_list):
     return topkeywords
 
 def plothighestfreqkeywords(kwlist1, kwlist2):
+    """
+        @param kwlist1:
+        @type kwlist1: list of keywords
+        @param kwlist2:
+        @type kwlist2: list of keywords
+        @return:
+        @rtype:
+        """
 
     # TODO: Make graph display proper values and display in a more user-friendly way
     d = 0
@@ -342,7 +348,7 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
         pyplot.title('NO KEYWORDS TO PLOT', fontweight='bold')
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
         return
-    x = np.arange(d)
+    x = np.arange(len(my_xticks))
     colors = np.random.rand(d)
     pyplot.bar(x-w, y, width=w, color='blue', label='doc1')
     pyplot.bar(x, p, width=w, color='r', label='doc2')
@@ -360,6 +366,7 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
 
+#TODO this will eventually be the legacy plot function
 def plotmostcommon(keyword_list):
     """
     @param file_text:
@@ -378,7 +385,7 @@ def plotmostcommon(keyword_list):
         my_xtick = keyword_list[z].word
         my_xticks.append(my_xtick)
         y[z] = keyword_list[z].salience
-        
+
     x = np.arange(len(my_xticks))
     colors = np.random.rand(z)
     pyplot.bar(x, y, color='blue')
