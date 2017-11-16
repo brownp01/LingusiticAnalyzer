@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import logging
 from functionsv1 import common_functions
 from functionsv1 import analyze_functions
+from Keyword import Keyword
 import docx
 import string
 import io
@@ -25,6 +26,11 @@ def homeCount():
 
 
 homeCount.counter = 0
+
+
+# going to handle all the mess that is in app.py
+def interpretfile():
+    pass
 
 
 def extractpdftext(file, testdownload_folder = None):
@@ -253,6 +259,7 @@ def createkeywordfromgoogleapientity(entity, file_text):
     @return: populated instance of Keyword class
     @rtype: Keyword
     """
+    # newKeyword = Keyword.creacreatenewkeyword_overload_1(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)
     newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)
 
     for key, value in entity.metadata.items():
@@ -366,7 +373,7 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
 
 #TODO this will eventually be the legacy plot function
-def plotmostcommon(keyword_list):
+def plotsalienceofmostcommon(keyword_list):
     """
     @param file_text:
     @type file_text: list of strings
@@ -391,11 +398,12 @@ def plotmostcommon(keyword_list):
     # pyplot.plot(x,y)
     # pyplot.scatter(x,y,c=colors)
     pyplot.xticks(x, my_xticks, fontsize=8, color='black', rotation=90)
-    pyplot.title('Most Common Keywords In File', fontweight='bold')
+    pyplot.title('Salience of Most Common Keywords In File', fontweight='bold')
     pyplot.xlabel('Keywords', fontsize=10, color='red')
     pyplot.ylabel('Salience', fontsize=10, color='red')
     # pyplot.legend()
     pyplot.tight_layout()
+    pyplot.show()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
 
 

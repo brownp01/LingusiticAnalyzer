@@ -1,38 +1,29 @@
 import doxypypy
 import logging
+from functionsv1 import analyze_functions
 
 
 class Keyword:
     """
     @summary: Class that stores a specific keyword and it's associated information
     """
-    word = ""   # The given word
-    type = ""   # The type of the word (if it has one)
-    metadata = {}   # list of string each of which contain metadata about the given Keyword
-    similarWords = []   # Words that are semantically similar the that word.
-    frequency = 0
-    __score = 0
-    _similarWordFrequency = 0   # Instances of "word" and all similar words
-    salience = 0
 
-    def __init__(self, word):
-        self.frequency = 1
-        self.word = word
-
-    def __init__(self, nWord, nType):
-        self.frequency = 1
+    def __init__(self, nWord = "", nType = 0, nFreq = 0, nSal = 0):
         self.word = nWord
         self.type = nType
-
-    def __init__(self, nWord, nType, nFreq, nSal):
-        self.word = nWord
-        self.type = nType
+        self.metadata = {}
+        self.similarWords = []
         self.frequency = nFreq
-        self.salience = nSal
+        self.salience = float(nSal)
+        self.score = float(0)
+        self.yuleskscore = float(0)
+        self.yulesiscore = 0
+        self.keywordscore = float(0)
+        self._similarWordFrequency = 0
 
     @classmethod
     def getscore(cls):
-        return cls.__score
+        return cls._score
 
     @classmethod
     def wordfrequency(self):

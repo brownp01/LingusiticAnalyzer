@@ -9,6 +9,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
 from KeywordList import KeywordList
+import KeywordList
+import collections
 from collections import Counter
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
@@ -58,7 +60,7 @@ def identifykeywords(file_text):
     """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
         in bash.profile and bash.profile_pysave"""
 
-    keyword_list = KeywordList()
+    keyword_list = KeywordList.KeywordList()
 
     client = language.LanguageServiceClient()
 
@@ -195,3 +197,39 @@ def getwordfrequency(word, file_text):
     longlongfiletext = common_functions.stringlisttolonglongstring(file_text).replace('\n', '')
     test = longlongfiletext.count(word)
     return longlongfiletext.count(word)
+
+
+def calculatescores(kw_list, file_text):
+    for kw in kw_list.list:
+        kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
+
+
+def calculatekeywordscore(kw_list, file_text, kw):
+    """
+    @summary: calculate a keyword score for a single keyword
+    @param kw_list: all keywords
+    @type kw_list: list of keywords
+    @param file_text: file's entire text
+    @type file_text: list of strings
+    @param kw: keyword
+    @type kw: Keyword
+    @return: keyword score
+    @rtype: float
+    """
+    kwscore = float(((kw.salience * kw.frequency)/len(kw_list.list)))
+    return kwscore
+
+
+def calculateyuleskscore(keyword_list, file_text, kw):
+
+    long_file_text = common_functions.stringlisttolonglongstring(file_text)
+
+    token_counter = collections.Counter(kw.word.upper() for _ in keyword_list)
+    m1 = kw.frequency  # sum(token_counter.values())
+    m2 = sum([freq ** 2 for freq in token_counter.values()])
+    try:
+        i = (m1 * m1) / (m2 - m1)
+        k = 10000 / i
+        return k
+    except ZeroDivisionError as e:
+        logging.warning("Error: division by zero.")

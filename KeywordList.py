@@ -1,3 +1,5 @@
+from functionsv1 import analyze_functions
+
 
 class KeywordList:
 
@@ -35,8 +37,6 @@ class KeywordList:
             index = self.getindexofword(keyword.word.upper())
             self.list[index].frequency += 1
 
-
-
     def existsinlist(self, keyword_name):
         """
         @summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word
@@ -49,7 +49,6 @@ class KeywordList:
             if self.list[i].word == keyword_name:
                 return True
         return False
-
 
     def getindexofword(self, keyword_name):
         for i in range(0, len(self.list)):

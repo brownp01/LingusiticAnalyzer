@@ -1,11 +1,12 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [15/Nov/2017 15:57:26] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Nov/2017 12:24:29] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Nov/2017 12:24:30] "GET /favicon.ico HTTP/1.1" 404 -
 INFO:root:Started in Analyze
-INFO:root:saving file "Brown_Project2_Prelim.pdf"
-INFO:root:"Brown_Project2_Prelim.pdf" saved
-INFO:root:opening file "Brown_Project2_Prelim.pdf"
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
 INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
 DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
-INFO:werkzeug:127.0.0.1 - - [15/Nov/2017 15:57:48] "POST /analyze HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [16/Nov/2017 12:29:38] "POST /analyze HTTP/1.1" 200 -

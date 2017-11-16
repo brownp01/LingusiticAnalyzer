@@ -65,27 +65,30 @@ def analyze():
         logging.warning('cannot find "datafile" in request object')
         print('No file found')
     else:
+        #----------PROCESS USER DOC---------#
         file = request.files['datafile']
         if request.headers.has_key('Test') and request.headers["Test"] == "True":
             localuploadfolder = 'unit_tests/test_pdfs/'
 
         if file.filename[-3:] == 'pdf':
             file_text = common_functions.extractpdftext(file, localuploadfolder)
-            common_functions.printStringList(file_text)
+            # common_functions.printStringList(file_text)
 
             # -----------IDENTIFYING KEYWORDS----------- #
             keyword_list = analyze_functions.identifykeywords(file_text)
             #keyword_list = analyze_functions.identifykeywordswithsentiment(file_text)
 
-            for i in range(0, keyword_list.uniquekeywords):
-                # TODO:Fix frequencies, they are not accurate
-                print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
+            # for i in range(0, keyword_list.uniquekeywords):
+            #     # TODO:Fix frequencies, they are not accurate
+            #     print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
 
             common_functions.outputkeywordtotext(keyword_list)
 
+            analyze_functions.calculatescores(keyword_list, file_text)
+
             # ----------PLOTTING KEYWORDS----------- #
             kw1 = common_functions.kwhighestfrequencies(keyword_list)
-            common_functions.plotmostcommon(kw1)
+            common_functions.plotsalienceofmostcommon(kw1)
 
             f = open("views/score_response.html", "r")
             returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())).\
