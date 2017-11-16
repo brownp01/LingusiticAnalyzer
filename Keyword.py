@@ -21,15 +21,14 @@ class Keyword:
         self._similarWordFrequency = 0
 
 
-    @classmethod
     def wordfrequency(self):
         return self.frequency
 
-    @classmethod
+
     def similarwordfrequency(self):
         return self._similarWordFrequency
 
-    @classmethod
+
     def isinsimilarlist(self, word):
         """
         @summary: # Checks if a given word is in the "similarWords" list

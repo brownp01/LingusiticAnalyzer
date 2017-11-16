@@ -77,8 +77,7 @@ def geterrorpage():
 
 def plotkeywords(kw_list):
     # ----------PLOTTING KEYWORDS----------- #
-    kw1 = common_functions.kwhighestfrequencies(kw_list)
-    common_functions.plotsalienceofmostcommon(kw1)
+    common_functions.plotsalienceofmostcommon(kw_list)
 
 
 
@@ -369,7 +368,7 @@ def kwhighestfrequencies(keyword_list):
 
     return topkeywords
 
-def plothighestfreqkeywords(kwlist1, kwlist2):
+def plothighestfreqkeywords(keyword_list1, keyword_list2):
     """
         @param kwlist1:
         @type kwlist1: list of keywords
@@ -378,7 +377,8 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
         @return:
         @rtype:
         """
-
+    kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
+    kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
     # TODO: Make graph display proper values and display in a more user-friendly way
     d = 0
     y = []
@@ -387,36 +387,38 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
     w = 0.3
     for x in range(len(kwlist1)):
         word = kwlist1[x].word
-        s=0
+        s = 0
         while s < len(kwlist2):
             if kwlist2[s].word == word:
-                my_xticks.append(word)
+                my_xtick = word
+                my_xticks.append(my_xtick)
                 y.append(kwlist1[x].salience)
                 p.append(kwlist2[s].salience)
-                d+=1
+                d += 1
                 break
             else:
-                s+=1
+                s += 1
 
     if d == 0:
-        pyplot.bar(x,y)
+        pyplot.bar(x, y)
         pyplot.title('NO KEYWORDS TO PLOT', fontweight='bold')
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
         return
     x = np.arange(len(my_xticks))
-    colors = np.random.rand(d)
-    pyplot.bar(x-w, y, width=w, color='blue', label='doc1')
-    pyplot.bar(x, p, width=w, color='r', label='doc2')
-    #pyplot.scatter(x - w, y, color='blue', label='doc1')
-    #pyplot.scatter(x, p, color='r', label='doc2')
-    #pyplot.plot(x,y)
-    #pyplot.plot(x - w, y, color='blue', label='doc1')
-    #pyplot.plot(x, p, color='r', label='doc2')
-    #pyplot.scatter(x,y,c=colors)
-    pyplot.xticks(x, my_xticks, fontsize=8, color='black', rotation=90)
-    pyplot.title('Most Common Keywords In File',fontweight='bold')
-    pyplot.xlabel('Keywords',fontsize=10, color='red')
-    pyplot.ylabel('Salience',fontsize=10, color='red')
+    # colors = np.random.rand(d)
+    pyplot.bar(x, y, width=w, align='center', color='blue', label='doc1')
+    pyplot.bar(x+w, p, width=w, align='center', color='r', label='doc2')
+    # pyplot.scatter(x - w, y, color='blue', label='doc1')
+    # pyplot.scatter(x, p, color='r', label='doc2')
+    # pyplot.plot(x,y)
+    # pyplot.plot(x - w, y, color='blue', label='doc1')
+    # pyplot.plot(x, p, color='r', label='doc2')
+    # pyplot.scatter(x,y,c=colors)
+    pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
+    pyplot.yticks(fontsize=8)
+    pyplot.title('Most Common Keywords In File', fontweight='bold')
+    pyplot.xlabel('Keywords', fontsize=10, color='red')
+    pyplot.ylabel('Salience', fontsize=10, color='red')
     pyplot.legend()
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
@@ -431,15 +433,15 @@ def plotsalienceofmostcommon(keyword_list):
     @return:
     @rtype:
     """
-
+    kwlist = common_functions.kwhighestfrequencies(keyword_list)
     # TODO: Make graph display proper values and display in a more user-friendly way
     z = 0
     y = []
     my_xticks = []
-    for z in range(len(keyword_list)):
-        my_xtick = keyword_list[z].word
+    for z in range(len(kwlist)):
+        my_xtick = kwlist[z].word
         my_xticks.append(my_xtick)
-        y.append(keyword_list[z].salience)
+        y.append(kwlist[z].salience)
 
     x = np.arange(len(my_xticks))
     colors = np.random.rand(z)

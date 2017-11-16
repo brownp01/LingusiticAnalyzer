@@ -9,7 +9,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
 from KeywordList import KeywordList
-import KeywordList
 import collections
 from collections import Counter
 
@@ -60,7 +59,7 @@ def identifykeywords(file_text):
     """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
         in bash.profile and bash.profile_pysave"""
 
-    keyword_list = KeywordList.KeywordList()
+    keyword_list = KeywordList()
 
     client = language.LanguageServiceClient()
 
