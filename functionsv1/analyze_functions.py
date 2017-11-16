@@ -216,7 +216,7 @@ def calculatekeywordscore(kw_list, file_text, kw):
     @return: keyword score
     @rtype: float
     """
-    kwscore = float(((kw.salience * kw.frequency)/len(kw_list.list)))
+    kwscore = float(((kw.salience * kw.frequency)/len(kw_list.list)) * 1000)
     return kwscore
 
 

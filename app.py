@@ -53,73 +53,26 @@ def analyze():
     @rtype: html
     """
     localuploadfolder = None
-
     logging.info('Started in Analyze')
-    file_text = []  # List of strings containing document's text
-    keyword_list = []
-    keywords = []   # List of Keyword object
-
     returnhtml = ""
 
     if 'datafile' not in request.files:
         logging.warning('cannot find "datafile" in request object')
         print('No file found')
     else:
-        #----------PROCESS USER DOC---------#
+        # --------------------------PROCESS USER PDF---------------------------- #
         file = request.files['datafile']
         if request.headers.has_key('Test') and request.headers["Test"] == "True":
             localuploadfolder = 'unit_tests/test_pdfs/'
 
-        if file.filename[-3:] == 'pdf':
-            file_text = common_functions.extractpdftext(file, localuploadfolder)
-            # common_functions.printStringList(file_text)
+        if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
+            keyword_list = common_functions.interpretfile(file, localuploadfolder)
+            common_functions.plotkeywords(keyword_list)
 
-            # -----------IDENTIFYING KEYWORDS----------- #
-            keyword_list = analyze_functions.identifykeywords(file_text)
-            #keyword_list = analyze_functions.identifykeywordswithsentiment(file_text)
-
-            # for i in range(0, keyword_list.uniquekeywords):
-            #     # TODO:Fix frequencies, they are not accurate
-            #     print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
-
-            common_functions.outputkeywordtotext(keyword_list)
-
-            analyze_functions.calculatescores(keyword_list, file_text)
-
-            # ----------PLOTTING KEYWORDS----------- #
-            kw1 = common_functions.kwhighestfrequencies(keyword_list)
-            common_functions.plotsalienceofmostcommon(kw1)
-
-            f = open("views/score_response.html", "r")
-            returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())).\
-                replace('#--YULES_SCORE--#', str(keyword_list.getyuleskscore()))
-            f.close()
-
-        elif file.filename[-4:] == 'docx':    # No ability to read '.doc' yet
-
-            file_text = common_functions.extractmicrosoftdocxtext(file)
-            common_functions.printStringList(file_text)
-
-            # -----------IDENTIFYING KEYWORDS----------- #
-            keyword_list = analyze_functions.identifykeywords(file_text)
-
-            for i in range(0, keyword_list.uniquekeywords):
-                # TODO:Fix frequencies, they are not accurate
-                print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
-
-            # Returns static HTML to users
-            f = open("views/score_response.html", "r")
-            returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(keyword_list.getkeywordscore())). \
-                replace('#--YULES_SCORE--#', str(keyword_list.getyuleskscore()))
-            f.close()
-
+            returnhtml = common_functions.getscorepage(keyword_list)
         else:
-            logging.info('Invalid File type ' + file.filename[-3:] + '. Responding with error page')
-
-            # Returns error page
-            f = open("views/invalid_upload.html", "r")
-            returnhtml = f.read()
-            f.close()
+            logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
+            returnhtml = common_functions.geterrorpage()
     return Response(returnhtml, mimetype='text/html')
 
 

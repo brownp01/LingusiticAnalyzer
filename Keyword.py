@@ -15,15 +15,11 @@ class Keyword:
         self.similarWords = []
         self.frequency = nFreq
         self.salience = float(nSal)
-        self.score = float(0)
         self.yuleskscore = float(0)
         self.yulesiscore = 0
         self.keywordscore = float(0)
         self._similarWordFrequency = 0
 
-    @classmethod
-    def getscore(cls):
-        return cls._score
 
     @classmethod
     def wordfrequency(self):
@@ -32,21 +28,6 @@ class Keyword:
     @classmethod
     def similarwordfrequency(self):
         return self._similarWordFrequency
-
-    @classmethod
-    def processdoctext(self, docTextList):
-        """
-        @summary: Runs through the list of strings that contain the uploaded document's text and creates a Keyword
-        class for each of them
-        @param docTextList: the text of the uploaded document
-        @type docTextList:  list of string
-        @return: list of Keywords
-        @rtype: list of Keyword
-        """
-        keywordList = []
-
-        # for i in range(0, len(docTextList)-1):
-
 
     @classmethod
     def isinsimilarlist(self, word):

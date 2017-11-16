@@ -20,6 +20,7 @@ import numpy as np
 DOWNLOAD_FOLDER = 'downloads/'
 
 def homeCount():
+
     returnVal = homeCount.counter
     homeCount.counter += 1
     return returnVal
@@ -29,8 +30,56 @@ homeCount.counter = 0
 
 
 # going to handle all the mess that is in app.py
-def interpretfile():
-    pass
+def interpretfile(file, localuploadfolder):
+    """
+        @summary: does the logic that is current cluttering up app.py
+        @param file: werkzeug filestorage object
+        @type file: werkzeug filestorage object
+        @param localuploadfolder:
+        @type localuploadfolder: string
+        @return: keywordlist
+        @rtype: KeywordList
+        """
+    file_text = []
+
+    # -----------GRABBING TEXT FROM FILE----------- #
+    if file.filename[-3:] == 'pdf':
+        file_text = common_functions.extractpdftext(file, localuploadfolder)
+    elif file.filename[-4:] == 'docx':
+        file_text = common_functions.extractmicrosoftdocxtext(file)
+    # common_functions.printStringList(file_text)
+
+    # -----------IDENTIFYING KEYWORDS----------- #
+    keyword_list = analyze_functions.identifykeywords(file_text)
+
+    # -----------PUTTING KEYWORDS IN FILE----------- #
+    common_functions.outputkeywordtotext(keyword_list)
+
+    # -----------CALCULATING VARIOUS SCORES FOR EACH KEYWORD----------- #
+    analyze_functions.calculatescores(keyword_list, file_text)
+
+    return keyword_list
+
+
+def getscorepage(kw_list):
+    f = open("views/score_response.html", "r")
+    returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getkeywordscore())). \
+        replace('#--YULES_SCORE--#', str(kw_list.getyuleskscore()))
+    f.close()
+    return returnhtml
+
+def geterrorpage():
+    # Returns error page
+    f = open("views/invalid_upload.html", "r")
+    returnhtml = f.read()
+    f.close()
+    return returnhtml
+
+def plotkeywords(kw_list):
+    # ----------PLOTTING KEYWORDS----------- #
+    kw1 = common_functions.kwhighestfrequencies(kw_list)
+    common_functions.plotsalienceofmostcommon(kw1)
+
 
 
 def extractpdftext(file, testdownload_folder = None):
