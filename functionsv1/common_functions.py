@@ -295,7 +295,7 @@ def kwhighestfrequencies(keyword_list):
     @rtype: list of highest frequency keywords
     """
 
-    kwlist = keyword_list.list
+    kwlist = list(keyword_list.list)
     topkeywords = []
     topKeywordfreqs = []
 
@@ -325,8 +325,8 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
 
     # TODO: Make graph display proper values and display in a more user-friendly way
     d = 0
-    y = np.empty(len(kwlist1))
-    p = np.empty(len(kwlist2))
+    y = []
+    p = []
     my_xticks = []
     w = 0.3
     for x in range(len(kwlist1)):
@@ -334,10 +334,9 @@ def plothighestfreqkeywords(kwlist1, kwlist2):
         s=0
         while s < len(kwlist2):
             if kwlist2[s].word == word:
-                my_xtick = word
-                my_xticks.append(my_xtick)
-                y[x] = kwlist1[x].salience
-                p[x] = kwlist2[s].salience
+                my_xticks.append(word)
+                y.append(kwlist1[x].salience)
+                p.append(kwlist2[s].salience)
                 d+=1
                 break
             else:
@@ -379,12 +378,12 @@ def plotmostcommon(keyword_list):
 
     # TODO: Make graph display proper values and display in a more user-friendly way
     z = 0
-    y = np.empty(len(keyword_list))
+    y = []
     my_xticks = []
     for z in range(len(keyword_list)):
         my_xtick = keyword_list[z].word
         my_xticks.append(my_xtick)
-        y[z] = keyword_list[z].salience
+        y.append(keyword_list[z].salience)
 
     x = np.arange(len(my_xticks))
     colors = np.random.rand(z)

@@ -82,6 +82,8 @@ def analyze():
                 print(keyword_list.list[i].word + '-' + str(keyword_list.list[i].frequency))
 
             common_functions.outputkeywordtotext(keyword_list)
+
+            # ----------PLOTTING KEYWORDS----------- #
             kw1 = common_functions.kwhighestfrequencies(keyword_list)
             common_functions.plotmostcommon(kw1)
 
