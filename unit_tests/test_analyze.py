@@ -3,8 +3,11 @@ from werkzeug import datastructures
 import requests
 
 
-DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
-        /LinguisticAnalyzer/unit_tests/test_pdfs/'
+# DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
+  #      /LinguisticAnalyzer/unit_tests/test_pdfs/'
+
+DOWNLOADS_FOLDER = '/test_pdfs'
+
 LOCAL_HOST = 'http://127.0.0.1:5000/'
 
 

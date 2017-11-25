@@ -3,8 +3,11 @@ from functionsv1 import common_functions
 from werkzeug import datastructures
 import logging
 
+
+# TODO: Fix downloads folder issue
 DOCX_DOWNLOADS_FOLDER = 'unit_tests/test_docxs/'
 
+# TODO: Fix downloads folder issue
 PDF_DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
 
 class TestEnsurepdfanddocxarereadthesame(TestCase):

@@ -4,7 +4,11 @@ import requests
 from flask import Flask
 from flask import Response, request
 from werkzeug.utils import secure_filename
+from flask import send_file
+from shutil import copyfileobj
+from tempfile import NamedTemporaryFile
 import logging
+from os import remove
 from functionsv1 import common_functions
 from functionsv1 import analyze_functions
 
@@ -13,8 +17,6 @@ from functionsv1 import analyze_functions
 UPLOAD_FOLDER = 'downloads/'
 
 app = Flask(__name__)
-
-
 loggerStart = 0
 
 
@@ -52,28 +54,68 @@ def analyze():
     @return: Information regarding uploaded document's similarity to regulatory document
     @rtype: html
     """
-    localuploadfolder = None
-    logging.info('Started in Analyze')
-    returnhtml = ""
 
-    if 'datafile' not in request.files:
-        logging.warning('cannot find "datafile" in request object')
-        print('No file found')
-    else:
-        # --------------------------PROCESS USER PDF---------------------------- #
-        file = request.files['datafile']
-        if request.headers.has_key('Test') and request.headers["Test"] == "True":
-            localuploadfolder = 'unit_tests/test_pdfs/'
+    try:
 
-        if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
-            keyword_list = common_functions.interpretfile(file, localuploadfolder)
-            common_functions.plotkeywords(keyword_list)
+        regfilename = request.form.get('regdocname')
+        localuploadfolder = None
+        logging.info('Started in Analyze')
+        returnhtml = ""
+        # regfilename = 'small_sample.pdf'
 
-            returnhtml = common_functions.getscorepage(keyword_list)
+        if 'datafile' not in request.files or request.files['datafile'].filename == "":
+            logging.warning('Cannot find "datafile" in request object')
+            returnhtml = common_functions.geterrorpage('No user file selected')
+            return Response(returnhtml, mimetype='text/html')
+        elif regfilename is None or regfilename == 'Select':
+            logging.warning('No regulatory document specified')
+            returnhtml = common_functions.geterrorpage('No regulatory document specified')
+            return Response(returnhtml, mimetype='text/html')
         else:
-            logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
-            returnhtml = common_functions.geterrorpage()
+            # --------------------------PROCESS USER DOCUMENT---------------------------- #
+            file = request.files['datafile']
+            if request.headers.has_key('Test') and request.headers["Test"] == "True":
+                localuploadfolder = 'unit_tests/test_pdfs/'
+
+            if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
+                keyword_list = common_functions.interpretfile(file, localuploadfolder)
+                # common_functions.plotkeywords(keyword_list)
+
+                # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
+                # reg_text = common_functions.getregulatorydoctext('BSI 14971 Application of risk management to medical devices (2012).pdf')
+                reg_text = common_functions.getregulatorydoctext(regfilename)
+                reg_keyword_list = analyze_functions.identifykeywords(reg_text)
+                analyze_functions.calculatescores(reg_keyword_list, reg_text)
+
+                common_functions.plothighestfreqkeywords(keyword_list, reg_keyword_list, file.filename, regfilename)
+                returnhtml = common_functions.getscorepage(keyword_list)
+
+
+            else:
+                logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
+                returnhtml = common_functions.geterrorpage()
+
+
+    except:
+        returnhtml = common_functions.geterrorpage('An unknown error has occured')
+
     return Response(returnhtml, mimetype='text/html')
+
+
+@app.route('/keywordfrequencyimage', methods=['GET'])
+def getkwfreqimage():
+    """
+    @summary: returns file at 'downloads/topkeywordfrequency.png"
+    @return:
+    @rtype:
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
+    pilImage = open('downloads/topkeyword.png', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+
+    return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
 
 
 if __name__ == '__main__':

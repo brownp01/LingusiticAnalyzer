@@ -6,6 +6,7 @@ from functionsv1 import common_functions
 import logging
 import os
 
+# TODO: Fix downloads folder issue
 DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
 
 

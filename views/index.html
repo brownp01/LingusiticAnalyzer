@@ -34,16 +34,38 @@
             <h1>Linguistic Analyzer</h1>
             <p class="lead"></p>
 
-            <!-- UPLOAD BUTTON -->
+
         <form action="/analyze" enctype="multipart/form-data" method="post">
         <p>
-            Please specify a file, or a set of files:<br>
+            <h6>Please specify a file, or a set of files:</h6>
             <input type="file" name="datafile" size="40">
         </p>
+
+            <h6>Select regulatory document to compare against: </h6>
+            <select name="regdocname" style="background-clip: border-box">
+                <option value="Select">Select</option>
+                <option value="small_sample.pdf">small sample</option>
+                <option value="small_sample_reword.pdf">small sample reword</option>
+                <option value="BSI 14971 Application of risk management to medical devices (2012)">BSI 14971 Application of risk management to medical devices (2012) [[WARNING: this will take a while]]</option>
+                <option value="simple_description.pdf">simple description - Paul's name first</option>
+                <option value="simple_description_name_switch.pdf">simple description - Tyler's name first</option>
+            </select>
+
+            <br>
+            <br>
+
+            <!-- UPLOAD BUTTON -->
             <div>
                 <input class="btn btn-lg btn-success" type="submit" value="Upload File">
             </div>
+
+
+
         </form>
+
+
+
+
             <br>
             <form action="/project" enctype="multipart/form-data" method="get">
             <div>

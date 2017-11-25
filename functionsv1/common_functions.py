@@ -4,6 +4,7 @@ import logging
 from functionsv1 import common_functions
 from functionsv1 import analyze_functions
 from Keyword import Keyword
+from werkzeug.datastructures import FileStorage
 import docx
 import string
 import io
@@ -18,6 +19,7 @@ import numpy as np
 
 
 DOWNLOAD_FOLDER = 'downloads/'
+REGULATOR_FOLDER = 'RegulatoryDocuments/'
 
 def homeCount():
 
@@ -68,10 +70,10 @@ def getscorepage(kw_list):
     f.close()
     return returnhtml
 
-def geterrorpage():
+def geterrorpage(errtext):
     # Returns error page
     f = open("views/invalid_upload.html", "r")
-    returnhtml = f.read()
+    returnhtml = f.read().replace('##ERROR##', errtext)
     f.close()
     return returnhtml
 
@@ -81,7 +83,7 @@ def plotkeywords(kw_list):
 
 
 
-def extractpdftext(file, testdownload_folder = None):
+def extractpdftext(file, testdownload_folder = None, RegDoc = False):
     """
     @summary:   extracts Text from PDF document referenced in given file argument
     @param file:    the object containing the file's information
@@ -91,17 +93,15 @@ def extractpdftext(file, testdownload_folder = None):
     """
     localdownload_folder = ''
 
-
-
     file_text = []
     filename = file.filename
 
     try:
         # -- This is for testing, do not remove -- #
-        if testdownload_folder is None:
+        if testdownload_folder is None and RegDoc is False:
             localdownload_folder = DOWNLOAD_FOLDER
             savefile(file, localdownload_folder)
-        else:
+        elif testdownload_folder is not None:
             localdownload_folder = testdownload_folder
 
 
@@ -136,7 +136,7 @@ def extractpdftext(file, testdownload_folder = None):
     except FileNotFoundError as fnfe:
         logging.info("**-- ERROR: unable to find file file --**")
         print(fnfe.strerror)
-    if testdownload_folder is None:       # If this is not a test, remove file
+    if testdownload_folder is None and RegDoc is False:       # If this is not a test, remove file
         os.remove(localdownload_folder + filename)  # Removes created file from directory.
     return cleantext(file_text)
 
@@ -342,6 +342,33 @@ def getwordfrequency(word, file_text):
     test = longlongfiletext.count(word)
     return longlongfiletext.count(word)
 
+
+
+def getregulatorydoctext(filename):
+    """
+    @summary: Looks in the RegulatoryDocuments folder for the file with the given file name
+    @param filename: name of file to open
+    @type filename: string
+    @return: list of string containing text of file
+    @rtype: list of string
+    """
+    try:
+        logging.info('opening regulatory document')
+
+        with open(REGULATOR_FOLDER + filename, 'rb') as fp:
+            file = FileStorage(fp)
+
+        # file.open()
+        reg_text = extractpdftext(file, RegDoc=True)
+    except FileNotFoundError and ValueError as e:
+        logging.error('could not access regulatory document"' + filename + '"')
+
+    print(reg_text)
+    return reg_text
+
+
+
+
 def kwhighestfrequencies(keyword_list):
     """
     @param keyword_list:
@@ -368,7 +395,7 @@ def kwhighestfrequencies(keyword_list):
 
     return topkeywords
 
-def plothighestfreqkeywords(keyword_list1, keyword_list2):
+def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
         @param kwlist1:
         @type kwlist1: list of keywords
@@ -377,6 +404,8 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2):
         @return:
         @rtype:
         """
+    pyplot.clf()
+
     kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
     kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
     # TODO: Make graph display proper values and display in a more user-friendly way
@@ -401,13 +430,14 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2):
 
     if d == 0:
         pyplot.bar(x, y)
-        pyplot.title('NO KEYWORDS TO PLOT', fontweight='bold')
+        pyplot.clf()
+        pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
         return
     x = np.arange(len(my_xticks))
     # colors = np.random.rand(d)
-    pyplot.bar(x, y, width=w, align='center', color='blue', label='doc1')
-    pyplot.bar(x+w, p, width=w, align='center', color='r', label='doc2')
+    pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
+    pyplot.bar(x+w, p, width=w, align='center', color='r', label='Regulatory doc: "' + doc2name + '"')
     # pyplot.scatter(x - w, y, color='blue', label='doc1')
     # pyplot.scatter(x, p, color='r', label='doc2')
     # pyplot.plot(x,y)
@@ -422,8 +452,10 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2):
     pyplot.legend()
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+    # pyplot.show()
 
-#TODO this will eventually be the legacy plot function
+
+# TODO this will eventually be the legacy plot function
 def plotsalienceofmostcommon(keyword_list):
     """
     @param file_text:

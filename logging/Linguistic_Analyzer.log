@@ -1,11 +1,48 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [16/Nov/2017 14:01:16] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:04:36] "GET /? HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "DesignDoc.pdf"
-INFO:root:"DesignDoc.pdf" saved
-INFO:root:opening file "DesignDoc.pdf"
+INFO:root:saving file "small_sample.pdf"
+INFO:root:"small_sample.pdf" saved
+INFO:root:opening file "small_sample.pdf"
 INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
 DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
-INFO:werkzeug:127.0.0.1 - - [16/Nov/2017 14:03:16] "POST /analyze HTTP/1.1" 200 -
+INFO:root:opening regulatory document
+INFO:root:PDF file processed
+DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
+DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:04:48] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:04:49] "GET /keywordfrequencyimage? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:04:55] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
+DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
+INFO:root:opening regulatory document
+INFO:root:PDF file processed
+DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
+DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:04] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:05] "GET /keywordfrequencyimage? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:11] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:Cannot find "datafile" in request object
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:12] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:13] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:No regulatory document specified
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:16] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:17] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:Cannot find "datafile" in request object
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:20] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:21] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:22] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2017 16:05:23] "GET /? HTTP/1.1" 200 -

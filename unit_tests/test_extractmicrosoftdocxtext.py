@@ -4,8 +4,11 @@ from werkzeug import datastructures
 import logging
 
 
-DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
-/LinguisticAnalyzer/unit_tests/test_docxs/'
+# DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
+# /LinguisticAnalyzer/unit_tests/test_docxs/'
+
+# TODO: Fix downloads folder issue
+DOWNLOADS_FOLDER = '/test_docxs/'
 
 class TestExtractmicrosoftdocxtext(TestCase):
     def test_extractmicrosoftdocxtext(self):
