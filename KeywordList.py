@@ -1,5 +1,5 @@
 from functionsv1 import analyze_functions
-
+import logging
 
 class KeywordList:
 
@@ -7,16 +7,47 @@ class KeywordList:
         self.list = []
         self.uniquekeywords = 0
         self.keywordscore = 0
-        self.yuleskscore = 0
+        self.avgyuleskscore = 0
+        self.avgyulesiscore = 0
+        self.avgkeywordscore = 0
+        self.documentscore = 0
 
+    def getdocumentscore(self):
+        return self.documentscore
+
+    def getavgkeywordscore(self):
+        return self.avgkeywordscore
 
     def getkeywordscore(self):
         return self.keywordscore
 
+    def getavgyuleskscore(self):
+        return self.avgyuleskscore
 
-    def getyuleskscore(self):
-        return self.yuleskscore
 
+    def getyulesiscore(self):
+        return self.avgyulesiscore
+
+    def calculateavgscores(self):
+        kwscoresum = float(0)
+        yulesksum = float(0)
+        yulesisum = float(0)
+        try:
+
+            for kw in self.list:
+                kwscoresum += kw.keywordscore
+                yulesksum += kw.yuleskscore
+                yulesisum += kw.yulesiscore
+
+            self.avgkeywordscore = kwscoresum / len(self.list)
+            self.avgyuleskscore = yulesksum / len(self.list)
+            self.avgyulesiscore = yulesisum / len(self.list)
+
+        except ZeroDivisionError as zde:
+            logging.warning('Division by 0 in "KeywordList.calculateavgscore(). Scores not set')
+            self.avgkeywordscore = 0
+            self.avgyulesiscore = 0
+            self.avgyuleskscore = 0
 
     def insertkeyword(self, keyword):
         """

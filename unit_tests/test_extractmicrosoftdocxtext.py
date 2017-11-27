@@ -17,7 +17,7 @@ class TestExtractmicrosoftdocxtext(TestCase):
         try:
             # opening test file
             file = datastructures.FileStorage(filename=testFileName,
-                                              content_type="application/pdf", name='datafile')
+                                              content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", name='datafile')
             if file.filename is None:
                 self.fail("File could not be opened")
 

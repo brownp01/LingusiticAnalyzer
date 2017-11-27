@@ -86,6 +86,7 @@ def analyze():
                 reg_text = common_functions.getregulatorydoctext(regfilename)
                 reg_keyword_list = analyze_functions.identifykeywords(reg_text)
                 analyze_functions.calculatescores(reg_keyword_list, reg_text)
+                reg_keyword_list.calculateavgscores()
 
                 common_functions.plothighestfreqkeywords(keyword_list, reg_keyword_list, file.filename, regfilename)
                 returnhtml = common_functions.getscorepage(keyword_list)

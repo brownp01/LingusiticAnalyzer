@@ -16,7 +16,7 @@ class Keyword:
         self.frequency = nFreq
         self.salience = float(nSal)
         self.yuleskscore = float(0)
-        self.yulesiscore = 0
+        self.yulesiscore = float(0)
         self.keywordscore = float(0)
         self._similarWordFrequency = 0
 

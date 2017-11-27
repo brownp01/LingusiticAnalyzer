@@ -59,16 +59,18 @@ def interpretfile(file, localuploadfolder):
 
     # -----------CALCULATING VARIOUS SCORES FOR EACH KEYWORD----------- #
     analyze_functions.calculatescores(keyword_list, file_text)
+    keyword_list.calculateavgscores()
 
     return keyword_list
 
 
 def getscorepage(kw_list):
     f = open("views/score_response.html", "r")
-    returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getkeywordscore())). \
-        replace('#--YULES_SCORE--#', str(kw_list.getyuleskscore()))
+    returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
+        replace('#--YULES_SCORE--#', str(kw_list.getavgyuleskscore())).replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))
     f.close()
     return returnhtml
+
 
 def geterrorpage(errtext):
     # Returns error page
@@ -77,10 +79,10 @@ def geterrorpage(errtext):
     f.close()
     return returnhtml
 
+
 def plotkeywords(kw_list):
     # ----------PLOTTING KEYWORDS----------- #
     common_functions.plotsalienceofmostcommon(kw_list)
-
 
 
 def extractpdftext(file, testdownload_folder = None, RegDoc = False):
@@ -194,10 +196,10 @@ def outputkeywordtotext(keylist):
     @type object: KeywordList
     @return: void
     """
-    #TODO create file using document title of originating keywords
+    # TODO create file using document title of originating keywords
     file = open('Documents/Keywords.txt', 'w')
 
-    #TODO determine best format and information needed to save from Keyword object for future use
+    # TODO determine best format and information needed to save from Keyword object for future use
     for i in range(0, keylist.uniquekeywords):
         file.write(keylist.list[i].word + "," + str(keylist.list[i].salience) + "," + str(keylist.list[i].frequency) + "\n")
 
@@ -367,8 +369,6 @@ def getregulatorydoctext(filename):
     return reg_text
 
 
-
-
 def kwhighestfrequencies(keyword_list):
     """
     @param keyword_list:
@@ -397,13 +397,18 @@ def kwhighestfrequencies(keyword_list):
 
 def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-        @param kwlist1:
-        @type kwlist1: list of keywords
-        @param kwlist2:
-        @type kwlist2: list of keywords
-        @return:
-        @rtype:
-        """
+    @summary: plots salience of most frequenctly used keywords. Pulls KWs from list1, compares against list2
+    @param keyword_list1:
+    @type keyword_list1: list of Keywords
+    @param keyword_list2:
+    @type keyword_list2: list of Keywords
+    @param doc1name: name of first document
+    @type doc1name: string
+    @param doc2name: name of second document
+    @type doc2name: string
+    """
+
+    # Clearing previous graph just to be safe
     pyplot.clf()
 
     kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)

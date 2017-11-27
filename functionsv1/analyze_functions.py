@@ -202,6 +202,9 @@ def calculatescores(kw_list, file_text):
     for kw in kw_list.list:
         kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
 
+        # TODO: Get this to work properly
+        # kw.yuleskscore = calculateyuleskscore(kw_list, file_text, kw)
+
 
 def calculatekeywordscore(kw_list, file_text, kw):
     """
@@ -219,6 +222,7 @@ def calculatekeywordscore(kw_list, file_text, kw):
     return kwscore
 
 
+# TODO: Get this to work properly
 def calculateyuleskscore(keyword_list, file_text, kw):
 
     long_file_text = common_functions.stringlisttolonglongstring(file_text)
@@ -231,4 +235,5 @@ def calculateyuleskscore(keyword_list, file_text, kw):
         k = 10000 / i
         return k
     except ZeroDivisionError as e:
-        logging.warning("Error: division by zero.")
+        logging.warning("Error: division by zero. Yule's algorithm not completed. Returning -1.")
+        return -1
