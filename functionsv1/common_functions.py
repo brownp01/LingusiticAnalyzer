@@ -64,10 +64,13 @@ def interpretfile(file, localuploadfolder):
     return keyword_list
 
 
-def getscorepage(kw_list):
+def getscorepage(kw_list, reg_kw_list):
     f = open("views/score_response.html", "r")
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
-        replace('#--YULES_SCORE--#', str(kw_list.getavgyuleskscore())).replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))
+        replace('#--YULES_SCORE--#', str(kw_list.getavgyuleskscore()))\
+        .replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))\
+        .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list)))
+
     f.close()
     return returnhtml
 
@@ -395,13 +398,14 @@ def kwhighestfrequencies(keyword_list):
 
     return topkeywords
 
+
 def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
     @summary: plots salience of most frequenctly used keywords. Pulls KWs from list1, compares against list2
     @param keyword_list1:
-    @type keyword_list1: list of Keywords
+    @type keyword_list1: KeywordList
     @param keyword_list2:
-    @type keyword_list2: list of Keywords
+    @type keyword_list2: KeywordList
     @param doc1name: name of first document
     @type doc1name: string
     @param doc2name: name of second document
@@ -493,6 +497,8 @@ def plotsalienceofmostcommon(keyword_list):
     pyplot.tight_layout()
     pyplot.show()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+
+
 
 
 

@@ -83,13 +83,14 @@ def analyze():
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
                 # reg_text = common_functions.getregulatorydoctext('BSI 14971 Application of risk management to medical devices (2012).pdf')
+
                 reg_text = common_functions.getregulatorydoctext(regfilename)
                 reg_keyword_list = analyze_functions.identifykeywords(reg_text)
                 analyze_functions.calculatescores(reg_keyword_list, reg_text)
                 reg_keyword_list.calculateavgscores()
 
                 common_functions.plothighestfreqkeywords(keyword_list, reg_keyword_list, file.filename, regfilename)
-                returnhtml = common_functions.getscorepage(keyword_list)
+                returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
 
             else:

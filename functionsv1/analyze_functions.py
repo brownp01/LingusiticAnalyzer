@@ -237,3 +237,17 @@ def calculateyuleskscore(keyword_list, file_text, kw):
     except ZeroDivisionError as e:
         logging.warning("Error: division by zero. Yule's algorithm not completed. Returning -1.")
         return -1
+
+
+def calculatecomparisonscore(kw_list, reg_kw_list):
+    """
+    @summary: Compares the calculated scores of the two documents
+    @param kw_list:
+    @type kw_list: KeywordList
+    @param reg_kw_list:
+    @type reg_kw_list: KeywordList
+    @return:
+    @rtype:
+    """
+    # This is rudimentary, but actually does a decent job at comparing two documents
+    return 100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore)
