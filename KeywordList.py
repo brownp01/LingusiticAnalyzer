@@ -39,7 +39,7 @@ class KeywordList:
                 yulesksum += kw.yuleskscore
                 yulesisum += kw.yulesiscore
 
-            self.avgkeywordscore = kwscoresum / len(self.list)
+            self.avgkeywordscore = round(kwscoresum / len(self.list),2)
             self.avgyuleskscore = yulesksum / len(self.list)
             self.avgyulesiscore = yulesisum / len(self.list)
 

@@ -250,4 +250,4 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
     @rtype:
     """
     # This is rudimentary, but actually does a decent job at comparing two documents
-    return 100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore)
+    return round(100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore),2)
