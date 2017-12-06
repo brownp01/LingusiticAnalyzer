@@ -44,7 +44,10 @@ def project():
     """
 
     f = open("views/info.html", "r")  # opens file with name of "index.html"
-    return Response(f.read(), mimetype='text/html')
+    return Response(f.read().replace('#--DESCRIPTION_TITLE--#', 'Project Information').replace('#--DESCRIPTION--#',
+                    "This Linguistic Analyzer lets the user upload a regulatory document and compares that document \
+                    against a regulatory document using the Yule's K Algorithm and a keyword scores algorithm.\
+                    The results of the calculations are then displayed graphically to the user."), mimetype='text/html')
 
 
 @app.route('/analyze', methods=['POST'])
@@ -82,12 +85,7 @@ def analyze():
                 # common_functions.plotkeywords(keyword_list)
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
-                # reg_text = common_functions.getregulatorydoctext('BSI 14971 Application of risk management to medical devices (2012).pdf')
-
-                reg_text = common_functions.getregulatorydoctext(regfilename)
-                reg_keyword_list = analyze_functions.identifykeywords(reg_text)
-                analyze_functions.calculatescores(reg_keyword_list, reg_text)
-                reg_keyword_list.calculateavgscores()
+                reg_keyword_list = common_functions.interpretexistingfile(regfilename)
 
                 common_functions.plothighestfreqkeywords(keyword_list, reg_keyword_list, file.filename, regfilename)
                 returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
@@ -98,7 +96,7 @@ def analyze():
                 returnhtml = common_functions.geterrorpage()
 
 
-    except:
+    except Exception as e:
         returnhtml = common_functions.geterrorpage('An unknown error has occured')
 
     return Response(returnhtml, mimetype='text/html')
@@ -118,6 +116,27 @@ def getkwfreqimage():
     tempFileObj.seek(0, 0)
 
     return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+
+
+@app.route('/yulesinfo', methods=['GET'])
+def yulesinfo():
+    f = open("views/info.html", "r")  # opens file with name of "index.html"
+    return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms")\
+        .replace('#--DESCRIPTION--#', "\'Yule's k\' and \'Yule's i\' are calculated values that represent the \
+        semantic richness of a given text. We utilize this algorithm because semantic richness is one benchmark by \
+        which technical writers can measure the effectiveness of what they have written. The score is largely useful as\
+        a way to compare an uploaded document's significance against the significance of a regulatory text."),mimetype='text/html')
+
+
+@app.route('/comparisoninfo', methods=['GET'])
+def comparisoninfo():
+    f = open("views/info.html", "r")  # opens file with name of "index.html"
+    return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms") \
+                    .replace('#--DESCRIPTION--#', "This score takes into account the calculated score, \
+                    frequency, and adjacent words for each keyword in both documents. If the given documents are \
+                    identical then the score will be 100. This score is useful for seeing how well the semantic \
+                    choices made in the user's document match up with the semantics present in the regulatory \
+                    document."), mimetype='text/html')
 
 
 if __name__ == '__main__':

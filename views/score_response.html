@@ -32,7 +32,7 @@
 
         <div class="jumbotron">
             <h1>Processing complete!</h1>
-            <p class="lead"></p>
+            <!--<p class="lead"></p>
             <div class="d-inline-block">
                 <h2><u>Document Score: </u></h2>
             </div>
@@ -40,9 +40,15 @@
                 <h2 style="color: crimson">#--DOCUMENT_SCORE--#</h2>
             </div>
 
+            -->
+            <hr>
+
+
             <p class="lead"></p>
             <div class="d-inline-block">
                 <h2 ><u>Average Keyword Score: </u></h2>
+
+
             </div>
             <div class="d-inline-block">
                 <h2 style="color: crimson">#--KEYWORD_SCORE--#</h2>
@@ -50,12 +56,29 @@
 
             <br>
 
+            <hr>
+
             <p class="lead"></p>
             <div class="d-inline-block">
-                <h2><u>Average Yule's K Score: </u></h2></div>
+                <h2><u>User Doc Yule's K Score: </u></h2></div>
             <div class="d-inline-block">
-                <h2 style="color: crimson">#--YULES_SCORE--#</h2>
+                <h2 style="color: crimson">#--YULESK_SCORE--#</h2>
             </div>
+
+            <br>
+
+            <div class="d-inline-block">
+                <h2><u>Regulatory Doc Yule's K Score: </u></h2></div>
+            <div class="d-inline-block">
+                <h2 style="color: crimson">#--REG_YULESK_SCORE--#</h2>
+            </div>
+
+            <!--Yules info button-->
+            <form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
+            <div align="right">
+                <input class="btn btn-lg btn-info" type="submit" value="What is this?">
+            </div>
+            </form>
 
             <hr>
 
@@ -65,6 +88,13 @@
             <div class="d-inline-block">
                 <h2 style="color: crimson">#--COMPARISON_SCORE--#</h2>
             </div>
+
+            <!--Comparison info button-->
+            <form action="/comparisoninfo" enctype="multipart/form-data" method="get" about="more info">
+            <div align="right">
+                <input class="btn btn-lg btn-info" type="submit" value="What is this?">
+            </div>
+            </form>
 
             <hr>
 

@@ -34,7 +34,7 @@ homeCount.counter = 0
 # going to handle all the mess that is in app.py
 def interpretfile(file, localuploadfolder):
     """
-        @summary: does the logic that is current cluttering up app.py
+        @summary: Interprets file passed to API from browser
         @param file: werkzeug filestorage object
         @type file: werkzeug filestorage object
         @param localuploadfolder:
@@ -64,18 +64,35 @@ def interpretfile(file, localuploadfolder):
     return keyword_list
 
 
+def interpretexistingfile(regfilename):
+    """
+    @summary: Interprets file that exists in "RegulatoryDocuments"
+    @param regfilename: name of file without file ending
+    @type regfilename: string
+    @return: list of kwywords that have been analyzed
+    @rtype: KeywordList
+    """
+    reg_text = common_functions.getregulatorydoctext(regfilename)
+    reg_keyword_list = analyze_functions.identifykeywords(reg_text)
+    analyze_functions.calculatescores(reg_keyword_list, reg_text)
+    reg_keyword_list.calculateavgscores()
+
+    return reg_keyword_list
+
+
 def getscorepage(kw_list, reg_kw_list):
     f = open("views/score_response.html", "r")
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
-        replace('#--YULES_SCORE--#', str(kw_list.getavgyuleskscore()))\
+        replace('#--YULESK_SCORE--#', str(kw_list.getyuleskscore()))\
         .replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))\
-        .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list)))
+        .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list))) \
+        .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore()))
 
     f.close()
     return returnhtml
 
 
-def geterrorpage(errtext):
+def geterrorpage(errtext="Unknown Error"):
     # Returns error page
     f = open("views/invalid_upload.html", "r")
     returnhtml = f.read().replace('##ERROR##', errtext)
@@ -348,7 +365,6 @@ def getwordfrequency(word, file_text):
     return longlongfiletext.count(word)
 
 
-
 def getregulatorydoctext(filename):
     """
     @summary: Looks in the RegulatoryDocuments folder for the file with the given file name
@@ -363,13 +379,12 @@ def getregulatorydoctext(filename):
         with open(REGULATOR_FOLDER + filename, 'rb') as fp:
             file = FileStorage(fp)
 
-        # file.open()
         reg_text = extractpdftext(file, RegDoc=True)
     except FileNotFoundError and ValueError as e:
         logging.error('could not access regulatory document"' + filename + '"')
 
-    print(reg_text)
-    return reg_text
+    # print(reg_text)
+    return cleantext(reg_text)
 
 
 def kwhighestfrequencies(keyword_list):
@@ -455,7 +470,7 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2n
     # pyplot.scatter(x,y,c=colors)
     pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
     pyplot.yticks(fontsize=8)
-    pyplot.title('Most Common Keywords In File', fontweight='bold')
+    pyplot.title('Salience of Most Common Keywords In File', fontweight='bold')
     pyplot.xlabel('Keywords', fontsize=10, color='red')
     pyplot.ylabel('Salience', fontsize=10, color='red')
     pyplot.legend()

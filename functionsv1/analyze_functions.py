@@ -10,6 +10,7 @@ from functionsv1 import common_functions
 import six
 from KeywordList import KeywordList
 import collections
+import re
 from collections import Counter
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
@@ -68,6 +69,7 @@ def identifykeywords(file_text):
     #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
     #client = language.LanguageServiceClient(credentials=creds)
 
+    # TODO: Maybe change this to long string? There is a chance that would crash the app with large documents though
     for i in range(0, len(file_text)):
 
         if isinstance(file_text[i], six.binary_type):
@@ -101,6 +103,7 @@ def identifykeywords(file_text):
             keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
 
     return keyword_list
+
 
 def identifykeywordswithsentiment(file_text):
     """
@@ -203,7 +206,7 @@ def calculatescores(kw_list, file_text):
         kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
 
         # TODO: Get this to work properly
-        # kw.yuleskscore = calculateyuleskscore(kw_list, file_text, kw)
+    kw_list.yuleskscore = calculateyuleskscore(file_text)
 
 
 def calculatekeywordscore(kw_list, file_text, kw):
@@ -223,20 +226,43 @@ def calculatekeywordscore(kw_list, file_text, kw):
 
 
 # TODO: Get this to work properly
-def calculateyuleskscore(keyword_list, file_text, kw):
-
-    long_file_text = common_functions.stringlisttolonglongstring(file_text)
-
-    token_counter = collections.Counter(kw.word.upper() for _ in keyword_list)
-    m1 = kw.frequency  # sum(token_counter.values())
-    m2 = sum([freq ** 2 for freq in token_counter.values()])
+def calculateyuleskscore(file_text):
+    """
+    @summary: calculates Yule's K scores for givven keyword argument
+    @param keyword_list:
+    @type keyword_list:
+    @param file_text:
+    @type file_text:
+    @param kw:
+    @type kw:
+    @return:
+    @rtype:
+    """
     try:
+        long_file_text = common_functions.stringlisttolonglongstring(file_text)
+
+        tokens = tokenize(long_file_text)
+        token_counter = collections.Counter(tok.upper() for tok in tokens)
+        m1 = sum(token_counter.values())
+        m2 = sum([freq ** 2 for freq in token_counter.values()])
         i = (m1 * m1) / (m2 - m1)
-        k = 10000 / i
-        return k
+        k = 10000/i
+
+
+
+
+
+        # token_counter = collections.Counter(kw.word.upper() for _ in keyword_list)
+        # m1 = kw.frequency  # sum(token_counter.values())
+        # m2 = sum([freq ** 2 for freq in token_counter.values()])
+        # try:
+        #     i = (m1 * m1) / (m2 - m1)
+        #     k = 10000 / i
+        #     return k
     except ZeroDivisionError as e:
         logging.warning("Error: division by zero. Yule's algorithm not completed. Returning -1.")
         return -1
+    return round(k, 2)
 
 
 def calculatecomparisonscore(kw_list, reg_kw_list):
@@ -251,3 +277,41 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
     """
     # This is rudimentary, but actually does a decent job at comparing two documents
     return round(100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore),2)
+
+
+def tokenize(tokenStr):
+    """
+    @summary: splits up string into individual tokens
+    @param tokenStr:
+    @type tokenStr: string
+    @return:
+    @rtype: list of strings
+    """
+    tokens = re.split(r"[^0-9A-Za-z\-'_]+", tokenStr)
+    return tokens
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

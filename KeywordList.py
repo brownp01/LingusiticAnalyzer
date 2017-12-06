@@ -7,8 +7,8 @@ class KeywordList:
         self.list = []
         self.uniquekeywords = 0
         self.keywordscore = 0
-        self.avgyuleskscore = 0
-        self.avgyulesiscore = 0
+        self.yuleskscore = 0.0
+        self.yulesiscore = 0.0
         self.avgkeywordscore = 0
         self.documentscore = 0
 
@@ -21,12 +21,11 @@ class KeywordList:
     def getkeywordscore(self):
         return self.keywordscore
 
-    def getavgyuleskscore(self):
-        return self.avgyuleskscore
-
+    def getyuleskscore(self):
+        return self.yuleskscore
 
     def getyulesiscore(self):
-        return self.avgyulesiscore
+        return self.yulesiscore
 
     def calculateavgscores(self):
         kwscoresum = float(0)
