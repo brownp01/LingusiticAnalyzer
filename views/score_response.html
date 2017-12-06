@@ -26,7 +26,7 @@
     <div class="container">
         <div class="header">
 
-            <h3 class="text-muted">Linguistic Analyzer</h3>
+            <h3 class="text-info" align="right">Linguistic Analyzer</h3>
         </div>
 
 
@@ -43,10 +43,10 @@
             -->
             <hr>
 
-
+            <!--
             <p class="lead"></p>
             <div class="d-inline-block">
-                <h2 ><u>Average Keyword Score: </u></h2>
+                <h2><u>Average User Doc Keyword Score: </u></h2>
 
 
             </div>
@@ -55,12 +55,14 @@
             </div>
 
             <br>
-
             <hr>
+            -->
+
+            <h1 align="center"><u>Yule's k Score</u></h1>
 
             <p class="lead"></p>
             <div class="d-inline-block">
-                <h2><u>User Doc Yule's K Score: </u></h2></div>
+                <h2>Uploaded Doc: </h2></div>
             <div class="d-inline-block">
                 <h2 style="color: crimson">#--YULESK_SCORE--#</h2>
             </div>
@@ -68,10 +70,27 @@
             <br>
 
             <div class="d-inline-block">
-                <h2><u>Regulatory Doc Yule's K Score: </u></h2></div>
+                <h2>Regulatory Doc: </h2></div>
             <div class="d-inline-block">
                 <h2 style="color: crimson">#--REG_YULESK_SCORE--#</h2>
             </div>
+
+            <h1 align="center"><u>Yule's i Score</u></h1>
+
+            <div class="d-inline-block">
+                <h2>Uploaded Doc: </h2></div>
+            <div class="d-inline-block">
+                <h2 style="color: crimson">#--YULESI_SCORE--#</h2>
+            </div>
+
+            <br>
+
+            <div class="d-inline-block">
+                <h2>Regulatory Doc: </h2></div>
+            <div class="d-inline-block">
+                <h2 style="color: crimson">#--REG_YULESI_SCORE--#</h2>
+            </div>
+
 
             <!--Yules info button-->
             <form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">

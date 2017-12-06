@@ -45,8 +45,8 @@ def project():
 
     f = open("views/info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', 'Project Information').replace('#--DESCRIPTION--#',
-                    "This Linguistic Analyzer lets the user upload a regulatory document and compares that document \
-                    against a regulatory document using the Yule's K Algorithm and a keyword scores algorithm.\
+                    "This Linguistic Analyzer lets the user upload a description document and compares that document \
+                    against a regulatory document using Yule's k and Yule's i Algorithms, as well as a keyword scores algorithm.\
                     The results of the calculations are then displayed graphically to the user."), mimetype='text/html')
 
 

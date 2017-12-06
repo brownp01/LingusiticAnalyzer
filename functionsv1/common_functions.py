@@ -86,7 +86,9 @@ def getscorepage(kw_list, reg_kw_list):
         replace('#--YULESK_SCORE--#', str(kw_list.getyuleskscore()))\
         .replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))\
         .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list))) \
-        .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore()))
+        .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
+        .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
+        .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore()))
 
     f.close()
     return returnhtml
@@ -471,7 +473,7 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2n
     pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
     pyplot.yticks(fontsize=8)
     pyplot.title('Salience of Most Common Keywords In File', fontweight='bold')
-    pyplot.xlabel('Keywords', fontsize=10, color='red')
+    pyplot.xlabel('Keywords (in order of frequency in uploaded document)', fontsize=10, color='red')
     pyplot.ylabel('Salience', fontsize=10, color='red')
     pyplot.legend()
     pyplot.tight_layout()
