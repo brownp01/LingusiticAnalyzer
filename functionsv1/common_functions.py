@@ -54,12 +54,13 @@ def interpretfile(file, localuploadfolder):
     # -----------IDENTIFYING KEYWORDS----------- #
     keyword_list = analyze_functions.identifykeywords(file_text)
 
-    # -----------PUTTING KEYWORDS IN FILE----------- #
-    common_functions.outputkeywordtotext(keyword_list)
 
     # -----------CALCULATING VARIOUS SCORES FOR EACH KEYWORD----------- #
     analyze_functions.calculatescores(keyword_list, file_text)
     keyword_list.calculateavgscores()
+
+    # -----------PUTTING KEYWORDS IN FILE----------- #
+    common_functions.outputkeywordtotext(keyword_list)
 
     return keyword_list
 
@@ -100,11 +101,6 @@ def geterrorpage(errtext="Unknown Error"):
     returnhtml = f.read().replace('##ERROR##', errtext)
     f.close()
     return returnhtml
-
-
-def plotkeywords(kw_list):
-    # ----------PLOTTING KEYWORDS----------- #
-    common_functions.plotsalienceofmostcommon(kw_list)
 
 
 def extractpdftext(file, testdownload_folder = None, RegDoc = False):
@@ -218,12 +214,17 @@ def outputkeywordtotext(keylist):
     @type object: KeywordList
     @return: void
     """
+
     # TODO create file using document title of originating keywords
     file = open('Documents/Keywords.txt', 'w')
 
-    # TODO determine best format and information needed to save from Keyword object for future use
     for i in range(0, keylist.uniquekeywords):
-        file.write(keylist.list[i].word + "," + str(keylist.list[i].salience) + "," + str(keylist.list[i].frequency) + "\n")
+        word = keylist.list[i].word
+        sal = keylist.list[i].salience
+        freq = keylist.list[i].frequency
+        keyscore = keylist.list[i].keywordscore
+
+        file.write(word + "," + str(sal) + "," + str(freq) + "," + str(keyscore) + "\n")
 
     file.close()
 
@@ -241,11 +242,17 @@ def extractkeywordfromtxt(file):
     f = open(file, 'r')
     for line in f:
         line_list = line.split(',')
-        #TODO modify input to Keyword Object to fit overall needs
-        newKeyword = Keyword.Keyword(line_list[i], int(line_list[i+1].rstrip('\n')))
+        word = line_list[i]
+        sal = line_list[i+1]
+        freq = line_list[i+2]
+        keyscore = line_list[i+3]
+
+        # TODO modify input to Keyword Object to fit overall needs
+        newKeyword = Keyword.Keyword(word, 0, float(float(sal)), int(freq), float(float(keyscore.rstrip('\n'))))
         keyword_list.insertkeyword(newKeyword)
 
     f.close()
+    return keyword_list
 
 
 def cleantext(text_list):
@@ -331,8 +338,14 @@ def createkeywordfromgoogleapientity(entity, file_text):
     @return: populated instance of Keyword class
     @rtype: Keyword
     """
+
+    eName = entity.name
+    eType = entity.type
+    eSal = entity.salience
+    eFreq = getwordfrequency(eName, file_text)
+
     # newKeyword = Keyword.creacreatenewkeyword_overload_1(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)
-    newKeyword = Keyword.Keyword(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)
+    newKeyword = Keyword.Keyword(eName.upper(), eType, eSal, eFreq, 0)  # the value 0 refers to default keywordscore
 
     for key, value in entity.metadata.items():
         newKeyword.metadata[key] = value
@@ -415,6 +428,32 @@ def kwhighestfrequencies(keyword_list):
 
     return topkeywords
 
+def kwhighestkeyscores(keyword_list):
+    """
+    @param keyword_list:
+    @type keyword_list: list of keywords
+    @return: topkeywords
+    @rtype: list of highest keyword scores
+    """
+
+    kwlist = list(keyword_list.list)
+    topkeywords = []
+    topKeywordscores = []
+
+    # This loop finds the 10 highest keyword scores in the keyword_list
+    i = 0
+    while i < 10 and len(kwlist) > 0:
+        topkeywordscore = max(x.keywordscore for x in kwlist)
+        topKeywordscores.append(topkeywordscore)
+
+        topkeyword = next(kw for kw in kwlist if kw.keywordscore == topkeywordscore)
+        topkeywords.append(topkeyword)
+
+        kwlist[:] = [x for x in kwlist if x.word != topkeyword.word] # removes the previously added item so it does not get chosen again
+        i += 1
+
+    return topkeywords
+
 
 def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
@@ -434,7 +473,7 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2n
 
     kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
     kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
-    # TODO: Make graph display proper values and display in a more user-friendly way
+
     d = 0
     y = []
     p = []
@@ -481,39 +520,71 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2n
     # pyplot.show()
 
 
-# TODO this will eventually be the legacy plot function
-def plotsalienceofmostcommon(keyword_list):
+def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    @param file_text:
-    @type file_text: list of strings
-    @param keyword_list:
-    @type keyword_list: list of keywords
-    @return:
-    @rtype:
+    @summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
+    @param keyword_list1:
+    @type keyword_list1: KeywordList
+    @param keyword_list2:
+    @type keyword_list2: KeywordList
+    @param doc1name: name of first document
+    @type doc1name: string
+    @param doc2name: name of second document
+    @type doc2name: string
     """
-    kwlist = common_functions.kwhighestfrequencies(keyword_list)
-    # TODO: Make graph display proper values and display in a more user-friendly way
-    z = 0
-    y = []
-    my_xticks = []
-    for z in range(len(kwlist)):
-        my_xtick = kwlist[z].word
-        my_xticks.append(my_xtick)
-        y.append(kwlist[z].salience)
 
+    # Clearing previous graph just to be safe
+    pyplot.clf()
+
+    #kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
+    #kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
+    kwlist1 = common_functions.kwhighestkeyscores(keyword_list1)
+    kwlist2 = common_functions.kwhighestkeyscores(keyword_list2)
+
+    d = 0
+    y = []
+    p = []
+    my_xticks = []
+    w = 0.3
+    for x in range(len(kwlist1)):
+        word = kwlist1[x].word
+        s = 0
+        while s < len(kwlist2):
+            if kwlist2[s].word == word:
+                my_xtick = word
+                my_xticks.append(my_xtick)
+                y.append(kwlist1[x].keywordscore)
+                p.append(kwlist2[s].keywordscore)
+                d += 1
+                break
+            else:
+                s += 1
+
+    if d == 0:
+        pyplot.bar(x, y)
+        pyplot.clf()
+        pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
+        pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
+        return
     x = np.arange(len(my_xticks))
-    colors = np.random.rand(z)
-    pyplot.bar(x, y, color='blue')
+    # colors = np.random.rand(d)
+    pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
+    pyplot.bar(x+w, p, width=w, align='center', color='r', label='Regulatory doc: "' + doc2name + '"')
+    # pyplot.scatter(x - w, y, color='blue', label='doc1')
+    # pyplot.scatter(x, p, color='r', label='doc2')
     # pyplot.plot(x,y)
+    # pyplot.plot(x - w, y, color='blue', label='doc1')
+    # pyplot.plot(x, p, color='r', label='doc2')
     # pyplot.scatter(x,y,c=colors)
-    pyplot.xticks(x, my_xticks, fontsize=8, color='black', rotation=90)
-    pyplot.title('Salience of Most Common Keywords In File', fontweight='bold')
-    pyplot.xlabel('Keywords', fontsize=10, color='red')
-    pyplot.ylabel('Salience', fontsize=10, color='red')
-    # pyplot.legend()
+    pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
+    pyplot.yticks(fontsize=8)
+    pyplot.title('Keyword Score of Most Common Keywords In File', fontweight='bold')
+    pyplot.xlabel('Keywords (in order of keyword score in uploaded document)', fontsize=10, color='red')
+    pyplot.ylabel('Keyword Score', fontsize=10, color='red')
+    pyplot.legend()
     pyplot.tight_layout()
-    pyplot.show()
-    pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+    pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
+    # pyplot.show()
 
 
 

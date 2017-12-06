@@ -8,16 +8,16 @@ class Keyword:
     @summary: Class that stores a specific keyword and it's associated information
     """
 
-    def __init__(self, nWord = "", nType = 0, nFreq = 0, nSal = 0):
+    def __init__(self, nWord = "", nType = 0, nSal = 0, nFreq = 0, nKeyscore = 0):
         self.word = nWord
         self.type = nType
+        self.salience = float(nSal)
+        self.frequency = nFreq
+        self.keywordscore = float(nKeyscore)
         self.metadata = {}
         self.similarWords = []
-        self.frequency = nFreq
-        self.salience = float(nSal)
         self.yuleskscore = float(0)
         self.yulesiscore = float(0)
-        self.keywordscore = float(0)
         self._similarWordFrequency = 0
 
 

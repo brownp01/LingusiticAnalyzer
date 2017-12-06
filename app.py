@@ -82,12 +82,13 @@ def analyze():
 
             if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
                 keyword_list = common_functions.interpretfile(file, localuploadfolder)
-                # common_functions.plotkeywords(keyword_list)
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
                 reg_keyword_list = common_functions.interpretexistingfile(regfilename)
 
+                # ---------------------------KEYWORD PLOT FUNCTIONS------------------------------- #
                 common_functions.plothighestfreqkeywords(keyword_list, reg_keyword_list, file.filename, regfilename)
+                common_functions.plotkeywordscores(keyword_list, reg_keyword_list, file.filename, regfilename)
                 returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
 
