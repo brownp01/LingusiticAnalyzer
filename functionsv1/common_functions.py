@@ -455,7 +455,7 @@ def kwhighestkeyscores(keyword_list):
     return topkeywords
 
 
-def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
+def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
     @summary: plots salience of most frequenctly used keywords. Pulls KWs from list1, compares against list2
     @param keyword_list1:
@@ -497,7 +497,7 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2n
         pyplot.bar(x, y)
         pyplot.clf()
         pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
-        pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+        pyplot.savefig(DOWNLOAD_FOLDER + 'topsalience.png')
         return
     x = np.arange(len(my_xticks))
     # colors = np.random.rand(d)
@@ -516,7 +516,7 @@ def plothighestfreqkeywords(keyword_list1, keyword_list2, doc1name='doc1', doc2n
     pyplot.ylabel('Salience', fontsize=10, color='red')
     pyplot.legend()
     pyplot.tight_layout()
-    pyplot.savefig(DOWNLOAD_FOLDER + 'topkeyword.png')
+    pyplot.savefig(DOWNLOAD_FOLDER + 'topsalience.png')
     # pyplot.show()
 
 
@@ -586,7 +586,71 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
     # pyplot.show()
 
+def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
+    """
+    @summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
+    @param keyword_list1:
+    @type keyword_list1: KeywordList
+    @param keyword_list2:
+    @type keyword_list2: KeywordList
+    @param doc1name: name of first document
+    @type doc1name: string
+    @param doc2name: name of second document
+    @type doc2name: string
+    """
 
+    # Clearing previous graph just to be safe
+    pyplot.clf()
+
+    kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
+    kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
+    #kwlist1 = common_functions.kwhighestkeyscores(keyword_list1)
+    #kwlist2 = common_functions.kwhighestkeyscores(keyword_list2)
+
+    d = 0
+    y = []
+    p = []
+    my_xticks = []
+    w = 0.3
+    for x in range(len(kwlist1)):
+        word = kwlist1[x].word
+        s = 0
+        while s < len(kwlist2):
+            if kwlist2[s].word == word:
+                my_xtick = word
+                my_xticks.append(my_xtick)
+                y.append(kwlist1[x].frequency)
+                p.append(kwlist2[s].frequency)
+                d += 1
+                break
+            else:
+                s += 1
+
+    if d == 0:
+        pyplot.bar(x, y)
+        pyplot.clf()
+        pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
+        pyplot.savefig(DOWNLOAD_FOLDER + 'topwordfrequency.png')
+        return
+    x = np.arange(len(my_xticks))
+    # colors = np.random.rand(d)
+    pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
+    pyplot.bar(x+w, p, width=w, align='center', color='r', label='Regulatory doc: "' + doc2name + '"')
+    # pyplot.scatter(x - w, y, color='blue', label='doc1')
+    # pyplot.scatter(x, p, color='r', label='doc2')
+    # pyplot.plot(x,y)
+    # pyplot.plot(x - w, y, color='blue', label='doc1')
+    # pyplot.plot(x, p, color='r', label='doc2')
+    # pyplot.scatter(x,y,c=colors)
+    pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
+    pyplot.yticks(fontsize=8)
+    pyplot.title('Keyword Frequencies of Most Common Keywords In File', fontweight='bold')
+    pyplot.xlabel('Keywords (in order of keyword score in uploaded document)', fontsize=10, color='red')
+    pyplot.ylabel('Frequency', fontsize=10, color='red')
+    pyplot.legend()
+    pyplot.tight_layout()
+    pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
+    # pyplot.show()
 
 
 

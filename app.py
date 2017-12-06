@@ -87,8 +87,9 @@ def analyze():
                 reg_keyword_list = common_functions.interpretexistingfile(regfilename)
 
                 # ---------------------------KEYWORD PLOT FUNCTIONS------------------------------- #
-                common_functions.plothighestfreqkeywords(keyword_list, reg_keyword_list, file.filename, regfilename)
+                common_functions.plotkeywordsalience(keyword_list, reg_keyword_list, file.filename, regfilename)
                 common_functions.plotkeywordscores(keyword_list, reg_keyword_list, file.filename, regfilename)
+                common_functions.plotkeywordfrequency(keyword_list, reg_keyword_list, file.filename, regfilename)
                 returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
 
