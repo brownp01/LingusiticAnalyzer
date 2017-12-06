@@ -104,15 +104,47 @@ def analyze():
     return Response(returnhtml, mimetype='text/html')
 
 
+@app.route('/keywordsalienceimage', methods=['GET'])
+def getkwsalienceimage():
+    """
+    @summary: returns file at 'downloads/topsalience.png"
+    @return:
+    @rtype:
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
+    pilImage = open('downloads/topsalience.png', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+
+    return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+
+
+@app.route('/keywordscoresimage', methods=['GET'])
+def getkwscoresimage():
+    """
+    @summary: returns file at 'downloads/topkeywordscores.png"
+    @return:
+    @rtype:
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
+    pilImage = open('downloads/topkeywordscores.png', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+
+    return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+
+
 @app.route('/keywordfrequencyimage', methods=['GET'])
-def getkwfreqimage():
+def getkwfreeqimage():
     """
     @summary: returns file at 'downloads/topkeywordfrequency.png"
     @return:
     @rtype:
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
-    pilImage = open('downloads/topkeyword.png', 'rb')
+    pilImage = open('downloads/topkeywordfrequency.png', 'rb')
     copyfileobj(pilImage, tempFileObj)
     pilImage.close()
     tempFileObj.seek(0, 0)
