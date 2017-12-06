@@ -206,7 +206,9 @@ def calculatescores(kw_list, file_text):
         kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
 
         # TODO: Get this to work properly
-    kw_list.yuleskscore = calculateyuleskscore(file_text)
+    yulestuple = calculateyulesscore(file_text)
+    kw_list.yuleskscore = yulestuple[0]
+    kw_list.yulesiscore = yulestuple[1]
 
 
 def calculatekeywordscore(kw_list, file_text, kw):
@@ -226,7 +228,7 @@ def calculatekeywordscore(kw_list, file_text, kw):
 
 
 # TODO: Get this to work properly
-def calculateyuleskscore(file_text):
+def calculateyulesscore(file_text):
     """
     @summary: calculates Yule's K scores for givven keyword argument
     @param keyword_list:
@@ -247,22 +249,10 @@ def calculateyuleskscore(file_text):
         m2 = sum([freq ** 2 for freq in token_counter.values()])
         i = (m1 * m1) / (m2 - m1)
         k = 10000/i
-
-
-
-
-
-        # token_counter = collections.Counter(kw.word.upper() for _ in keyword_list)
-        # m1 = kw.frequency  # sum(token_counter.values())
-        # m2 = sum([freq ** 2 for freq in token_counter.values()])
-        # try:
-        #     i = (m1 * m1) / (m2 - m1)
-        #     k = 10000 / i
-        #     return k
     except ZeroDivisionError as e:
         logging.warning("Error: division by zero. Yule's algorithm not completed. Returning -1.")
         return -1
-    return round(k, 2)
+    return round(k, 2), round(i, 2)
 
 
 def calculatecomparisonscore(kw_list, reg_kw_list):

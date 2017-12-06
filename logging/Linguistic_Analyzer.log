@@ -1,5 +1,5 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 17:53:25] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:54:25] "GET / HTTP/1.1" 200 -
 INFO:root:Started in Analyze
 INFO:root:saving file "small_sample.pdf"
 INFO:root:"small_sample.pdf" saved
@@ -13,4 +13,13 @@ INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
 DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
-INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 17:53:35] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:54:32] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:54:38] "GET /keywordfrequencyimage? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:56:09] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:56:10] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:56:11] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:Cannot find "datafile" in request object
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:56:13] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 20:56:16] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2017 21:09:04] "GET /? HTTP/1.1" 200 -
