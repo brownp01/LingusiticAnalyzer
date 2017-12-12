@@ -1,4 +1,3 @@
-from functionsv1 import analyze_functions
 import logging
 
 class KeywordList:

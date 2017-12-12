@@ -308,25 +308,6 @@ def stringlisttolonglongstring(string_list):
         long_string += string_list[i].rstrip()
     return long_string
 
-def createkeywordfromgoogleapientitysentiment(entity, file_text):
-    """
-    @summary: Creates a keyword from a single entity that is returned by the google API
-    @param entity: google API response entity
-    @type entity: google API response entity
-    @return: populated instance of Keyword class
-    @rtype: Keyword
-    """
-    eName = entity.name.upper()
-    eType = entity.type
-    eFreq = analyze_functions.getwordfrequency(eName, file_text)
-    eSent = entity.sentiment.score
-
-    newKeyword = Keyword.Keyword(eName, eType, eFreq, eSent)
-
-    for key, value in entity.metadata.items():
-        newKeyword.metadata[key] = value
-    return newKeyword
-
 
 def createkeywordfromgoogleapientity(entity, file_text):
     """

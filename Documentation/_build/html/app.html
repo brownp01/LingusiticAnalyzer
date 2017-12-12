@@ -1,0 +1,166 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>app module &#8212; Linguistic Analyzer 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="unit_tests package" href="unit_tests.html" />
+    <link rel="prev" title="analyze module" href="analyze.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="unit_tests.html" title="unit_tests package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="analyze.html" title="analyze module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linguistic Analyzer 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-app">
+<span id="app-module"></span><h1>app module<a class="headerlink" href="#module-app" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="app.analyze">
+<code class="descclassname">app.</code><code class="descname">analyze</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;summary: Receives uploaded document and compares it to an existing document.
+&#64;return: Information regarding uploaded document’s similarity to regulatory document
+&#64;rtype: html</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.comparisoninfo">
+<code class="descclassname">app.</code><code class="descname">comparisoninfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#comparisoninfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.comparisoninfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="app.getkwfreeqimage">
+<code class="descclassname">app.</code><code class="descname">getkwfreeqimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#getkwfreeqimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.getkwfreeqimage" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;summary: returns file at ‘downloads/topkeywordfrequency.png”
+&#64;return:
+&#64;rtype:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.getkwsalienceimage">
+<code class="descclassname">app.</code><code class="descname">getkwsalienceimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#getkwsalienceimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.getkwsalienceimage" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;summary: returns file at ‘downloads/topsalience.png”
+&#64;return:
+&#64;rtype:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.getkwscoresimage">
+<code class="descclassname">app.</code><code class="descname">getkwscoresimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#getkwscoresimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.getkwscoresimage" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;summary: returns file at ‘downloads/topkeywordscores.png”
+&#64;return:
+&#64;rtype:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.main">
+<code class="descclassname">app.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;summary: This is the function for the base endpoint, the ‘front page’ of our web app. It will present the user with
+the option to upload a document and submit it.
+&#64;return: Home page
+&#64;rtype: html</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.project">
+<code class="descclassname">app.</code><code class="descname">project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;summary: Returns a simple page that has detailed information about the project.
+&#64;return: Project information
+&#64;rtype: html</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.yulesinfo">
+<code class="descclassname">app.</code><code class="descname">yulesinfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#yulesinfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.yulesinfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="analyze.html"
+                        title="previous chapter">analyze module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="unit_tests.html"
+                        title="next chapter">unit_tests package</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="unit_tests.html" title="unit_tests package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="analyze.html" title="analyze module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linguistic Analyzer 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Paul Brown, Tyler Blanton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

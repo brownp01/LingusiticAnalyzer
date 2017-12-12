@@ -91,15 +91,6 @@ def identifykeywords(file_text):
                        'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
 
         for entity in entities:
-            # print('=' * 20)
-            # print(u'{:<16}: {}'.format('name', entity.name))
-            # print(u'{:<16}: {}'.format('type', entity_type[entity.type]))
-            # print(u'{:<16}: {}'.format('metadata', entity.metadata))
-            # print(u'{:<16}: {}'.format('salience', entity.salience))
-            #print(u'{:<16}: {}'.format('wikipedia_url',
-                                       #entity.metadata.get('wikipedia_url', '-')))
-            # [END migration_analyze_entities]
-            # [END def_entities_text]
             keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
 
     return keyword_list

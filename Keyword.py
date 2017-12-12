@@ -1,7 +1,5 @@
 import doxypypy
 import logging
-from functionsv1 import analyze_functions
-
 
 class Keyword:
     """
