@@ -60,37 +60,37 @@
 
 <div class="viewcode-block" id="KeywordList.getdocumentscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getdocumentscore">[docs]</a>    <span class="k">def</span> <span class="nf">getdocumentscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: Returns document&#39;s score</span>
+<span class="sd">        Summary: Returns document&#39;s score.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">documentscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.getavgkeywordscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getavgkeywordscore">[docs]</a>    <span class="k">def</span> <span class="nf">getavgkeywordscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns document&#39;s average keyword score</span>
+<span class="sd">        Summary: returns document&#39;s average keyword score.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.getkeywordscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getkeywordscore">[docs]</a>    <span class="k">def</span> <span class="nf">getkeywordscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns document&#39;s keyword score</span>
+<span class="sd">        Summary: returns document&#39;s keyword score.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywordscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.getyuleskscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getyuleskscore">[docs]</a>    <span class="k">def</span> <span class="nf">getyuleskscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns document&#39;s Yule&#39;s k score</span>
+<span class="sd">        Summary: returns document&#39;s Yule&#39;s k score.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yuleskscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.getyulesiscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getyulesiscore">[docs]</a>    <span class="k">def</span> <span class="nf">getyulesiscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns document&#39;s Yule&#39;s i score</span>
+<span class="sd">        Summary: returns document&#39;s Yule&#39;s i score.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.calculateavgscores"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.calculateavgscores">[docs]</a>    <span class="k">def</span> <span class="nf">calculateavgscores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: calculates a document&#39;s average score values</span>
+<span class="sd">        Summary: calculates a document&#39;s average score values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">kwscoresum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">yulesksum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -115,10 +115,12 @@
 <div class="viewcode-block" id="KeywordList.insertkeyword"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.insertkeyword">[docs]</a>    <span class="k">def</span> <span class="nf">insertkeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summary: inserts new Keyword into Keyword list</span>
-<span class="sd">        @param keyword: an instance of the class Keyword</span>
-<span class="sd">        @type keyword:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
+
+<span class="sd">        :param keyword: an instance of the class keyword</span>
+<span class="sd">        :type keyword: object.</span>
+<span class="sd">        :return: none.</span>
+<span class="sd">        :rtype:</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Check &quot;similar words&quot; lists</span>
@@ -133,11 +135,12 @@
 
 <div class="viewcode-block" id="KeywordList.existsinlist"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.existsinlist">[docs]</a>    <span class="k">def</span> <span class="nf">existsinlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word</span>
-<span class="sd">        @param keyword_name:</span>
-<span class="sd">        @type keyword_name:</span>
-<span class="sd">        @return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.</span>
-<span class="sd">        @rtype: bool</span>
+<span class="sd">        Summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str keyword_name: The keyword </span>
+<span class="sd">        :return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.</span>
+<span class="sd">        :rtype: bool.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">keyword_name</span><span class="p">:</span>
@@ -188,7 +191,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

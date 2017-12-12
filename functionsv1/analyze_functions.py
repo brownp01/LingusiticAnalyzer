@@ -26,23 +26,24 @@ def declarelogger():
     logging.info("API started")
 
 
-def isgarbageword(word):
-    """
-    Summary: Determines if the given word is a "garbage" word that does not contribute to the meaning of the sentence.
-    @param word:
-    @type word:
-    @return:
-    @rtype:
-    """
+#def isgarbageword(word):
+    #"""
+    #Summary: Determines if the given word is a "garbage" word that does not contribute to the meaning of the sentence.
+    #@param word:
+    #@type word:
+    #@return:
+    #@rtype:
+    #"""
 
 
 def identifykeywords(file_text):
     """
     Summary: Calls the Google NLP API to extract Keyword information from text
-    @param file_text: text of document
-    @type file_text: list of strings
-    @return: KeywordList object
-    @rtype: string
+
+    :param str file_text: text of document
+    :return: KeywordList object
+    :rtype: object
+
     """
     """Detects entities in the text."""
 
@@ -85,38 +86,40 @@ def identifykeywords(file_text):
     return keyword_list
 
 
-def wordsapi_getsynonym(word):
-    """
-    @summary: This function calls to the wordsAPI "Synonym" endpoint docs: https://market.mashape.com/wordsapi/wordsapi
-    @param word: word to find synonyms of
-    @type word: string
-    @return: words that are synonymous with the parameter word
-    @rtype: list of strings
-    """
+#def wordsapi_getsynonym(word):
+    #"""
+    #summary: This function calls to the wordsAPI "Synonym" endpoint docs: https://market.mashape.com/wordsapi/wordsapi
+    #@param word: word to find synonyms of
+    #@type word: string
+    #@return: words that are synonymous with the parameter word
+    #@rtype: list of strings
+    #"""
     # TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY
-    apikey = ''
-    url = 'https://wordsapiv1.p.mashape.com/words/{word}/synonyms'
+    #apikey = ''
+    #url = 'https://wordsapiv1.p.mashape.com/words/{word}/synonyms'
 
-def wordsapi_getsimilar(word):
-    """
-    @summary: This function calls to the wordsAPI "Similar" endpoint docs: https://market.mashape.com/wordsapi/wordsapi
-    @param word: word to find similar words of
-    @type word: string
-    @return: all the words that are similar to the word parameter
-    @rtype: list of string
-    """
+#def wordsapi_getsimilar(word):
+    #"""
+    #@summary: This function calls to the wordsAPI "Similar" endpoint docs: https://market.mashape.com/wordsapi/wordsapi
+    #@param word: word to find similar words of
+    #@type word: string
+    #@return: all the words that are similar to the word parameter
+    #@rtype: list of string
+    #"""
     # TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY
-    apikey = ''
-    url = 'https://wordsapiv1.p.mashape.com/words/{word}/similar'
+    #apikey = ''
+    #url = 'https://wordsapiv1.p.mashape.com/words/{word}/similar'
 
 
 def calculatescores(kw_list, file_text):
     """
     Summary: Calculate Yule's k and i scores, and keywords scores for a given document
-    @param kw_list: lis tof Keywords
-    @type kw_list: KeywordList
-    @param file_text: Text of file
-    @type file_text: List[string]
+
+    :param kw_list: list of Keywords
+    :type kw_list: KeywordList
+    :param str file_text: Text of file
+    :type file_text: List[string]
+
     """
     for kw in kw_list.list:
         kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
@@ -130,14 +133,16 @@ def calculatescores(kw_list, file_text):
 def calculatekeywordscore(kw_list, file_text, kw):
     """
     Summary: calculate a keyword score for a single keyword
-    @param kw_list: all keywords
-    @type kw_list: list of keywords
-    @param file_text: file's entire text
-    @type file_text: list of strings
-    @param kw: keyword
-    @type kw: Keyword
-    @return: keyword score
-    @rtype: float
+
+    :param kw_list: all keywords
+    :type kw_list: list
+    :param file_text: file's entire text
+    :type file_text: list of strings
+    :param kw: keyword
+    :type kw: Keyword
+    :return: keyword score
+    :rtype: float
+
     """
     kwscore = float(((kw.salience * kw.frequency)/len(kw_list.list)) * 1000)
     return kwscore
@@ -147,12 +152,12 @@ def calculatekeywordscore(kw_list, file_text, kw):
 def calculateyulesscore(file_text):
     """
     Summary: calculates Yule's K scores for givven keyword argument
-    @param keyword_list:
-    @type keyword_list:
-    @param file_text:
-    @type file_text:
-    @param kw: Keyword
-    @type kw: Keyword
+    
+    :param file_text: plain text of document
+    :type file_text: list
+    :param kw: Keyword
+    :type kw: Keyword
+
     """
     try:
         long_file_text = common_functions.stringlisttolonglongstring(file_text)
@@ -171,11 +176,14 @@ def calculateyulesscore(file_text):
 
 def calculatecomparisonscore(kw_list, reg_kw_list):
     """
-    Summary: Compares the calculated scores of the two documents and generates value based on that comparison
-    @param kw_list: list of Keywords
-    @type kw_list: KeywordList
-    @param reg_kw_list: list of Keywords
-    @type reg_kw_list: KeywordList
+    Summary: Compares the calculated scores of the two documents and 
+             generates value based on that comparison
+
+    :param kw_list: list of Keywords
+    :type kw_list: KeywordList
+    :param reg_kw_list: list of Keywords
+    :type reg_kw_list: KeywordList
+
     """
     # This is rudimentary, but actually does a decent job at comparing two documents
     return round(100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore),2)
@@ -184,10 +192,11 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
 def tokenize(tokenStr):
     """
     Summary: Splits up string into individual tokens.
-    @param tokenStr:
-    @type tokenStr: string
-    @return:
-    @rtype: list of strings
+
+    :param tokenStr: a string of words
+    :type tokenStr: string
+    :return: tokens
+    :rtype: list
     """
     tokens = re.split(r"[^0-9A-Za-z\-'_]+", tokenStr)
     return tokens

@@ -304,47 +304,83 @@
 <dl class="function">
 <dt id="analyze_functions.calculatecomparisonscore">
 <code class="descclassname">analyze_functions.</code><code class="descname">calculatecomparisonscore</code><span class="sig-paren">(</span><em>kw_list</em>, <em>reg_kw_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#calculatecomparisonscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.calculatecomparisonscore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Compares the calculated scores of the two documents and generates value based on that comparison
-&#64;param kw_list: list of Keywords
-&#64;type kw_list: KeywordList
-&#64;param reg_kw_list: list of Keywords
-&#64;type reg_kw_list: KeywordList</p>
+<dd><dl class="docutils">
+<dt>Summary: Compares the calculated scores of the two documents and </dt>
+<dd>generates value based on that comparison</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keywords</li>
+<li><strong>reg_kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keywords</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="analyze_functions.calculatekeywordscore">
 <code class="descclassname">analyze_functions.</code><code class="descname">calculatekeywordscore</code><span class="sig-paren">(</span><em>kw_list</em>, <em>file_text</em>, <em>kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#calculatekeywordscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.calculatekeywordscore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: calculate a keyword score for a single keyword
-&#64;param kw_list: all keywords
-&#64;type kw_list: list of keywords
-&#64;param file_text: file’s entire text
-&#64;type file_text: list of strings
-&#64;param kw: keyword
-&#64;type kw: Keyword
-&#64;return: keyword score
-&#64;rtype: float</p>
+<dd><p>Summary: calculate a keyword score for a single keyword</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kw_list</strong> (<em>list</em>) – all keywords</li>
+<li><strong>file_text</strong> (<em>list of strings</em>) – file’s entire text</li>
+<li><strong>kw</strong> (<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><em>Keyword</em></a>) – keyword</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">keyword score</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="analyze_functions.calculatescores">
 <code class="descclassname">analyze_functions.</code><code class="descname">calculatescores</code><span class="sig-paren">(</span><em>kw_list</em>, <em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#calculatescores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.calculatescores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Calculate Yule’s k and i scores, and keywords scores for a given document
-&#64;param kw_list: lis tof Keywords
-&#64;type kw_list: KeywordList
-&#64;param file_text: Text of file
-&#64;type file_text: List[string]</p>
+<dd><p>Summary: Calculate Yule’s k and i scores, and keywords scores for a given document</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keywords</li>
+<li><strong>file_text</strong> (<em>List</em><em>[</em><em>string</em><em>]</em>) – Text of file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="analyze_functions.calculateyulesscore">
 <code class="descclassname">analyze_functions.</code><code class="descname">calculateyulesscore</code><span class="sig-paren">(</span><em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#calculateyulesscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.calculateyulesscore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: calculates Yule’s K scores for givven keyword argument
-&#64;param keyword_list:
-&#64;type keyword_list:
-&#64;param file_text:
-&#64;type file_text:
-&#64;param kw: Keyword
-&#64;type kw: Keyword</p>
+<dd><p>Summary: calculates Yule’s K scores for givven keyword argument</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>file_text</strong> (<em>list</em>) – plain text of document</li>
+<li><strong>kw</strong> (<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><em>Keyword</em></a>) – Keyword</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -356,51 +392,37 @@
 <dl class="function">
 <dt id="analyze_functions.identifykeywords">
 <code class="descclassname">analyze_functions.</code><code class="descname">identifykeywords</code><span class="sig-paren">(</span><em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#identifykeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.identifykeywords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Calls the Google NLP API to extract Keyword information from text
-&#64;param file_text: text of document
-&#64;type file_text: list of strings
-&#64;return: KeywordList object
-&#64;rtype: string</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="analyze_functions.isgarbageword">
-<code class="descclassname">analyze_functions.</code><code class="descname">isgarbageword</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#isgarbageword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.isgarbageword" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Determines if the given word is a “garbage” word that does not contribute to the meaning of the sentence.
-&#64;param word:
-&#64;type word:
-&#64;return:
-&#64;rtype:</p>
+<dd><p>Summary: Calls the Google NLP API to extract Keyword information from text</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_text</strong> (<em>str</em>) – text of document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">KeywordList object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="analyze_functions.tokenize">
 <code class="descclassname">analyze_functions.</code><code class="descname">tokenize</code><span class="sig-paren">(</span><em>tokenStr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.tokenize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Splits up string into individual tokens.
-&#64;param tokenStr:
-&#64;type tokenStr: string
-&#64;return:
-&#64;rtype: list of strings</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="analyze_functions.wordsapi_getsimilar">
-<code class="descclassname">analyze_functions.</code><code class="descname">wordsapi_getsimilar</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#wordsapi_getsimilar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.wordsapi_getsimilar" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: This function calls to the wordsAPI “Similar” endpoint docs: <a class="reference external" href="https://market.mashape.com/wordsapi/wordsapi">https://market.mashape.com/wordsapi/wordsapi</a>
-&#64;param word: word to find similar words of
-&#64;type word: string
-&#64;return: all the words that are similar to the word parameter
-&#64;rtype: list of string</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="analyze_functions.wordsapi_getsynonym">
-<code class="descclassname">analyze_functions.</code><code class="descname">wordsapi_getsynonym</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analyze_functions.html#wordsapi_getsynonym"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.wordsapi_getsynonym" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: This function calls to the wordsAPI “Synonym” endpoint docs: <a class="reference external" href="https://market.mashape.com/wordsapi/wordsapi">https://market.mashape.com/wordsapi/wordsapi</a>
-&#64;param word: word to find synonyms of
-&#64;type word: string
-&#64;return: words that are synonymous with the parameter word
-&#64;rtype: list of strings</p>
+<dd><p>Summary: Splits up string into individual tokens.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokenStr</strong> (<em>string</em>) – a string of words</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tokens</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -452,7 +474,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

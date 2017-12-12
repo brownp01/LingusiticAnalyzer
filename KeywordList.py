@@ -13,37 +13,37 @@ class KeywordList:
 
     def getdocumentscore(self):
         """
-        Summary: Returns document's score
+        Summary: Returns document's score.
         """
         return self.documentscore
 
     def getavgkeywordscore(self):
         """
-        Summary: returns document's average keyword score
+        Summary: returns document's average keyword score.
         """
         return self.avgkeywordscore
 
     def getkeywordscore(self):
         """
-        Summary: returns document's keyword score
+        Summary: returns document's keyword score.
         """
         return self.keywordscore
 
     def getyuleskscore(self):
         """
-        Summary: returns document's Yule's k score
+        Summary: returns document's Yule's k score.
         """
         return self.yuleskscore
 
     def getyulesiscore(self):
         """
-        Summary: returns document's Yule's i score
+        Summary: returns document's Yule's i score.
         """
         return self.yulesiscore
 
     def calculateavgscores(self):
         """
-        Summary: calculates a document's average score values
+        Summary: calculates a document's average score values.
         """
         kwscoresum = float(0)
         yulesksum = float(0)
@@ -68,10 +68,12 @@ class KeywordList:
     def insertkeyword(self, keyword):
         """
         Summary: inserts new Keyword into Keyword list
-        @param keyword: an instance of the class Keyword
-        @type keyword:
-        @return:
-        @rtype:
+
+        :param keyword: an instance of the class keyword
+        :type keyword: object.
+        :return: none.
+        :rtype:
+
         """
 
         # Check "similar words" lists
@@ -86,11 +88,12 @@ class KeywordList:
 
     def existsinlist(self, keyword_name):
         """
-        Summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word
-        @param keyword_name:
-        @type keyword_name:
-        @return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.
-        @rtype: bool
+        Summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word.
+        
+        :param str keyword_name: The keyword 
+        :return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.
+        :rtype: bool.
+
         """
         for i in range(0, len(self.list)):
             if self.list[i].word == keyword_name:

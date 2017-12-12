@@ -3,7 +3,7 @@ import logging
 
 class Keyword:
     """
-    @summary: Class that stores a specific keyword and it's associated information
+    summary: Class that stores a specific keyword and it's associated information
     """
 
     def __init__(self, nWord = "", nType = 0, nSal = 0, nFreq = 0, nKeyscore = 0):
