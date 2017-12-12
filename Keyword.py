@@ -18,18 +18,15 @@ class Keyword:
         self.yulesiscore = float(0)
         self._similarWordFrequency = 0
 
-
     def wordfrequency(self):
         return self.frequency
-
 
     def similarwordfrequency(self):
         return self._similarWordFrequency
 
-
     def isinsimilarlist(self, word):
         """
-        @summary: # Checks if a given word is in the "similarWords" list
+        Summary: Checks if a given word is in the "similarWords" list
         @param word:
         @type word:
         @return:
@@ -39,7 +36,7 @@ class Keyword:
     @classmethod
     def determinesimilarity(self, word):
         """
-        @summary: Checks if the given word is semantically similar to the main keyword
+        Summary: Checks if the given word is semantically similar to the main keyword
         @param word:
         @type word:
         @return:
@@ -49,7 +46,7 @@ class Keyword:
     @classmethod
     def distancetonearest(self, word):
         """
-        @summary: distance from main "word" to nearest instance of parameter word
+        Summary: distance from main "word" to nearest instance of parameter word
         @param word:
         @type word:
         @return:
@@ -59,7 +56,7 @@ class Keyword:
     @classmethod
     def distancefromkeywordtonearestkeyword(self, keyword):
         """
-        @summary: distance from "word" OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS
+        Summary: distance from "word" OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS
         @param word:
         @type word:
         @return:
@@ -70,20 +67,12 @@ class Keyword:
     def averagedistanceto(self, word):
         """
         "@summary:  average distanceBetween main "word" and parameter word
-        @param word:
-        @type word:
-        @return:
-        @rtype:
         """
 
     @classmethod
     def averagedistancefromkeywordtokeyword(self, keyword):
         """
-        @summary: averga distance from "word" OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS
-        @param keyword:
-        @type keyword:
-        @return:
-        @rtype:
+        Summary: averga distance from "word" OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS
         """
 
     @classmethod
@@ -92,7 +81,6 @@ class Keyword:
         @summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
         @param passedWord: word
         @type passedWord: string
-        @return:
         @rtype: bool
         """
         if passedWord == self.word:

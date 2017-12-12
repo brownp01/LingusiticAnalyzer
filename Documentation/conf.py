@@ -19,8 +19,8 @@
 #
 import os
 import sys
-sys.path.insert(0, '/Users/Paul/Dropbox/SCHOOL/Senior Design/GitHub/LinguisticAnalyzer/functionsv1')
-sys.path.insert(0, '/Users/Paul/Dropbox/SCHOOL/Senior Design/GitHub/LinguisticAnalyzer')
+sys.path.insert(0, '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/LinguisticAnalyzer/functionsv1')
+sys.path.insert(0, '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/LinguisticAnalyzer')
 #sys.path.insert(0, os.path.abspath('.'))
 #sys.path.insert(0, os.path.abspath('../'))
 
@@ -91,7 +91,7 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'classic'
+html_theme = 'nature'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

@@ -12,6 +12,9 @@ DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
 
 class TestExtractpdftext(TestCase):
     def test_extractpdftext(self):
+        """
+        Summary: Tests the extractpdftext() function
+        """
         file = ''
         testFileName = 'test_extractpdftext.pdf'
         try:

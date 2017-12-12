@@ -1,9 +1,12 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [06/Dec/2017 17:55:29] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:30] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:30] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:30] "GET /apple-touch-icon.png HTTP/1.1" 404 -
 INFO:root:Started in Analyze
-INFO:root:saving file "simple_description.pdf"
-INFO:root:"simple_description.pdf" saved
-INFO:root:opening file "simple_description.pdf"
+INFO:root:saving file "small_sample.pdf"
+INFO:root:"small_sample.pdf" saved
+INFO:root:opening file "small_sample.pdf"
 INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
@@ -13,4 +16,24 @@ INFO:root:PDF file processed
 DEBUG:google.auth.transport.requests:Making request: POST https://accounts.google.com/o/oauth2/token
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com
 DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "POST /o/oauth2/token HTTP/1.1" 200 None
-INFO:werkzeug:127.0.0.1 - - [06/Dec/2017 17:55:52] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:40] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:42] "GET /keywordsalienceimage? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:45] "GET /keywordscoresimage? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:47] "GET /keywordfrequencyimage? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:50] "GET /yulesinfo? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:53] "GET /comparisoninfo? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:33:59] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:00] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:01] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:Cannot find "datafile" in request object
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:02] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:03] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:No regulatory document specified
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:07] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:08] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:Invalid File type ages. Responding with error page
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:13] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Dec/2017 12:34:15] "GET /? HTTP/1.1" 200 -

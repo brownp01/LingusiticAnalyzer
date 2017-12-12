@@ -12,6 +12,9 @@ PDF_DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
 
 class TestEnsurepdfanddocxarereadthesame(TestCase):
     def test_ensurepdfanddocarereadthesame(self):
+        """
+        Summary: tests whether extractpdftext() and extractdocxtext() return the same exact information when given the same document in different formats
+        """
         # #----------------READING DOCX----------------# #
         docxfile = ''
         pdffile = ''

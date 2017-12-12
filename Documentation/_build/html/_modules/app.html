@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>app &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -70,8 +70,8 @@
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../app.html#app.main">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: This is the function for the base endpoint, the &#39;front page&#39; of our web app. It will present the user with</span>
-<span class="sd">    the option to upload a document and submit it.</span>
+<span class="sd">    Summary: Home page of the Linguistic Analyzer API.</span>
+<span class="sd">    In here the logger is initiated for the session and the main webpage &quot;views/index.html&quot; is returned to the browser.</span>
 <span class="sd">    @return: Home page</span>
 <span class="sd">    @rtype: html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -85,9 +85,7 @@
 <div class="viewcode-block" id="project"><a class="viewcode-back" href="../app.html#app.project">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/project&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">project</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Returns a simple page that has detailed information about the project.</span>
-<span class="sd">    @return: Project information</span>
-<span class="sd">    @rtype: html</span>
+<span class="sd">    Summary: Returns an html page containing details about the Linguistic Analyzer project.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/info.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
@@ -100,7 +98,7 @@
 <div class="viewcode-block" id="analyze"><a class="viewcode-back" href="../app.html#app.analyze">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/analyze&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">analyze</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Receives uploaded document and compares it to an existing document.</span>
+<span class="sd">    Summary: Receives uploaded document and comparison document choice and executes logic to compare them.</span>
 <span class="sd">    @return: Information regarding uploaded document&#39;s similarity to regulatory document</span>
 <span class="sd">    @rtype: html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -144,7 +142,6 @@
                 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Invalid File type &#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;. Responding with error page&#39;</span><span class="p">)</span>
                 <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">()</span>
 
-
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">(</span><span class="s1">&#39;An unknown error has occured&#39;</span><span class="p">)</span>
 
@@ -154,9 +151,7 @@
 <div class="viewcode-block" id="getkwsalienceimage"><a class="viewcode-back" href="../app.html#app.getkwsalienceimage">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordsalienceimage&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getkwsalienceimage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: returns file at &#39;downloads/topsalience.png&quot;</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    Summary: returns png image of a graph of top salience keywords</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;downloads/topsalience.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
@@ -170,9 +165,7 @@
 <div class="viewcode-block" id="getkwscoresimage"><a class="viewcode-back" href="../app.html#app.getkwscoresimage">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordscoresimage&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getkwscoresimage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: returns file at &#39;downloads/topkeywordscores.png&quot;</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    Summary: returns png image of a graph of keyword scores</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;downloads/topkeywordscores.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
@@ -186,9 +179,7 @@
 <div class="viewcode-block" id="getkwfreeqimage"><a class="viewcode-back" href="../app.html#app.getkwfreeqimage">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordfrequencyimage&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getkwfreeqimage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: returns file at &#39;downloads/topkeywordfrequency.png&quot;</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    Summary: Returns png image of a graph of most frequent keywords</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;downloads/topkeywordfrequency.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
@@ -201,6 +192,9 @@
 
 <div class="viewcode-block" id="yulesinfo"><a class="viewcode-back" href="../app.html#app.yulesinfo">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/yulesinfo&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">yulesinfo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Endpoint: Returns html page that describes Yule&#39;s k and Yule&#39;s i scores</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/info.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION_TITLE--#&#39;</span><span class="p">,</span> <span class="s2">&quot;Yule&#39;s k and Yule&#39;s i algorithms&quot;</span><span class="p">)</span>\
         <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION--#&#39;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\&#39;</span><span class="s2">Yule&#39;s k</span><span class="se">\&#39;</span><span class="s2"> and </span><span class="se">\&#39;</span><span class="s2">Yule&#39;s i</span><span class="se">\&#39;</span><span class="s2"> are calculated values that represent the </span><span class="se">\</span>
@@ -211,6 +205,9 @@
 
 <div class="viewcode-block" id="comparisoninfo"><a class="viewcode-back" href="../app.html#app.comparisoninfo">[docs]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/comparisoninfo&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">comparisoninfo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Returns html page that describes the Linguistic Analyzer&#39;s Comparison Score</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/info.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION_TITLE--#&#39;</span><span class="p">,</span> <span class="s2">&quot;Yule&#39;s k and Yule&#39;s i algorithms&quot;</span><span class="p">)</span> \
                     <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION--#&#39;</span><span class="p">,</span> <span class="s2">&quot;This score takes into account the calculated score, </span><span class="se">\</span>
@@ -258,7 +255,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

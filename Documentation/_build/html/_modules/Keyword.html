@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Keyword &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -65,18 +65,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_similarWordFrequency</span> <span class="o">=</span> <span class="mi">0</span>
 
-
 <div class="viewcode-block" id="Keyword.wordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.wordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">wordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span></div>
-
 
 <div class="viewcode-block" id="Keyword.similarwordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.similarwordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">similarwordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_similarWordFrequency</span></div>
 
-
 <div class="viewcode-block" id="Keyword.isinsimilarlist"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.isinsimilarlist">[docs]</a>    <span class="k">def</span> <span class="nf">isinsimilarlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: # Checks if a given word is in the &quot;similarWords&quot; list</span>
+<span class="sd">        Summary: Checks if a given word is in the &quot;similarWords&quot; list</span>
 <span class="sd">        @param word:</span>
 <span class="sd">        @type word:</span>
 <span class="sd">        @return:</span>
@@ -86,7 +83,7 @@
 <div class="viewcode-block" id="Keyword.determinesimilarity"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.determinesimilarity">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">determinesimilarity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: Checks if the given word is semantically similar to the main keyword</span>
+<span class="sd">        Summary: Checks if the given word is semantically similar to the main keyword</span>
 <span class="sd">        @param word:</span>
 <span class="sd">        @type word:</span>
 <span class="sd">        @return:</span>
@@ -96,7 +93,7 @@
 <div class="viewcode-block" id="Keyword.distancetonearest"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.distancetonearest">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">distancetonearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: distance from main &quot;word&quot; to nearest instance of parameter word</span>
+<span class="sd">        Summary: distance from main &quot;word&quot; to nearest instance of parameter word</span>
 <span class="sd">        @param word:</span>
 <span class="sd">        @type word:</span>
 <span class="sd">        @return:</span>
@@ -106,7 +103,7 @@
 <div class="viewcode-block" id="Keyword.distancefromkeywordtonearestkeyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.distancefromkeywordtonearestkeyword">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">distancefromkeywordtonearestkeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: distance from &quot;word&quot; OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS</span>
+<span class="sd">        Summary: distance from &quot;word&quot; OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS</span>
 <span class="sd">        @param word:</span>
 <span class="sd">        @type word:</span>
 <span class="sd">        @return:</span>
@@ -117,20 +114,12 @@
     <span class="k">def</span> <span class="nf">averagedistanceto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;@summary:  average distanceBetween main &quot;word&quot; and parameter word</span>
-<span class="sd">        @param word:</span>
-<span class="sd">        @type word:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="Keyword.averagedistancefromkeywordtokeyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.averagedistancefromkeywordtokeyword">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">averagedistancefromkeywordtokeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: averga distance from &quot;word&quot; OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS</span>
-<span class="sd">        @param keyword:</span>
-<span class="sd">        @type keyword:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
+<span class="sd">        Summary: averga distance from &quot;word&quot; OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="Keyword.issimilar"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.issimilar">[docs]</a>    <span class="nd">@classmethod</span>
@@ -139,7 +128,6 @@
 <span class="sd">        @summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class</span>
 <span class="sd">        @param passedWord: word</span>
 <span class="sd">        @type passedWord: string</span>
-<span class="sd">        @return:</span>
 <span class="sd">        @rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">passedWord</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
@@ -182,7 +170,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>analyze_functions &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -63,31 +63,19 @@
 <span class="n">LOG_FILE_PATH</span> <span class="o">=</span> <span class="s1">&#39;logging/Linguistic_Analyzer.log&#39;</span>
 
 
-<div class="viewcode-block" id="printtext"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.printtext">[docs]</a><span class="k">def</span> <span class="nf">printtext</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="declarelogger"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.declarelogger">[docs]</a><span class="k">def</span> <span class="nf">declarelogger</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Declares logger for the current session.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">LOG_FILE_PATH</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;API started&quot;</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">identifykeywords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: returns a list of keyword objects</span>
-<span class="sd">    @param text:</span>
-<span class="sd">    @type text:</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">[]</span>
-
-
 <div class="viewcode-block" id="isgarbageword"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.isgarbageword">[docs]</a><span class="k">def</span> <span class="nf">isgarbageword</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: determines if the given word is a garbage word</span>
+<span class="sd">    Summary: Determines if the given word is a &quot;garbage&quot; word that does not contribute to the meaning of the sentence.</span>
 <span class="sd">    @param word:</span>
 <span class="sd">    @type word:</span>
 <span class="sd">    @return:</span>
@@ -97,6 +85,7 @@
 
 <div class="viewcode-block" id="identifykeywords"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.identifykeywords">[docs]</a><span class="k">def</span> <span class="nf">identifykeywords</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Calls the Google NLP API to extract Keyword information from text</span>
 <span class="sd">    @param file_text: text of document</span>
 <span class="sd">    @type file_text: list of strings</span>
 <span class="sd">    @return: KeywordList object</span>
@@ -167,23 +156,15 @@
     <span class="n">apikey</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://wordsapiv1.p.mashape.com/words/</span><span class="si">{word}</span><span class="s1">/similar&#39;</span></div>
 
-<div class="viewcode-block" id="getwordfrequency"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.getwordfrequency">[docs]</a><span class="k">def</span> <span class="nf">getwordfrequency</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: determines frequency of the given word in the file&#39;s text</span>
-<span class="sd">    @param word: word to find freq. of</span>
-<span class="sd">    @type word: string</span>
-<span class="sd">    @param file_text: text of entire file</span>
-<span class="sd">    @type file_text: list of string</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Only populate longlongfiletext once, it is very inefficient the way it is now.</span>
-    <span class="n">longlongfiletext</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">stringlisttolonglongstring</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">test</span> <span class="o">=</span> <span class="n">longlongfiletext</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">longlongfiletext</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)</span></div>
-
 
 <div class="viewcode-block" id="calculatescores"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatescores">[docs]</a><span class="k">def</span> <span class="nf">calculatescores</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Calculate Yule&#39;s k and i scores, and keywords scores for a given document</span>
+<span class="sd">    @param kw_list: lis tof Keywords</span>
+<span class="sd">    @type kw_list: KeywordList</span>
+<span class="sd">    @param file_text: Text of file</span>
+<span class="sd">    @type file_text: List[string]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
         <span class="n">kw</span><span class="o">.</span><span class="n">keywordscore</span> <span class="o">=</span> <span class="n">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
 
@@ -195,7 +176,7 @@
 
 <div class="viewcode-block" id="calculatekeywordscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatekeywordscore">[docs]</a><span class="k">def</span> <span class="nf">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: calculate a keyword score for a single keyword</span>
+<span class="sd">    Summary: calculate a keyword score for a single keyword</span>
 <span class="sd">    @param kw_list: all keywords</span>
 <span class="sd">    @type kw_list: list of keywords</span>
 <span class="sd">    @param file_text: file&#39;s entire text</span>
@@ -212,15 +193,13 @@
 <span class="c1"># TODO: Get this to work properly</span>
 <div class="viewcode-block" id="calculateyulesscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculateyulesscore">[docs]</a><span class="k">def</span> <span class="nf">calculateyulesscore</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: calculates Yule&#39;s K scores for givven keyword argument</span>
+<span class="sd">    Summary: calculates Yule&#39;s K scores for givven keyword argument</span>
 <span class="sd">    @param keyword_list:</span>
 <span class="sd">    @type keyword_list:</span>
 <span class="sd">    @param file_text:</span>
 <span class="sd">    @type file_text:</span>
-<span class="sd">    @param kw:</span>
-<span class="sd">    @type kw:</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    @param kw: Keyword</span>
+<span class="sd">    @type kw: Keyword</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">long_file_text</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">stringlisttolonglongstring</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
@@ -239,13 +218,11 @@
 
 <div class="viewcode-block" id="calculatecomparisonscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatecomparisonscore">[docs]</a><span class="k">def</span> <span class="nf">calculatecomparisonscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Compares the calculated scores of the two documents</span>
-<span class="sd">    @param kw_list:</span>
+<span class="sd">    Summary: Compares the calculated scores of the two documents and generates value based on that comparison</span>
+<span class="sd">    @param kw_list: list of Keywords</span>
 <span class="sd">    @type kw_list: KeywordList</span>
-<span class="sd">    @param reg_kw_list:</span>
+<span class="sd">    @param reg_kw_list: list of Keywords</span>
 <span class="sd">    @type reg_kw_list: KeywordList</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># This is rudimentary, but actually does a decent job at comparing two documents</span>
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">-</span> <span class="n">reg_kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span></div>
@@ -253,7 +230,7 @@
 
 <div class="viewcode-block" id="tokenize"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.tokenize">[docs]</a><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">tokenStr</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: splits up string into individual tokens</span>
+<span class="sd">    Summary: Splits up string into individual tokens.</span>
 <span class="sd">    @param tokenStr:</span>
 <span class="sd">    @type tokenStr: string</span>
 <span class="sd">    @return:</span>
@@ -261,32 +238,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^0-9A-Za-z\-&#39;_]+&quot;</span><span class="p">,</span> <span class="n">tokenStr</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tokens</span></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </pre></div>
 
           </div>
@@ -323,7 +274,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

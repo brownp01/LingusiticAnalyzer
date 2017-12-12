@@ -34,7 +34,7 @@ homeCount.counter = 0
 # going to handle all the mess that is in app.py
 def interpretfile(file, localuploadfolder):
     """
-        @summary: Interprets file passed to API from browser
+        Summary: Parses uploaded file's text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects
         @param file: werkzeug filestorage object
         @type file: werkzeug filestorage object
         @param localuploadfolder:
@@ -54,7 +54,6 @@ def interpretfile(file, localuploadfolder):
     # -----------IDENTIFYING KEYWORDS----------- #
     keyword_list = analyze_functions.identifykeywords(file_text)
 
-
     # -----------CALCULATING VARIOUS SCORES FOR EACH KEYWORD----------- #
     analyze_functions.calculatescores(keyword_list, file_text)
     keyword_list.calculateavgscores()
@@ -67,7 +66,7 @@ def interpretfile(file, localuploadfolder):
 
 def interpretexistingfile(regfilename):
     """
-    @summary: Interprets file that exists in "RegulatoryDocuments"
+    Summary: Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.
     @param regfilename: name of file without file ending
     @type regfilename: string
     @return: list of kwywords that have been analyzed
@@ -82,6 +81,15 @@ def interpretexistingfile(regfilename):
 
 
 def getscorepage(kw_list, reg_kw_list):
+    """
+    Summary: Returns html page that is populated with proper calculated Keyword, Comparison, and Yule's scores.
+    @param kw_list: user document's keyword list
+    @type kw_list: KeywordList
+    @param reg_kw_list: regulatory document's keyword list
+    @type reg_kw_list: KeywordList
+    @return: html text
+    @rtype: string
+    """
     f = open("views/score_response.html", "r")
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
         replace('#--YULESK_SCORE--#', str(kw_list.getyuleskscore()))\
@@ -96,6 +104,13 @@ def getscorepage(kw_list, reg_kw_list):
 
 
 def geterrorpage(errtext="Unknown Error"):
+    """
+    Summary: Populates error mpge with proper response and returns html
+    @param errtext: text of error
+    @type errtext: string
+    @return: html page
+    @rtype: string
+    """
     # Returns error page
     f = open("views/invalid_upload.html", "r")
     returnhtml = f.read().replace('##ERROR##', errtext)
@@ -105,11 +120,11 @@ def geterrorpage(errtext="Unknown Error"):
 
 def extractpdftext(file, testdownload_folder = None, RegDoc = False):
     """
-    @summary:   extracts Text from PDF document referenced in given file argument
-    @param file:    the object containing the file's information
-    @type file:     fileStorage
+    Summary: Extracts Text from PDF document referenced in given file argument
+    @param file: the object containing the file's information
+    @type file: fileStorage
     @return: list containing the text of the PDF
-    @rtype: string
+    @rtype: List[string]
     """
     localdownload_folder = ''
 
@@ -163,12 +178,13 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
 def extractmicrosoftdocxtext(file, testdownload_folder=None):
     """
+    Summary: Extracts text from any ".docx" document and returns it.
     @param file: doc file
     @type file: werkzeug filestorage
     @param testdownload_folder: path to test upload folder if necessary
     @type testdownload_folder: string
-    @return:
-    @rtype:
+    @return: file's text
+    @rtype: List[string]
     """
     file_text = []
 
@@ -209,7 +225,7 @@ def savefile(file, download_folder=None):
 
 def outputkeywordtotext(keylist):
     """
-    @summary: This function will write keywords from an analyzed document to a .txt file
+    Summary: This function will write Keywords from an analyzed document to a .txt file
     @param keylist: KeywordList object containing keywords from analyzed document
     @type object: KeywordList
     @return: void
@@ -231,7 +247,7 @@ def outputkeywordtotext(keylist):
 
 def extractkeywordfromtxt(file):
     """
-    @summary: This function will extract keyword information from .txt file and place into KeywordList object
+    Summary: This function will extract keyword information from .txt file and place into KeywordList object
     @param file: location of .txt file
     @type file: .txt
     @return: void
@@ -257,7 +273,7 @@ def extractkeywordfromtxt(file):
 
 def cleantext(text_list):
     """
-    @summary:
+    Summary:
     @param textlist: a list of strings to remove strange characters from
     @type textlist:
     @return:
@@ -272,18 +288,17 @@ def cleantext(text_list):
 
 def printStringList(textList):
     """
-    @summary:
-    @param textList:
-    @type textList:
-    @return:
-    @rtype:
+    Summary: Helper function that prints a list of strins
+    @param textList: file's text
+    @type textList: List[string]
+    @rtype: void
     """
     for i in range(0, len(textList)):
         print(textList[i])
 
 def longstringtostringlist(longstring, strsize):
     """
-    @summary: This functions splits a long string "longstring" into strings of size "strsize" and returns a list of strs
+    Summary: This functions splits a long string "longstring" into strings of size "strsize" and returns a list of strs
     @param longstring:  long string to parse through
     @type longstring:
     @param strsize: size of strings to populate list with
@@ -297,11 +312,11 @@ def longstringtostringlist(longstring, strsize):
 
 def stringlisttolonglongstring(string_list):
     """
-    @summary:
-    @param string_list:
-    @type string_list:
-    @return:
-    @rtype:
+    Summary: Helper function to turn list of string into one long long string
+    @param string_list: file's text
+    @type string_list: List[string]
+    @return: file's text
+    @rtype: long string
     """
     long_string = ""
     for i in range(0, len(string_list)):
@@ -311,7 +326,7 @@ def stringlisttolonglongstring(string_list):
 
 def createkeywordfromgoogleapientity(entity, file_text):
     """
-    @summary: Creates a keyword from a single entity that is returned by the google API
+    Summary: Creates a Keyword from a single entity that is returned by the google API
     @param entity: google API response entity
     @type entity: google API response entity
     @param file_text: entire file's text
@@ -335,7 +350,7 @@ def createkeywordfromgoogleapientity(entity, file_text):
 
 def appendtokeywordlist(kList, newK):
     """
-    @summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list
+    Summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list
     @param kList: list of keywords.
     @type kList:
     @param newK:
@@ -347,13 +362,13 @@ def appendtokeywordlist(kList, newK):
 
 def getwordfrequency(word, file_text):
     """
-    @summary: determines frequency of the given word in the file's text
+    Summary: determines frequency of the given word in the file's text
     @param word: word to find freq. of
     @type word: string
     @param file_text: text of entire file
     @type file_text: list of string
-    @return:
-    @rtype:
+    @return: frequency
+    @rtype: int
     """
     # TODO: Only populate longlongfiletext once, it is very inefficient the way it is now.
     longlongfiletext = common_functions.stringlisttolonglongstring(file_text).replace('\n', '')
@@ -363,11 +378,11 @@ def getwordfrequency(word, file_text):
 
 def getregulatorydoctext(filename):
     """
-    @summary: Looks in the RegulatoryDocuments folder for the file with the given file name
+    Summary: Looks in the RegulatoryDocuments folder for the file with the given file name and return's its text as a list of string
     @param filename: name of file to open
     @type filename: string
     @return: list of string containing text of file
-    @rtype: list of string
+    @rtype: List[string]
     """
     try:
         logging.info('opening regulatory document')
@@ -385,10 +400,11 @@ def getregulatorydoctext(filename):
 
 def kwhighestfrequencies(keyword_list):
     """
-    @param keyword_list:
+    Summary: Returns the top 10 most frequent Keywords in the user's uploaded file
+    @param keyword_list: lis tof file's Keywords
     @type keyword_list: list of keywords
     @return: topkeywords
-    @rtype: list of highest frequency keywords
+    @rtype: list of highest frequency Keywords
     """
 
     kwlist = list(keyword_list.list)
@@ -411,10 +427,11 @@ def kwhighestfrequencies(keyword_list):
 
 def kwhighestkeyscores(keyword_list):
     """
+    Summary: Returnst the twn Keywords with the highest Keyword scores
     @param keyword_list:
     @type keyword_list: list of keywords
     @return: topkeywords
-    @rtype: list of highest keyword scores
+    @rtype: list of top Keywords
     """
 
     kwlist = list(keyword_list.list)
@@ -438,7 +455,7 @@ def kwhighestkeyscores(keyword_list):
 
 def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    @summary: plots salience of most frequenctly used keywords. Pulls KWs from list1, compares against list2
+    Summary: plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2
     @param keyword_list1:
     @type keyword_list1: KeywordList
     @param keyword_list2:
@@ -503,7 +520,7 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
 
 def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    @summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
+    Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
     @param keyword_list1:
     @type keyword_list1: KeywordList
     @param keyword_list2:
@@ -569,7 +586,7 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
 
 def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    @summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
+    Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
     @param keyword_list1:
     @type keyword_list1: KeywordList
     @param keyword_list2:

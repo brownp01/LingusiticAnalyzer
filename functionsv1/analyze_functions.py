@@ -16,31 +16,19 @@ from collections import Counter
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
 
 
-def printtext(text):
-    print(text)
-
-
 def declarelogger():
+    """
+    Summary: Declares logger for the current session.
+    """
     if os.path.isfile(LOG_FILE_PATH):
         os.remove(LOG_FILE_PATH)
     logging.basicConfig(filename=LOG_FILE_PATH, level=logging.DEBUG)
     logging.info("API started")
 
 
-def identifykeywords(text):
-    """
-    @summary: returns a list of keyword objects
-    @param text:
-    @type text:
-    @return:
-    @rtype:
-    """
-    return []
-
-
 def isgarbageword(word):
     """
-    @summary: determines if the given word is a garbage word
+    Summary: Determines if the given word is a "garbage" word that does not contribute to the meaning of the sentence.
     @param word:
     @type word:
     @return:
@@ -50,6 +38,7 @@ def isgarbageword(word):
 
 def identifykeywords(file_text):
     """
+    Summary: Calls the Google NLP API to extract Keyword information from text
     @param file_text: text of document
     @type file_text: list of strings
     @return: KeywordList object
@@ -120,23 +109,15 @@ def wordsapi_getsimilar(word):
     apikey = ''
     url = 'https://wordsapiv1.p.mashape.com/words/{word}/similar'
 
-def getwordfrequency(word, file_text):
-    """
-    @summary: determines frequency of the given word in the file's text
-    @param word: word to find freq. of
-    @type word: string
-    @param file_text: text of entire file
-    @type file_text: list of string
-    @return:
-    @rtype:
-    """
-    # TODO: Only populate longlongfiletext once, it is very inefficient the way it is now.
-    longlongfiletext = common_functions.stringlisttolonglongstring(file_text).replace('\n', '')
-    test = longlongfiletext.count(word)
-    return longlongfiletext.count(word)
-
 
 def calculatescores(kw_list, file_text):
+    """
+    Summary: Calculate Yule's k and i scores, and keywords scores for a given document
+    @param kw_list: lis tof Keywords
+    @type kw_list: KeywordList
+    @param file_text: Text of file
+    @type file_text: List[string]
+    """
     for kw in kw_list.list:
         kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
 
@@ -148,7 +129,7 @@ def calculatescores(kw_list, file_text):
 
 def calculatekeywordscore(kw_list, file_text, kw):
     """
-    @summary: calculate a keyword score for a single keyword
+    Summary: calculate a keyword score for a single keyword
     @param kw_list: all keywords
     @type kw_list: list of keywords
     @param file_text: file's entire text
@@ -165,15 +146,13 @@ def calculatekeywordscore(kw_list, file_text, kw):
 # TODO: Get this to work properly
 def calculateyulesscore(file_text):
     """
-    @summary: calculates Yule's K scores for givven keyword argument
+    Summary: calculates Yule's K scores for givven keyword argument
     @param keyword_list:
     @type keyword_list:
     @param file_text:
     @type file_text:
-    @param kw:
-    @type kw:
-    @return:
-    @rtype:
+    @param kw: Keyword
+    @type kw: Keyword
     """
     try:
         long_file_text = common_functions.stringlisttolonglongstring(file_text)
@@ -192,13 +171,11 @@ def calculateyulesscore(file_text):
 
 def calculatecomparisonscore(kw_list, reg_kw_list):
     """
-    @summary: Compares the calculated scores of the two documents
-    @param kw_list:
+    Summary: Compares the calculated scores of the two documents and generates value based on that comparison
+    @param kw_list: list of Keywords
     @type kw_list: KeywordList
-    @param reg_kw_list:
+    @param reg_kw_list: list of Keywords
     @type reg_kw_list: KeywordList
-    @return:
-    @rtype:
     """
     # This is rudimentary, but actually does a decent job at comparing two documents
     return round(100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore),2)
@@ -206,7 +183,7 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
 
 def tokenize(tokenStr):
     """
-    @summary: splits up string into individual tokens
+    Summary: Splits up string into individual tokens.
     @param tokenStr:
     @type tokenStr: string
     @return:
@@ -214,29 +191,3 @@ def tokenize(tokenStr):
     """
     tokens = re.split(r"[^0-9A-Za-z\-'_]+", tokenStr)
     return tokens
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

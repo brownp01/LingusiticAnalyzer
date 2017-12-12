@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>app module &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -56,7 +56,7 @@
 <dl class="function">
 <dt id="app.analyze">
 <code class="descclassname">app.</code><code class="descname">analyze</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.analyze" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: Receives uploaded document and compares it to an existing document.
+<dd><p>Summary: Receives uploaded document and comparison document choice and executes logic to compare them.
 &#64;return: Information regarding uploaded document’s similarity to regulatory document
 &#64;rtype: html</p>
 </dd></dl>
@@ -64,37 +64,32 @@
 <dl class="function">
 <dt id="app.comparisoninfo">
 <code class="descclassname">app.</code><code class="descname">comparisoninfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#comparisoninfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.comparisoninfo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Summary: Returns html page that describes the Linguistic Analyzer’s Comparison Score</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="app.getkwfreeqimage">
 <code class="descclassname">app.</code><code class="descname">getkwfreeqimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#getkwfreeqimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.getkwfreeqimage" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: returns file at ‘downloads/topkeywordfrequency.png”
-&#64;return:
-&#64;rtype:</p>
+<dd><p>Summary: Returns png image of a graph of most frequent keywords</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="app.getkwsalienceimage">
 <code class="descclassname">app.</code><code class="descname">getkwsalienceimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#getkwsalienceimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.getkwsalienceimage" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: returns file at ‘downloads/topsalience.png”
-&#64;return:
-&#64;rtype:</p>
+<dd><p>Summary: returns png image of a graph of top salience keywords</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="app.getkwscoresimage">
 <code class="descclassname">app.</code><code class="descname">getkwscoresimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#getkwscoresimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.getkwscoresimage" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: returns file at ‘downloads/topkeywordscores.png”
-&#64;return:
-&#64;rtype:</p>
+<dd><p>Summary: returns png image of a graph of keyword scores</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="app.main">
 <code class="descclassname">app.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: This is the function for the base endpoint, the ‘front page’ of our web app. It will present the user with
-the option to upload a document and submit it.
+<dd><p>Summary: Home page of the Linguistic Analyzer API.
+In here the logger is initiated for the session and the main webpage “views/index.html” is returned to the browser.
 &#64;return: Home page
 &#64;rtype: html</p>
 </dd></dl>
@@ -102,15 +97,14 @@ the option to upload a document and submit it.
 <dl class="function">
 <dt id="app.project">
 <code class="descclassname">app.</code><code class="descname">project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.project" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: Returns a simple page that has detailed information about the project.
-&#64;return: Project information
-&#64;rtype: html</p>
+<dd><p>Summary: Returns an html page containing details about the Linguistic Analyzer project.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="app.yulesinfo">
 <code class="descclassname">app.</code><code class="descname">yulesinfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#yulesinfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.yulesinfo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Summary: Endpoint: Returns html page that describes Yule’s k and Yule’s i scores</p>
+</dd></dl>
 
 </div>
 
@@ -160,7 +154,7 @@ the option to upload a document and submit it.
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

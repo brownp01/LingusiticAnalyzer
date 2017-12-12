@@ -14,6 +14,9 @@ LOCAL_HOST = 'http://127.0.0.1:5000/'
 # TODO: Move this to an integration test area and get it to work there. This is NOT a unit test.
 class TestAnalyze(TestCase):
     def test_analyze(self):
+        """
+        Summary: Tests the Analyze() function
+        """
         testFileName = 'test_extractpdftext.pdf'
 
         # opening test file

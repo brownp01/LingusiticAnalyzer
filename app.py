@@ -23,8 +23,8 @@ loggerStart = 0
 @app.route('/')
 def main():
     """
-    @summary: This is the function for the base endpoint, the 'front page' of our web app. It will present the user with
-    the option to upload a document and submit it.
+    Summary: Home page of the Linguistic Analyzer API.
+    In here the logger is initiated for the session and the main webpage "views/index.html" is returned to the browser.
     @return: Home page
     @rtype: html
     """
@@ -38,9 +38,7 @@ def main():
 @app.route('/project')
 def project():
     """
-    @summary: Returns a simple page that has detailed information about the project.
-    @return: Project information
-    @rtype: html
+    Summary: Returns an html page containing details about the Linguistic Analyzer project.
     """
 
     f = open("views/info.html", "r")  # opens file with name of "index.html"
@@ -53,7 +51,7 @@ def project():
 @app.route('/analyze', methods=['POST'])
 def analyze():
     """
-    @summary: Receives uploaded document and compares it to an existing document.
+    Summary: Receives uploaded document and comparison document choice and executes logic to compare them.
     @return: Information regarding uploaded document's similarity to regulatory document
     @rtype: html
     """
@@ -97,7 +95,6 @@ def analyze():
                 logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
                 returnhtml = common_functions.geterrorpage()
 
-
     except Exception as e:
         returnhtml = common_functions.geterrorpage('An unknown error has occured')
 
@@ -107,9 +104,7 @@ def analyze():
 @app.route('/keywordsalienceimage', methods=['GET'])
 def getkwsalienceimage():
     """
-    @summary: returns file at 'downloads/topsalience.png"
-    @return:
-    @rtype:
+    Summary: returns png image of a graph of top salience keywords
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topsalience.png', 'rb')
@@ -123,9 +118,7 @@ def getkwsalienceimage():
 @app.route('/keywordscoresimage', methods=['GET'])
 def getkwscoresimage():
     """
-    @summary: returns file at 'downloads/topkeywordscores.png"
-    @return:
-    @rtype:
+    Summary: returns png image of a graph of keyword scores
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topkeywordscores.png', 'rb')
@@ -139,9 +132,7 @@ def getkwscoresimage():
 @app.route('/keywordfrequencyimage', methods=['GET'])
 def getkwfreeqimage():
     """
-    @summary: returns file at 'downloads/topkeywordfrequency.png"
-    @return:
-    @rtype:
+    Summary: Returns png image of a graph of most frequent keywords
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topkeywordfrequency.png', 'rb')
@@ -154,6 +145,9 @@ def getkwfreeqimage():
 
 @app.route('/yulesinfo', methods=['GET'])
 def yulesinfo():
+    """
+    Summary: Endpoint: Returns html page that describes Yule's k and Yule's i scores
+    """
     f = open("views/info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms")\
         .replace('#--DESCRIPTION--#', "\'Yule's k\' and \'Yule's i\' are calculated values that represent the \
@@ -164,6 +158,9 @@ def yulesinfo():
 
 @app.route('/comparisoninfo', methods=['GET'])
 def comparisoninfo():
+    """
+    Summary: Returns html page that describes the Linguistic Analyzer's Comparison Score
+    """
     f = open("views/info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms") \
                     .replace('#--DESCRIPTION--#', "This score takes into account the calculated score, \

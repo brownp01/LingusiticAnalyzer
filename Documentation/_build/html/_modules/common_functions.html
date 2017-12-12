@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>common_functions &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -81,7 +81,7 @@
 <span class="c1"># going to handle all the mess that is in app.py</span>
 <div class="viewcode-block" id="interpretfile"><a class="viewcode-back" href="../functionsv1.html#common_functions.interpretfile">[docs]</a><span class="k">def</span> <span class="nf">interpretfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">localuploadfolder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: Interprets file passed to API from browser</span>
+<span class="sd">        Summary: Parses uploaded file&#39;s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects</span>
 <span class="sd">        @param file: werkzeug filestorage object</span>
 <span class="sd">        @type file: werkzeug filestorage object</span>
 <span class="sd">        @param localuploadfolder:</span>
@@ -101,7 +101,6 @@
     <span class="c1"># -----------IDENTIFYING KEYWORDS----------- #</span>
     <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">analyze_functions</span><span class="o">.</span><span class="n">identifykeywords</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
 
-
     <span class="c1"># -----------CALCULATING VARIOUS SCORES FOR EACH KEYWORD----------- #</span>
     <span class="n">analyze_functions</span><span class="o">.</span><span class="n">calculatescores</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">)</span>
     <span class="n">keyword_list</span><span class="o">.</span><span class="n">calculateavgscores</span><span class="p">()</span>
@@ -114,7 +113,7 @@
 
 <div class="viewcode-block" id="interpretexistingfile"><a class="viewcode-back" href="../functionsv1.html#common_functions.interpretexistingfile">[docs]</a><span class="k">def</span> <span class="nf">interpretexistingfile</span><span class="p">(</span><span class="n">regfilename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Interprets file that exists in &quot;RegulatoryDocuments&quot;</span>
+<span class="sd">    Summary: Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.</span>
 <span class="sd">    @param regfilename: name of file without file ending</span>
 <span class="sd">    @type regfilename: string</span>
 <span class="sd">    @return: list of kwywords that have been analyzed</span>
@@ -129,6 +128,15 @@
 
 
 <div class="viewcode-block" id="getscorepage"><a class="viewcode-back" href="../functionsv1.html#common_functions.getscorepage">[docs]</a><span class="k">def</span> <span class="nf">getscorepage</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Returns html page that is populated with proper calculated Keyword, Comparison, and Yule&#39;s scores.</span>
+<span class="sd">    @param kw_list: user document&#39;s keyword list</span>
+<span class="sd">    @type kw_list: KeywordList</span>
+<span class="sd">    @param reg_kw_list: regulatory document&#39;s keyword list</span>
+<span class="sd">    @type reg_kw_list: KeywordList</span>
+<span class="sd">    @return: html text</span>
+<span class="sd">    @rtype: string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/score_response.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--KEYWORD_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getavgkeywordscore</span><span class="p">()))</span><span class="o">.</span> \
         <span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--YULESK_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getyuleskscore</span><span class="p">()))</span>\
@@ -143,6 +151,13 @@
 
 
 <div class="viewcode-block" id="geterrorpage"><a class="viewcode-back" href="../functionsv1.html#common_functions.geterrorpage">[docs]</a><span class="k">def</span> <span class="nf">geterrorpage</span><span class="p">(</span><span class="n">errtext</span><span class="o">=</span><span class="s2">&quot;Unknown Error&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Populates error mpge with proper response and returns html</span>
+<span class="sd">    @param errtext: text of error</span>
+<span class="sd">    @type errtext: string</span>
+<span class="sd">    @return: html page</span>
+<span class="sd">    @rtype: string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Returns error page</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/invalid_upload.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;##ERROR##&#39;</span><span class="p">,</span> <span class="n">errtext</span><span class="p">)</span>
@@ -152,11 +167,11 @@
 
 <div class="viewcode-block" id="extractpdftext"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractpdftext">[docs]</a><span class="k">def</span> <span class="nf">extractpdftext</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">testdownload_folder</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">RegDoc</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary:   extracts Text from PDF document referenced in given file argument</span>
-<span class="sd">    @param file:    the object containing the file&#39;s information</span>
-<span class="sd">    @type file:     fileStorage</span>
+<span class="sd">    Summary: Extracts Text from PDF document referenced in given file argument</span>
+<span class="sd">    @param file: the object containing the file&#39;s information</span>
+<span class="sd">    @type file: fileStorage</span>
 <span class="sd">    @return: list containing the text of the PDF</span>
-<span class="sd">    @rtype: string</span>
+<span class="sd">    @rtype: List[string]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">localdownload_folder</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
@@ -210,12 +225,13 @@
 
 <div class="viewcode-block" id="extractmicrosoftdocxtext"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractmicrosoftdocxtext">[docs]</a><span class="k">def</span> <span class="nf">extractmicrosoftdocxtext</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">testdownload_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Extracts text from any &quot;.docx&quot; document and returns it.</span>
 <span class="sd">    @param file: doc file</span>
 <span class="sd">    @type file: werkzeug filestorage</span>
 <span class="sd">    @param testdownload_folder: path to test upload folder if necessary</span>
 <span class="sd">    @type testdownload_folder: string</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    @return: file&#39;s text</span>
+<span class="sd">    @rtype: List[string]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -256,7 +272,7 @@
 
 <div class="viewcode-block" id="outputkeywordtotext"><a class="viewcode-back" href="../functionsv1.html#common_functions.outputkeywordtotext">[docs]</a><span class="k">def</span> <span class="nf">outputkeywordtotext</span><span class="p">(</span><span class="n">keylist</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: This function will write keywords from an analyzed document to a .txt file</span>
+<span class="sd">    Summary: This function will write Keywords from an analyzed document to a .txt file</span>
 <span class="sd">    @param keylist: KeywordList object containing keywords from analyzed document</span>
 <span class="sd">    @type object: KeywordList</span>
 <span class="sd">    @return: void</span>
@@ -278,7 +294,7 @@
 
 <div class="viewcode-block" id="extractkeywordfromtxt"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractkeywordfromtxt">[docs]</a><span class="k">def</span> <span class="nf">extractkeywordfromtxt</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: This function will extract keyword information from .txt file and place into KeywordList object</span>
+<span class="sd">    Summary: This function will extract keyword information from .txt file and place into KeywordList object</span>
 <span class="sd">    @param file: location of .txt file</span>
 <span class="sd">    @type file: .txt</span>
 <span class="sd">    @return: void</span>
@@ -304,7 +320,7 @@
 
 <div class="viewcode-block" id="cleantext"><a class="viewcode-back" href="../functionsv1.html#common_functions.cleantext">[docs]</a><span class="k">def</span> <span class="nf">cleantext</span><span class="p">(</span><span class="n">text_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary:</span>
+<span class="sd">    Summary:</span>
 <span class="sd">    @param textlist: a list of strings to remove strange characters from</span>
 <span class="sd">    @type textlist:</span>
 <span class="sd">    @return:</span>
@@ -319,18 +335,17 @@
 
 <div class="viewcode-block" id="printStringList"><a class="viewcode-back" href="../functionsv1.html#common_functions.printStringList">[docs]</a><span class="k">def</span> <span class="nf">printStringList</span><span class="p">(</span><span class="n">textList</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary:</span>
-<span class="sd">    @param textList:</span>
-<span class="sd">    @type textList:</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    Summary: Helper function that prints a list of strins</span>
+<span class="sd">    @param textList: file&#39;s text</span>
+<span class="sd">    @type textList: List[string]</span>
+<span class="sd">    @rtype: void</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">textList</span><span class="p">)):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">textList</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="longstringtostringlist"><a class="viewcode-back" href="../functionsv1.html#common_functions.longstringtostringlist">[docs]</a><span class="k">def</span> <span class="nf">longstringtostringlist</span><span class="p">(</span><span class="n">longstring</span><span class="p">,</span> <span class="n">strsize</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: This functions splits a long string &quot;longstring&quot; into strings of size &quot;strsize&quot; and returns a list of strs</span>
+<span class="sd">    Summary: This functions splits a long string &quot;longstring&quot; into strings of size &quot;strsize&quot; and returns a list of strs</span>
 <span class="sd">    @param longstring:  long string to parse through</span>
 <span class="sd">    @type longstring:</span>
 <span class="sd">    @param strsize: size of strings to populate list with</span>
@@ -344,11 +359,11 @@
 
 <div class="viewcode-block" id="stringlisttolonglongstring"><a class="viewcode-back" href="../functionsv1.html#common_functions.stringlisttolonglongstring">[docs]</a><span class="k">def</span> <span class="nf">stringlisttolonglongstring</span><span class="p">(</span><span class="n">string_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary:</span>
-<span class="sd">    @param string_list:</span>
-<span class="sd">    @type string_list:</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    Summary: Helper function to turn list of string into one long long string</span>
+<span class="sd">    @param string_list: file&#39;s text</span>
+<span class="sd">    @type string_list: List[string]</span>
+<span class="sd">    @return: file&#39;s text</span>
+<span class="sd">    @rtype: long string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">long_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_list</span><span class="p">)):</span>
@@ -358,7 +373,7 @@
 
 <div class="viewcode-block" id="createkeywordfromgoogleapientity"><a class="viewcode-back" href="../functionsv1.html#common_functions.createkeywordfromgoogleapientity">[docs]</a><span class="k">def</span> <span class="nf">createkeywordfromgoogleapientity</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Creates a keyword from a single entity that is returned by the google API</span>
+<span class="sd">    Summary: Creates a Keyword from a single entity that is returned by the google API</span>
 <span class="sd">    @param entity: google API response entity</span>
 <span class="sd">    @type entity: google API response entity</span>
 <span class="sd">    @param file_text: entire file&#39;s text</span>
@@ -382,7 +397,7 @@
 
 <div class="viewcode-block" id="appendtokeywordlist"><a class="viewcode-back" href="../functionsv1.html#common_functions.appendtokeywordlist">[docs]</a><span class="k">def</span> <span class="nf">appendtokeywordlist</span><span class="p">(</span><span class="n">kList</span><span class="p">,</span> <span class="n">newK</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list</span>
+<span class="sd">    Summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list</span>
 <span class="sd">    @param kList: list of keywords.</span>
 <span class="sd">    @type kList:</span>
 <span class="sd">    @param newK:</span>
@@ -394,13 +409,13 @@
 
 <div class="viewcode-block" id="getwordfrequency"><a class="viewcode-back" href="../functionsv1.html#common_functions.getwordfrequency">[docs]</a><span class="k">def</span> <span class="nf">getwordfrequency</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: determines frequency of the given word in the file&#39;s text</span>
+<span class="sd">    Summary: determines frequency of the given word in the file&#39;s text</span>
 <span class="sd">    @param word: word to find freq. of</span>
 <span class="sd">    @type word: string</span>
 <span class="sd">    @param file_text: text of entire file</span>
 <span class="sd">    @type file_text: list of string</span>
-<span class="sd">    @return:</span>
-<span class="sd">    @rtype:</span>
+<span class="sd">    @return: frequency</span>
+<span class="sd">    @rtype: int</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Only populate longlongfiletext once, it is very inefficient the way it is now.</span>
     <span class="n">longlongfiletext</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">stringlisttolonglongstring</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -410,11 +425,11 @@
 
 <div class="viewcode-block" id="getregulatorydoctext"><a class="viewcode-back" href="../functionsv1.html#common_functions.getregulatorydoctext">[docs]</a><span class="k">def</span> <span class="nf">getregulatorydoctext</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: Looks in the RegulatoryDocuments folder for the file with the given file name</span>
+<span class="sd">    Summary: Looks in the RegulatoryDocuments folder for the file with the given file name and return&#39;s its text as a list of string</span>
 <span class="sd">    @param filename: name of file to open</span>
 <span class="sd">    @type filename: string</span>
 <span class="sd">    @return: list of string containing text of file</span>
-<span class="sd">    @rtype: list of string</span>
+<span class="sd">    @rtype: List[string]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;opening regulatory document&#39;</span><span class="p">)</span>
@@ -432,10 +447,11 @@
 
 <div class="viewcode-block" id="kwhighestfrequencies"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestfrequencies">[docs]</a><span class="k">def</span> <span class="nf">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @param keyword_list:</span>
+<span class="sd">    Summary: Returns the top 10 most frequent Keywords in the user&#39;s uploaded file</span>
+<span class="sd">    @param keyword_list: lis tof file&#39;s Keywords</span>
 <span class="sd">    @type keyword_list: list of keywords</span>
 <span class="sd">    @return: topkeywords</span>
-<span class="sd">    @rtype: list of highest frequency keywords</span>
+<span class="sd">    @rtype: list of highest frequency Keywords</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">kwlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
@@ -458,10 +474,11 @@
 
 <div class="viewcode-block" id="kwhighestkeyscores"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestkeyscores">[docs]</a><span class="k">def</span> <span class="nf">kwhighestkeyscores</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: Returnst the twn Keywords with the highest Keyword scores</span>
 <span class="sd">    @param keyword_list:</span>
 <span class="sd">    @type keyword_list: list of keywords</span>
 <span class="sd">    @return: topkeywords</span>
-<span class="sd">    @rtype: list of highest keyword scores</span>
+<span class="sd">    @rtype: list of top Keywords</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">kwlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
@@ -485,7 +502,7 @@
 
 <div class="viewcode-block" id="plotkeywordsalience"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordsalience">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordsalience</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: plots salience of most frequenctly used keywords. Pulls KWs from list1, compares against list2</span>
+<span class="sd">    Summary: plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
 <span class="sd">    @param keyword_list1:</span>
 <span class="sd">    @type keyword_list1: KeywordList</span>
 <span class="sd">    @param keyword_list2:</span>
@@ -550,7 +567,7 @@
 
 <div class="viewcode-block" id="plotkeywordscores"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordscores">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordscores</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
+<span class="sd">    Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
 <span class="sd">    @param keyword_list1:</span>
 <span class="sd">    @type keyword_list1: KeywordList</span>
 <span class="sd">    @param keyword_list2:</span>
@@ -616,7 +633,7 @@
 
 <div class="viewcode-block" id="plotkeywordfrequency"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordfrequency">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordfrequency</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
+<span class="sd">    Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
 <span class="sd">    @param keyword_list1:</span>
 <span class="sd">    @type keyword_list1: KeywordList</span>
 <span class="sd">    @param keyword_list2:</span>
@@ -719,7 +736,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

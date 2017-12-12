@@ -12,21 +12,39 @@ class KeywordList:
         self.documentscore = 0
 
     def getdocumentscore(self):
+        """
+        Summary: Returns document's score
+        """
         return self.documentscore
 
     def getavgkeywordscore(self):
+        """
+        Summary: returns document's average keyword score
+        """
         return self.avgkeywordscore
 
     def getkeywordscore(self):
+        """
+        Summary: returns document's keyword score
+        """
         return self.keywordscore
 
     def getyuleskscore(self):
+        """
+        Summary: returns document's Yule's k score
+        """
         return self.yuleskscore
 
     def getyulesiscore(self):
+        """
+        Summary: returns document's Yule's i score
+        """
         return self.yulesiscore
 
     def calculateavgscores(self):
+        """
+        Summary: calculates a document's average score values
+        """
         kwscoresum = float(0)
         yulesksum = float(0)
         yulesisum = float(0)
@@ -49,7 +67,7 @@ class KeywordList:
 
     def insertkeyword(self, keyword):
         """
-        @summary:
+        Summary: inserts new Keyword into Keyword list
         @param keyword: an instance of the class Keyword
         @type keyword:
         @return:
@@ -68,7 +86,7 @@ class KeywordList:
 
     def existsinlist(self, keyword_name):
         """
-        @summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word
+        Summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word
         @param keyword_name:
         @type keyword_name:
         @return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.
@@ -80,6 +98,9 @@ class KeywordList:
         return False
 
     def getindexofword(self, keyword_name):
+        """
+        Summary: returns index of a Keyword in the list of Keywords
+        """
         for i in range(0, len(self.list)):
             if self.list[i].word == keyword_name:
                 return i
