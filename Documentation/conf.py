@@ -19,10 +19,10 @@
 #
 import os
 import sys
-sys.path.insert(0, '/Users/Paul/Dropbox/SCHOOL/Senior Design/GitHub/LinguisticAnalyzer/functionsv1')
-sys.path.insert(0, '/Users/Paul/Dropbox/SCHOOL/Senior Design/GitHub/LinguisticAnalyzer')
-#sys.path.insert(0, '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/LinguisticAnalyzer/functionsv1')
-#sys.path.insert(0, '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/LinguisticAnalyzer')
+#sys.path.insert(0, '/Users/Paul/Dropbox/SCHOOL/Senior Design/GitHub/LinguisticAnalyzer/functionsv1')
+#sys.path.insert(0, '/Users/Paul/Dropbox/SCHOOL/Senior Design/GitHub/LinguisticAnalyzer')
+sys.path.insert(0, '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/LinguisticAnalyzer/functionsv1')
+sys.path.insert(0, '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/LinguisticAnalyzer')
 #sys.path.insert(0, os.path.abspath('.'))
 #sys.path.insert(0, os.path.abspath('../'))
 

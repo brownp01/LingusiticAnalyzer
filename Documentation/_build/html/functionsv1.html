@@ -56,246 +56,448 @@
 <div class="section" id="module-common_functions">
 <span id="common-functions-module"></span><h2>common_functions module<a class="headerlink" href="#module-common_functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="common_functions.appendtokeywordlist">
-<code class="descclassname">common_functions.</code><code class="descname">appendtokeywordlist</code><span class="sig-paren">(</span><em>kList</em>, <em>newK</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#appendtokeywordlist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.appendtokeywordlist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list
-&#64;param kList: list of keywords.
-&#64;type kList:
-&#64;param newK:
-&#64;type newK:
-&#64;return:
-&#64;rtype:</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="common_functions.cleantext">
 <code class="descclassname">common_functions.</code><code class="descname">cleantext</code><span class="sig-paren">(</span><em>text_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#cleantext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.cleantext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary:
-&#64;param textlist: a list of strings to remove strange characters from
-&#64;type textlist:
-&#64;return:
-&#64;rtype:</p>
+<dd><p>Removes special characters from text</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">text_list with no special chars</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[str]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.createkeywordfromgoogleapientity">
 <code class="descclassname">common_functions.</code><code class="descname">createkeywordfromgoogleapientity</code><span class="sig-paren">(</span><em>entity</em>, <em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#createkeywordfromgoogleapientity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.createkeywordfromgoogleapientity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Creates a Keyword from a single entity that is returned by the google API
-&#64;param entity: google API response entity
-&#64;type entity: google API response entity
-&#64;param file_text: entire file’s text
-&#64;type file_text: list of strings
-&#64;return: populated instance of Keyword class
-&#64;rtype: Keyword</p>
+<dd><p>Creates a Keyword from a single entity that is returned by the google API</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>entity</strong> (<em>Entity</em>) – Google API response entity object</li>
+<li><strong>file_text</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – entire text of file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Populated Keyword object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword">Keyword</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.extractkeywordfromtxt">
 <code class="descclassname">common_functions.</code><code class="descname">extractkeywordfromtxt</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#extractkeywordfromtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.extractkeywordfromtxt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: This function will extract keyword information from .txt file and place into KeywordList object
-&#64;param file: location of .txt file
-&#64;type file: .txt
-&#64;return: void</p>
+<dd><p>This function will extract keyword information from .txt file and place into KeywordList object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<em>str</em>) – location of .txt file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">keywords in file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[Keywords]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.extractmicrosoftdocxtext">
 <code class="descclassname">common_functions.</code><code class="descname">extractmicrosoftdocxtext</code><span class="sig-paren">(</span><em>file</em>, <em>testdownload_folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#extractmicrosoftdocxtext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.extractmicrosoftdocxtext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Extracts text from any “.docx” document and returns it.
-&#64;param file: doc file
-&#64;type file: werkzeug filestorage
-&#64;param testdownload_folder: path to test upload folder if necessary
-&#64;type testdownload_folder: string
-&#64;return: file’s text
-&#64;rtype: List[string]</p>
+<dd><p>Extracts text from any “.docx” document and returns it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file</strong> (<em>fileStorage</em>) – the file to save</li>
+<li><strong>testdownload_folder</strong> (<em>str</em>) – Specific download folder is necessary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file’s text</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[str]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.extractpdftext">
 <code class="descclassname">common_functions.</code><code class="descname">extractpdftext</code><span class="sig-paren">(</span><em>file</em>, <em>testdownload_folder=None</em>, <em>RegDoc=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#extractpdftext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.extractpdftext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Extracts Text from PDF document referenced in given file argument
-&#64;param file: the object containing the file’s information
-&#64;type file: fileStorage
-&#64;return: list containing the text of the PDF
-&#64;rtype: List[string]</p>
+<dd><p>Extracts Text from PDF document referenced in given file argument</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file</strong> (<em>fileStorage</em>) – the PDF file to extract text from</li>
+<li><strong>testdownload_folder</strong> (<em>str</em>) – specific download folder if necessary</li>
+<li><strong>RegDoc</strong> (<em>bool</em>) – flag specifying whether this is a user doc or a regulatory doc</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file’s text</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[str]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.geterrorpage">
 <code class="descclassname">common_functions.</code><code class="descname">geterrorpage</code><span class="sig-paren">(</span><em>errtext='Unknown Error'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#geterrorpage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.geterrorpage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Populates error mpge with proper response and returns html
-&#64;param errtext: text of error
-&#64;type errtext: string
-&#64;return: html page
-&#64;rtype: string</p>
+<dd><p>Populates error mpge with proper response and returns html</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>errtext</strong> (<em>str</em>) – text of error</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">html page with error displayed</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.getregulatorydoctext">
 <code class="descclassname">common_functions.</code><code class="descname">getregulatorydoctext</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#getregulatorydoctext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.getregulatorydoctext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Looks in the RegulatoryDocuments folder for the file with the given file name and return’s its text as a list of string
-&#64;param filename: name of file to open
-&#64;type filename: string
-&#64;return: list of string containing text of file
-&#64;rtype: List[string]</p>
+<dd><p>Looks in the RegulatoryDocuments folder for the file with the given file name and return’s its text as a list of string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – name of regulatory file without file ending on it</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of strings  of length 1024 containing text of file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[str]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.getscorepage">
 <code class="descclassname">common_functions.</code><code class="descname">getscorepage</code><span class="sig-paren">(</span><em>kw_list</em>, <em>reg_kw_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#getscorepage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.getscorepage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Returns html page that is populated with proper calculated Keyword, Comparison, and Yule’s scores.
-&#64;param kw_list: user document’s keyword list
-&#64;type kw_list: KeywordList
-&#64;param reg_kw_list: regulatory document’s keyword list
-&#64;type reg_kw_list: KeywordList
-&#64;return: html text
-&#64;rtype: string</p>
+<dd><p>Returns html page that is populated with proper calculated Keyword, Comparison, and Yule’s scores.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of user document’s Keyword objects</li>
+<li><strong>reg_kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of regulatory document’s Keywords</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">html page with scores displayed</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.getwordfrequency">
 <code class="descclassname">common_functions.</code><code class="descname">getwordfrequency</code><span class="sig-paren">(</span><em>word</em>, <em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#getwordfrequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.getwordfrequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: determines frequency of the given word in the file’s text
-&#64;param word: word to find freq. of
-&#64;type word: string
-&#64;param file_text: text of entire file
-&#64;type file_text: list of string
-&#64;return: frequency
-&#64;rtype: int</p>
+<dd><p>Determines frequency of the given word in the file’s text</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>word</strong> (<em>str</em>) – Word to find frequency of</li>
+<li><strong>filetext</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – list of string containing entire text of file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">frequency of word parameter in text</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.homeCount">
 <code class="descclassname">common_functions.</code><code class="descname">homeCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#homeCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.homeCount" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initializes variables for logging session</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="common_functions.interpretexistingfile">
 <code class="descclassname">common_functions.</code><code class="descname">interpretexistingfile</code><span class="sig-paren">(</span><em>regfilename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#interpretexistingfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.interpretexistingfile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.
-&#64;param regfilename: name of file without file ending
-&#64;type regfilename: string
-&#64;return: list of kwywords that have been analyzed
-&#64;rtype: KeywordList</p>
+<dd><p>Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regfilename</strong> (<em>str</em>) – name of regulatory file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of analyzed Keyword objects</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.interpretfile">
 <code class="descclassname">common_functions.</code><code class="descname">interpretfile</code><span class="sig-paren">(</span><em>file</em>, <em>localuploadfolder</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#interpretfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.interpretfile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Parses uploaded file’s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects
-&#64;param file: werkzeug filestorage object
-&#64;type file: werkzeug filestorage object
-&#64;param localuploadfolder:
-&#64;type localuploadfolder: string
-&#64;return: keywordlist
-&#64;rtype: KeywordList</p>
+<dd><p>Parses uploaded file’s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file</strong> (<em>fileStorage</em>) – file to be interpreted</li>
+<li><strong>localuploadfolder</strong> (<em>str</em>) – Place to temporary store file so it can be read from</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of file’s Keywords</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.kwhighestfrequencies">
 <code class="descclassname">common_functions.</code><code class="descname">kwhighestfrequencies</code><span class="sig-paren">(</span><em>keyword_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#kwhighestfrequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.kwhighestfrequencies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Returns the top 10 most frequent Keywords in the user’s uploaded file
-&#64;param keyword_list: lis tof file’s Keywords
-&#64;type keyword_list: list of keywords
-&#64;return: topkeywords
-&#64;rtype: list of highest frequency Keywords</p>
+<dd><p>Returns the top 10 most frequent Keywords in the user’s uploaded file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – List of Keyword objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Keywords with highest frequencies</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[Keywords]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.kwhighestkeyscores">
 <code class="descclassname">common_functions.</code><code class="descname">kwhighestkeyscores</code><span class="sig-paren">(</span><em>keyword_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#kwhighestkeyscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.kwhighestkeyscores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Returnst the twn Keywords with the highest Keyword scores
-&#64;param keyword_list:
-&#64;type keyword_list: list of keywords
-&#64;return: topkeywords
-&#64;rtype: list of top Keywords</p>
+<dd><p>Returnst the twn Keywords with the highest Keyword scores</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keyword objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of top keyword scores</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[float]</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.longstringtostringlist">
 <code class="descclassname">common_functions.</code><code class="descname">longstringtostringlist</code><span class="sig-paren">(</span><em>longstring</em>, <em>strsize</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#longstringtostringlist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.longstringtostringlist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: This functions splits a long string “longstring” into strings of size “strsize” and returns a list of strs
-&#64;param longstring:  long string to parse through
-&#64;type longstring:
-&#64;param strsize: size of strings to populate list with
-&#64;type strsize:  int
-&#64;return:
-&#64;rtype:</p>
+<dd><p>This functions splits a long string “longstring” into strings of size “strsize” and returns a list of those strings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>longstring</strong> (<em>string</em>) – text of file</li>
+<li><strong>strsize</strong> – requested length of each string in created list of strings</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file text</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[str]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.outputkeywordtotext">
 <code class="descclassname">common_functions.</code><code class="descname">outputkeywordtotext</code><span class="sig-paren">(</span><em>keylist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#outputkeywordtotext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.outputkeywordtotext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: This function will write Keywords from an analyzed document to a .txt file
-&#64;param keylist: KeywordList object containing keywords from analyzed document
-&#64;type object: KeywordList
-&#64;return: void</p>
+<dd><p>This function will write Keywords from an analyzed document to a .txt file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keylist</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of document keywords</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.plotkeywordfrequency">
 <code class="descclassname">common_functions.</code><code class="descname">plotkeywordfrequency</code><span class="sig-paren">(</span><em>keyword_list1</em>, <em>keyword_list2</em>, <em>doc1name='doc1'</em>, <em>doc2name='doc2'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#plotkeywordfrequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.plotkeywordfrequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
-&#64;param keyword_list1:
-&#64;type keyword_list1: KeywordList
-&#64;param keyword_list2:
-&#64;type keyword_list2: KeywordList
-&#64;param doc1name: name of first document
-&#64;type doc1name: string
-&#64;param doc2name: name of second document
-&#64;type doc2name: string</p>
+<dd><p>Plots keyword score of most frequently used keywords. Saves graph to “/Downloads” folder</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>keyword_list1</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – user document keywords</li>
+<li><strong>keyword_list2</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – regulatory document keywords</li>
+<li><strong>doc1name</strong> (<em>str</em>) – name of user document</li>
+<li><strong>doc2name</strong> (<em>str</em>) – name of regulatory document</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.plotkeywordsalience">
 <code class="descclassname">common_functions.</code><code class="descname">plotkeywordsalience</code><span class="sig-paren">(</span><em>keyword_list1</em>, <em>keyword_list2</em>, <em>doc1name='doc1'</em>, <em>doc2name='doc2'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#plotkeywordsalience"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.plotkeywordsalience" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2
-&#64;param keyword_list1:
-&#64;type keyword_list1: KeywordList
-&#64;param keyword_list2:
-&#64;type keyword_list2: KeywordList
-&#64;param doc1name: name of first document
-&#64;type doc1name: string
-&#64;param doc2name: name of second document
-&#64;type doc2name: string</p>
+<dd><p>Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>keyword_list1</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – user KeywordList</li>
+<li><strong>keyword_list1</strong> – regulatory KeywordList</li>
+<li><strong>doc1name</strong> (<em>str</em>) – user document name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:param str doc2name:regulatory document name
+:return: void</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.plotkeywordscores">
 <code class="descclassname">common_functions.</code><code class="descname">plotkeywordscores</code><span class="sig-paren">(</span><em>keyword_list1</em>, <em>keyword_list2</em>, <em>doc1name='doc1'</em>, <em>doc2name='doc2'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#plotkeywordscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.plotkeywordscores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
-&#64;param keyword_list1:
-&#64;type keyword_list1: KeywordList
-&#64;param keyword_list2:
-&#64;type keyword_list2: KeywordList
-&#64;param doc1name: name of first document
-&#64;type doc1name: string
-&#64;param doc2name: name of second document
-&#64;type doc2name: string</p>
+<dd><p>Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>keyword_list1</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – user KeywordList</li>
+<li><strong>keyword_list1</strong> – regulatory KeywordList</li>
+<li><strong>doc1name</strong> (<em>str</em>) – user document name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:param str doc2name:regulatory document name
+:return: void</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.printStringList">
 <code class="descclassname">common_functions.</code><code class="descname">printStringList</code><span class="sig-paren">(</span><em>textList</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#printStringList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.printStringList" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Helper function that prints a list of strins
-&#64;param textList: file’s text
-&#64;type textList: List[string]
-&#64;rtype: void</p>
+<dd><p>Helper function that prints a list of strings</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>textList</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="common_functions.savefile">
 <code class="descclassname">common_functions.</code><code class="descname">savefile</code><span class="sig-paren">(</span><em>file</em>, <em>download_folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#savefile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.savefile" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Save’s given file to /Downloads folder”</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file</strong> (<em>fileStorage</em>) – the file to save</li>
+<li><strong>download_folder</strong> (<em>str</em>) – specific download folder if necessary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="common_functions.stringlisttolonglongstring">
 <code class="descclassname">common_functions.</code><code class="descname">stringlisttolonglongstring</code><span class="sig-paren">(</span><em>string_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#stringlisttolonglongstring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.stringlisttolonglongstring" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Helper function to turn list of string into one long long string
-&#64;param string_list: file’s text
-&#64;type string_list: List[string]
-&#64;return: file’s text
-&#64;rtype: long string</p>
+<dd><p>Helper function to turn list of string into one long long string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">file’s text</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">long string</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -474,7 +676,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

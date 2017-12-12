@@ -23,10 +23,10 @@ loggerStart = 0
 @app.route('/')
 def main():
     """
-    Summary: Home page of the Linguistic Analyzer API.
-    In here the logger is initiated for the session and the main webpage "views/index.html" is returned to the browser.
-    @return: Home page
-    @rtype: html
+    Home page of the Linguistic Analyzer API
+
+    :return: Home page
+    :rtype: html
     """
     # Creating new log file every time the program starts.
     if common_functions.homeCount() == 0:
@@ -38,7 +38,10 @@ def main():
 @app.route('/project')
 def project():
     """
-    Summary: Returns an html page containing details about the Linguistic Analyzer project.
+    Returns an html page containing details about the Linguistic Analyzer project.
+
+    :return: Home page
+    :rtype: html
     """
 
     f = open("views/info.html", "r")  # opens file with name of "index.html"
@@ -51,9 +54,10 @@ def project():
 @app.route('/analyze', methods=['POST'])
 def analyze():
     """
-    Summary: Receives uploaded document and comparison document choice and executes logic to compare them.
-    @return: Information regarding uploaded document's similarity to regulatory document
-    @rtype: html
+    Receives uploaded document and comparison document choice and executes logic to compare them.
+
+    :return: Information regarding the uploaded document's similarity to regulatory document
+    :rtype: html
     """
 
     try:
@@ -104,7 +108,10 @@ def analyze():
 @app.route('/keywordsalienceimage', methods=['GET'])
 def getkwsalienceimage():
     """
-    Summary: returns png image of a graph of top salience keywords
+    Returns png image of a graph of top salience keywords
+
+    :return: graph
+    :rtype: png
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topsalience.png', 'rb')
@@ -118,7 +125,10 @@ def getkwsalienceimage():
 @app.route('/keywordscoresimage', methods=['GET'])
 def getkwscoresimage():
     """
-    Summary: returns png image of a graph of keyword scores
+    Returns png image of a graph of keyword scores
+
+    :return: graph
+    :rtype: png
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topkeywordscores.png', 'rb')
@@ -132,7 +142,10 @@ def getkwscoresimage():
 @app.route('/keywordfrequencyimage', methods=['GET'])
 def getkwfreeqimage():
     """
-    Summary: Returns png image of a graph of most frequent keywords
+    Returns Keyword frequency graph
+
+    :return: graph
+    :rtype: png
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topkeywordfrequency.png', 'rb')
@@ -146,7 +159,10 @@ def getkwfreeqimage():
 @app.route('/yulesinfo', methods=['GET'])
 def yulesinfo():
     """
-    Summary: Endpoint: Returns html page that describes Yule's k and Yule's i scores
+    Yule's Info
+
+    :return: Page that describes Yule's k and Yule's i algorithms
+    :rtype: html
     """
     f = open("views/info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms")\
@@ -159,7 +175,10 @@ def yulesinfo():
 @app.route('/comparisoninfo', methods=['GET'])
 def comparisoninfo():
     """
-    Summary: Returns html page that describes the Linguistic Analyzer's Comparison Score
+    Comparison Information
+
+    :return: graph html page that describes the Linguistic Analyzer's Comparison Score
+    :rtype: html
     """
     f = open("views/info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms") \
