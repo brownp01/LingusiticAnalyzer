@@ -63,7 +63,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – a text string</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">text_list with no special chars</td>
 </tr>
@@ -107,9 +107,9 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<em>str</em>) – location of .txt file</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">keywords in file</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">keyword list in file</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[Keywords]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></td>
 </tr>
 </tbody>
 </table>
@@ -167,7 +167,7 @@
 <dl class="function">
 <dt id="common_functions.geterrorpage">
 <code class="descclassname">common_functions.</code><code class="descname">geterrorpage</code><span class="sig-paren">(</span><em>errtext='Unknown Error'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#geterrorpage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.geterrorpage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Populates error mpge with proper response and returns html</p>
+<dd><p>Populates error message with proper response and returns html</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -192,7 +192,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – name of regulatory file without file ending on it</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of strings  of length 1024 containing text of file</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of strings of length 1024 containing text of file</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[str]</td>
 </tr>
@@ -316,7 +316,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Keywords with highest frequencies</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[Keywords]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword">Keyword</a>]</td>
 </tr>
 </tbody>
 </table>
@@ -325,7 +325,7 @@
 <dl class="function">
 <dt id="common_functions.kwhighestkeyscores">
 <code class="descclassname">common_functions.</code><code class="descname">kwhighestkeyscores</code><span class="sig-paren">(</span><em>keyword_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common_functions.html#kwhighestkeyscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.kwhighestkeyscores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returnst the twn Keywords with the highest Keyword scores</p>
+<dd><p>Returns ten Keywords with the highest Keyword scores</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -334,7 +334,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of top keyword scores</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[float]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword">Keyword</a>]</td>
 </tr>
 </tbody>
 </table>
@@ -350,7 +350,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>longstring</strong> (<em>string</em>) – text of file</li>
-<li><strong>strsize</strong> – requested length of each string in created list of strings</li>
+<li><strong>strsize</strong> (<em>int</em>) – requested length of each string in created list of strings</li>
 </ul>
 </td>
 </tr>
@@ -411,17 +411,19 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>keyword_list1</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – user KeywordList</li>
-<li><strong>keyword_list1</strong> – regulatory KeywordList</li>
+<li><strong>keyword_list2</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – regulatory KeywordList</li>
 <li><strong>doc1name</strong> (<em>str</em>) – user document name</li>
+<li><strong>doc2name</strong> (<em>str</em>) – regulatory document name</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">void</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>:param str doc2name:regulatory document name
-:return: void</p>
 </dd></dl>
 
 <dl class="function">
@@ -434,7 +436,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>keyword_list1</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – user KeywordList</li>
-<li><strong>keyword_list1</strong> – regulatory KeywordList</li>
+<li><strong>keyword_list2</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – regulatory KeywordList</li>
 <li><strong>doc1name</strong> (<em>str</em>) – user document name</li>
 </ul>
 </td>
@@ -453,7 +455,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>textList</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>textList</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – a text string</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
 </tr>
@@ -490,7 +492,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – a string of text</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">file’s text</td>
 </tr>
@@ -514,10 +516,16 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keywords</li>
 <li><strong>reg_kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keywords</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">comparison score of two documents</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
 </td>
 </tr>
 </tbody>
@@ -533,8 +541,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>kw_list</strong> (<em>list</em>) – all keywords</li>
-<li><strong>file_text</strong> (<em>list of strings</em>) – file’s entire text</li>
+<li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – all keywords</li>
+<li><strong>file_text</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – file’s entire text</li>
 <li><strong>kw</strong> (<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><em>Keyword</em></a>) – keyword</li>
 </ul>
 </td>
@@ -557,10 +565,13 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of Keywords</li>
 <li><strong>file_text</strong> (<em>List</em><em>[</em><em>string</em><em>]</em>) – Text of file</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">void</p>
 </td>
 </tr>
 </tbody>
@@ -575,11 +586,11 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>file_text</strong> (<em>list</em>) – plain text of document</li>
-<li><strong>kw</strong> (<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><em>Keyword</em></a>) – Keyword</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_text</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – plain text of document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Yules score of text file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
@@ -603,7 +614,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">KeywordList object</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></td>
 </tr>
 </tbody>
 </table>
@@ -617,7 +628,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokenStr</strong> (<em>string</em>) – a string of words</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokenStr</strong> (<em>str</em>) – a string of words</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tokens</td>
 </tr>
@@ -676,7 +687,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

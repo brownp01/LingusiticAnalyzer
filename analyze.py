@@ -1,5 +1,11 @@
 
 def analyzeText(fileText):
+    """
+    :param str fileText: text of fileText
+    :return: file text
+    :rtype: str
+
+    """
 
     return "fileText"
     # return Response('''<!DOCTYPE html><html lang="en"><head><title>Processing</title></head>''',
@@ -8,29 +14,29 @@ def analyzeText(fileText):
 
 def scrapeText(fileText):
     """
-    @param fileText:
-    @type fileText:
-    @return:
-    @rtype:
+    :param str fileText: text of file 
+    :return: pass or fail
+    :rtype: bool
     """
     pass
 
 
 def checkSimilarity(fileText):
     """
-    @param fileText:
-    @type fileText:
-    @return:
-    @rtype:
+    :param str fileText: text of file
+    :type fileText:
+    :return: pass or fail
+    :rtype: bool
+
     """
     pass
 
 
 def createObjects(fileText):
     """
-    @param fileText:
-    @type fileText:
-    @return:
-    @rtype:
+    :param str fileText: text of file
+    :return: pass or fail
+    :rtype: bool
+    
     """
     pass

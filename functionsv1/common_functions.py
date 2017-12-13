@@ -44,6 +44,7 @@ def interpretfile(file, localuploadfolder):
         :param str localuploadfolder: Place to temporary store file so it can be read from
         :return: list of file's Keywords
         :rtype: KeywordList
+
         """
     file_text = []
 
@@ -74,6 +75,7 @@ def interpretexistingfile(regfilename):
     :param str regfilename: name of regulatory file
     :return: list of analyzed Keyword objects
     :rtype: KeywordList
+
     """
     reg_text = common_functions.getregulatorydoctext(regfilename)
     reg_keyword_list = analyze_functions.identifykeywords(reg_text)
@@ -91,6 +93,7 @@ def getscorepage(kw_list, reg_kw_list):
     :param KeywordList reg_kw_list: list of regulatory document's Keywords
     :return: html page with scores displayed
     :rtype: str
+
     """
     f = open("views/score_response.html", "r")
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
@@ -107,11 +110,12 @@ def getscorepage(kw_list, reg_kw_list):
 
 def geterrorpage(errtext="Unknown Error"):
     """
-    Populates error mpge with proper response and returns html
+    Populates error message with proper response and returns html
 
     :param str errtext: text of error
     :return: html page with error displayed
     :rtype: str
+
     """
     # Returns error page
     f = open("views/invalid_upload.html", "r")
@@ -129,6 +133,7 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
     :param bool RegDoc: flag specifying whether this is a user doc or a regulatory doc
     :return: file's text
     :rtype: List[str]
+
     """
     localdownload_folder = ''
 
@@ -188,6 +193,7 @@ def extractmicrosoftdocxtext(file, testdownload_folder=None):
     :param str testdownload_folder: Specific download folder is necessary
     :return: file's text
     :rtype: List[str]
+
     """
     file_text = []
 
@@ -218,6 +224,7 @@ def savefile(file, download_folder=None):
     :param fileStorage file: the file to save
     :param str download_folder: specific download folder if necessary
     :return: void
+
     """
 
     # -- This is for testing, do not remove -- #
@@ -260,8 +267,9 @@ def extractkeywordfromtxt(file):
     This function will extract keyword information from .txt file and place into KeywordList object
 
     :param str file: location of .txt file
-    :return: keywords in file
-    :rtype: List[Keywords]
+    :return: keyword list in file
+    :rtype: KeywordList
+
     """
     keyword_list = KeywordList()
     i = 0
@@ -286,9 +294,10 @@ def cleantext(text_list):
     """
     Removes special characters from text
 
-    :param List[str] text_list:
+    :param List[str] text_list: a text string 
     :return: text_list with no special chars
     :rtype: List[str]
+
     """
     printable = set(string.printable)
 
@@ -301,7 +310,7 @@ def printStringList(textList):
     """
     Helper function that prints a list of strings
 
-    :param List[str] textList:
+    :param List[str] textList: a text string
     :return: void
     """
     for i in range(0, len(textList)):
@@ -312,9 +321,10 @@ def longstringtostringlist(longstring, strsize):
     This functions splits a long string "longstring" into strings of size "strsize" and returns a list of those strings.
 
     :param string longstring: text of file
-    :param strsize: requested length of each string in created list of strings
+    :param int strsize: requested length of each string in created list of strings
     :return: file text
     :rtype: List[str]
+
     """
 
     return_list = [longstring[i:i + strsize] for i in range(0, len(longstring), strsize)]
@@ -324,7 +334,7 @@ def stringlisttolonglongstring(string_list):
     """
     Helper function to turn list of string into one long long string
 
-    :param List[str] string_list:
+    :param List[str] string_list: a string of text
     :return: file's text
     :rtype: long string
     """
@@ -377,8 +387,9 @@ def getregulatorydoctext(filename):
     Looks in the RegulatoryDocuments folder for the file with the given file name and return's its text as a list of string
 
     :param str filename: name of regulatory file without file ending on it
-    :return: list of strings  of length 1024 containing text of file
+    :return: list of strings of length 1024 containing text of file
     :rtype: List[str]
+
     """
     try:
         logging.info('opening regulatory document')
@@ -400,7 +411,8 @@ def kwhighestfrequencies(keyword_list):
 
     :param KeywordList keyword_list: List of Keyword objects
     :return: Keywords with highest frequencies
-    :rtype: List[Keywords]
+    :rtype: List[Keyword]
+
     """
 
     kwlist = list(keyword_list.list)
@@ -423,11 +435,12 @@ def kwhighestfrequencies(keyword_list):
 
 def kwhighestkeyscores(keyword_list):
     """
-    Returnst the twn Keywords with the highest Keyword scores
+    Returns ten Keywords with the highest Keyword scores
 
     :param KeywordList keyword_list: list of Keyword objects
     :return: list of top keyword scores
-    :rtype: List[float]
+    :rtype: List[Keyword]
+
     """
 
     kwlist = list(keyword_list.list)
@@ -454,9 +467,9 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
     Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2
 
     :param KeywordList keyword_list1: user KeywordList
-    :param KeywordList keyword_list1: regulatory KeywordList
+    :param KeywordList keyword_list2: regulatory KeywordList
     :param str doc1name: user document name
-    :param str doc2name:regulatory document name
+    :param str doc2name: regulatory document name
     :return: void
 
     """
@@ -518,10 +531,11 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
     Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
 
     :param KeywordList keyword_list1: user KeywordList
-    :param KeywordList keyword_list1: regulatory KeywordList
+    :param KeywordList keyword_list2: regulatory KeywordList
     :param str doc1name: user document name
-    :param str doc2name:regulatory document name
+    :param str doc2name: regulatory document name
     :return: void
+
     """
 
     # Clearing previous graph just to be safe
@@ -586,6 +600,7 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
     :param str doc1name: name of user document
     :param str doc2name: name of regulatory document
     :return: void
+    
     """
 
     # Clearing previous graph just to be safe

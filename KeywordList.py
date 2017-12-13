@@ -1,6 +1,11 @@
 import logging
 
 class KeywordList:
+    """
+    Summary: A list that contains keywords. The list also contains unique keyword value, keyword score, yules k score, yules i score, average keyword 
+             score and a document score.
+
+    """
 
     def __init__(self):
         self.list = []
@@ -14,36 +19,59 @@ class KeywordList:
     def getdocumentscore(self):
         """
         Summary: Returns document's score.
+
+        :return: document score
+        :rtype: int 
+
         """
         return self.documentscore
 
     def getavgkeywordscore(self):
         """
         Summary: returns document's average keyword score.
+
+        :return: average keyword score
+        :rtype: int 
+
         """
         return self.avgkeywordscore
 
     def getkeywordscore(self):
         """
         Summary: returns document's keyword score.
+
+        :return: keyword score of document
+        :rtype: int 
+
         """
         return self.keywordscore
 
     def getyuleskscore(self):
         """
         Summary: returns document's Yule's k score.
+
+        :return: Yules K score
+        :rytpe: int 
+
         """
         return self.yuleskscore
 
     def getyulesiscore(self):
         """
         Summary: returns document's Yule's i score.
+
+        :return: Yule's I score
+        :rtype: int 
+
         """
         return self.yulesiscore
 
     def calculateavgscores(self):
         """
         Summary: calculates a document's average score values.
+
+        :return: void
+
         """
         kwscoresum = float(0)
         yulesksum = float(0)
@@ -69,10 +97,8 @@ class KeywordList:
         """
         Summary: inserts new Keyword into Keyword list
 
-        :param keyword: an instance of the class keyword
-        :type keyword: object.
-        :return: none.
-        :rtype:
+        :param Keyword keyword: an instance of the class keyword
+        :return: void
 
         """
 
@@ -92,7 +118,7 @@ class KeywordList:
         
         :param str keyword_name: The keyword 
         :return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.
-        :rtype: bool.
+        :rtype: bool
 
         """
         for i in range(0, len(self.list)):
@@ -103,6 +129,11 @@ class KeywordList:
     def getindexofword(self, keyword_name):
         """
         Summary: returns index of a Keyword in the list of Keywords
+
+        :param str key_name: keyword
+        :return: keyword index
+        :rtype: int 
+
         """
         for i in range(0, len(self.list)):
             if self.list[i].word == keyword_name:

@@ -89,7 +89,7 @@
 
 <span class="sd">    :param str file_text: text of document</span>
 <span class="sd">    :return: KeywordList object</span>
-<span class="sd">    :rtype: object</span>
+<span class="sd">    :rtype: KeywordList</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="sd">&quot;&quot;&quot;Detects entities in the text.&quot;&quot;&quot;</span>
@@ -162,10 +162,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Summary: Calculate Yule&#39;s k and i scores, and keywords scores for a given document</span>
 
-<span class="sd">    :param kw_list: list of Keywords</span>
-<span class="sd">    :type kw_list: KeywordList</span>
+<span class="sd">    :param KeywordList kw_list: list of Keywords</span>
 <span class="sd">    :param str file_text: Text of file</span>
 <span class="sd">    :type file_text: List[string]</span>
+<span class="sd">    :return: void</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
@@ -181,12 +181,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Summary: calculate a keyword score for a single keyword</span>
 
-<span class="sd">    :param kw_list: all keywords</span>
-<span class="sd">    :type kw_list: list</span>
+<span class="sd">    :param KeywordList kw_list: all keywords</span>
 <span class="sd">    :param file_text: file&#39;s entire text</span>
-<span class="sd">    :type file_text: list of strings</span>
-<span class="sd">    :param kw: keyword</span>
-<span class="sd">    :type kw: Keyword</span>
+<span class="sd">    :type file_text: list[str]</span>
+<span class="sd">    :param Keyword kw: keyword</span>
 <span class="sd">    :return: keyword score</span>
 <span class="sd">    :rtype: float</span>
 
@@ -201,9 +199,9 @@
 <span class="sd">    Summary: calculates Yule&#39;s K scores for givven keyword argument</span>
 <span class="sd">    </span>
 <span class="sd">    :param file_text: plain text of document</span>
-<span class="sd">    :type file_text: list</span>
-<span class="sd">    :param kw: Keyword</span>
-<span class="sd">    :type kw: Keyword</span>
+<span class="sd">    :type file_text: list[str]</span>
+<span class="sd">    :return: Yules score of text file</span>
+<span class="sd">    :rtype: float</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -226,10 +224,10 @@
 <span class="sd">    Summary: Compares the calculated scores of the two documents and </span>
 <span class="sd">             generates value based on that comparison</span>
 
-<span class="sd">    :param kw_list: list of Keywords</span>
-<span class="sd">    :type kw_list: KeywordList</span>
-<span class="sd">    :param reg_kw_list: list of Keywords</span>
-<span class="sd">    :type reg_kw_list: KeywordList</span>
+<span class="sd">    :param KeywordList kw_list: list of Keywords</span>
+<span class="sd">    :param KeywordList reg_kw_list: list of Keywords</span>
+<span class="sd">    :return: comparison score of two documents</span>
+<span class="sd">    :rtype: float</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># This is rudimentary, but actually does a decent job at comparing two documents</span>
@@ -240,8 +238,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Summary: Splits up string into individual tokens.</span>
 
-<span class="sd">    :param tokenStr: a string of words</span>
-<span class="sd">    :type tokenStr: string</span>
+<span class="sd">    :param str tokenStr: a string of words</span>
 <span class="sd">    :return: tokens</span>
 <span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -283,7 +280,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

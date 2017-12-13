@@ -54,10 +54,10 @@
 \setcounter{secnumdepth}{3}
 
 
-\title{LinguisticAnalyzer Documentation}
-\date{Dec 12, 2017}
+\title{Linguistic Analyzer Documentation}
+\date{Dec 13, 2017}
 \release{1.0}
-\author{Author}
+\author{Paul Brown, Tyler Blanton}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
 \makeindex
@@ -71,98 +71,61 @@
 
 
 \chapter{Keyword module}
-\label{\detokenize{Keyword:welcome-to-linguistic-analyzer-s-documentation}}\label{\detokenize{Keyword::doc}}\label{\detokenize{Keyword:module-Keyword}}\label{\detokenize{Keyword:keyword-module}}\index{Keyword (module)}\index{Keyword (class in Keyword)}
+\label{\detokenize{Keyword::doc}}\label{\detokenize{Keyword:welcome-to-linguistic-analyzer-s-documentation}}\label{\detokenize{Keyword:keyword-module}}\label{\detokenize{Keyword:module-Keyword}}\index{Keyword (module)}\index{Keyword (class in Keyword)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{Keyword:Keyword.Keyword}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{Keyword.}\sphinxbfcode{Keyword}}{\emph{nWord=''}, \emph{nType=0}, \emph{nSal=0}, \emph{nFreq=0}, \emph{nKeyscore=0}}{}
 Bases: \sphinxcode{object}
+\begin{description}
+\item[{summary: Class that stores a specific keyword and it’s associated information.}] \leavevmode
+The constructor accepts the word, type, salience, frequency and keyscore.
 
-summary: Class that stores a specific keyword and it’s associated information
-\index{averagedistancefromkeywordtokeyword() (Keyword.Keyword class method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.averagedistancefromkeywordtokeyword}}\pysiglinewithargsret{\sphinxbfcode{classmethod }\sphinxbfcode{averagedistancefromkeywordtokeyword}}{\emph{keyword}}{}
-Summary: averga distance from “word” OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS
-
-\end{fulllineitems}
-
-\index{averagedistanceto() (Keyword.Keyword class method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.averagedistanceto}}\pysiglinewithargsret{\sphinxbfcode{classmethod }\sphinxbfcode{averagedistanceto}}{\emph{word}}{}
-“@summary:  average distanceBetween main “word” and parameter word
-
-\end{fulllineitems}
-
-\index{determinesimilarity() (Keyword.Keyword class method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.determinesimilarity}}\pysiglinewithargsret{\sphinxbfcode{classmethod }\sphinxbfcode{determinesimilarity}}{\emph{word}}{}
-Summary: Checks if the given word is semantically similar to the main keyword
-@param word:
-@type word:
-@return:
-@rtype:
-
-\end{fulllineitems}
-
-\index{distancefromkeywordtonearestkeyword() (Keyword.Keyword class method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.distancefromkeywordtonearestkeyword}}\pysiglinewithargsret{\sphinxbfcode{classmethod }\sphinxbfcode{distancefromkeywordtonearestkeyword}}{\emph{keyword}}{}
-Summary: distance from “word” OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS
-@param word:
-@type word:
-@return:
-@rtype:
-
-\end{fulllineitems}
-
-\index{distancetonearest() (Keyword.Keyword class method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.distancetonearest}}\pysiglinewithargsret{\sphinxbfcode{classmethod }\sphinxbfcode{distancetonearest}}{\emph{word}}{}
-Summary: distance from main “word” to nearest instance of parameter word
-@param word:
-@type word:
-@return:
-@rtype:
-
-\end{fulllineitems}
-
-\index{isinsimilarlist() (Keyword.Keyword method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.isinsimilarlist}}\pysiglinewithargsret{\sphinxbfcode{isinsimilarlist}}{\emph{word}}{}
-Summary: Checks if a given word is in the “similarWords” list
-@param word:
-@type word:
-@return:
-@rtype:
-
-\end{fulllineitems}
-
+\end{description}
 \index{issimilar() (Keyword.Keyword class method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{Keyword:Keyword.Keyword.issimilar}}\pysiglinewithargsret{\sphinxbfcode{classmethod }\sphinxbfcode{issimilar}}{\emph{passedWord}}{}
-@summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
-@param passedWord: word
-@type passedWord: string
-@rtype: bool
+summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{passedWord} (\sphinxstyleliteralemphasis{str}) \textendash{} word
+
+\item[{Returns}] \leavevmode
+boolean value of True or False
+
+\item[{Return type}] \leavevmode
+bool
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 \index{similarwordfrequency() (Keyword.Keyword method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.similarwordfrequency}}\pysiglinewithargsret{\sphinxbfcode{similarwordfrequency}}{}{}
+\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.similarwordfrequency}}\pysiglinewithargsret{\sphinxbfcode{similarwordfrequency}}{}{}~\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+the frequency of a similar word in a document
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{wordfrequency() (Keyword.Keyword method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.wordfrequency}}\pysiglinewithargsret{\sphinxbfcode{wordfrequency}}{}{}
+\phantomsection\label{\detokenize{Keyword:Keyword.Keyword.wordfrequency}}\pysiglinewithargsret{\sphinxbfcode{wordfrequency}}{}{}~\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+the frequency value of a word
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 
@@ -171,16 +134,27 @@ Summary: Checks if a given word is in the “similarWords” list
 
 
 \chapter{KeywordList module}
-\label{\detokenize{KeywordList:keywordlist-module}}\label{\detokenize{KeywordList::doc}}\label{\detokenize{KeywordList:module-KeywordList}}\index{KeywordList (module)}\index{KeywordList (class in KeywordList)}
+\label{\detokenize{KeywordList:module-KeywordList}}\label{\detokenize{KeywordList::doc}}\label{\detokenize{KeywordList:keywordlist-module}}\index{KeywordList (module)}\index{KeywordList (class in KeywordList)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList}}\pysigline{\sphinxbfcode{class }\sphinxcode{KeywordList.}\sphinxbfcode{KeywordList}}
 Bases: \sphinxcode{object}
+\begin{description}
+\item[{Summary: A KeywordList that contains a list of keywords. Within the class, it also contains}] \leavevmode
+unique keyword value, keyword score, yules k score, yules i score, average keyword 
+score and a document score.
+
+\end{description}
 \index{calculateavgscores() (KeywordList.KeywordList method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.calculateavgscores}}\pysiglinewithargsret{\sphinxbfcode{calculateavgscores}}{}{}
 Summary: calculates a document’s average score values.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -197,7 +171,7 @@ Summary: searches through the list of keywords and sees if any keywords shares t
 returns true if a keyword with keyword\_name as Keyword.word exists in the list. False otherwise.
 
 \item[{Return type}] \leavevmode
-bool.
+bool
 
 \end{description}\end{quote}
 
@@ -208,6 +182,14 @@ bool.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.getavgkeywordscore}}\pysiglinewithargsret{\sphinxbfcode{getavgkeywordscore}}{}{}
 Summary: returns document’s average keyword score.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+average keyword score
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -216,6 +198,14 @@ Summary: returns document’s average keyword score.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.getdocumentscore}}\pysiglinewithargsret{\sphinxbfcode{getdocumentscore}}{}{}
 Summary: Returns document’s score.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+document score
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -224,6 +214,17 @@ Summary: Returns document’s score.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.getindexofword}}\pysiglinewithargsret{\sphinxbfcode{getindexofword}}{\emph{keyword\_name}}{}
 Summary: returns index of a Keyword in the list of Keywords
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{key\_name} (\sphinxstyleliteralemphasis{str}) \textendash{} keyword
+
+\item[{Returns}] \leavevmode
+keyword index
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -232,6 +233,14 @@ Summary: returns index of a Keyword in the list of Keywords
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.getkeywordscore}}\pysiglinewithargsret{\sphinxbfcode{getkeywordscore}}{}{}
 Summary: returns document’s keyword score.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+keyword score of document
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -240,6 +249,14 @@ Summary: returns document’s keyword score.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.getyulesiscore}}\pysiglinewithargsret{\sphinxbfcode{getyulesiscore}}{}{}
 Summary: returns document’s Yule’s i score.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Yule’s I score
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -248,6 +265,14 @@ Summary: returns document’s Yule’s i score.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{KeywordList:KeywordList.KeywordList.getyuleskscore}}\pysiglinewithargsret{\sphinxbfcode{getyuleskscore}}{}{}
 Summary: returns document’s Yule’s k score.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Yules K score
+
+\item[{Rytpe}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -258,13 +283,10 @@ Summary: returns document’s Yule’s k score.
 Summary: inserts new Keyword into Keyword list
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{keyword} (\sphinxstyleliteralemphasis{object.}) \textendash{} an instance of the class keyword
+\sphinxstyleliteralstrong{keyword} ({\hyperref[\detokenize{Keyword:module-Keyword}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Keyword}}}}) \textendash{} an instance of the class keyword
 
 \item[{Returns}] \leavevmode
-none.
-
-\item[{Return type}] \leavevmode
-
+void
 
 \end{description}\end{quote}
 
@@ -276,32 +298,25 @@ none.
 
 
 \chapter{functionsv1 package}
-\label{\detokenize{functionsv1::doc}}\label{\detokenize{functionsv1:functionsv1-package}}
+\label{\detokenize{functionsv1:functionsv1-package}}\label{\detokenize{functionsv1::doc}}
 
 \section{common\_functions module}
-\label{\detokenize{functionsv1:module-common_functions}}\label{\detokenize{functionsv1:common-functions-module}}\index{common\_functions (module)}\index{appendtokeywordlist() (in module common\_functions)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{functionsv1:common_functions.appendtokeywordlist}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{appendtokeywordlist}}{\emph{kList}, \emph{newK}}{}
-Summary: Checks for duplicate keywords and etc. etc. before potentially appending keyword to list
-@param kList: list of keywords.
-@type kList:
-@param newK:
-@type newK:
-@return:
-@rtype:
-
-\end{fulllineitems}
-
-\index{cleantext() (in module common\_functions)}
+\label{\detokenize{functionsv1:module-common_functions}}\label{\detokenize{functionsv1:common-functions-module}}\index{common\_functions (module)}\index{cleantext() (in module common\_functions)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.cleantext}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{cleantext}}{\emph{text\_list}}{}
-Summary:
-@param textlist: a list of strings to remove strange characters from
-@type textlist:
-@return:
-@rtype:
+Removes special characters from text
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{text\_list} (\sphinxstyleliteralemphasis{List}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} a text string
+
+\item[{Returns}] \leavevmode
+text\_list with no special chars
+
+\item[{Return type}] \leavevmode
+List{[}str{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -309,13 +324,24 @@ Summary:
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.createkeywordfromgoogleapientity}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{createkeywordfromgoogleapientity}}{\emph{entity}, \emph{file\_text}}{}
-Summary: Creates a Keyword from a single entity that is returned by the google API
-@param entity: google API response entity
-@type entity: google API response entity
-@param file\_text: entire file’s text
-@type file\_text: list of strings
-@return: populated instance of Keyword class
-@rtype: Keyword
+Creates a Keyword from a single entity that is returned by the google API
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{entity} (\sphinxstyleliteralemphasis{Entity}) \textendash{} Google API response entity object
+
+\item {} 
+\sphinxstyleliteralstrong{file\_text} (\sphinxstyleliteralemphasis{List}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} entire text of file
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Populated Keyword object
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{Keyword:module-Keyword}]{\sphinxcrossref{Keyword}}}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -323,10 +349,18 @@ Summary: Creates a Keyword from a single entity that is returned by the google A
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.extractkeywordfromtxt}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{extractkeywordfromtxt}}{\emph{file}}{}
-Summary: This function will extract keyword information from .txt file and place into KeywordList object
-@param file: location of .txt file
-@type file: .txt
-@return: void
+This function will extract keyword information from .txt file and place into KeywordList object
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{file} (\sphinxstyleliteralemphasis{str}) \textendash{} location of .txt file
+
+\item[{Returns}] \leavevmode
+keyword list in file
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{KeywordList}}}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -334,13 +368,24 @@ Summary: This function will extract keyword information from .txt file and place
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.extractmicrosoftdocxtext}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{extractmicrosoftdocxtext}}{\emph{file}, \emph{testdownload\_folder=None}}{}
-Summary: Extracts text from any “.docx” document and returns it.
-@param file: doc file
-@type file: werkzeug filestorage
-@param testdownload\_folder: path to test upload folder if necessary
-@type testdownload\_folder: string
-@return: file’s text
-@rtype: List{[}string{]}
+Extracts text from any “.docx” document and returns it.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{file} (\sphinxstyleliteralemphasis{fileStorage}) \textendash{} the file to save
+
+\item {} 
+\sphinxstyleliteralstrong{testdownload\_folder} (\sphinxstyleliteralemphasis{str}) \textendash{} Specific download folder is necessary
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+file’s text
+
+\item[{Return type}] \leavevmode
+List{[}str{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -348,11 +393,27 @@ Summary: Extracts text from any “.docx” document and returns it.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.extractpdftext}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{extractpdftext}}{\emph{file}, \emph{testdownload\_folder=None}, \emph{RegDoc=False}}{}
-Summary: Extracts Text from PDF document referenced in given file argument
-@param file: the object containing the file’s information
-@type file: fileStorage
-@return: list containing the text of the PDF
-@rtype: List{[}string{]}
+Extracts Text from PDF document referenced in given file argument
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{file} (\sphinxstyleliteralemphasis{fileStorage}) \textendash{} the PDF file to extract text from
+
+\item {} 
+\sphinxstyleliteralstrong{testdownload\_folder} (\sphinxstyleliteralemphasis{str}) \textendash{} specific download folder if necessary
+
+\item {} 
+\sphinxstyleliteralstrong{RegDoc} (\sphinxstyleliteralemphasis{bool}) \textendash{} flag specifying whether this is a user doc or a regulatory doc
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+file’s text
+
+\item[{Return type}] \leavevmode
+List{[}str{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -360,11 +421,18 @@ Summary: Extracts Text from PDF document referenced in given file argument
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.geterrorpage}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{geterrorpage}}{\emph{errtext='Unknown Error'}}{}
-Summary: Populates error mpge with proper response and returns html
-@param errtext: text of error
-@type errtext: string
-@return: html page
-@rtype: string
+Populates error message with proper response and returns html
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{errtext} (\sphinxstyleliteralemphasis{str}) \textendash{} text of error
+
+\item[{Returns}] \leavevmode
+html page with error displayed
+
+\item[{Return type}] \leavevmode
+str
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -372,11 +440,18 @@ Summary: Populates error mpge with proper response and returns html
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.getregulatorydoctext}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{getregulatorydoctext}}{\emph{filename}}{}
-Summary: Looks in the RegulatoryDocuments folder for the file with the given file name and return’s its text as a list of string
-@param filename: name of file to open
-@type filename: string
-@return: list of string containing text of file
-@rtype: List{[}string{]}
+Looks in the RegulatoryDocuments folder for the file with the given file name and return’s its text as a list of string
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{filename} (\sphinxstyleliteralemphasis{str}) \textendash{} name of regulatory file without file ending on it
+
+\item[{Returns}] \leavevmode
+list of strings of length 1024 containing text of file
+
+\item[{Return type}] \leavevmode
+List{[}str{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -384,13 +459,24 @@ Summary: Looks in the RegulatoryDocuments folder for the file with the given fil
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.getscorepage}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{getscorepage}}{\emph{kw\_list}, \emph{reg\_kw\_list}}{}
-Summary: Returns html page that is populated with proper calculated Keyword, Comparison, and Yule’s scores.
-@param kw\_list: user document’s keyword list
-@type kw\_list: KeywordList
-@param reg\_kw\_list: regulatory document’s keyword list
-@type reg\_kw\_list: KeywordList
-@return: html text
-@rtype: string
+Returns html page that is populated with proper calculated Keyword, Comparison, and Yule’s scores.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{kw\_list} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} list of user document’s Keyword objects
+
+\item {} 
+\sphinxstyleliteralstrong{reg\_kw\_list} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} list of regulatory document’s Keywords
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+html page with scores displayed
+
+\item[{Return type}] \leavevmode
+str
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -398,13 +484,24 @@ Summary: Returns html page that is populated with proper calculated Keyword, Com
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.getwordfrequency}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{getwordfrequency}}{\emph{word}, \emph{file\_text}}{}
-Summary: determines frequency of the given word in the file’s text
-@param word: word to find freq. of
-@type word: string
-@param file\_text: text of entire file
-@type file\_text: list of string
-@return: frequency
-@rtype: int
+Determines frequency of the given word in the file’s text
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{word} (\sphinxstyleliteralemphasis{str}) \textendash{} Word to find frequency of
+
+\item {} 
+\sphinxstyleliteralstrong{filetext} (\sphinxstyleliteralemphasis{List}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} list of string containing entire text of file
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+frequency of word parameter in text
+
+\item[{Return type}] \leavevmode
+int
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -412,17 +509,31 @@ Summary: determines frequency of the given word in the file’s text
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.homeCount}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{homeCount}}{}{}
+Initializes variables for logging session
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{interpretexistingfile() (in module common\_functions)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.interpretexistingfile}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{interpretexistingfile}}{\emph{regfilename}}{}
-Summary: Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.
-@param regfilename: name of file without file ending
-@type regfilename: string
-@return: list of kwywords that have been analyzed
-@rtype: KeywordList
+Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{regfilename} (\sphinxstyleliteralemphasis{str}) \textendash{} name of regulatory file
+
+\item[{Returns}] \leavevmode
+list of analyzed Keyword objects
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{KeywordList}}}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -430,13 +541,24 @@ Summary: Parses, identifies keywords and analyzes content of chosen regulatory f
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.interpretfile}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{interpretfile}}{\emph{file}, \emph{localuploadfolder}}{}
-Summary: Parses uploaded file’s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects
-@param file: werkzeug filestorage object
-@type file: werkzeug filestorage object
-@param localuploadfolder:
-@type localuploadfolder: string
-@return: keywordlist
-@rtype: KeywordList
+Parses uploaded file’s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{file} (\sphinxstyleliteralemphasis{fileStorage}) \textendash{} file to be interpreted
+
+\item {} 
+\sphinxstyleliteralstrong{localuploadfolder} (\sphinxstyleliteralemphasis{str}) \textendash{} Place to temporary store file so it can be read from
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+list of file’s Keywords
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{KeywordList}}}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -444,11 +566,18 @@ Summary: Parses uploaded file’s text, identifies keywords, analyzes keywords, 
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.kwhighestfrequencies}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{kwhighestfrequencies}}{\emph{keyword\_list}}{}
-Summary: Returns the top 10 most frequent Keywords in the user’s uploaded file
-@param keyword\_list: lis tof file’s Keywords
-@type keyword\_list: list of keywords
-@return: topkeywords
-@rtype: list of highest frequency Keywords
+Returns the top 10 most frequent Keywords in the user’s uploaded file
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{keyword\_list} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} List of Keyword objects
+
+\item[{Returns}] \leavevmode
+Keywords with highest frequencies
+
+\item[{Return type}] \leavevmode
+List{[}{\hyperref[\detokenize{Keyword:module-Keyword}]{\sphinxcrossref{Keyword}}}{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -456,11 +585,18 @@ Summary: Returns the top 10 most frequent Keywords in the user’s uploaded file
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.kwhighestkeyscores}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{kwhighestkeyscores}}{\emph{keyword\_list}}{}
-Summary: Returnst the twn Keywords with the highest Keyword scores
-@param keyword\_list:
-@type keyword\_list: list of keywords
-@return: topkeywords
-@rtype: list of top Keywords
+Returns ten Keywords with the highest Keyword scores
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{keyword\_list} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} list of Keyword objects
+
+\item[{Returns}] \leavevmode
+list of top keyword scores
+
+\item[{Return type}] \leavevmode
+List{[}{\hyperref[\detokenize{Keyword:module-Keyword}]{\sphinxcrossref{Keyword}}}{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -468,13 +604,24 @@ Summary: Returnst the twn Keywords with the highest Keyword scores
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.longstringtostringlist}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{longstringtostringlist}}{\emph{longstring}, \emph{strsize}}{}
-Summary: This functions splits a long string “longstring” into strings of size “strsize” and returns a list of strs
-@param longstring:  long string to parse through
-@type longstring:
-@param strsize: size of strings to populate list with
-@type strsize:  int
-@return:
-@rtype:
+This functions splits a long string “longstring” into strings of size “strsize” and returns a list of those strings.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{longstring} (\sphinxstyleliteralemphasis{string}) \textendash{} text of file
+
+\item {} 
+\sphinxstyleliteralstrong{strsize} (\sphinxstyleliteralemphasis{int}) \textendash{} requested length of each string in created list of strings
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+file text
+
+\item[{Return type}] \leavevmode
+List{[}str{]}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -482,10 +629,15 @@ Summary: This functions splits a long string “longstring” into strings of si
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.outputkeywordtotext}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{outputkeywordtotext}}{\emph{keylist}}{}
-Summary: This function will write Keywords from an analyzed document to a .txt file
-@param keylist: KeywordList object containing keywords from analyzed document
-@type object: KeywordList
-@return: void
+This function will write Keywords from an analyzed document to a .txt file
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{keylist} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} list of document keywords
+
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -493,15 +645,27 @@ Summary: This function will write Keywords from an analyzed document to a .txt f
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.plotkeywordfrequency}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{plotkeywordfrequency}}{\emph{keyword\_list1}, \emph{keyword\_list2}, \emph{doc1name='doc1'}, \emph{doc2name='doc2'}}{}
-Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
-@param keyword\_list1:
-@type keyword\_list1: KeywordList
-@param keyword\_list2:
-@type keyword\_list2: KeywordList
-@param doc1name: name of first document
-@type doc1name: string
-@param doc2name: name of second document
-@type doc2name: string
+Plots keyword score of most frequently used keywords. Saves graph to “/Downloads” folder
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{keyword\_list1} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} user document keywords
+
+\item {} 
+\sphinxstyleliteralstrong{keyword\_list2} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} regulatory document keywords
+
+\item {} 
+\sphinxstyleliteralstrong{doc1name} (\sphinxstyleliteralemphasis{str}) \textendash{} name of user document
+
+\item {} 
+\sphinxstyleliteralstrong{doc2name} (\sphinxstyleliteralemphasis{str}) \textendash{} name of regulatory document
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -509,15 +673,27 @@ Summary: plots keyword score of most frequently used keywords. Pulls KWs from li
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.plotkeywordsalience}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{plotkeywordsalience}}{\emph{keyword\_list1}, \emph{keyword\_list2}, \emph{doc1name='doc1'}, \emph{doc2name='doc2'}}{}
-Summary: plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2
-@param keyword\_list1:
-@type keyword\_list1: KeywordList
-@param keyword\_list2:
-@type keyword\_list2: KeywordList
-@param doc1name: name of first document
-@type doc1name: string
-@param doc2name: name of second document
-@type doc2name: string
+Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{keyword\_list1} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} user KeywordList
+
+\item {} 
+\sphinxstyleliteralstrong{keyword\_list2} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} regulatory KeywordList
+
+\item {} 
+\sphinxstyleliteralstrong{doc1name} (\sphinxstyleliteralemphasis{str}) \textendash{} user document name
+
+\item {} 
+\sphinxstyleliteralstrong{doc2name} (\sphinxstyleliteralemphasis{str}) \textendash{} regulatory document name
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -525,15 +701,24 @@ Summary: plots salience of most frequently used keywords. Pulls KWs from list1, 
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.plotkeywordscores}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{plotkeywordscores}}{\emph{keyword\_list1}, \emph{keyword\_list2}, \emph{doc1name='doc1'}, \emph{doc2name='doc2'}}{}
-Summary: plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
-@param keyword\_list1:
-@type keyword\_list1: KeywordList
-@param keyword\_list2:
-@type keyword\_list2: KeywordList
-@param doc1name: name of first document
-@type doc1name: string
-@param doc2name: name of second document
-@type doc2name: string
+Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{keyword\_list1} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} user KeywordList
+
+\item {} 
+\sphinxstyleliteralstrong{keyword\_list2} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} regulatory KeywordList
+
+\item {} 
+\sphinxstyleliteralstrong{doc1name} (\sphinxstyleliteralemphasis{str}) \textendash{} user document name
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+:param str doc2name:regulatory document name
+:return: void
 
 \end{fulllineitems}
 
@@ -541,10 +726,15 @@ Summary: plots keyword score of most frequently used keywords. Pulls KWs from li
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.printStringList}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{printStringList}}{\emph{textList}}{}
-Summary: Helper function that prints a list of strins
-@param textList: file’s text
-@type textList: List{[}string{]}
-@rtype: void
+Helper function that prints a list of strings
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{textList} (\sphinxstyleliteralemphasis{List}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} a text string
+
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -552,17 +742,40 @@ Summary: Helper function that prints a list of strins
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.savefile}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{savefile}}{\emph{file}, \emph{download\_folder=None}}{}
+Save’s given file to /Downloads folder”
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{file} (\sphinxstyleliteralemphasis{fileStorage}) \textendash{} the file to save
+
+\item {} 
+\sphinxstyleliteralstrong{download\_folder} (\sphinxstyleliteralemphasis{str}) \textendash{} specific download folder if necessary
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+void
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{stringlisttolonglongstring() (in module common\_functions)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{functionsv1:common_functions.stringlisttolonglongstring}}\pysiglinewithargsret{\sphinxcode{common\_functions.}\sphinxbfcode{stringlisttolonglongstring}}{\emph{string\_list}}{}
-Summary: Helper function to turn list of string into one long long string
-@param string\_list: file’s text
-@type string\_list: List{[}string{]}
-@return: file’s text
-@rtype: long string
+Helper function to turn list of string into one long long string
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{string\_list} (\sphinxstyleliteralemphasis{List}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} a string of text
+
+\item[{Returns}] \leavevmode
+file’s text
+
+\item[{Return type}] \leavevmode
+long string
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -587,6 +800,12 @@ generates value based on that comparison
 
 \end{itemize}
 
+\item[{Returns}] \leavevmode
+comparison score of two documents
+
+\item[{Return type}] \leavevmode
+float
+
 \end{description}\end{quote}
 
 \end{fulllineitems}
@@ -599,10 +818,10 @@ Summary: calculate a keyword score for a single keyword
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{kw\_list} (\sphinxstyleliteralemphasis{list}) \textendash{} all keywords
+\sphinxstyleliteralstrong{kw\_list} ({\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{\sphinxstyleliteralemphasis{KeywordList}}}}) \textendash{} all keywords
 
 \item {} 
-\sphinxstyleliteralstrong{file\_text} (\sphinxstyleliteralemphasis{list of strings}) \textendash{} file’s entire text
+\sphinxstyleliteralstrong{file\_text} (\sphinxstyleliteralemphasis{list}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} file’s entire text
 
 \item {} 
 \sphinxstyleliteralstrong{kw} ({\hyperref[\detokenize{Keyword:module-Keyword}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Keyword}}}}) \textendash{} keyword
@@ -634,6 +853,9 @@ Summary: Calculate Yule’s k and i scores, and keywords scores for a given docu
 
 \end{itemize}
 
+\item[{Returns}] \leavevmode
+void
+
 \end{description}\end{quote}
 
 \end{fulllineitems}
@@ -644,14 +866,14 @@ Summary: Calculate Yule’s k and i scores, and keywords scores for a given docu
 \phantomsection\label{\detokenize{functionsv1:analyze_functions.calculateyulesscore}}\pysiglinewithargsret{\sphinxcode{analyze\_functions.}\sphinxbfcode{calculateyulesscore}}{\emph{file\_text}}{}
 Summary: calculates Yule’s K scores for givven keyword argument
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleliteralstrong{file\_text} (\sphinxstyleliteralemphasis{list}) \textendash{} plain text of document
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{file\_text} (\sphinxstyleliteralemphasis{list}\sphinxstyleliteralemphasis{{[}}\sphinxstyleliteralemphasis{str}\sphinxstyleliteralemphasis{{]}}) \textendash{} plain text of document
 
-\item {} 
-\sphinxstyleliteralstrong{kw} ({\hyperref[\detokenize{Keyword:module-Keyword}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Keyword}}}}) \textendash{} Keyword
+\item[{Returns}] \leavevmode
+Yules score of text file
 
-\end{itemize}
+\item[{Return type}] \leavevmode
+float
 
 \end{description}\end{quote}
 
@@ -678,7 +900,7 @@ Summary: Calls the Google NLP API to extract Keyword information from text
 KeywordList object
 
 \item[{Return type}] \leavevmode
-object
+{\hyperref[\detokenize{KeywordList:module-KeywordList}]{\sphinxcrossref{KeywordList}}}
 
 \end{description}\end{quote}
 
@@ -691,7 +913,7 @@ object
 Summary: Splits up string into individual tokens.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{tokenStr} (\sphinxstyleliteralemphasis{string}) \textendash{} a string of words
+\sphinxstyleliteralstrong{tokenStr} (\sphinxstyleliteralemphasis{str}) \textendash{} a string of words
 
 \item[{Returns}] \leavevmode
 tokens
@@ -706,55 +928,90 @@ list
 
 
 \chapter{analyze module}
-\label{\detokenize{analyze:module-analyze}}\label{\detokenize{analyze::doc}}\label{\detokenize{analyze:analyze-module}}\index{analyze (module)}\index{analyzeText() (in module analyze)}
+\label{\detokenize{analyze::doc}}\label{\detokenize{analyze:analyze-module}}\label{\detokenize{analyze:module-analyze}}\index{analyze (module)}\index{analyzeText() (in module analyze)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{analyze:analyze.analyzeText}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{analyzeText}}{\emph{fileText}}{}
+\phantomsection\label{\detokenize{analyze:analyze.analyzeText}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{analyzeText}}{\emph{fileText}}{}~\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{fileText} (\sphinxstyleliteralemphasis{str}) \textendash{} text of fileText
+
+\item[{Returns}] \leavevmode
+file text
+
+\item[{Return type}] \leavevmode
+str
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{checkSimilarity() (in module analyze)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{analyze:analyze.checkSimilarity}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{checkSimilarity}}{\emph{fileText}}{}
-@param fileText:
-@type fileText:
-@return:
-@rtype:
+\phantomsection\label{\detokenize{analyze:analyze.checkSimilarity}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{checkSimilarity}}{\emph{fileText}}{}~\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{fileText} (\sphinxstyleliteralemphasis{str}) \textendash{} text of file
+
+\item[{Returns}] \leavevmode
+pass or fail
+
+\item[{Return type}] \leavevmode
+bool
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 \index{createObjects() (in module analyze)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{analyze:analyze.createObjects}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{createObjects}}{\emph{fileText}}{}
-@param fileText:
-@type fileText:
-@return:
-@rtype:
+\phantomsection\label{\detokenize{analyze:analyze.createObjects}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{createObjects}}{\emph{fileText}}{}~\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{fileText} (\sphinxstyleliteralemphasis{str}) \textendash{} text of file
+
+\item[{Returns}] \leavevmode
+pass or fail
+
+\item[{Return type}] \leavevmode
+bool
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 \index{scrapeText() (in module analyze)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{analyze:analyze.scrapeText}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{scrapeText}}{\emph{fileText}}{}
-@param fileText:
-@type fileText:
-@return:
-@rtype:
+\phantomsection\label{\detokenize{analyze:analyze.scrapeText}}\pysiglinewithargsret{\sphinxcode{analyze.}\sphinxbfcode{scrapeText}}{\emph{fileText}}{}~\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{fileText} (\sphinxstyleliteralemphasis{str}) \textendash{} text of file
+
+\item[{Returns}] \leavevmode
+pass or fail
+
+\item[{Return type}] \leavevmode
+bool
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{app module}
-\label{\detokenize{app::doc}}\label{\detokenize{app:module-app}}\label{\detokenize{app:app-module}}\index{app (module)}\index{analyze() (in module app)}
+\label{\detokenize{app::doc}}\label{\detokenize{app:app-module}}\label{\detokenize{app:module-app}}\index{app (module)}\index{analyze() (in module app)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.analyze}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{analyze}}{}{}
-Summary: Receives uploaded document and comparison document choice and executes logic to compare them.
-@return: Information regarding uploaded document’s similarity to regulatory document
-@rtype: html
+Receives uploaded document and comparison document choice and executes logic to compare them.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Information regarding the uploaded document’s similarity to regulatory document
+
+\item[{Return type}] \leavevmode
+html
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -762,7 +1019,15 @@ Summary: Receives uploaded document and comparison document choice and executes 
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.comparisoninfo}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{comparisoninfo}}{}{}
-Summary: Returns html page that describes the Linguistic Analyzer’s Comparison Score
+Comparison Information
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+graph html page that describes the Linguistic Analyzer’s Comparison Score
+
+\item[{Return type}] \leavevmode
+html
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -770,7 +1035,15 @@ Summary: Returns html page that describes the Linguistic Analyzer’s Comparison
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.getkwfreeqimage}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{getkwfreeqimage}}{}{}
-Summary: Returns png image of a graph of most frequent keywords
+Returns Keyword frequency graph
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+graph
+
+\item[{Return type}] \leavevmode
+png
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -778,7 +1051,15 @@ Summary: Returns png image of a graph of most frequent keywords
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.getkwsalienceimage}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{getkwsalienceimage}}{}{}
-Summary: returns png image of a graph of top salience keywords
+Returns png image of a graph of top salience keywords
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+graph
+
+\item[{Return type}] \leavevmode
+png
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -786,7 +1067,15 @@ Summary: returns png image of a graph of top salience keywords
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.getkwscoresimage}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{getkwscoresimage}}{}{}
-Summary: returns png image of a graph of keyword scores
+Returns png image of a graph of keyword scores
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+graph
+
+\item[{Return type}] \leavevmode
+png
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -794,10 +1083,15 @@ Summary: returns png image of a graph of keyword scores
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.main}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{main}}{}{}
-Summary: Home page of the Linguistic Analyzer API.
-In here the logger is initiated for the session and the main webpage “views/index.html” is returned to the browser.
-@return: Home page
-@rtype: html
+Home page of the Linguistic Analyzer API
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Home page
+
+\item[{Return type}] \leavevmode
+html
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -805,7 +1099,15 @@ In here the logger is initiated for the session and the main webpage “views/in
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.project}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{project}}{}{}
-Summary: Returns an html page containing details about the Linguistic Analyzer project.
+Returns an html page containing details about the Linguistic Analyzer project.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Home page
+
+\item[{Return type}] \leavevmode
+html
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -813,7 +1115,15 @@ Summary: Returns an html page containing details about the Linguistic Analyzer p
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.yulesinfo}}\pysiglinewithargsret{\sphinxcode{app.}\sphinxbfcode{yulesinfo}}{}{}
-Summary: Endpoint: Returns html page that describes Yule’s k and Yule’s i scores
+Yule’s Info
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Page that describes Yule’s k and Yule’s i algorithms
+
+\item[{Return type}] \leavevmode
+html
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -842,7 +1152,7 @@ Summary: Tests the Analyze() function
 
 
 \section{test\_extractmicrosoftdocxtext module}
-\label{\detokenize{unit_tests:module-unit_tests.test_extractmicrosoftdocxtext}}\label{\detokenize{unit_tests:test-extractmicrosoftdocxtext-module}}\index{unit\_tests.test\_extractmicrosoftdocxtext (module)}\index{TestExtractmicrosoftdocxtext (class in unit\_tests.test\_extractmicrosoftdocxtext)}
+\label{\detokenize{unit_tests:test-extractmicrosoftdocxtext-module}}\label{\detokenize{unit_tests:module-unit_tests.test_extractmicrosoftdocxtext}}\index{unit\_tests.test\_extractmicrosoftdocxtext (module)}\index{TestExtractmicrosoftdocxtext (class in unit\_tests.test\_extractmicrosoftdocxtext)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{unit_tests:unit_tests.test_extractmicrosoftdocxtext.TestExtractmicrosoftdocxtext}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{unit\_tests.test\_extractmicrosoftdocxtext.}\sphinxbfcode{TestExtractmicrosoftdocxtext}}{\emph{methodName='runTest'}}{}
@@ -880,7 +1190,7 @@ Summary: Tests the extractpdftext() function
 
 
 \section{test\_pdfanddocxarereadthesame module}
-\label{\detokenize{unit_tests:test-pdfanddocxarereadthesame-module}}\label{\detokenize{unit_tests:module-unit_tests.test_pdfanddocxarereadthesame}}\index{unit\_tests.test\_pdfanddocxarereadthesame (module)}\index{TestEnsurepdfanddocxarereadthesame (class in unit\_tests.test\_pdfanddocxarereadthesame)}
+\label{\detokenize{unit_tests:module-unit_tests.test_pdfanddocxarereadthesame}}\label{\detokenize{unit_tests:test-pdfanddocxarereadthesame-module}}\index{unit\_tests.test\_pdfanddocxarereadthesame (module)}\index{TestEnsurepdfanddocxarereadthesame (class in unit\_tests.test\_pdfanddocxarereadthesame)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{unit_tests:unit_tests.test_pdfanddocxarereadthesame.TestEnsurepdfanddocxarereadthesame}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{unit\_tests.test\_pdfanddocxarereadthesame.}\sphinxbfcode{TestEnsurepdfanddocxarereadthesame}}{\emph{methodName='runTest'}}{}
@@ -889,7 +1199,8 @@ Bases: \sphinxcode{unittest.case.TestCase}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{unit_tests:unit_tests.test_pdfanddocxarereadthesame.TestEnsurepdfanddocxarereadthesame.test_ensurepdfanddocarereadthesame}}\pysiglinewithargsret{\sphinxbfcode{test\_ensurepdfanddocarereadthesame}}{}{}
-Summary: tests whether extractpdftext() and extractdocxtext() return the same exact information when given the same document in different formats
+Summary: tests whether extractpdftext() and extractdocxtext() return 
+the same exact information when given the same document in different formats
 
 \end{fulllineitems}
 

@@ -16,6 +16,7 @@ class TestAnalyze(TestCase):
     def test_analyze(self):
         """
         Summary: Tests the Analyze() function
+        
         """
         testFileName = 'test_extractpdftext.pdf'
 

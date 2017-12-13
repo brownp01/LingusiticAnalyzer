@@ -42,7 +42,7 @@ def identifykeywords(file_text):
 
     :param str file_text: text of document
     :return: KeywordList object
-    :rtype: object
+    :rtype: KeywordList
 
     """
     """Detects entities in the text."""
@@ -115,10 +115,10 @@ def calculatescores(kw_list, file_text):
     """
     Summary: Calculate Yule's k and i scores, and keywords scores for a given document
 
-    :param kw_list: list of Keywords
-    :type kw_list: KeywordList
+    :param KeywordList kw_list: list of Keywords
     :param str file_text: Text of file
     :type file_text: List[string]
+    :return: void
 
     """
     for kw in kw_list.list:
@@ -134,12 +134,10 @@ def calculatekeywordscore(kw_list, file_text, kw):
     """
     Summary: calculate a keyword score for a single keyword
 
-    :param kw_list: all keywords
-    :type kw_list: list
+    :param KeywordList kw_list: all keywords
     :param file_text: file's entire text
-    :type file_text: list of strings
-    :param kw: keyword
-    :type kw: Keyword
+    :type file_text: list[str]
+    :param Keyword kw: keyword
     :return: keyword score
     :rtype: float
 
@@ -154,9 +152,9 @@ def calculateyulesscore(file_text):
     Summary: calculates Yule's K scores for givven keyword argument
     
     :param file_text: plain text of document
-    :type file_text: list
-    :param kw: Keyword
-    :type kw: Keyword
+    :type file_text: list[str]
+    :return: Yules score of text file
+    :rtype: float
 
     """
     try:
@@ -179,10 +177,10 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
     Summary: Compares the calculated scores of the two documents and 
              generates value based on that comparison
 
-    :param kw_list: list of Keywords
-    :type kw_list: KeywordList
-    :param reg_kw_list: list of Keywords
-    :type reg_kw_list: KeywordList
+    :param KeywordList kw_list: list of Keywords
+    :param KeywordList reg_kw_list: list of Keywords
+    :return: comparison score of two documents
+    :rtype: float
 
     """
     # This is rudimentary, but actually does a decent job at comparing two documents
@@ -193,8 +191,7 @@ def tokenize(tokenStr):
     """
     Summary: Splits up string into individual tokens.
 
-    :param tokenStr: a string of words
-    :type tokenStr: string
+    :param str tokenStr: a string of words
     :return: tokens
     :rtype: list
     """

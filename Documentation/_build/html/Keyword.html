@@ -57,77 +57,57 @@
 <dt id="Keyword.Keyword">
 <em class="property">class </em><code class="descclassname">Keyword.</code><code class="descname">Keyword</code><span class="sig-paren">(</span><em>nWord=''</em>, <em>nType=0</em>, <em>nSal=0</em>, <em>nFreq=0</em>, <em>nKeyscore=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>summary: Class that stores a specific keyword and it’s associated information</p>
-<dl class="classmethod">
-<dt id="Keyword.Keyword.averagedistancefromkeywordtokeyword">
-<em class="property">classmethod </em><code class="descname">averagedistancefromkeywordtokeyword</code><span class="sig-paren">(</span><em>keyword</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.averagedistancefromkeywordtokeyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.averagedistancefromkeywordtokeyword" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: averga distance from “word” OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS</p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="Keyword.Keyword.averagedistanceto">
-<em class="property">classmethod </em><code class="descname">averagedistanceto</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.averagedistanceto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.averagedistanceto" title="Permalink to this definition">¶</a></dt>
-<dd><p>“&#64;summary:  average distanceBetween main “word” and parameter word</p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="Keyword.Keyword.determinesimilarity">
-<em class="property">classmethod </em><code class="descname">determinesimilarity</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.determinesimilarity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.determinesimilarity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Checks if the given word is semantically similar to the main keyword
-&#64;param word:
-&#64;type word:
-&#64;return:
-&#64;rtype:</p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="Keyword.Keyword.distancefromkeywordtonearestkeyword">
-<em class="property">classmethod </em><code class="descname">distancefromkeywordtonearestkeyword</code><span class="sig-paren">(</span><em>keyword</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.distancefromkeywordtonearestkeyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.distancefromkeywordtonearestkeyword" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: distance from “word” OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS
-&#64;param word:
-&#64;type word:
-&#64;return:
-&#64;rtype:</p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="Keyword.Keyword.distancetonearest">
-<em class="property">classmethod </em><code class="descname">distancetonearest</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.distancetonearest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.distancetonearest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: distance from main “word” to nearest instance of parameter word
-&#64;param word:
-&#64;type word:
-&#64;return:
-&#64;rtype:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="Keyword.Keyword.isinsimilarlist">
-<code class="descname">isinsimilarlist</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.isinsimilarlist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.isinsimilarlist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: Checks if a given word is in the “similarWords” list
-&#64;param word:
-&#64;type word:
-&#64;return:
-&#64;rtype:</p>
-</dd></dl>
-
+<dl class="docutils">
+<dt>summary: Class that stores a specific keyword and it’s associated information.</dt>
+<dd>The constructor accepts the word, type, salience, frequency and keyscore.</dd>
+</dl>
 <dl class="classmethod">
 <dt id="Keyword.Keyword.issimilar">
 <em class="property">classmethod </em><code class="descname">issimilar</code><span class="sig-paren">(</span><em>passedWord</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.issimilar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.issimilar" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
-&#64;param passedWord: word
-&#64;type passedWord: string
-&#64;rtype: bool</p>
+<dd><p>summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>passedWord</strong> (<em>str</em>) – word</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">boolean value of True or False</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="Keyword.Keyword.similarwordfrequency">
 <code class="descname">similarwordfrequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.similarwordfrequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.similarwordfrequency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the frequency of a similar word in a document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Keyword.Keyword.wordfrequency">
 <code class="descname">wordfrequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Keyword.html#Keyword.wordfrequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Keyword.Keyword.wordfrequency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the frequency value of a word</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -179,7 +159,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

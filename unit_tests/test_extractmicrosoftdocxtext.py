@@ -14,6 +14,7 @@ class TestExtractmicrosoftdocxtext(TestCase):
     def test_extractmicrosoftdocxtext(self):
         """
         Summary: Tests the extractmicrosoftdoctet() function
+        
         """
         file = ''
         testFileName = 'test_extractdocxtext.docx'

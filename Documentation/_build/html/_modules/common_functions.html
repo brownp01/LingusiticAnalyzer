@@ -91,6 +91,7 @@
 <span class="sd">        :param str localuploadfolder: Place to temporary store file so it can be read from</span>
 <span class="sd">        :return: list of file&#39;s Keywords</span>
 <span class="sd">        :rtype: KeywordList</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -121,6 +122,7 @@
 <span class="sd">    :param str regfilename: name of regulatory file</span>
 <span class="sd">    :return: list of analyzed Keyword objects</span>
 <span class="sd">    :rtype: KeywordList</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">reg_text</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">getregulatorydoctext</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
     <span class="n">reg_keyword_list</span> <span class="o">=</span> <span class="n">analyze_functions</span><span class="o">.</span><span class="n">identifykeywords</span><span class="p">(</span><span class="n">reg_text</span><span class="p">)</span>
@@ -138,6 +140,7 @@
 <span class="sd">    :param KeywordList reg_kw_list: list of regulatory document&#39;s Keywords</span>
 <span class="sd">    :return: html page with scores displayed</span>
 <span class="sd">    :rtype: str</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/score_response.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--KEYWORD_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getavgkeywordscore</span><span class="p">()))</span><span class="o">.</span> \
@@ -154,11 +157,12 @@
 
 <div class="viewcode-block" id="geterrorpage"><a class="viewcode-back" href="../functionsv1.html#common_functions.geterrorpage">[docs]</a><span class="k">def</span> <span class="nf">geterrorpage</span><span class="p">(</span><span class="n">errtext</span><span class="o">=</span><span class="s2">&quot;Unknown Error&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Populates error mpge with proper response and returns html</span>
+<span class="sd">    Populates error message with proper response and returns html</span>
 
 <span class="sd">    :param str errtext: text of error</span>
 <span class="sd">    :return: html page with error displayed</span>
 <span class="sd">    :rtype: str</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Returns error page</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/invalid_upload.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
@@ -176,6 +180,7 @@
 <span class="sd">    :param bool RegDoc: flag specifying whether this is a user doc or a regulatory doc</span>
 <span class="sd">    :return: file&#39;s text</span>
 <span class="sd">    :rtype: List[str]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">localdownload_folder</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
@@ -235,6 +240,7 @@
 <span class="sd">    :param str testdownload_folder: Specific download folder is necessary</span>
 <span class="sd">    :return: file&#39;s text</span>
 <span class="sd">    :rtype: List[str]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -265,6 +271,7 @@
 <span class="sd">    :param fileStorage file: the file to save</span>
 <span class="sd">    :param str download_folder: specific download folder if necessary</span>
 <span class="sd">    :return: void</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># -- This is for testing, do not remove -- #</span>
@@ -307,8 +314,9 @@
 <span class="sd">    This function will extract keyword information from .txt file and place into KeywordList object</span>
 
 <span class="sd">    :param str file: location of .txt file</span>
-<span class="sd">    :return: keywords in file</span>
-<span class="sd">    :rtype: List[Keywords]</span>
+<span class="sd">    :return: keyword list in file</span>
+<span class="sd">    :rtype: KeywordList</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">KeywordList</span><span class="p">()</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -333,9 +341,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Removes special characters from text</span>
 
-<span class="sd">    :param List[str] text_list:</span>
+<span class="sd">    :param List[str] text_list: a text string </span>
 <span class="sd">    :return: text_list with no special chars</span>
 <span class="sd">    :rtype: List[str]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">printable</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">printable</span><span class="p">)</span>
 
@@ -348,7 +357,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function that prints a list of strings</span>
 
-<span class="sd">    :param List[str] textList:</span>
+<span class="sd">    :param List[str] textList: a text string</span>
 <span class="sd">    :return: void</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">textList</span><span class="p">)):</span>
@@ -359,9 +368,10 @@
 <span class="sd">    This functions splits a long string &quot;longstring&quot; into strings of size &quot;strsize&quot; and returns a list of those strings.</span>
 
 <span class="sd">    :param string longstring: text of file</span>
-<span class="sd">    :param strsize: requested length of each string in created list of strings</span>
+<span class="sd">    :param int strsize: requested length of each string in created list of strings</span>
 <span class="sd">    :return: file text</span>
 <span class="sd">    :rtype: List[str]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">return_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">longstring</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">strsize</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">longstring</span><span class="p">),</span> <span class="n">strsize</span><span class="p">)]</span>
@@ -371,7 +381,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function to turn list of string into one long long string</span>
 
-<span class="sd">    :param List[str] string_list:</span>
+<span class="sd">    :param List[str] string_list: a string of text</span>
 <span class="sd">    :return: file&#39;s text</span>
 <span class="sd">    :rtype: long string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -424,8 +434,9 @@
 <span class="sd">    Looks in the RegulatoryDocuments folder for the file with the given file name and return&#39;s its text as a list of string</span>
 
 <span class="sd">    :param str filename: name of regulatory file without file ending on it</span>
-<span class="sd">    :return: list of strings  of length 1024 containing text of file</span>
+<span class="sd">    :return: list of strings of length 1024 containing text of file</span>
 <span class="sd">    :rtype: List[str]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;opening regulatory document&#39;</span><span class="p">)</span>
@@ -447,7 +458,8 @@
 
 <span class="sd">    :param KeywordList keyword_list: List of Keyword objects</span>
 <span class="sd">    :return: Keywords with highest frequencies</span>
-<span class="sd">    :rtype: List[Keywords]</span>
+<span class="sd">    :rtype: List[Keyword]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">kwlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
@@ -470,11 +482,12 @@
 
 <div class="viewcode-block" id="kwhighestkeyscores"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestkeyscores">[docs]</a><span class="k">def</span> <span class="nf">kwhighestkeyscores</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returnst the twn Keywords with the highest Keyword scores</span>
+<span class="sd">    Returns ten Keywords with the highest Keyword scores</span>
 
 <span class="sd">    :param KeywordList keyword_list: list of Keyword objects</span>
 <span class="sd">    :return: list of top keyword scores</span>
-<span class="sd">    :rtype: List[float]</span>
+<span class="sd">    :rtype: List[Keyword]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">kwlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
@@ -501,9 +514,9 @@
 <span class="sd">    Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
 
 <span class="sd">    :param KeywordList keyword_list1: user KeywordList</span>
-<span class="sd">    :param KeywordList keyword_list1: regulatory KeywordList</span>
+<span class="sd">    :param KeywordList keyword_list2: regulatory KeywordList</span>
 <span class="sd">    :param str doc1name: user document name</span>
-<span class="sd">    :param str doc2name:regulatory document name</span>
+<span class="sd">    :param str doc2name: regulatory document name</span>
 <span class="sd">    :return: void</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -565,10 +578,11 @@
 <span class="sd">    Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
 
 <span class="sd">    :param KeywordList keyword_list1: user KeywordList</span>
-<span class="sd">    :param KeywordList keyword_list1: regulatory KeywordList</span>
+<span class="sd">    :param KeywordList keyword_list2: regulatory KeywordList</span>
 <span class="sd">    :param str doc1name: user document name</span>
 <span class="sd">    :param str doc2name:regulatory document name</span>
 <span class="sd">    :return: void</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Clearing previous graph just to be safe</span>
@@ -633,6 +647,7 @@
 <span class="sd">    :param str doc1name: name of user document</span>
 <span class="sd">    :param str doc2name: name of regulatory document</span>
 <span class="sd">    :return: void</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Clearing previous graph just to be safe</span>
@@ -727,7 +742,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

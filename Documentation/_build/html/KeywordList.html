@@ -57,10 +57,23 @@
 <dt id="KeywordList.KeywordList">
 <em class="property">class </em><code class="descclassname">KeywordList.</code><code class="descname">KeywordList</code><a class="reference internal" href="_modules/KeywordList.html#KeywordList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="docutils">
+<dt>Summary: A KeywordList that contains a list of keywords. Within the class, it also contains</dt>
+<dd>unique keyword value, keyword score, yules k score, yules i score, average keyword 
+score and a document score.</dd>
+</dl>
 <dl class="method">
 <dt id="KeywordList.KeywordList.calculateavgscores">
 <code class="descname">calculateavgscores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.calculateavgscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.calculateavgscores" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: calculates a document’s average score values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -75,7 +88,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool.</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
 </tr>
 </tbody>
 </table>
@@ -85,36 +98,98 @@
 <dt id="KeywordList.KeywordList.getavgkeywordscore">
 <code class="descname">getavgkeywordscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.getavgkeywordscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getavgkeywordscore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: returns document’s average keyword score.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">average keyword score</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="KeywordList.KeywordList.getdocumentscore">
 <code class="descname">getdocumentscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.getdocumentscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getdocumentscore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: Returns document’s score.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">document score</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="KeywordList.KeywordList.getindexofword">
 <code class="descname">getindexofword</code><span class="sig-paren">(</span><em>keyword_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.getindexofword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getindexofword" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: returns index of a Keyword in the list of Keywords</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key_name</strong> (<em>str</em>) – keyword</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">keyword index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="KeywordList.KeywordList.getkeywordscore">
 <code class="descname">getkeywordscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.getkeywordscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getkeywordscore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: returns document’s keyword score.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">keyword score of document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="KeywordList.KeywordList.getyulesiscore">
 <code class="descname">getyulesiscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.getyulesiscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getyulesiscore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: returns document’s Yule’s i score.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Yule’s I score</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="KeywordList.KeywordList.getyuleskscore">
 <code class="descname">getyuleskscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/KeywordList.html#KeywordList.getyuleskscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getyuleskscore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: returns document’s Yule’s k score.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Yules K score</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rytpe:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -125,11 +200,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword</strong> (<em>object.</em>) – an instance of the class keyword</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword</strong> (<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><em>Keyword</em></a>) – an instance of the class keyword</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">none.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
 </tr>
 </tbody>
 </table>
@@ -185,7 +258,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

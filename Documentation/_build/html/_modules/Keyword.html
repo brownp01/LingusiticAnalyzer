@@ -50,7 +50,8 @@
 
 <div class="viewcode-block" id="Keyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword">[docs]</a><span class="k">class</span> <span class="nc">Keyword</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    summary: Class that stores a specific keyword and it&#39;s associated information</span>
+<span class="sd">    summary: Class that stores a specific keyword and it&#39;s associated information.</span>
+<span class="sd">             The constructor accepts the word, type, salience, frequency and keyscore.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nWord</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nType</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nSal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nFreq</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nKeyscore</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
@@ -66,74 +67,88 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_similarWordFrequency</span> <span class="o">=</span> <span class="mi">0</span>
 
 <div class="viewcode-block" id="Keyword.wordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.wordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">wordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the frequency value of a word</span>
+<span class="sd">        :rtype: int </span>
+<span class="sd">         &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span></div>
 
 <div class="viewcode-block" id="Keyword.similarwordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.similarwordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">similarwordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the frequency of a similar word in a document</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_similarWordFrequency</span></div>
-
-<div class="viewcode-block" id="Keyword.isinsimilarlist"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.isinsimilarlist">[docs]</a>    <span class="k">def</span> <span class="nf">isinsimilarlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: Checks if a given word is in the &quot;similarWords&quot; list</span>
-<span class="sd">        @param word:</span>
-<span class="sd">        @type word:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="Keyword.determinesimilarity"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.determinesimilarity">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">determinesimilarity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: Checks if the given word is semantically similar to the main keyword</span>
-<span class="sd">        @param word:</span>
-<span class="sd">        @type word:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="Keyword.distancetonearest"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.distancetonearest">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">distancetonearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: distance from main &quot;word&quot; to nearest instance of parameter word</span>
-<span class="sd">        @param word:</span>
-<span class="sd">        @type word:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="Keyword.distancefromkeywordtonearestkeyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.distancefromkeywordtonearestkeyword">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">distancefromkeywordtonearestkeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: distance from &quot;word&quot; OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS</span>
-<span class="sd">        @param word:</span>
-<span class="sd">        @type word:</span>
-<span class="sd">        @return:</span>
-<span class="sd">        @rtype:</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="Keyword.averagedistanceto"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.averagedistanceto">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">averagedistanceto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        &quot;@summary:  average distanceBetween main &quot;word&quot; and parameter word</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="Keyword.averagedistancefromkeywordtokeyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.averagedistancefromkeywordtokeyword">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">averagedistancefromkeywordtokeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: averga distance from &quot;word&quot; OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="Keyword.issimilar"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.issimilar">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">issimilar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passedWord</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        @summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class</span>
-<span class="sd">        @param passedWord: word</span>
-<span class="sd">        @type passedWord: string</span>
-<span class="sd">        @rtype: bool</span>
+<span class="sd">        summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class</span>
+<span class="sd">        </span>
+<span class="sd">        :param str passedWord: word</span>
+<span class="sd">        :return: boolean value of True or False</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">passedWord</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span></div></div>
 
         <span class="c1"># TODO: Implement some impressive algorithm here that checks synonyms?</span>
+
+
+    <span class="c1">#def isinsimilarlist(self, word):</span>
+       <span class="c1"># &quot;&quot;&quot;</span>
+       <span class="c1"># Summary: Checks if a given word is in the &quot;similarWords&quot; list</span>
+        <span class="c1">#@param word:</span>
+        <span class="c1">#@type word:</span>
+        <span class="c1">#@return:</span>
+        <span class="c1">#@rtype:</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+
+    <span class="c1">#@classmethod</span>
+    <span class="c1">#def determinesimilarity(self, word):</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+        <span class="c1">#Summary: Checks if the given word is semantically similar to the main keyword</span>
+        <span class="c1">#@param word:</span>
+        <span class="c1">#@type word:</span>
+        <span class="c1">#@return:</span>
+        <span class="c1">#@rtype:</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+
+    <span class="c1">#@classmethod</span>
+    <span class="c1">#def distancetonearest(self, word):</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+        <span class="c1">#Summary: distance from main &quot;word&quot; to nearest instance of parameter word</span>
+        <span class="c1">#@param word:</span>
+        <span class="c1">#@type word:</span>
+        <span class="c1">#@return:</span>
+        <span class="c1">#@rtype:</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+
+    <span class="c1">#@classmethod</span>
+    <span class="c1">#def distancefromkeywordtonearestkeyword(self, keyword):</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+        <span class="c1">#Summary: distance from &quot;word&quot; OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS</span>
+        <span class="c1">#@param word:</span>
+        <span class="c1">#@type word:</span>
+        <span class="c1">#@return:</span>
+        <span class="c1">#@rtype:</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+
+    <span class="c1">#@classmethod</span>
+    <span class="c1">#def averagedistanceto(self, word):</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+        <span class="c1">#&quot;@summary:  average distanceBetween main &quot;word&quot; and parameter word</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+
+    <span class="c1">#@classmethod</span>
+    <span class="c1">#def averagedistancefromkeywordtokeyword(self, keyword):</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+        <span class="c1">#Summary: averga distance from &quot;word&quot; OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+
+    
 </pre></div>
 
           </div>
@@ -170,7 +185,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

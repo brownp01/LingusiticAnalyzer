@@ -2,58 +2,52 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item analyze (module), \hyperpage{9}
-  \item analyze() (in module app), \hyperpage{11}
-  \item analyze\_functions (module), \hyperpage{7}
-  \item analyzeText() (in module analyze), \hyperpage{9}
-  \item app (module), \hyperpage{11}
-  \item appendtokeywordlist() (in module common\_functions), \hyperpage{5}
-  \item averagedistancefromkeywordtokeyword() (Keyword.Keyword class method), \hyperpage{1}
-  \item averagedistanceto() (Keyword.Keyword class method), \hyperpage{1}
+  \item analyze (module), \hyperpage{11}
+  \item analyze() (in module app), \hyperpage{13}
+  \item analyze\_functions (module), \hyperpage{9}
+  \item analyzeText() (in module analyze), \hyperpage{11}
+  \item app (module), \hyperpage{13}
 
   \indexspace
   \bigletter C
   \item calculateavgscores() (KeywordList.KeywordList method), \hyperpage{3}
-  \item calculatecomparisonscore() (in module analyze\_functions), \hyperpage{7}
-  \item calculatekeywordscore() (in module analyze\_functions), \hyperpage{7}
-  \item calculatescores() (in module analyze\_functions), \hyperpage{7}
-  \item calculateyulesscore() (in module analyze\_functions), \hyperpage{7}
-  \item checkSimilarity() (in module analyze), \hyperpage{9}
+  \item calculatecomparisonscore() (in module analyze\_functions), \hyperpage{9}
+  \item calculatekeywordscore() (in module analyze\_functions), \hyperpage{9}
+  \item calculatescores() (in module analyze\_functions), \hyperpage{9}
+  \item calculateyulesscore() (in module analyze\_functions), \hyperpage{9}
+  \item checkSimilarity() (in module analyze), \hyperpage{11}
   \item cleantext() (in module common\_functions), \hyperpage{5}
   \item common\_functions (module), \hyperpage{5}
-  \item comparisoninfo() (in module app), \hyperpage{11}
+  \item comparisoninfo() (in module app), \hyperpage{13}
   \item createkeywordfromgoogleapientity() (in module common\_functions), \hyperpage{5}
-  \item createObjects() (in module analyze), \hyperpage{9}
+  \item createObjects() (in module analyze), \hyperpage{11}
 
   \indexspace
   \bigletter D
-  \item declarelogger() (in module analyze\_functions), \hyperpage{7}
-  \item determinesimilarity() (Keyword.Keyword class method), \hyperpage{1}
-  \item distancefromkeywordtonearestkeyword() (Keyword.Keyword class method), \hyperpage{1}
-  \item distancetonearest() (Keyword.Keyword class method), \hyperpage{1}
+  \item declarelogger() (in module analyze\_functions), \hyperpage{9}
 
   \indexspace
   \bigletter E
   \item existsinlist() (KeywordList.KeywordList method), \hyperpage{3}
   \item extractkeywordfromtxt() (in module common\_functions), \hyperpage{5}
   \item extractmicrosoftdocxtext() (in module common\_functions), \hyperpage{5}
-  \item extractpdftext() (in module common\_functions), \hyperpage{5}
+  \item extractpdftext() (in module common\_functions), \hyperpage{6}
 
   \indexspace
   \bigletter G
   \item getavgkeywordscore() (KeywordList.KeywordList method), \hyperpage{3}
   \item getdocumentscore() (KeywordList.KeywordList method), \hyperpage{3}
-  \item geterrorpage() (in module common\_functions), \hyperpage{5}
+  \item geterrorpage() (in module common\_functions), \hyperpage{6}
   \item getindexofword() (KeywordList.KeywordList method), \hyperpage{3}
-  \item getkeywordscore() (KeywordList.KeywordList method), \hyperpage{3}
-  \item getkwfreeqimage() (in module app), \hyperpage{11}
-  \item getkwsalienceimage() (in module app), \hyperpage{11}
-  \item getkwscoresimage() (in module app), \hyperpage{11}
-  \item getregulatorydoctext() (in module common\_functions), \hyperpage{5}
+  \item getkeywordscore() (KeywordList.KeywordList method), \hyperpage{4}
+  \item getkwfreeqimage() (in module app), \hyperpage{13}
+  \item getkwsalienceimage() (in module app), \hyperpage{13}
+  \item getkwscoresimage() (in module app), \hyperpage{13}
+  \item getregulatorydoctext() (in module common\_functions), \hyperpage{6}
   \item getscorepage() (in module common\_functions), \hyperpage{6}
   \item getwordfrequency() (in module common\_functions), \hyperpage{6}
-  \item getyulesiscore() (KeywordList.KeywordList method), \hyperpage{3}
-  \item getyuleskscore() (KeywordList.KeywordList method), \hyperpage{3}
+  \item getyulesiscore() (KeywordList.KeywordList method), \hyperpage{4}
+  \item getyuleskscore() (KeywordList.KeywordList method), \hyperpage{4}
 
   \indexspace
   \bigletter H
@@ -61,11 +55,10 @@
 
   \indexspace
   \bigletter I
-  \item identifykeywords() (in module analyze\_functions), \hyperpage{7}
-  \item insertkeyword() (KeywordList.KeywordList method), \hyperpage{3}
-  \item interpretexistingfile() (in module common\_functions), \hyperpage{6}
-  \item interpretfile() (in module common\_functions), \hyperpage{6}
-  \item isinsimilarlist() (Keyword.Keyword method), \hyperpage{1}
+  \item identifykeywords() (in module analyze\_functions), \hyperpage{9}
+  \item insertkeyword() (KeywordList.KeywordList method), \hyperpage{4}
+  \item interpretexistingfile() (in module common\_functions), \hyperpage{7}
+  \item interpretfile() (in module common\_functions), \hyperpage{7}
   \item issimilar() (Keyword.Keyword class method), \hyperpage{1}
 
   \indexspace
@@ -74,59 +67,59 @@
   \item Keyword (module), \hyperpage{1}
   \item KeywordList (class in KeywordList), \hyperpage{3}
   \item KeywordList (module), \hyperpage{3}
-  \item kwhighestfrequencies() (in module common\_functions), \hyperpage{6}
-  \item kwhighestkeyscores() (in module common\_functions), \hyperpage{6}
+  \item kwhighestfrequencies() (in module common\_functions), \hyperpage{7}
+  \item kwhighestkeyscores() (in module common\_functions), \hyperpage{7}
 
   \indexspace
   \bigletter L
-  \item longstringtostringlist() (in module common\_functions), \hyperpage{6}
+  \item longstringtostringlist() (in module common\_functions), \hyperpage{7}
 
   \indexspace
   \bigletter M
-  \item main() (in module app), \hyperpage{11}
+  \item main() (in module app), \hyperpage{13}
 
   \indexspace
   \bigletter O
-  \item outputkeywordtotext() (in module common\_functions), \hyperpage{6}
+  \item outputkeywordtotext() (in module common\_functions), \hyperpage{7}
 
   \indexspace
   \bigletter P
-  \item plotkeywordfrequency() (in module common\_functions), \hyperpage{6}
-  \item plotkeywordsalience() (in module common\_functions), \hyperpage{6}
-  \item plotkeywordscores() (in module common\_functions), \hyperpage{6}
-  \item printStringList() (in module common\_functions), \hyperpage{7}
-  \item project() (in module app), \hyperpage{11}
+  \item plotkeywordfrequency() (in module common\_functions), \hyperpage{7}
+  \item plotkeywordsalience() (in module common\_functions), \hyperpage{8}
+  \item plotkeywordscores() (in module common\_functions), \hyperpage{8}
+  \item printStringList() (in module common\_functions), \hyperpage{8}
+  \item project() (in module app), \hyperpage{14}
 
   \indexspace
   \bigletter S
-  \item savefile() (in module common\_functions), \hyperpage{7}
-  \item scrapeText() (in module analyze), \hyperpage{9}
+  \item savefile() (in module common\_functions), \hyperpage{8}
+  \item scrapeText() (in module analyze), \hyperpage{11}
   \item similarwordfrequency() (Keyword.Keyword method), \hyperpage{1}
-  \item stringlisttolonglongstring() (in module common\_functions), \hyperpage{7}
+  \item stringlisttolonglongstring() (in module common\_functions), \hyperpage{8}
 
   \indexspace
   \bigletter T
-  \item test\_analyze() (unit\_tests.test\_analyze.TestAnalyze method), \hyperpage{13}
+  \item test\_analyze() (unit\_tests.test\_analyze.TestAnalyze method), \hyperpage{15}
   \item test\_ensurepdfanddocarereadthesame() (unit\_tests.test\_pdfanddocxarereadthesame.TestEnsurepdfanddocxarereadthesame method), 
-		\hyperpage{13}
+		\hyperpage{15}
   \item test\_extractmicrosoftdocxtext() (unit\_tests.test\_extractmicrosoftdocxtext.TestExtractmicrosoftdocxtext method), 
-		\hyperpage{13}
+		\hyperpage{15}
   \item test\_extractpdftext() (unit\_tests.test\_extractpdftext.TestExtractpdftext method), 
-		\hyperpage{13}
-  \item TestAnalyze (class in unit\_tests.test\_analyze), \hyperpage{13}
+		\hyperpage{15}
+  \item TestAnalyze (class in unit\_tests.test\_analyze), \hyperpage{15}
   \item TestEnsurepdfanddocxarereadthesame (class in unit\_tests.test\_pdfanddocxarereadthesame), 
-		\hyperpage{13}
+		\hyperpage{15}
   \item TestExtractmicrosoftdocxtext (class in unit\_tests.test\_extractmicrosoftdocxtext), 
-		\hyperpage{13}
-  \item TestExtractpdftext (class in unit\_tests.test\_extractpdftext), \hyperpage{13}
-  \item tokenize() (in module analyze\_functions), \hyperpage{8}
+		\hyperpage{15}
+  \item TestExtractpdftext (class in unit\_tests.test\_extractpdftext), \hyperpage{15}
+  \item tokenize() (in module analyze\_functions), \hyperpage{9}
 
   \indexspace
   \bigletter U
-  \item unit\_tests.test\_analyze (module), \hyperpage{13}
-  \item unit\_tests.test\_extractmicrosoftdocxtext (module), \hyperpage{13}
-  \item unit\_tests.test\_extractpdftext (module), \hyperpage{13}
-  \item unit\_tests.test\_pdfanddocxarereadthesame (module), \hyperpage{13}
+  \item unit\_tests.test\_analyze (module), \hyperpage{15}
+  \item unit\_tests.test\_extractmicrosoftdocxtext (module), \hyperpage{15}
+  \item unit\_tests.test\_extractpdftext (module), \hyperpage{15}
+  \item unit\_tests.test\_pdfanddocxarereadthesame (module), \hyperpage{15}
 
   \indexspace
   \bigletter W
@@ -134,6 +127,6 @@
 
   \indexspace
   \bigletter Y
-  \item yulesinfo() (in module app), \hyperpage{11}
+  \item yulesinfo() (in module app), \hyperpage{14}
 
 \end{sphinxtheindex}
