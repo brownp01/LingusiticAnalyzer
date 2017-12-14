@@ -1,23 +1,33 @@
-import os
-import PyPDF2
-import requests
 from flask import Flask
 from flask import Response, request
-from werkzeug.utils import secure_filename
 from flask import send_file
 from shutil import copyfileobj
 from tempfile import NamedTemporaryFile
 import logging
-from os import remove
 from functionsv1 import common_functions
 from functionsv1 import analyze_functions
+import sys
+import os
 
-# import textract
 
 UPLOAD_FOLDER = 'downloads/'
 
 app = Flask(__name__)
 loggerStart = 0
+
+def resource_path(relative_path):
+    """
+    Summary: Function to determine correct file path of directories for use within an IDE or executable.
+
+    :param str relative_path: the path of a directory relative to a local environment
+    :return: base_path in relation to executable environment and relative_path of local environment
+    :rtype: string
+
+    """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+VIEWS = resource_path("views/")
 
 
 @app.route('/')
@@ -31,7 +41,7 @@ def main():
     # Creating new log file every time the program starts.
     if common_functions.homeCount() == 0:
         analyze_functions.declarelogger()
-    f = open("views/index.html", "r")  # opens file with name of "index.html"
+    f = open(VIEWS + "index.html", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
 
 
@@ -44,7 +54,7 @@ def project():
     :rtype: html
     """
 
-    f = open("views/info.html", "r")  # opens file with name of "index.html"
+    f = open(VIEWS + "info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', 'Project Information').replace('#--DESCRIPTION--#',
                     "This Linguistic Analyzer lets the user upload a description document and compares that document \
                     against a regulatory document using Yule's k and Yule's i Algorithms, as well as a keyword scores algorithm.\

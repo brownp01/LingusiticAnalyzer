@@ -1,5 +1,0 @@
-INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [13/Dec/2017 12:54:39] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [13/Dec/2017 12:54:40] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [13/Dec/2017 12:54:40] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [13/Dec/2017 12:54:40] "GET /apple-touch-icon.png HTTP/1.1" 404 -

@@ -1,17 +1,14 @@
 import logging
 import os
-import sys
-from google.cloud import language
-from google.cloud import language_v1beta2
-from google.cloud.language import enums
-from google.cloud.language import types
+from google.cloud import language_v1
+from google.cloud.language_v1 import enums
+from google.cloud.language_v1 import types
 from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
 from KeywordList import KeywordList
 import collections
 import re
-from collections import Counter
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
 
@@ -22,9 +19,8 @@ def declarelogger():
     """
     if os.path.isfile(LOG_FILE_PATH):
         os.remove(LOG_FILE_PATH)
-    logging.basicConfig(filename=LOG_FILE_PATH, level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG) #filename=LOG_FILE_PATH
     logging.info("API started")
-
 
 #def isgarbageword(word):
     #"""
@@ -52,14 +48,21 @@ def identifykeywords(file_text):
 
     keyword_list = KeywordList()
 
-    client = language.LanguageServiceClient()
+    try:
+        client = language_v1.LanguageServiceClient()
+        logging.info("Authentication to Google NLP successful")
+
+    except Exception as e:
+        logging.info("Authentication to Google NLP failed")
 
     """Explicit call for authentication: Change file path of json file. Authentication is accepted but 
        does not function properly for the Google Language API"""
+
     #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
     #client = language.LanguageServiceClient(credentials=creds)
 
     # TODO: Maybe change this to long string? There is a chance that would crash the app with large documents though
+
     for i in range(0, len(file_text)):
 
         if isinstance(file_text[i], six.binary_type):
@@ -73,7 +76,16 @@ def identifykeywords(file_text):
 
         # Detects entities in the document. You can also analyze HTML with:
         #   document.type == enums.Document.Type.HTML
-        entities = client.analyze_entities(document).entities
+
+        try:
+            logging.info("Connecting to Google NLP API Entity Analysis...")
+
+            entities = client.analyze_entities(document).entities
+
+            logging.info("Google NLP API entity analysis successful")
+            
+        except Exception as e:
+            logging.info("Google NLP API entity analysis failed")
 
 
         # entity types from enums.Entity.Type
