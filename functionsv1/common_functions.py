@@ -16,6 +16,7 @@ import Keyword
 from KeywordList import KeywordList
 from matplotlib import pyplot
 import numpy as np
+import ctypes
 
 
 DOWNLOAD_FOLDER = 'downloads/'
@@ -172,7 +173,7 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
         text = output.getvalue()        # Worry - An incredibly long string may crash our application
         output.close
         # --------End of PDFMiner reading --------#
-        logging.disable(logging.NOTSET) # This re-enables logging
+        logging.disable(logging.NOTSET)  # This re-enables logging
         logging.info("PDF file processed")
 
         file_text = longstringtostringlist(text, 1024)  # Converting long string to list of strings of size 1024
@@ -240,7 +241,7 @@ def savefile(file, download_folder=None):
     logging.info('opening file "' + filename + '"')  # Logging
 
 
-def outputkeywordtotext(keylist):
+def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
     """
     This function will write Keywords from an analyzed document to a .txt file
 
@@ -249,7 +250,7 @@ def outputkeywordtotext(keylist):
     """
 
     # TODO create file using document title of originating keywords
-    file = open('Documents/Keywords.txt', 'w')
+    file = open(download_folder, 'w')
 
     for i in range(0, keylist.uniquekeywords):
         word = keylist.list[i].word

@@ -7,7 +7,11 @@ import logging
 import os
 
 # TODO: Fix downloads folder issue
-DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
+# DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
+
+# Must point this to your local test fileÎ
+DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
+/LinguisticAnalyzer/unit_tests/test_pdfs/'
 
 
 class TestExtractpdftext(TestCase):

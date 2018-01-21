@@ -3,12 +3,17 @@ from functionsv1 import common_functions
 from werkzeug import datastructures
 import logging
 
+PDF_DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
+/LinguisticAnalyzer/unit_tests/test_pdfs/'
+DOCX_DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
+/LinguisticAnalyzer/unit_tests/test_docxs/'
+
 
 # TODO: Fix downloads folder issue
-DOCX_DOWNLOADS_FOLDER = 'unit_tests/test_docxs/'
+# DOCX_DOWNLOADS_FOLDER = 'unit_tests/test_docxs/'
 
 # TODO: Fix downloads folder issue
-PDF_DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
+# PDF_DOWNLOADS_FOLDER = 'unit_tests/test_pdfs/'
 
 class TestEnsurepdfanddocxarereadthesame(TestCase):
     def test_ensurepdfanddocarereadthesame(self):
