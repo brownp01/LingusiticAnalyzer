@@ -180,7 +180,7 @@ def calculateyulesscore(file_text):
         k = 10000/i
     except ZeroDivisionError as e:
         logging.warning("Error: division by zero. Yule's algorithm not completed. Returning -1.")
-        return -1
+        return -1, -1
     return round(k, 2), round(i, 2)
 
 

@@ -61,7 +61,6 @@ def step_impl(context, start):
     startCucumbers = start
 
 
-
 @when("I eat {eat} cucumbers")
 def step_impl(context, eat):
     """
@@ -81,3 +80,26 @@ def step_impl(context, left):
     """
     global leftCucumbers
     assert float(leftCucumbers) == float(left)
+
+
+@given("I have something")
+def step_impl(context):
+    """
+    @type context: behave.runner.Context
+    """
+
+
+@given("I have do not have something")
+def step_impl(context):
+    """
+    @type context: behave.runner.Context
+    """
+    pass
+
+
+@then("everything is fine")
+def step_impl(context):
+    """
+    @type context: behave.runner.Context
+    """
+    pass

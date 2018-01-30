@@ -1,0 +1,12 @@
+processing and comparing 10_page_kafka.pdf and small_sample_reword.pdf took 3.078815 seconds.
+10_page_kafka.pdf:147||small_sample_reword.pdf:4
+processing and comparing 10_page_hipsum.pdf and small_sample_reword.pdf took 2.9975430000000003 seconds.
+10_page_hipsum.pdf:817||small_sample_reword.pdf:4
+processing and comparing 100_page_kafka.pdf and small_sample_reword.pdf took 38.240263999999996 seconds.
+100_page_kafka.pdf:309||small_sample_reword.pdf:4
+processing and comparing BSI_14971_Application_of_risk_management_to_medical_devices.pdf and small_sample_reword.pdf took 49.230678999999995 seconds.
+BSI_14971_Application_of_risk_management_to_medical_devices.pdf:2476||small_sample_reword.pdf:4
+processing and comparing BSI_14971_Application_of_risk_management_to_medical_devices.pdf and BSI 14971 Application of risk management to medical devices (2012).pdf took 93.108337 seconds.
+BSI_14971_Application_of_risk_management_to_medical_devices.pdf:2476||BSI 14971 Application of risk management to medical devices (2012).pdf:2529
+processing and comparing 10_page_kafka.pdf and simple_description.pdf took 2.9565390000000003 seconds.
+10_page_kafka.pdf:147||simple_description.pdf:11

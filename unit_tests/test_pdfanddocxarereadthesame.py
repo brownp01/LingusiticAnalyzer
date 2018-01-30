@@ -2,6 +2,7 @@ from unittest import TestCase
 from functionsv1 import common_functions
 from werkzeug import datastructures
 import logging
+import time
 
 PDF_DOWNLOADS_FOLDER = '/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\
 /LinguisticAnalyzer/unit_tests/test_pdfs/'
@@ -29,6 +30,10 @@ class TestEnsurepdfanddocxarereadthesame(TestCase):
         pdftesttilename = 'test_extractpdftext.pdf'
         longlongpdffiletext = ''
         longlongdocxfiletext = ''
+        start_time = 0.0
+        end_time = 0.0
+
+        start_time = time.clock()
 
         try:
             try:
@@ -74,6 +79,8 @@ class TestEnsurepdfanddocxarereadthesame(TestCase):
             self.assertTrue(len(longlongpdffiletext) != 0)
             self.assertTrue(len(longlongdocxfiletext) != 0)
             self.assertEqual(longlongdocxfiletext, longlongpdffiletext)
+            end_time = time.clock()
+            print(end_time - start_time)
 
         except Exception as e:
             logging.info("Unknown exception. Test failed.")

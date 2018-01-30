@@ -9,6 +9,7 @@ from functionsv1 import analyze_functions
 import sys
 import os
 import ctypes
+import time
 
 
 UPLOAD_FOLDER = 'downloads/'
@@ -70,7 +71,9 @@ def analyze():
     :return: Information regarding the uploaded document's similarity to regulatory document
     :rtype: html
     """
-
+    start_time = time.clock()
+    regfilename = ''
+    filename = ''
     try:
 
         regfilename = request.form.get('regdocname')
@@ -90,6 +93,7 @@ def analyze():
         else:
             # --------------------------PROCESS USER DOCUMENT---------------------------- #
             file = request.files['datafile']
+            filename = file.filename
             if request.headers.has_key('Test') and request.headers["Test"] == "True":
                 localuploadfolder = 'unit_tests/test_pdfs/'
 
@@ -105,13 +109,18 @@ def analyze():
                 common_functions.plotkeywordfrequency(keyword_list, reg_keyword_list, file.filename, regfilename)
                 returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
-
             else:
                 logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
                 returnhtml = common_functions.geterrorpage()
 
+            end_time = time.clock()
+            common_functions.printanalytics('processing and comparing ' + filename + ' and ' + regfilename + ' took ' + \
+                                            str(end_time - start_time) + ' seconds.\n' + filename + ':' + \
+                                            str(len(keyword_list.list)) + '||' + regfilename + ':' + \
+                                            str(len(reg_keyword_list.list)) + '\n')
+
     except Exception as e:
-        returnhtml = common_functions.geterrorpage('An unknown error has occured')
+        returnhtml = common_functions.geterrorpage('An unknown error has occurred')
 
     return Response(returnhtml, mimetype='text/html')
 

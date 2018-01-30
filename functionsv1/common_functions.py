@@ -21,6 +21,7 @@ import ctypes
 
 DOWNLOAD_FOLDER = 'downloads/'
 REGULATOR_FOLDER = 'RegulatoryDocuments/'
+DOCUMENTS_FOLDER = 'Documents/'
 
 def homeCount():
     """
@@ -657,6 +658,18 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
     # pyplot.show()
 
+
+def printanalytics(printstr):
+    """
+        prints the data passed in te argument to the ever-increasing file that contains data analytics information
+
+        :param str printstr: string to output to file
+        :return: void
+
+        """
+    f = open(DOCUMENTS_FOLDER + 'Analytics.txt', 'a+')
+    f.write(printstr)
+    f.close()
 
 
 

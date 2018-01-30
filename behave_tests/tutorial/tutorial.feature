@@ -27,3 +27,8 @@ Feature: Showing off behave
   Examples:
     | start | eat | left|
     | 12    | 5   | 7   |
+    | 10    | 2   | 8   |
+
+
+    Given I have do not have something
+    Then everything is fine
