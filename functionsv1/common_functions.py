@@ -14,6 +14,8 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 import Keyword
 from KeywordList import KeywordList
+import matplotlib
+matplotlib.use('agg',warn=False, force=True)
 from matplotlib import pyplot
 import numpy as np
 import ctypes
@@ -37,7 +39,7 @@ def homeCount():
 homeCount.counter = 0
 
 
-# going to handle all the mess that is in app.py
+# going to handle all the mess that is in application.py
 def interpretfile(file, localuploadfolder):
     """
         Parses uploaded file's text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects

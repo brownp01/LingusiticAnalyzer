@@ -14,7 +14,7 @@ import time
 
 UPLOAD_FOLDER = 'downloads/'
 
-app = Flask(__name__)
+application = Flask(__name__)
 loggerStart = 0
 
 def resource_path(relative_path):
@@ -32,7 +32,7 @@ def resource_path(relative_path):
 VIEWS = resource_path("views/")
 
 
-@app.route('/')
+@application.route('/')
 def main():
     """
     Home page of the Linguistic Analyzer API
@@ -47,7 +47,7 @@ def main():
     return Response(f.read(), mimetype='text/html')
 
 
-@app.route('/project')
+@application.route('/project')
 def project():
     """
     Returns an html page containing details about the Linguistic Analyzer project.
@@ -63,7 +63,7 @@ def project():
                     The results of the calculations are then displayed graphically to the user."), mimetype='text/html')
 
 
-@app.route('/analyze', methods=['POST'])
+@application.route('/analyze', methods=['POST'])
 def analyze():
     """
     Receives uploaded document and comparison document choice and executes logic to compare them.
@@ -125,7 +125,7 @@ def analyze():
     return Response(returnhtml, mimetype='text/html')
 
 
-@app.route('/keywordsalienceimage', methods=['GET'])
+@application.route('/keywordsalienceimage', methods=['GET'])
 def getkwsalienceimage():
     """
     Returns png image of a graph of top salience keywords
@@ -142,7 +142,7 @@ def getkwsalienceimage():
     return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
 
 
-@app.route('/keywordscoresimage', methods=['GET'])
+@application.route('/keywordscoresimage', methods=['GET'])
 def getkwscoresimage():
     """
     Returns png image of a graph of keyword scores
@@ -159,7 +159,7 @@ def getkwscoresimage():
     return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
 
 
-@app.route('/keywordfrequencyimage', methods=['GET'])
+@application.route('/keywordfrequencyimage', methods=['GET'])
 def getkwfreeqimage():
     """
     Returns Keyword frequency graph
@@ -176,7 +176,7 @@ def getkwfreeqimage():
     return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
 
 
-@app.route('/yulesinfo', methods=['GET'])
+@application.route('/yulesinfo', methods=['GET'])
 def yulesinfo():
     """
     Yule's Info
@@ -192,7 +192,7 @@ def yulesinfo():
         a way to compare an uploaded document's significance against the significance of a regulatory text."),mimetype='text/html')
 
 
-@app.route('/comparisoninfo', methods=['GET'])
+@application.route('/comparisoninfo', methods=['GET'])
 def comparisoninfo():
     """
     Comparison Information
@@ -210,4 +210,4 @@ def comparisoninfo():
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
