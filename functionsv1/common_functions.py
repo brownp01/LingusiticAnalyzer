@@ -19,11 +19,14 @@ matplotlib.use('agg',warn=False, force=True)
 from matplotlib import pyplot
 import numpy as np
 import ctypes
+import datetime
 
 
 DOWNLOAD_FOLDER = 'downloads/'
 REGULATOR_FOLDER = 'RegulatoryDocuments/'
 DOCUMENTS_FOLDER = 'Documents/'
+VIEWS_FOLDER = 'views/'
+
 
 def homeCount():
     """
@@ -99,6 +102,9 @@ def getscorepage(kw_list, reg_kw_list):
     :rtype: str
 
     """
+    f_ana = open('Documents/Analytics.txt', 'r')
+    analytics_text = f_ana.read()
+
     f = open("views/score_response.html", "r")
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
         replace('#--YULESK_SCORE--#', str(kw_list.getyuleskscore()))\
@@ -106,7 +112,8 @@ def getscorepage(kw_list, reg_kw_list):
         .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list))) \
         .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
         .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
-        .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore()))
+        .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore())) \
+        .replace('<p>MOST RECENT LOG:</p>', '<p>MOST RECENT LOG:</p>' + analytics_text)
 
     f.close()
     return returnhtml
@@ -143,7 +150,7 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
     file_text = []
     filename = file.filename
-
+    chunk_size = 10000
     try:
         # -- This is for testing, do not remove -- #
         if testdownload_folder is None and RegDoc is False:
@@ -179,7 +186,9 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
         logging.disable(logging.NOTSET)  # This re-enables logging
         logging.info("PDF file processed")
 
-        file_text = longstringtostringlist(text, 1024)  # Converting long string to list of strings of size 1024
+        file_text = longstringtostringlist(text, chunk_size)  # Converting long string to list of strings of size ____
+
+
 
     except FileNotFoundError as fnfe:
         logging.info("**-- ERROR: unable to find file file --**")
@@ -661,7 +670,7 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
     # pyplot.show()
 
 
-def printanalytics(printstr):
+def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime):
     """
         prints the data passed in te argument to the ever-increasing file that contains data analytics information
 
@@ -669,8 +678,19 @@ def printanalytics(printstr):
         :return: void
 
         """
-    f = open(DOCUMENTS_FOLDER + 'Analytics.txt', 'a+')
-    f.write(printstr)
+
+    printstr = '<p>PROCESSING: "' + filename + '" AGAINST "' + regfilename + '"</p> <p>(' + \
+    str(round(calctime, 3)) + ' seconds)</p>\n<p>' + \
+    'KEYWORDS EXTRACTED: ' + \
+    filename + ' : ' + str(len(keywordlist.list)) + '------' + \
+    regfilename + ':' + str(len(regkeywordlist.list)) + '</p><p>----------------</p>'
+
+    f = open(DOCUMENTS_FOLDER + 'Analytics.txt', 'r+')
+    text = f.read()
+    f.close()
+
+    f = open(DOCUMENTS_FOLDER + 'Analytics.txt', 'w')
+    f.write(printstr + text)
     f.close()
 
 

@@ -9,6 +9,8 @@ import six
 from KeywordList import KeywordList
 import collections
 import re
+from google.cloud import storage
+
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
 
@@ -49,7 +51,12 @@ def identifykeywords(file_text):
     keyword_list = KeywordList()
 
     try:
+        # TODO: THINGS FAIL HERE WHEN HOSTED
         client = language_v1.LanguageServiceClient()
+
+        # TODO: TRY THIS
+        #client = storage.Client.from_service_account_json('/Users/tlblanton/Documents/googleNLP.json')
+
         logging.info("Authentication to Google NLP successful")
 
     except Exception as e:

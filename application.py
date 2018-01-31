@@ -71,6 +71,7 @@ def analyze():
     :return: Information regarding the uploaded document's similarity to regulatory document
     :rtype: html
     """
+
     start_time = time.clock()
     regfilename = ''
     filename = ''
@@ -114,10 +115,8 @@ def analyze():
                 returnhtml = common_functions.geterrorpage()
 
             end_time = time.clock()
-            common_functions.printanalytics('processing and comparing ' + filename + ' and ' + regfilename + ' took ' + \
-                                            str(end_time - start_time) + ' seconds.\n' + filename + ':' + \
-                                            str(len(keyword_list.list)) + '||' + regfilename + ':' + \
-                                            str(len(reg_keyword_list.list)) + '\n')
+            common_functions.printanalytics(filename, regfilename, keyword_list, reg_keyword_list, end_time-start_time)
+            returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
     except Exception as e:
         returnhtml = common_functions.geterrorpage('An unknown error has occurred')
