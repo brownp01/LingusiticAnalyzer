@@ -367,16 +367,15 @@ def createkeywordfromgoogleapientity(entity, file_text):
     :rtype: Keyword
     """
 
-    eName = entity.name
-    eType = entity.type
-    eSal = entity.salience
+    eName = entity['name']
+    eType = entity['type']
+    eSal = entity['salience']
     eFreq = getwordfrequency(eName, file_text)
 
-    # newKeyword = Keyword.creacreatenewkeyword_overload_1(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)
     newKeyword = Keyword.Keyword(eName.upper(), eType, eSal, eFreq, 0)  # the value 0 refers to default keywordscore
 
-    for key, value in entity.metadata.items():
-        newKeyword.metadata[key] = value
+    #for key, value in entity.metadata.items():
+        #newKeyword.metadata[key] = value
     return newKeyword
 
 

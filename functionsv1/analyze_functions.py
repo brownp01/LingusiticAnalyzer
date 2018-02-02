@@ -1,19 +1,15 @@
 import logging
 import os
-from google.cloud import language_v1
-from google.cloud.language_v1 import enums
-from google.cloud.language_v1 import types
-from oauth2client.service_account import ServiceAccountCredentials
 from functionsv1 import common_functions
 import six
 from KeywordList import KeywordList
 import collections
 import re
-from google.cloud import storage
-
+import requests
+import json
 
 LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
-
+KEY = os.environ.get('API_KEY') #Google NLP API Key stored as an environmental variable.
 
 def declarelogger():
     """
@@ -45,28 +41,10 @@ def identifykeywords(file_text):
     """
     """Detects entities in the text."""
 
-    """implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= "/path/to/json file" 
-        in bash.profile and bash.profile_pysave"""
+    """For use on a local machine: add export API_KEY="your API key" in bash.profile"""
+    """for use in AWS: enter API_KEY with key value in configuration settings"""
 
     keyword_list = KeywordList()
-
-    try:
-        # TODO: THINGS FAIL HERE WHEN HOSTED
-        client = language_v1.LanguageServiceClient()
-
-        # TODO: TRY THIS
-        #client = storage.Client.from_service_account_json('/Users/tlblanton/Documents/googleNLP.json')
-
-        logging.info("Authentication to Google NLP successful")
-
-    except Exception as e:
-        logging.info("Authentication to Google NLP failed")
-
-    """Explicit call for authentication: Change file path of json file. Authentication is accepted but 
-       does not function properly for the Google Language API"""
-
-    #creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/Paul/Documents/googleNLP.json')
-    #client = language.LanguageServiceClient(credentials=creds)
 
     # TODO: Maybe change this to long string? There is a chance that would crash the app with large documents though
 
@@ -75,19 +53,14 @@ def identifykeywords(file_text):
         if isinstance(file_text[i], six.binary_type):
             file_text[i] = file_text[i].decode('utf-8')
 
-            # Instantiates a plain text document.
-            # [START migration_analyze_entities]
-        document = types.Document(
-            content=file_text[i],
-            type=enums.Document.Type.PLAIN_TEXT)
-
-        # Detects entities in the document. You can also analyze HTML with:
-        #   document.type == enums.Document.Type.HTML
-
         try:
             logging.info("Connecting to Google NLP API Entity Analysis...")
 
-            entities = client.analyze_entities(document).entities
+            url = "https://language.googleapis.com/v1/documents:analyzeEntities?key="+KEY
+            d= {"encodingType": "UTF8", "document": {"type": "PLAIN_TEXT","content": file_text[i]}}
+
+            r = requests.post(url, json=d)
+            entities = json.loads(r.text)
 
             logging.info("Google NLP API entity analysis successful")
             
@@ -95,11 +68,7 @@ def identifykeywords(file_text):
             logging.info("Google NLP API entity analysis failed")
 
 
-        # entity types from enums.Entity.Type
-        entity_type = ('UNKNOWN', 'PERSON', 'LOCATION', 'ORGANIZATION',
-                       'EVENT', 'WORK_OF_ART', 'CONSUMER_GOOD', 'OTHER')
-
-        for entity in entities:
+        for entity in entities['entities']:
             keyword_list.insertkeyword(common_functions.createkeywordfromgoogleapientity(entity, file_text))
 
     return keyword_list

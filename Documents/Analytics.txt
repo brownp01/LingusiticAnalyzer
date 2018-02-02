@@ -1,4 +1,6 @@
-<p>PROCESSING: "small_sample.pdf" AGAINST "small_sample_reword.pdf"</p> <p>(1.005 seconds)</p>
+<p>PROCESSING: "simple_description.pdf" AGAINST "simple_description_name_switch.pdf"</p> <p>(1.046 seconds)</p>
+<p>KEYWORDS EXTRACTED: simple_description.pdf : 11------simple_description_name_switch.pdf:11</p><p>----------------</p><p>PROCESSING: "small_sample_reword.pdf" AGAINST "small_sample.pdf"</p> <p>(1.119 seconds)</p>
+<p>KEYWORDS EXTRACTED: small_sample_reword.pdf : 4------small_sample.pdf:4</p><p>----------------</p><p>PROCESSING: "small_sample.pdf" AGAINST "small_sample_reword.pdf"</p> <p>(1.005 seconds)</p>
 <p>KEYWORDS EXTRACTED: small_sample.pdf : 4------small_sample_reword.pdf:4</p><p>----------------</p><p>PROCESSING: "film_paper.pdf" AGAINST "small_sample.pdf"</p> <p>(5.323 seconds)</p>
 <p>KEYWORDS EXTRACTED: film_paper.pdf : 447------small_sample.pdf:4</p><p>----------------</p><p>PROCESSING: "film_paper.pdf" AGAINST "small_sample.pdf"</p> <p>(5.155 seconds)</p>
 <p>KEYWORDS EXTRACTED: film_paper.pdf : 447------small_sample.pdf:4</p><p>----------------</p><p>PROCESSING: "small_sample.pdf" AGAINST "small_sample_reword.pdf"</p> <p>(1.301 seconds)</p>
