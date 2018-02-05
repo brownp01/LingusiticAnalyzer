@@ -646,7 +646,7 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
         pyplot.bar(x, y)
         pyplot.clf()
         pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
-        pyplot.savefig(DOWNLOAD_FOLDER + 'topwordfrequency.png')
+        pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
         return
     x = np.arange(len(my_xticks))
     # colors = np.random.rand(d)

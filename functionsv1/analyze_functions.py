@@ -17,7 +17,7 @@ def declarelogger():
     """
     if os.path.isfile(LOG_FILE_PATH):
         os.remove(LOG_FILE_PATH)
-    logging.basicConfig(level=logging.DEBUG) #filename=LOG_FILE_PATH
+    logging.basicConfig(level=logging.DEBUG, filename=LOG_FILE_PATH) #filename=LOG_FILE_PATH
     logging.info("API started")
 
 #def isgarbageword(word):

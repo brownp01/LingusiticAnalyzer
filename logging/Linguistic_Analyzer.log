@@ -1,0 +1,18 @@
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2018 16:23:51] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:opening regulatory document
+INFO:root:PDF file processed
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2018 16:24:02] "POST /analyze HTTP/1.1" 200 -
