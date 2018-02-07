@@ -1,16 +1,3 @@
-<!--<!DOCTYPE html>
-<html>
-<body>
-
-<h1>Linguistic Analyzer</h1>
-<h3>University of Colorado Denver 2017-2018</h3>
-<h5><b>Tyler Blanton  |  Paul Brown</b></h5>
-
-
-</body>
-</html>
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +6,52 @@
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
 </head>
+
+
+<style>
+    .yulesinfo {
+        box-sizing: border-box;
+        width: 675px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 4px solid #333333;
+    }
+    .uploadyulesk {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+    }
+    .regyulesk {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+    }
+    .uploadyulesi {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+    }
+    .regyulesi {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+    }
+    .yulesklabel {
+        width: 520px;
+    }
+    .yulesilabel {
+        padding-top: 20px;
+    }
+
+</style>
+
+
 
 <body>
 
@@ -29,150 +61,161 @@
             <h3 class="text-info" align="right">Linguistic Analyzer</h3>
         </div>
 
-
         <div class="jumbotron">
-            <h1>Processing complete!</h1>
-            <!--<p class="lead"></p>
-            <div class="d-inline-block">
-                <h2><u>Document Score: </u></h2>
-            </div>
-            <div class="d-inline-block">
-                <h2 style="color: crimson">#--DOCUMENT_SCORE--#</h2>
+            <!--h5 align="right">Processing complete!</h5-->
+
+
+
+            <div class="yulesinfo" >
+            <table>
+                <tr>
+                    <div class = yuleskarea>
+                    <td>
+                        <h6 class="yulesklabel" align="left"><b><u>Yule's k Score</u></b></h6>
+                    </td>
+                    <td>
+                        <!--YULES INFO BUTTON-->
+                        <form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
+                        <div align="right">
+                        <input class="btn btn-small btn-info" type="submit" value="What is this?">
+                        </div>
+                        </form>
+                    </td>
+                    </div>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>
+                        <div class = "uploadyulesk" style="background-color: #70a0d0">
+                            <h6><u>Uploaded Doc: </u>#--YULESK_SCORE--#</h6>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class = "regyulesk" style="background-color: #70a0d0">
+                            <h6><u>Regulatory Doc: </u>#--REG_YULESK_SCORE--#</h6>
+                        </div>
+                    </td>
+
+
+                </tr>
+
+            </table>
+
+
+                <h6 class="yulesilabel" align="left"><b><u>Yule's i Score</u></b></h6>
+
+            <table>
+                <tr>
+                    <td>
+                        <div class = "uploadyulesi" style="background-color: #408090">
+                            <h6><u>Uploaded Doc: </u>#--YULESI_SCORE--#</h6>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class = "regyulesi" style="background-color: #408090">
+                            <h6><u>Regulatory Doc: </u>#--REG_YULESI_SCORE--#</h6>
+                        </div>
+                    </td>
+
+                </tr>
+
+            </table>
             </div>
 
-            -->
-            <hr>
 
-            <!--
+
+
+
+
+
+
+
+
+
+<!--
+            <h3 align="center"><u>Yule's k Score</u></h3>
+
             <p class="lead"></p>
             <div class="d-inline-block">
-                <h2><u>Average User Doc Keyword Score: </u></h2>
-
-
-            </div>
+                <h4>Uploaded Doc: </h4></div>
             <div class="d-inline-block">
-                <h2 style="color: crimson">#--KEYWORD_SCORE--#</h2>
+                <h4 style="color: crimson">#--YULESK_SCORE--#</h4>
             </div>
 
             <br>
-            <hr>
-            -->
 
-            <h1 align="center"><u>Yule's k Score</u></h1>
+            <div class="d-inline-block">
+                <h4>Regulatory Doc: </h4></div>
+            <div class="d-inline-block">
+                <h4 style="color: crimson">#--REG_YULESK_SCORE--#</h4>
+            </div>
+
+            <h3 align="center"><u>Yule's i Score</u></h3>
+
+            <div class="d-inline-block">
+                <h4>Uploaded Doc: </h4></div>
+            <div class="d-inline-block">
+                <h4 style="color: crimson">#--YULESI_SCORE--#</h4>
+            </div>
+
+            <br>
+
+            <div class="d-inline-block">
+                <h4>Regulatory Doc: </h4></div>
+            <div class="d-inline-block">
+                <h4 style="color: crimson">#--REG_YULESI_SCORE--#</h4>
+            </div>
+-->
+
+            <!--YULES INFO BUTTON-->
+            <!--form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
+                        <div align="right">
+                        <input class="btn btn-small btn-info" type="submit" value="What is this?">
+                        </div>
+                        </form-->
+
+
+
 
             <p class="lead"></p>
             <div class="d-inline-block">
-                <h2>Uploaded Doc: </h2></div>
+                <h5><b><u>Comparison Score: </u></b></h5></div>
             <div class="d-inline-block">
-                <h2 style="color: crimson">#--YULESK_SCORE--#</h2>
+                <h5 style="color: crimson">#--COMPARISON_SCORE--#</h5>
             </div>
 
-            <br>
-
-            <div class="d-inline-block">
-                <h2>Regulatory Doc: </h2></div>
-            <div class="d-inline-block">
-                <h2 style="color: crimson">#--REG_YULESK_SCORE--#</h2>
-            </div>
-
-            <h1 align="center"><u>Yule's i Score</u></h1>
-
-            <div class="d-inline-block">
-                <h2>Uploaded Doc: </h2></div>
-            <div class="d-inline-block">
-                <h2 style="color: crimson">#--YULESI_SCORE--#</h2>
-            </div>
-
-            <br>
-
-            <div class="d-inline-block">
-                <h2>Regulatory Doc: </h2></div>
-            <div class="d-inline-block">
-                <h2 style="color: crimson">#--REG_YULESI_SCORE--#</h2>
-            </div>
-
-
-            <!--Yules info button-->
-            <form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
+            <!--Comparison INFO BUTTONS-->
+            <!--form action="/comparisoninfo" enctype="multipart/form-data" method="get" about="more info">
             <div align="right">
-                <input class="btn btn-lg btn-info" type="submit" value="What is this?">
+                <input class="btn btn-small btn-info" type="submit" value="What is this?">
             </div>
-            </form>
+            </form-->
 
             <hr>
 
-            <p class="lead"></p>
-            <div class="d-inline-block">
-                <h2><u>Comparison Score: </u></h2></div>
-            <div class="d-inline-block">
-                <h2 style="color: crimson">#--COMPARISON_SCORE--#</h2>
-            </div>
-
-            <!--Comparison info button-->
-            <form action="/comparisoninfo" enctype="multipart/form-data" method="get" about="more info">
-            <div align="right">
-                <input class="btn btn-lg btn-info" type="submit" value="What is this?">
-            </div>
-            </form>
-
-            <hr>
-
-            <br>
-            <br>
 
 
         <table>
-            <colgroup>
-            <col>
-            <col>
-            </colgroup>
+
             <tr>
-                <th><h4><u>Downloads</u></h4></th>
+                <th><h6><u>Downloads</u></h6></th>
             </tr>
             <tr>
                 <td>
                     <form action="/keywordsalienceimage" enctype="multipart/form-data" method="get">
                     <div>
-                        <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Salience Graph">
+                        <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Salience Graph">
                     </div>
                     </form>
                 </td>
                 <td>
                     <form action="/linguistic_analyzer_log" enctype="multipart/form-data" method="get">
                         <div>
-                        <input class="btn btn-lg btn-link" type="submit" value="Download Session Log">
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <form action="/keywordsalienceimage" enctype="multipart/form-data" method="get">
-                    <div>
-                        <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Salience Graph">
-                    </div>
-                    </form>
-                </td>
-                <td>
-                    <form action="/user_doc_kws" enctype="multipart/form-data" method="get">
-                        <div>
-                        <input class="btn btn-lg btn-link" type="submit" value="Download User Document Keyword Log">
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                     <form action="/keywordscoresimage" enctype="multipart/form-data" method="get">
-                        <div>
-                            <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Scores Graph">
-                        </div>
-                    </form>
-                </td>
-                <td>
-                    <form action="/reg_doc_kws" enctype="multipart/form-data" method="get">
-                        <div>
-                        <input class="btn btn-lg btn-link" type="submit" value="Download Comparison Document Keyword Log">
+                        <input class="btn btn-small btn-link" type="submit" value="Download Session Log">
                         </div>
                     </form>
                 </td>
@@ -181,10 +224,36 @@
                 <td>
                     <form action="/keywordfrequencyimage" enctype="multipart/form-data" method="get">
                     <div>
-                        <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Frequency Graph">
+                        <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Frequency Graph">
                     </div>
                     </form>
                 </td>
+                <td>
+                    <form action="/user_doc_kws" enctype="multipart/form-data" method="get">
+                        <div>
+                        <input class="btn btn-small btn-link" type="submit" value="Download User Document Keyword Log">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     <form action="/keywordscoresimage" enctype="multipart/form-data" method="get">
+                        <div>
+                            <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Scores Graph">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/reg_doc_kws" enctype="multipart/form-data" method="get">
+                        <div>
+                        <input class="btn btn-small btn-link" type="submit" value="Download Comparison Document Keyword Log">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+
             </tr>
         </table>
 
@@ -192,7 +261,7 @@
             <p>
             <div style="height:180px;width:1050px;border:3px solid #ccc;font:10px/10px Georgia, Garamond, Serif;overflow
             :auto;">
-            <h6>ANALYTICS LOG:</h6>
+            <p>ANALYTICS LOG - last 100 lines:</p>
 
 
             </div>
@@ -210,13 +279,12 @@
 
         <div class="row marketing">
             <div class="col-lg-6">
-                <h4>Authors</h4>
-                <p>Tyler Blanton</p>
-                <p>Paul Brown</p>
+                <h5>Authors</h5>
+                <p>Tyler Blanton, Paul Brown</p>
             </div>
 
             <div class="col-lg-6">
-                <h4>Client</h4>
+                <h5>Client</h5>
                 <p>Benjamin Pope</p>
 
             </div>

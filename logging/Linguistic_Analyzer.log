@@ -1,5 +1,23 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:25:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Feb/2018 12:05:48] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "film_paper.pdf"
+INFO:root:"film_paper.pdf" saved
+INFO:root:opening file "film_paper.pdf"
+INFO:root:PDF file processed
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:opening regulatory document
+INFO:root:PDF file processed
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:werkzeug:127.0.0.1 - - [07/Feb/2018 12:06:42] "POST /analyze HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [07/Feb/2018 12:12:37] "GET / HTTP/1.1" 200 -
 INFO:root:Started in Analyze
 INFO:root:saving file "simple_description.pdf"
 INFO:root:"simple_description.pdf" saved
@@ -15,18 +33,22 @@ INFO:root:Connecting to Google NLP API Entity Analysis...
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
 DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
 INFO:root:Google NLP API entity analysis successful
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:07] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:10] "GET /linguistic_analyzer_log? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:16] "GET /user_doc_kws? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:17] "GET /user_doc_kws? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:22] "GET /reg_doc_kws? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:25] "GET /keywordsalienceimage? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:29] "GET /keywordsalienceimage? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:33] "GET /keywordscoresimage? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:36] "GET /keywordfrequencyimage? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:26:36] "GET /keywordfrequencyimage? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [06/Feb/2018 17:27:27] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Feb/2018 12:12:45] "POST /analyze HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [07/Feb/2018 12:27:40] "GET / HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "BSI_14971_Application_of_risk_management_to_medical_devices_copy.pdf"
-INFO:root:"BSI_14971_Application_of_risk_management_to_medical_devices_copy.pdf" saved
-INFO:root:opening file "BSI_14971_Application_of_risk_management_to_medical_devices_copy.pdf"
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:opening regulatory document
+INFO:root:PDF file processed
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:werkzeug:127.0.0.1 - - [07/Feb/2018 12:27:57] "POST /analyze HTTP/1.1" 200 -

@@ -233,7 +233,7 @@ def yulesinfo():
     """
     f = open("views/info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', "Yule's k and Yule's i algorithms")\
-        .replace('#--DESCRIPTION--#', "\'Yule's k\' and \'Yule's i\' are calculated values that represent the \
+        .replace('#--DESCRIPTION--#', "\"Yule's k\" and \"Yule's i\" are calculated values that represent the \
         semantic richness of a given text. We utilize this algorithm because semantic richness is one benchmark by \
         which technical writers can measure the effectiveness of what they have written. The score is largely useful as\
         a way to compare an uploaded document's significance against the significance of a regulatory text."),mimetype='text/html')

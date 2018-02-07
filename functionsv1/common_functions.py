@@ -110,10 +110,11 @@ def getscorepage(kw_list, reg_kw_list):
 
     with open('Documents/Analytics.txt') as fp:
         line = fp.readline()
-
-        while line:
+        count = 0
+        while line and count < 100:
             lines.append(line)
             line = fp.readline()
+            count = count + 1
 
     for l in lines:
         html_str = html_str + '<p>' + l + '</p>'
@@ -145,8 +146,7 @@ def getscorepage(kw_list, reg_kw_list):
         .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
         .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
         .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore())) \
-        .replace('<h6>ANALYTICS LOG:</h6>', '<h6>ANALYTICS LOG:</h6>' + html_str)
-        # .replace('<h6>ANALYTICS LOG:</h6>', '<h6>ANALYTICS LOG:</h6>' + '<p>' + analytics_text + '</p>')
+        .replace('<p>ANALYTICS LOG - last 100 lines:</p>', '<p>ANALYTICS LOG - last 100 lines:</p>' + html_str)
 
 
     f.close()
@@ -296,7 +296,8 @@ def savefile(file, download_folder=None):
     if(download_folder is not None):
         DOWNLOAD_FOLDER = download_folder
 
-    filename = secure_filename(file.filename)
+    # filename = secure_filename(file.filename)
+    filename = file.filename
 
     logging.info('saving file "' + filename + '"')
     file.save(os.path.join(DOWNLOAD_FOLDER, filename))  # saves uploaded files
@@ -731,16 +732,10 @@ def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime)
 
         """
 
-    # printstr = '<p>PROCESSING: "' + filename + '" AGAINST "' + regfilename + '"</p> <p>(' + \
-    # str(round(calctime, 3)) + ' seconds)</p>\n<p>' + \
-    # 'KEYWORDS EXTRACTED: ' + \
-    # filename + ' : ' + str(len(keywordlist.list)) + '------' + \
-    # regfilename + ':' + str(len(regkeywordlist.list)) + '</p><p>----------------</p>'
-
     str_list = []
 
     # KEEP THIS FORMATTING
-    str_list.append(str(datetime.datetime.now()) + ' ; ' + '[' + str(round(calctime, 3)) + ' sec.];' + filename + ' ; ' + str(len(keywordlist.list))\
+    str_list.append(str(datetime.datetime.now()) + ' ; ' + '[' + str(round(calctime, 3)) + ' sec.] ; ' + filename + ' ; ' + str(len(keywordlist.list))\
                     + ' ; ' + regfilename + ' ; ' + str(len(regkeywordlist.list)) + ' ; \n')
 
     printstr = str_list[0]
