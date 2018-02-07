@@ -115,6 +115,7 @@ def analyze():
                 returnhtml = common_functions.geterrorpage()
 
             end_time = time.clock()
+
             common_functions.printanalytics(filename, regfilename, keyword_list, reg_keyword_list, end_time-start_time)
             returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
@@ -173,6 +174,53 @@ def getkwfreeqimage():
     tempFileObj.seek(0, 0)
 
     return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+
+@application.route('/linguistic_analyzer_log', methods=['GET'])
+def getlinguisticanalyzerlog():
+    """
+        Returns LinguisticAnalyzer.log
+
+        :return: log file
+        :rtype: .log
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='log')
+    pilImage = open('logging/Linguistic_Analyzer.log', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+    return send_file(tempFileObj, as_attachment=True, attachment_filename='Linguistic_Analyzer.log')
+
+
+@application.route('/user_doc_kws', methods=['GET'])
+def getuserdockws():
+    """
+        Returns Keywords.txt
+
+        :return: keyword file
+        :rtype: .txt
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='log')
+    pilImage = open('Documents/Keywords.txt', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+    return send_file(tempFileObj, as_attachment=True, attachment_filename='UserDocKeywords.txt')
+
+
+@application.route('/reg_doc_kws', methods=['GET'])
+def getregdockws():
+    """
+        Returns Reg_Keywords.txt
+
+        :return: regulatory doc keyword file
+        :rtype: .txt
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='log')
+    pilImage = open('Documents/Reg_Keywords.txt', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+    return send_file(tempFileObj, as_attachment=True, attachment_filename='RegDocKeywords.txt')
 
 
 @application.route('/yulesinfo', methods=['GET'])

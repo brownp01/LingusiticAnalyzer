@@ -120,32 +120,79 @@
             <br>
             <br>
 
-        <form action="/keywordsalienceimage" enctype="multipart/form-data" method="get">
-            <div>
-                <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Salience Graph">
-            </div>
-        </form>
-        <br>
 
-        <form action="/keywordscoresimage" enctype="multipart/form-data" method="get">
-            <div>
-                <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Scores Graph">
-            </div>
-        </form>
-
-        <br>
-
-         <form action="/keywordfrequencyimage" enctype="multipart/form-data" method="get">
-            <div>
-                <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Frequency Graph">
-            </div>
-        </form>
+        <table>
+            <colgroup>
+            <col>
+            <col>
+            </colgroup>
+            <tr>
+                <th><h4><u>Downloads</u></h4></th>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/keywordsalienceimage" enctype="multipart/form-data" method="get">
+                    <div>
+                        <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Salience Graph">
+                    </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/linguistic_analyzer_log" enctype="multipart/form-data" method="get">
+                        <div>
+                        <input class="btn btn-lg btn-link" type="submit" value="Download Session Log">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/keywordsalienceimage" enctype="multipart/form-data" method="get">
+                    <div>
+                        <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Salience Graph">
+                    </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/user_doc_kws" enctype="multipart/form-data" method="get">
+                        <div>
+                        <input class="btn btn-lg btn-link" type="submit" value="Download User Document Keyword Log">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     <form action="/keywordscoresimage" enctype="multipart/form-data" method="get">
+                        <div>
+                            <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Scores Graph">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/reg_doc_kws" enctype="multipart/form-data" method="get">
+                        <div>
+                        <input class="btn btn-lg btn-link" type="submit" value="Download Comparison Document Keyword Log">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/keywordfrequencyimage" enctype="multipart/form-data" method="get">
+                    <div>
+                        <input class="btn btn-lg btn-secondary" type="submit" value="Download Keyword Frequency Graph">
+                    </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
 
         <br>
             <p>
-            <div style="height:120px;width:1050px;border:3px solid #ccc;font:10px/10px Georgia, Garamond, Serif;overflow
+            <div style="height:180px;width:1050px;border:3px solid #ccc;font:10px/10px Georgia, Garamond, Serif;overflow
             :auto;">
-            <p>MOST RECENT LOG:</p>
+            <h6>ANALYTICS LOG:</h6>
 
 
             </div>

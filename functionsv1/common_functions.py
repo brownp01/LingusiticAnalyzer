@@ -20,6 +20,7 @@ from matplotlib import pyplot
 import numpy as np
 import ctypes
 import datetime
+import applicationconfig
 
 
 DOWNLOAD_FOLDER = 'downloads/'
@@ -89,6 +90,8 @@ def interpretexistingfile(regfilename):
     analyze_functions.calculatescores(reg_keyword_list, reg_text)
     reg_keyword_list.calculateavgscores()
 
+    common_functions.outputkeywordtotext(reg_keyword_list, 'Documents/Reg_Keywords.txt')
+
     return reg_keyword_list
 
 
@@ -102,8 +105,37 @@ def getscorepage(kw_list, reg_kw_list):
     :rtype: str
 
     """
-    f_ana = open('Documents/Analytics.txt', 'r')
-    analytics_text = f_ana.read()
+    lines = []
+    html_str = ''
+
+    with open('Documents/Analytics.txt') as fp:
+        line = fp.readline()
+
+        while line:
+            lines.append(line)
+            line = fp.readline()
+
+    for l in lines:
+        html_str = html_str + '<p>' + l + '</p>'
+
+
+    #
+    # f_ana = open('Documents/Analytics.txt', 'r')
+    # analytics_text = f_ana.read()
+    # analytics_list = analytics_text.split(';')
+    # if analytics_text is not '':
+    #     time = analytics_list[0]
+    #     calc_time = analytics_list[1]
+    #     f_name = analytics_list[2]
+    #     f_kws = analytics_list[3]
+    #     reg_f_name = analytics_list[4]
+    #     reg_f_kws = analytics_list[5]
+
+
+
+
+
+
 
     f = open("views/score_response.html", "r")
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
@@ -113,7 +145,9 @@ def getscorepage(kw_list, reg_kw_list):
         .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
         .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
         .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore())) \
-        .replace('<p>MOST RECENT LOG:</p>', '<p>MOST RECENT LOG:</p>' + analytics_text)
+        .replace('<h6>ANALYTICS LOG:</h6>', '<h6>ANALYTICS LOG:</h6>' + html_str)
+        # .replace('<h6>ANALYTICS LOG:</h6>', '<h6>ANALYTICS LOG:</h6>' + '<p>' + analytics_text + '</p>')
+
 
     f.close()
     return returnhtml
@@ -150,7 +184,7 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
     file_text = []
     filename = file.filename
-    chunk_size = 10000
+    chunk_size = int(applicationconfig.NUM_SEND_CHARS)
     try:
         # -- This is for testing, do not remove -- #
         if testdownload_folder is None and RegDoc is False:
@@ -191,8 +225,8 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
 
     except FileNotFoundError as fnfe:
-        logging.info("**-- ERROR: unable to find file file --**")
-        print(fnfe.strerror)
+        logging.info(fnfe.strerror)
+        # print(fnfe.strerror)
     if testdownload_folder is None and RegDoc is False:       # If this is not a test, remove file
         os.remove(localdownload_folder + filename)  # Removes created file from directory.
     return cleantext(file_text)
@@ -227,7 +261,25 @@ def extractmicrosoftdocxtext(file, testdownload_folder=None):
         print(fnfe.strerror)
     if testdownload_folder is None:
         os.remove(DOWNLOAD_FOLDER + file.filename)  # Removes created file from directory.
+
+    file_text = splitintosize(file_text)
     return cleantext(file_text)
+
+
+def splitintosize(file_text):
+    """
+    This function splits a list of keywords of any length into a lit of keywords eachof length specified by NUM_SEND_CHARS
+    in 'applicationconfig.py'
+
+    :param list file_text: list of document's words
+    :return list file_text:
+
+    """
+    line = stringlisttolonglongstring(file_text)
+    n = applicationconfig.NUM_SEND_CHARS
+
+    file_text = [line[i:i + n] for i in range(0, len(line), n)]
+    return file_text
 
 
 def savefile(file, download_folder=None):
@@ -259,6 +311,7 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
 
     :param KeywordList keylist: list of document keywords
     :return: void
+
     """
 
     # TODO create file using document title of originating keywords
@@ -678,11 +731,19 @@ def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime)
 
         """
 
-    printstr = '<p>PROCESSING: "' + filename + '" AGAINST "' + regfilename + '"</p> <p>(' + \
-    str(round(calctime, 3)) + ' seconds)</p>\n<p>' + \
-    'KEYWORDS EXTRACTED: ' + \
-    filename + ' : ' + str(len(keywordlist.list)) + '------' + \
-    regfilename + ':' + str(len(regkeywordlist.list)) + '</p><p>----------------</p>'
+    # printstr = '<p>PROCESSING: "' + filename + '" AGAINST "' + regfilename + '"</p> <p>(' + \
+    # str(round(calctime, 3)) + ' seconds)</p>\n<p>' + \
+    # 'KEYWORDS EXTRACTED: ' + \
+    # filename + ' : ' + str(len(keywordlist.list)) + '------' + \
+    # regfilename + ':' + str(len(regkeywordlist.list)) + '</p><p>----------------</p>'
+
+    str_list = []
+
+    # KEEP THIS FORMATTING
+    str_list.append(str(datetime.datetime.now()) + ' ; ' + '[' + str(round(calctime, 3)) + ' sec.];' + filename + ' ; ' + str(len(keywordlist.list))\
+                    + ' ; ' + regfilename + ' ; ' + str(len(regkeywordlist.list)) + ' ; \n')
+
+    printstr = str_list[0]
 
     f = open(DOCUMENTS_FOLDER + 'Analytics.txt', 'r+')
     text = f.read()
