@@ -47,6 +47,21 @@ def main():
     return Response(f.read(), mimetype='text/html')
 
 
+@application.route('/bubbletest')
+def bubbletest():
+    """
+        Page for testing
+
+        :return: Test page
+        :rtype: html
+        """
+    # Creating new log file every time the program starts.
+    if common_functions.homeCount() == 0:
+        analyze_functions.declarelogger()
+    f = open(VIEWS + "test.html", "r")  # opens file with name of "index.html"
+    return Response(f.read(), mimetype='text/html')
+
+
 @application.route('/project')
 def project():
     """

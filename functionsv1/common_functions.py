@@ -471,7 +471,7 @@ def getregulatorydoctext(filename):
     return cleantext(reg_text)
 
 
-def kwhighestfrequencies(keyword_list):
+def kwhighestfrequencies(keyword_list, numtopkws = 10):
     """
     Returns the top 10 most frequent Keywords in the user's uploaded file
 
@@ -487,7 +487,7 @@ def kwhighestfrequencies(keyword_list):
 
     # This loop finds the 10 most common keywords in the keyword_list
     i = 0
-    while i < 10 and len(kwlist) > 0:
+    while i < numtopkws and len(kwlist) > 0:
         topkeywordfreq = max(x.frequency for x in kwlist)
         topKeywordfreqs.append(topkeywordfreq)
 

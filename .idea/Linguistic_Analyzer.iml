@@ -4,6 +4,16 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.6.2 (/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lines" level="application" />
+    <orderEntry type="library" name="central-click" level="application" />
+    <orderEntry type="library" name="bubble-chart" level="application" />
+    <orderEntry type="library" name="microplugin" level="application" />
+    <orderEntry type="library" name="micro-observer" level="application" />
+    <orderEntry type="library" name="misc" level="application" />
+    <orderEntry type="library" name="extarray" level="application" />
+    <orderEntry type="library" name="d3-transform" level="application" />
+    <orderEntry type="library" name="d3" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />
