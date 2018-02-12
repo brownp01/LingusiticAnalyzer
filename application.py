@@ -8,7 +8,6 @@ from functionsv1 import common_functions
 from functionsv1 import analyze_functions
 import sys
 import os
-import ctypes
 import time
 
 

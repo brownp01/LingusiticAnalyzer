@@ -50,55 +50,5 @@ class Keyword:
         # TODO: Implement some impressive algorithm here that checks synonyms?
 
 
-    #def isinsimilarlist(self, word):
-       # """
-       # Summary: Checks if a given word is in the "similarWords" list
-        #@param word:
-        #@type word:
-        #@return:
-        #@rtype:
-        #"""
-
-    #@classmethod
-    #def determinesimilarity(self, word):
-        #"""
-        #Summary: Checks if the given word is semantically similar to the main keyword
-        #@param word:
-        #@type word:
-        #@return:
-        #@rtype:
-        #"""
-
-    #@classmethod
-    #def distancetonearest(self, word):
-        #"""
-        #Summary: distance from main "word" to nearest instance of parameter word
-        #@param word:
-        #@type word:
-        #@return:
-        #@rtype:
-        #"""
-
-    #@classmethod
-    #def distancefromkeywordtonearestkeyword(self, keyword):
-        #"""
-        #Summary: distance from "word" OR SIMILARKEYWORDS to parameter keyword OR ITS SIMILAR KEYWORDS
-        #@param word:
-        #@type word:
-        #@return:
-        #@rtype:
-        #"""
-
-    #@classmethod
-    #def averagedistanceto(self, word):
-        #"""
-        #"@summary:  average distanceBetween main "word" and parameter word
-        #"""
-
-    #@classmethod
-    #def averagedistancefromkeywordtokeyword(self, keyword):
-        #"""
-        #Summary: averga distance from "word" OR SIMILAR KEYWORDS to parameter keyword AND ITS SIMILAR KEYWORDS
-        #"""
 
     

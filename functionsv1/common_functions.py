@@ -18,7 +18,6 @@ import matplotlib
 matplotlib.use('agg',warn=False, force=True)
 from matplotlib import pyplot
 import numpy as np
-import ctypes
 import datetime
 import applicationconfig
 
@@ -85,14 +84,36 @@ def interpretexistingfile(regfilename):
     :rtype: KeywordList
 
     """
-    reg_text = common_functions.getregulatorydoctext(regfilename)
-    reg_keyword_list = analyze_functions.identifykeywords(reg_text)
+    regfilenamePDF = common_functions.changefileextension(regfilename)
+    reg_text = common_functions.getregulatorydoctext(regfilenamePDF)
+    #reg_keyword_list = analyze_functions.identifykeywords(reg_text)
+    reg_keyword_list = common_functions.extractkeywordfromtxt(regfilename)
     analyze_functions.calculatescores(reg_keyword_list, reg_text)
     reg_keyword_list.calculateavgscores()
 
     common_functions.outputkeywordtotext(reg_keyword_list, 'Documents/Reg_Keywords.txt')
 
     return reg_keyword_list
+
+
+def changefileextension(regfilename):
+    """
+    Changes the file name string from .txt to .pdf.
+
+    :param str regfilename: name of regulatory file
+    :return: string with .pdf file extension
+    :rtype: str
+
+    """
+
+    temp = list(regfilename)
+    size = len(regfilename)
+    temp[size-3] = "p"
+    temp[size-2] = "d"
+    temp[size-1] = "f"
+    regfilenamePDF = "".join(temp)
+
+    return regfilenamePDF
 
 
 def getscorepage(kw_list, reg_kw_list):
@@ -131,11 +152,6 @@ def getscorepage(kw_list, reg_kw_list):
     #     f_kws = analytics_list[3]
     #     reg_f_name = analytics_list[4]
     #     reg_f_kws = analytics_list[5]
-
-
-
-
-
 
 
     f = open("views/score_response.html", "r")
@@ -339,6 +355,7 @@ def extractkeywordfromtxt(file):
 
     """
     keyword_list = KeywordList()
+    file = REGULATOR_FOLDER+file
     i = 0
 
     f = open(file, 'r')
@@ -572,15 +589,8 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
         pyplot.savefig(DOWNLOAD_FOLDER + 'topsalience.png')
         return
     x = np.arange(len(my_xticks))
-    # colors = np.random.rand(d)
     pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
     pyplot.bar(x+w, p, width=w, align='center', color='r', label='Regulatory doc: "' + doc2name + '"')
-    # pyplot.scatter(x - w, y, color='blue', label='doc1')
-    # pyplot.scatter(x, p, color='r', label='doc2')
-    # pyplot.plot(x,y)
-    # pyplot.plot(x - w, y, color='blue', label='doc1')
-    # pyplot.plot(x, p, color='r', label='doc2')
-    # pyplot.scatter(x,y,c=colors)
     pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
     pyplot.yticks(fontsize=8)
     pyplot.title('Salience of Most Common Keywords In File', fontweight='bold')
@@ -607,8 +617,6 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
     # Clearing previous graph just to be safe
     pyplot.clf()
 
-    #kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
-    #kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
     kwlist1 = common_functions.kwhighestkeyscores(keyword_list1)
     kwlist2 = common_functions.kwhighestkeyscores(keyword_list2)
 
@@ -638,15 +646,8 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
         return
     x = np.arange(len(my_xticks))
-    # colors = np.random.rand(d)
     pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
     pyplot.bar(x+w, p, width=w, align='center', color='r', label='Regulatory doc: "' + doc2name + '"')
-    # pyplot.scatter(x - w, y, color='blue', label='doc1')
-    # pyplot.scatter(x, p, color='r', label='doc2')
-    # pyplot.plot(x,y)
-    # pyplot.plot(x - w, y, color='blue', label='doc1')
-    # pyplot.plot(x, p, color='r', label='doc2')
-    # pyplot.scatter(x,y,c=colors)
     pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
     pyplot.yticks(fontsize=8)
     pyplot.title('Keyword Score of Most Common Keywords In File', fontweight='bold')
@@ -674,8 +675,6 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
 
     kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
     kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
-    #kwlist1 = common_functions.kwhighestkeyscores(keyword_list1)
-    #kwlist2 = common_functions.kwhighestkeyscores(keyword_list2)
 
     d = 0
     y = []
@@ -703,15 +702,8 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
         return
     x = np.arange(len(my_xticks))
-    # colors = np.random.rand(d)
     pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
     pyplot.bar(x+w, p, width=w, align='center', color='r', label='Regulatory doc: "' + doc2name + '"')
-    # pyplot.scatter(x - w, y, color='blue', label='doc1')
-    # pyplot.scatter(x, p, color='r', label='doc2')
-    # pyplot.plot(x,y)
-    # pyplot.plot(x - w, y, color='blue', label='doc1')
-    # pyplot.plot(x, p, color='r', label='doc2')
-    # pyplot.scatter(x,y,c=colors)
     pyplot.xticks(x + w/2, my_xticks, fontsize=8, color='black', rotation=90)
     pyplot.yticks(fontsize=8)
     pyplot.title('Keyword Frequencies of Most Common Keywords In File', fontweight='bold')
