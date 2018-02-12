@@ -129,6 +129,8 @@ def getscorepage(kw_list, reg_kw_list):
     lines = []
     html_str = ''
 
+    logging.info("Begin score page response...")
+
     with open('Documents/Analytics.txt') as fp:
         line = fp.readline()
         count = 0
@@ -166,6 +168,8 @@ def getscorepage(kw_list, reg_kw_list):
 
 
     f.close()
+
+    logging.info("Score page response complete.")
     return returnhtml
 
 
@@ -332,20 +336,28 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
     """
 
     # TODO create file using document title of originating keywords
-    file = open(download_folder, 'w')
 
-    for i in range(0, keylist.uniquekeywords):
-        word = keylist.list[i].word
-        sal = keylist.list[i].salience
-        freq = keylist.list[i].frequency
-        keyscore = keylist.list[i].keywordscore
+    try:
+        logging.info("Outputting keywords to .txt...")
+        file = open(download_folder, 'w')
 
-        file.write(word + "," + str(sal) + "," + str(freq) + "," + str(keyscore) + "\n")
+        for i in range(0, keylist.uniquekeywords):
+            word = keylist.list[i].word
+            sal = keylist.list[i].salience
+            freq = keylist.list[i].frequency
+            keyscore = keylist.list[i].keywordscore
 
-    file.close()
+            file.write(word + "," + str(sal) + "," + str(freq) + "," + str(keyscore) + "\n")
+
+        file.close()
+
+        logging.info("Keyword .txt output complete.")
+
+    except Exception as e:
+        logging.info("Outputting keywords failed.")
 
 
-def extractkeywordfromtxt(file):
+def extractkeywordfromtxt(filename):
     """
     This function will extract keyword information from .txt file and place into KeywordList object
 
@@ -354,23 +366,34 @@ def extractkeywordfromtxt(file):
     :rtype: KeywordList
 
     """
+
+
     keyword_list = KeywordList()
-    file = REGULATOR_FOLDER+file
-    i = 0
 
-    f = open(file, 'r')
-    for line in f:
-        line_list = line.split(',')
-        word = line_list[i]
-        sal = line_list[i+1]
-        freq = line_list[i+2]
-        keyscore = line_list[i+3]
+    try:
+        file = REGULATOR_FOLDER+filename
+        i = 0
+        f = open(file, 'r')
+        logging.info("Extracting keyword info from " + filename)
 
-        # TODO modify input to Keyword Object to fit overall needs
-        newKeyword = Keyword.Keyword(word, 0, float(float(sal)), int(freq), float(float(keyscore.rstrip('\n'))))
-        keyword_list.insertkeyword(newKeyword)
+        for line in f:
+            line_list = line.split(',')
+            word = line_list[i]
+            sal = line_list[i+1]
+            freq = line_list[i+2]
+            keyscore = line_list[i+3]
 
-    f.close()
+            # TODO modify input to Keyword Object to fit overall needs
+            newKeyword = Keyword.Keyword(word, 0, float(float(sal)), int(freq), float(float(keyscore.rstrip('\n'))))
+            keyword_list.insertkeyword(newKeyword)
+
+        f.close()
+        logging.info("keyword info extraction complete.")
+
+    except Exception as e:
+        logging.info("Keyword info extraction failed")
+
+
     return keyword_list
 
 
@@ -383,10 +406,13 @@ def cleantext(text_list):
     :rtype: List[str]
 
     """
+    logging.info("Cleaning text of special characters...")
     printable = set(string.printable)
 
     for i in range(0, len(text_list)-1):
         text_list[i] = ''.join(filter(lambda x: x in string.printable, text_list[i]))
+
+    logging.info("Clean text complete.")
 
     return text_list
 
@@ -485,7 +511,7 @@ def getregulatorydoctext(filename):
         logging.error('could not access regulatory document"' + filename + '"')
 
     # print(reg_text)
-    return cleantext(reg_text)
+    return reg_text
 
 
 def kwhighestfrequencies(keyword_list, numtopkws = 10):
@@ -563,6 +589,8 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
     kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
     kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
 
+    logging.info("Plotting keyword salience...")
+
     d = 0
     y = []
     p = []
@@ -599,6 +627,8 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
     pyplot.legend()
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topsalience.png')
+
+    logging.info("Plot complete.")
     # pyplot.show()
 
 
@@ -619,6 +649,8 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
 
     kwlist1 = common_functions.kwhighestkeyscores(keyword_list1)
     kwlist2 = common_functions.kwhighestkeyscores(keyword_list2)
+
+    logging.info("Plotting keyword scores...")
 
     d = 0
     y = []
@@ -656,6 +688,8 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
     pyplot.legend()
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
+
+    logging.info("Plotting complete.")
     # pyplot.show()
 
 def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
@@ -675,6 +709,8 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
 
     kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)
     kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)
+
+    logging.info("Plotting keyword frequency...")
 
     d = 0
     y = []
@@ -712,6 +748,8 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
     pyplot.legend()
     pyplot.tight_layout()
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
+
+    logging.info("Plotting complete.")
     # pyplot.show()
 
 
