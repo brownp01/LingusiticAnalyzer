@@ -84,12 +84,12 @@ def interpretexistingfile(regfilename):
     :rtype: KeywordList
 
     """
-    regfilenamePDF = common_functions.changefileextension(regfilename)
-    reg_text = common_functions.getregulatorydoctext(regfilenamePDF)
+    #regfilenamePDF = common_functions.changefileextension(regfilename)
+    #reg_text = common_functions.getregulatorydoctext(regfilenamePDF)
     #reg_keyword_list = analyze_functions.identifykeywords(reg_text)
     reg_keyword_list = common_functions.extractkeywordfromtxt(regfilename)
-    analyze_functions.calculatescores(reg_keyword_list, reg_text)
-    reg_keyword_list.calculateavgscores()
+    #analyze_functions.calculatescores(reg_keyword_list, reg_text)
+    #reg_keyword_list.calculateavgscores()
 
     common_functions.outputkeywordtotext(reg_keyword_list, 'Documents/Reg_Keywords.txt')
 
@@ -339,7 +339,13 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
 
     try:
         logging.info("Outputting keywords to .txt...")
+
         file = open(download_folder, 'w')
+        yulesK = keylist.yuleskscore
+        yulesI = keylist.yulesiscore
+        avgkeyscore = keylist.avgkeywordscore
+
+        file.write(str(yulesK) + "," + str(yulesI) + "," + str(avgkeyscore) + "\n")
 
         for i in range(0, keylist.uniquekeywords):
             word = keylist.list[i].word
@@ -354,7 +360,7 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
         logging.info("Keyword .txt output complete.")
 
     except Exception as e:
-        logging.info("Outputting keywords failed.")
+        logging.info("*** Output keywords failed ***")
 
 
 def extractkeywordfromtxt(filename):
@@ -374,7 +380,16 @@ def extractkeywordfromtxt(filename):
         file = REGULATOR_FOLDER+filename
         i = 0
         f = open(file, 'r')
+
         logging.info("Extracting keyword info from " + filename)
+
+        line_list = f.readline().split(',')
+        yulesk = line_list[i]
+        yulesi = line_list[i+1]
+        avgscore = line_list[i+2]
+        keyword_list.yuleskscore = float(float(yulesk))
+        keyword_list.yulesiscore = float(float(yulesi))
+        keyword_list.avgkeywordscore = float(float(avgscore.rstrip('\n')))
 
         for line in f:
             line_list = line.split(',')
@@ -391,7 +406,8 @@ def extractkeywordfromtxt(filename):
         logging.info("keyword info extraction complete.")
 
     except Exception as e:
-        logging.info("Keyword info extraction failed")
+        #logging.info("*** Keyword info extraction failed( " + keyword_list.guniquekeywords + " uploaded). ***")
+        logging.info("*** Keyword info extraction failed. ***")
 
 
     return keyword_list
@@ -615,6 +631,7 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
         pyplot.clf()
         pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
         pyplot.savefig(DOWNLOAD_FOLDER + 'topsalience.png')
+        logging.info("No common keywords to plot")
         return
     x = np.arange(len(my_xticks))
     pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
@@ -676,6 +693,7 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
         pyplot.clf()
         pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
+        logging.info("No keyword scores to plot")
         return
     x = np.arange(len(my_xticks))
     pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')
@@ -736,6 +754,7 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
         pyplot.clf()
         pyplot.title('NO COMMON KEYWORDS TO PLOT', fontweight='bold')
         pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
+        logging.info("No keyword frequency to plot")
         return
     x = np.arange(len(my_xticks))
     pyplot.bar(x, y, width=w, align='center', color='blue', label='User doc: "' + doc1name + '"')

@@ -75,6 +75,8 @@ def calculatescores(kw_list, file_text):
     :return: void
 
     """
+    logging.info("Calculating scores...")
+
     for kw in kw_list.list:
         kw.keywordscore = calculatekeywordscore(kw_list, file_text, kw)
 
@@ -82,6 +84,8 @@ def calculatescores(kw_list, file_text):
     yulestuple = calculateyulesscore(file_text)
     kw_list.yuleskscore = yulestuple[0]
     kw_list.yulesiscore = yulestuple[1]
+
+    logging.info("Score calculation complete.")
 
 
 def calculatekeywordscore(kw_list, file_text, kw):
