@@ -357,7 +357,7 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
     """
 
     # TODO create file using document title of originating keywords
-
+    counter = 0
     try:
         logging.info("Outputting keywords to .txt...")
 
@@ -375,13 +375,14 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
             keyscore = keylist.list[i].keywordscore
 
             file.write(word + "," + str(sal) + "," + str(freq) + "," + str(keyscore) + "\n")
+            counter += 1
 
         file.close()
 
         logging.info("Keyword .txt output complete.")
 
     except Exception as e:
-        logging.info("*** Output keywords failed ***")
+        logging.info("*** Output keywords failed: " + str(counter) + "/" + str(len(keylist.list)) + " keywords outputted ***")
 
 
 def extractkeywordfromtxt(filename):
@@ -427,8 +428,8 @@ def extractkeywordfromtxt(filename):
         logging.info("keyword info extraction complete.")
 
     except Exception as e:
-        #logging.info("*** Keyword info extraction failed( " + keyword_list.guniquekeywords + " uploaded). ***")
-        logging.info("*** Keyword info extraction failed. ***")
+        logging.info("*** Keyword info extraction failed(" + str(keyword_list.uniquekeywords) + " uploaded). ***")
+        #logging.info("*** Keyword info extraction failed. ***")
 
 
     return keyword_list

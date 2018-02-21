@@ -1,3 +1,15 @@
+2018-02-20 20:49:49.260767 ; [3.966 sec.] ; S508C_Common_Cyber_Language.pdf ; 647 ; S508C_Common_Cyber_Language.txt ; 649 ; 
+2018-02-20 20:46:59.526338 ; [0.897 sec.] ; small_sample.pdf ; 4 ; small_sample_reword.txt ; 4 ; 
+2018-02-20 20:42:23.932232 ; [2.074 sec.] ; AnalyzerDescription_BACKWARD.pdf ; 5 ; AnalyzerDescription_BACKWARD.txt ; 5 ; 
+2018-02-20 20:40:52.900578 ; [2.44 sec.] ; t_blant_reword.pdf ; 9 ; t_blant_reword.txt ; 9 ; 
+2018-02-20 20:34:46.591564 ; [1.99 sec.] ; small_sample.pdf ; 4 ; small_sample.txt ; 4 ; 
+2018-02-20 20:26:43.718710 ; [1.048 sec.] ; t_blant_reword.pdf ; 9 ; t_blant_reword.txt ; 9 ; 
+2018-02-20 20:23:32.626446 ; [0.927 sec.] ; small_sample.pdf ; 4 ; small_sample_reword.txt ; 4 ; 
+2018-02-20 20:14:30.832851 ; [1.081 sec.] ; simple_description_name_switch.pdf ; 11 ; simple_description_name_switch.txt ; 11 ; 
+2018-02-20 20:08:41.029598 ; [3.965 sec.] ; S508C_Common_Cyber_Language.pdf ; 647 ; S508C_Common_Cyber_Language.txt ; 649 ; 
+2018-02-20 19:51:22.209478 ; [1.022 sec.] ; AnalyzerDescription_BACKWARD.pdf ; 5 ; AnalyzerDescription_BACKWARD.txt ; 5 ; 
+2018-02-20 19:36:38.191123 ; [0.901 sec.] ; AnalyzerDescription_BACKWARD.pdf ; 5 ; AnalyzerDescription_BACKWARD.txt ; 5 ; 
+2018-02-20 19:35:52.874273 ; [1.191 sec.] ; simple_description.pdf ; 11 ; simple_description_name_switch.txt ; 11 ; 
 2018-02-20 17:56:42.951672 ; [0.664 sec.] ; simple_description.pdf ; 11 ; small_sample.txt ; 4 ; 
 2018-02-20 17:52:44.527996 ; [0.675 sec.] ; simple_description.pdf ; 11 ; small_sample_reword.txt ; 4 ; 
 2018-02-20 17:52:16.688385 ; [0.724 sec.] ; simple_description.pdf ; 11 ; small_sample_reword.txt ; 4 ; 
