@@ -166,7 +166,6 @@ def analyze():
                 common_functions.plotkeywordsalience(keyword_list, reg_keyword_list, file.filename, regfilename)
                 common_functions.plotkeywordscores(keyword_list, reg_keyword_list, file.filename, regfilename)
                 common_functions.plotkeywordfrequency(keyword_list, reg_keyword_list, file.filename, regfilename)
-                returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
 
             else:
                 logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')

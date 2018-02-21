@@ -10,7 +10,7 @@ class KeywordList:
     def __init__(self):
         self.list = []
         self.uniquekeywords = 0
-        self.keywordscore = 0
+        #self.keywordscore = 0
         self.yuleskscore = 0.0
         self.yulesiscore = 0.0
         self.avgkeywordscore = 0
@@ -73,6 +73,7 @@ class KeywordList:
         :return: void
 
         """
+        logging.info("Calculating average scores for document...")
         kwscoresum = float(0)
         yulesksum = float(0)
         yulesisum = float(0)
@@ -92,6 +93,8 @@ class KeywordList:
             self.avgkeywordscore = 0
             self.avgyulesiscore = 0
             self.avgyuleskscore = 0
+
+        logging.info("Average scores for document complete.")
 
     def insertkeyword(self, keyword):
         """
