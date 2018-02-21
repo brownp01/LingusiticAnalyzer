@@ -1,3 +1,4 @@
+2018-02-20 17:56:42.951672 ; [0.664 sec.] ; simple_description.pdf ; 11 ; small_sample.txt ; 4 ; 
 2018-02-20 17:52:44.527996 ; [0.675 sec.] ; simple_description.pdf ; 11 ; small_sample_reword.txt ; 4 ; 
 2018-02-20 17:52:16.688385 ; [0.724 sec.] ; simple_description.pdf ; 11 ; small_sample_reword.txt ; 4 ; 
 2018-02-20 17:52:00.125242 ; [0.733 sec.] ; simple_description.pdf ; 11 ; small_sample_reword.txt ; 4 ; 
