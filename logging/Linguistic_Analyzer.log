@@ -1109,3 +1109,1138 @@ INFO:werkzeug:127.0.0.1 - - [20/Feb/2018 21:31:57] "POST /analyze HTTP/1.1" 200 
 INFO:werkzeug:127.0.0.1 - - [20/Feb/2018 21:31:57] "GET /reusablebubble.js HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [20/Feb/2018 21:31:59] "GET /reusablebubble? HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [20/Feb/2018 21:31:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:16:25] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:16:36] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:16:36] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:00] "GET /keywordsalienceimage?x=97&y=15 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:06] "GET /keywordfrequencyimage?x=209&y=16 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:08] "GET /linguistic_analyzer_log?x=85&y=15 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:12] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:13] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:13] "GET /testkeywords HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:30] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:30] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:31] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:17:31] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:18:36] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:18:36] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:18:41] "GET /reusablebubble?x=125&y=16 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:18:41] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:11] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:35] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:35] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:36] "GET /keywordsalienceimage?x=189&y=19 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:39] "GET /keywordfrequencyimage?x=207&y=11 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:43] "GET /reusablebubble?x=55&y=23 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:21:43] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:24:39] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:24:49] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:24:49] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:24:52] "GET /reusablebubble?x=50&y=21 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:24:52] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:13] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:15] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:15] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:17] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:17] "GET /testkeywords HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:39] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample.pdf"
+INFO:root:"small_sample.pdf" saved
+INFO:root:opening file "small_sample.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:57] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:28:57] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:03] "GET /reusablebubble?x=47&y=24 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:44] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:53] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:53] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:56] "GET /reusablebubble?x=47&y=23 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:29:56] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:31:26] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "AnalyzerDescription_FORWARD.pdf"
+INFO:root:"AnalyzerDescription_FORWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_FORWARD.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from AnalyzerDescription_BACKWARD.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:31:36] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:31:36] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:31:40] "GET /linguistic_analyzer_log?x=73&y=18 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:31:45] "GET /reusablebubble?x=105&y=20 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:31:45] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:32:08] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:32:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:32:10] "GET /reusablebubble?x=75&y=26 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:32:10] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:33:33] "GET /testkeywords HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:34:07] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:34:17] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:34:17] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:34:32] "GET /keywordsalienceimage?x=150&y=13 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:34:48] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:34:48] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:35:11] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:35:11] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:28] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:32] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:37] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:37] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:41] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:41] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:56] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:37:56] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:38:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:38:01] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:14] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:21] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:21] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:33] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:33] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:33] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:33] "GET /testkeywords HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:44] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:44] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:48] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:48:48] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:49:59] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:50:08] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:50:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:50:11] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 11:50:11] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:19:16] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:20:33] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:20:33] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:20:45] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:20:45] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:20:48] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:58] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:58] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:21:59] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:01] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:05] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:06] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:06] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:22:06] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:24:50] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:24:57] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:24:57] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:08] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:09] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:25:10] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:31:50] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample.pdf"
+INFO:root:"small_sample.pdf" saved
+INFO:root:opening file "small_sample.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:31:58] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:31:58] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:31:59] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:31:59] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:01] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:02] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:04] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:32:05] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:04] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:20] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:20] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:23] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:23] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:23] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:38] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:38] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:39] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:39] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:39] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:45] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 12:46:45] "GET /reusablebubble? HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:11:13] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:21:42] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:21:51] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:21:51] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:22:04] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:22:04] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:22:04] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:22:04] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:22:04] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:38:41] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:03] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:03] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:06] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:06] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:06] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:06] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:06] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:39:06] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:42:00] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:42:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 13:42:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:01:59] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "BSI 14971 Application of risk management to medical devices copy.pdf"
+INFO:root:"BSI 14971 Application of risk management to medical devices copy.pdf" saved
+INFO:root:opening file "BSI 14971 Application of risk management to medical devices copy.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:53] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:53] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:57] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:57] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:57] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:57] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:57] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:02:57] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:03:39] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:03:39] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:03:39] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:03:49] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:03:49] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:03:50] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:54] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:54] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:54] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:56] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:56] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:56] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:56] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:05:56] "GET /testkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:06:24] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:06:24] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:06:24] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:06:24] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:07:58] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:07:58] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:07:58] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:07:58] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:07] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:08] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:19] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "film_paper.pdf"
+INFO:root:"film_paper.pdf" saved
+INFO:root:opening file "film_paper.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:29] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:29] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:31] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:31] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:31] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:31] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:31] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:08:31] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:35:59] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:07] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:07] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:12] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:12] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:12] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:12] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:12] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:36:12] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:15] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:15] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:15] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:38] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:38] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:53] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:53] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:54] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:54] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:54] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:38:54] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:39:16] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:39:16] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:39:16] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:39:16] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:39:16] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Feb/2018 14:39:16] "GET /csvkeywords HTTP/1.1" 200 -

@@ -56,7 +56,7 @@ function bubbleChart() {
     chartSelection,
     chartSVG,
     showTitleOnCircle=true;
-    title='Keywords'
+    title='Keywords';
 
     /**
      * The command to actually render the chart after setting the settings.
@@ -154,9 +154,9 @@ function bubbleChart() {
         });
         if (showTitleOnCircle) {
             node.append("text")
-            .attr("clip-path",function(d,i) {
+            /*.attr("clip-path",function(d,i) {
                 return "url(#clip-" + i + ")"
-            })
+            })*/
             .attr("text-anchor", "middle")
             .append("tspan")
             .attr("x",function(d) {

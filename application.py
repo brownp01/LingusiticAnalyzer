@@ -9,12 +9,14 @@ from functionsv1 import analyze_functions
 import sys
 import os
 import time
+import applicationconfig
 
 
 UPLOAD_FOLDER = 'downloads/'
 
 application = Flask(__name__)
 loggerStart = 0
+
 
 def resource_path(relative_path):
     """
@@ -27,6 +29,7 @@ def resource_path(relative_path):
     """
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
+
 
 VIEWS = resource_path("views/")
 
@@ -60,6 +63,7 @@ def bubbletest():
     f = open(VIEWS + "test.html", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
 
+
 @application.route('/reusablebubble')
 def reusablebubble():
     """
@@ -68,10 +72,20 @@ def reusablebubble():
             :return: Test page
             :rtype: html
             """
-    # Creating new log file every time the program starts.
-    if common_functions.homeCount() == 0:
-        analyze_functions.declarelogger()
-    f = open(VIEWS + "reusable_bubble.html", "r")  # opens file with name of "index.html"
+
+    f = open(VIEWS + "reusable_bubble.html", "r")  # opens file with name of "reusable_bubble.html"
+    return Response(f.read(), mimetype='text/html')
+
+@application.route('/keywordbubblechart')
+def keywordbubblechart():
+    """
+        Returns bubble chart html page
+
+        :return: bubble chart html page
+        :rtype: html
+
+    """
+    f = open(VIEWS + "bubble_chart.html", "r")  # opens file with name of "reusable_bubble.html"
     return Response(f.read(), mimetype='text/html')
 
 
@@ -83,9 +97,6 @@ def reusablebubblejs():
             :return: Test page
             :rtype: html
             """
-    # Creating new log file every time the program starts.
-    if common_functions.homeCount() == 0:
-        analyze_functions.declarelogger()
     f = open(VIEWS + "js/reusable_bubble.js", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
 
@@ -158,14 +169,17 @@ def analyze():
 
             if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
                 keyword_list = common_functions.interpretfile(file, localuploadfolder)
+                applicationconfig.NUM_KWS = len(keyword_list.list)
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
                 reg_keyword_list = common_functions.interpretexistingfile(regfilename)
+                applicationconfig.NUM_REG_KWS = len(reg_keyword_list.list)
 
                 # ---------------------------KEYWORD PLOT FUNCTIONS------------------------------- #
                 common_functions.plotkeywordsalience(keyword_list, reg_keyword_list, file.filename, regfilename)
                 common_functions.plotkeywordscores(keyword_list, reg_keyword_list, file.filename, regfilename)
                 common_functions.plotkeywordfrequency(keyword_list, reg_keyword_list, file.filename, regfilename)
+                common_functions.generatebubblecsv(keyword_list, reg_keyword_list)
 
             else:
                 logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
@@ -340,10 +354,10 @@ def getregdockws():
 @application.route('/testkeywords', methods=['GET'])
 def gettestkeywords():
     """
-        Returns testkeywords.txt
+        Returns test_keywords.csv
 
-        :return: testkeywords doc keyword file
-        :rtype: .txt
+        :return: test_keywords doc keyword file
+        :rtype: .csv
     """
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='log')
     pilImage = open('Documents/test_keywords.csv', 'rb')
@@ -352,6 +366,20 @@ def gettestkeywords():
     tempFileObj.seek(0, 0)
     return send_file(tempFileObj, as_attachment=False, attachment_filename='test_keywords.csv')
 
+@application.route('/csvkeywords', methods=['GET'])
+def getcsvkeywords():
+    """
+        Returns csvkeywords.csv
+
+        :return: csvkeywords keyword file
+        :rtype: .csv
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='log')
+    pilImage = open('Documents/csvkeywords.csv', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='csvkeywords.csv')
 
 
 @application.route('/yulesinfo', methods=['GET'])
@@ -367,7 +395,8 @@ def yulesinfo():
         .replace('#--DESCRIPTION--#', "\"Yule's k\" and \"Yule's i\" are calculated values that represent the \
         semantic richness of a given text. We utilize this algorithm because semantic richness is one benchmark by \
         which technical writers can measure the effectiveness of what they have written. The score is largely useful as\
-        a way to compare an uploaded document's significance against the significance of a regulatory text."),mimetype='text/html')
+        a way to compare an uploaded document's significance against the significance of a regulatory text."),
+                    mimetype='text/html')
 
 
 @application.route('/comparisoninfo', methods=['GET'])

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // This javascript reloads the page information from the server, not from the browser cache, so the keywords
+        // that show up are up-to-date
+        window.onload = function() {
+            if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+            }
+        }
+    </script>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+
+    <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
+    <script src="reusablebubble.js"></script>
+
+
+    <title>Bubble Chart</title>
+
+    <style>
+        .colorbox1 {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            border: 1px solid #1a1a1d;
+            background: #f3b54a;
+        }
+
+        .colorbox2 {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            border: 1px solid #1a1a1d;
+            background: #584848;
+        }
+        body{
+            background: #d8c3a5;
+            opacity:5;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<body>
+<div class="chart-example" id="chart"><svg></svg></div>
+
+
+    <div>
+        <script>
+
+            d3.csv('csvkeywords', function (error, data) {
+                if (error) {
+                    console.error('Error getting or parsing the data.');
+                    throw error;
+                }
+                var chart = bubbleChart().width(1300).height(875).forceApart(-850).minRadius(25).maxRadius(125).customColors(["M", "F"], ["#f3b54a", "#584848"]);
+                d3.select('#chart').data(data).call(chart);
+            });
+
+
+        </script>
+    </div>
+
+<hr style="background-color: #1a1a1d">
+
+    <div class="colorbox1" style="padding-bottom: 10px"></div>
+        <p> = User Document Keywords</p>
+
+    <div class="colorbox2" style="padding-bottom: 10px"></div>
+        <p> = Regulatory Document Keywords</p>
+
+        <!--This one overlaps the other-->
+        <!--script>
+
+            d3.csv('testkeywords', function (error, data) {
+                if (error) {
+                    console.error('Error getting or parsing the data.');
+                    throw error;
+                }
+                var chart = bubbleChart().width(1200).height(700).forceApart(-800).minRadius(40).maxRadius(120).customColors(["M", "F"], ["#4286f4", "#ea1c1c"]);
+                d3.select('#chart').data(data).call(chart);
+            });
+
+        </script-->
+
+        <hr style="background-color: #1a1a1d">
+
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h5>Authors</h5>
+                <p>Tyler Blanton, Paul Brown</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h5>Client</h5>
+                <p>Benjamin Pope</p>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; Medtronic 2018</p>
+        </footer>
+</body>

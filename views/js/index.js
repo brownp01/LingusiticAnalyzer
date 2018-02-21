@@ -12,7 +12,7 @@ $(document).ready(function () {
     //intersectInc: use @default
     //circleColor: use @default
     data: {
-      items:[{text: "TEXT", count: "3"},{text: "LINGUISTIC ANALYZER", count: "1"},{text: "DOCUMENT", count: "2"},{text: "STANDARDS", count: "1"},{text: "PRODUCT", count: "1"},{text: "REQUIREMENTS", count: "1"},{text: "TYLER BLANTON", count: "1"},{text: "PAUL BROWN", count: "1"},{text: "ENGINEERS", count: "1"},]
+      items:[{text: "TEST PDF", count: "1"},{text: "MUSEUMS", count: "3"},{text: "DENVER", count: "2"},{text: "NEW YORK", count: "1"},]
 
         //
         // {text: "Java", count: "236"},

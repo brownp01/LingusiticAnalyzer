@@ -820,4 +820,24 @@ def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime)
     f.close()
 
 
+def generatebubblecsv(kw_list, reg_kw_list):
+    """
+        Creates a new csv file with all the keywords
+
+        :param KeywordList kw_list: list of doc keywords
+        :param KeywordList reg_kw_list: list of reg doc keywords
+        :return: void
+    """
+
+    f = open(DOCUMENTS_FOLDER + 'csvkeywords.csv', 'w')
+    f.writelines(["keyword,frequency,salience\n", '----------------\n'])
+
+    for i in range(0, len(kw_list.list)):
+        # in order to preserve color scheme, keywords from different files must alternate, so if one runs out, we stop.
+        if i >= len(reg_kw_list.list) or i >= applicationconfig.MAX_BUBBLES:
+            break
+        f.write(kw_list.list[i].word + ',' + str(kw_list.list[i].frequency) + ',' + str(kw_list.list[i].salience) + '\n')
+        f.write(reg_kw_list.list[i].word + ',' + str(reg_kw_list.list[i].frequency) + ',' + str(reg_kw_list.list[i].salience) + '\n')
+
+    f.close()
 
