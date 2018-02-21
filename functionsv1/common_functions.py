@@ -141,17 +141,36 @@ def getscorepage(kw_list, reg_kw_list):
         html_str = html_str + '<p>' + l + '</p>'
 
 
-    #
-    # f_ana = open('Documents/Analytics.txt', 'r')
-    # analytics_text = f_ana.read()
-    # analytics_list = analytics_text.split(';')
-    # if analytics_text is not '':
-    #     time = analytics_list[0]
-    #     calc_time = analytics_list[1]
-    #     f_name = analytics_list[2]
-    #     f_kws = analytics_list[3]
-    #     reg_f_name = analytics_list[4]
-    #     reg_f_kws = analytics_list[5]
+    bubble_elements = ""
+
+    # index.js can only handle 13 values being loaded into the bubble graph (so break when count == 12)
+    count = 0
+    for kw in kw_list.list:
+        bubble_elements = bubble_elements + '{text: "' + kw.word + '", count: "' + str(kw.frequency) + '"},'
+        if count == 8:  # KEEP THIS BREAK AT 11 OR 12. PERFORMANCE ISSUE OTHERWISE
+            break
+        else:
+            count = count + 1
+
+    index_file = open('views/js/staticindex.js', 'r')
+    index_text = index_file.read()
+    index_file.close()
+    index_text = index_text.replace('items:[]', 'items:[' + bubble_elements + ']')
+
+    new_index = open('views/js/index.js', 'w')
+    new_index.write(index_text)
+    new_index.close()
+
+
+    # {text: "Java", count: "236"},
+    # {text: ".Net", count: "382"},
+    # {text: "Php", count: "170"},
+    # {text: "Ruby", count: "123"},
+    # {text: "D", count: "12"},
+    # {text: "Python", count: "170"},
+    # {text: "C/C++", count: "100"},
+    # {text: "Pascal", count: "10"},
+    # {text: "Something", count: "170"},
 
 
     f = open("views/score_response.html", "r")
@@ -236,7 +255,9 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
         logging.disable(logging.NOTSET)  # This re-enables logging
         logging.info("PDF file processed")
 
-        file_text = longstringtostringlist(text, chunk_size)  # Converting long string to list of strings of size ____
+        file_text = longstringtostringlist(text, chunk_size)  # Converting long string to list of strings of size
+
+
 
 
 

@@ -1,0 +1,20 @@
+keyword,frequency,salience
+New, 500, 0.8
+Tyler, 50, 0.4
+UC Denver,30,0.6
+Test, 30, 1,
+Zachary, 100, 0.665
+Linguistic Analyzer, 150, 0.89
+Another, 120, 0.666
+one more, 89, 0.54
+hey there, 66, 0.44
+Tyler is alright,500,1
+America, 10, 5
+France, 300, 4
+Tattoos, 210, 9
+Etudiante, 280, 8
+Devoirs, 100, 9
+Stylo, 400, 4
+Je Parlais Francais, 87, 9
+J'ai beaucoup devoir mais il n'y a pas le temps, 550, 8
+L'etudiante regarde des films le week-end,125, 50

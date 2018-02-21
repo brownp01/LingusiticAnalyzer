@@ -12,17 +12,21 @@ $(document).ready(function () {
     //intersectInc: use @default
     //circleColor: use @default
     data: {
-      items: [
-        {text: "Java", count: "236"},
-        {text: ".Net", count: "382"},
-        {text: "Php", count: "170"},
-        {text: "Ruby", count: "123"},
-        {text: "D", count: "12"},
-        {text: "Python", count: "170"},
-        {text: "C/C++", count: "100"},
-        {text: "Pascal", count: "10"},
-        {text: "Something", count: "170"}
-      ],
+      items:[]
+
+        //
+        // {text: "Java", count: "236"},
+        // {text: ".Net", count: "382"},
+        // {text: "Php", count: "170"},
+        // {text: "Ruby", count: "123"},
+        // {text: "D", count: "12"},
+        // {text: "Python", count: "170"},
+        // {text: "C/C++", count: "100"},
+        // {text: "Pascal", count: "10"},
+        // {text: "Something", count: "170"},
+
+
+        ,
       eval: function (item) {return item.count;},
       classed: function (item) {return item.text.split(" ").join("");}
     },

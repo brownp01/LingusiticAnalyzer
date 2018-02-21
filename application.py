@@ -60,6 +60,50 @@ def bubbletest():
     f = open(VIEWS + "test.html", "r")  # opens file with name of "index.html"
     return Response(f.read(), mimetype='text/html')
 
+@application.route('/reusablebubble')
+def reusablebubble():
+    """
+            Page for testing
+
+            :return: Test page
+            :rtype: html
+            """
+    # Creating new log file every time the program starts.
+    if common_functions.homeCount() == 0:
+        analyze_functions.declarelogger()
+    f = open(VIEWS + "reusable_bubble.html", "r")  # opens file with name of "index.html"
+    return Response(f.read(), mimetype='text/html')
+
+
+@application.route('/reusablebubble.js')
+def reusablebubblejs():
+    """
+            Page for testing
+
+            :return: Test page
+            :rtype: html
+            """
+    # Creating new log file every time the program starts.
+    if common_functions.homeCount() == 0:
+        analyze_functions.declarelogger()
+    f = open(VIEWS + "js/reusable_bubble.js", "r")  # opens file with name of "index.html"
+    return Response(f.read(), mimetype='text/html')
+
+
+@application.route('/index.js')
+def indexjs():
+    """
+            Page for testing
+
+            :return: Test page
+            :rtype: html
+            """
+    # Creating new log file every time the program starts.
+    if common_functions.homeCount() == 0:
+        analyze_functions.declarelogger()
+    f = open(VIEWS + "js/index.js", "r")  # opens file with name of "index.html"
+    return Response(f.read(), mimetype='text/javascript')
+
 
 @application.route('/project')
 def project():
@@ -136,7 +180,37 @@ def analyze():
     except Exception as e:
         returnhtml = common_functions.geterrorpage('An unknown error has occurred')
 
-    return Response(returnhtml, mimetype='text/html')
+    try:
+        return Response(returnhtml, mimetype='text/html')
+    except Exception as e:
+        SystemError(e)
+
+
+@application.route('/newregdoc', methods=['GET'])
+def newregdoc():
+    """
+    Adds new regulatory document
+
+    :return: none
+    :rtype: none
+    """
+    regfilename = request.form.get('regdocname')
+
+@application.route('/backgroundimg', methods=['GET'])
+def getbackgroundimg():
+    """
+        Returns png image of file at
+
+        :return: graph
+        :rtype: png
+        """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
+    pilImage = open('views/img/background.png', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='keyword.png')
 
 
 @application.route('/keywordsalienceimage', methods=['GET'])
@@ -147,13 +221,40 @@ def getkwsalienceimage():
     :return: graph
     :rtype: png
     """
+
+    return_html = ''
+
+
+
     tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
     pilImage = open('downloads/topsalience.png', 'rb')
     copyfileobj(pilImage, tempFileObj)
     pilImage.close()
     tempFileObj.seek(0, 0)
 
-    return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='keyword.png')
+
+
+@application.route('/backgroundwordsimg', methods=['GET'])
+def getbackgroundwordsimg():
+    """
+    Returns png image of a graph of words background
+
+    :return: graph
+    :rtype: png
+    """
+
+    return_html = ''
+
+
+
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
+    pilImage = open('views/img/words_background_1.jpg', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='keyword.png')
 
 
 @application.route('/keywordscoresimage', methods=['GET'])
@@ -170,7 +271,7 @@ def getkwscoresimage():
     pilImage.close()
     tempFileObj.seek(0, 0)
 
-    return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='keyword.png')
 
 
 @application.route('/keywordfrequencyimage', methods=['GET'])
@@ -187,7 +288,7 @@ def getkwfreeqimage():
     pilImage.close()
     tempFileObj.seek(0, 0)
 
-    return send_file(tempFileObj, as_attachment=True, attachment_filename='keyword.png')
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='keyword.png')
 
 @application.route('/linguistic_analyzer_log', methods=['GET'])
 def getlinguisticanalyzerlog():
@@ -202,7 +303,7 @@ def getlinguisticanalyzerlog():
     copyfileobj(pilImage, tempFileObj)
     pilImage.close()
     tempFileObj.seek(0, 0)
-    return send_file(tempFileObj, as_attachment=True, attachment_filename='Linguistic_Analyzer.log')
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='Linguistic_Analyzer.log')
 
 
 @application.route('/user_doc_kws', methods=['GET'])
@@ -218,7 +319,7 @@ def getuserdockws():
     copyfileobj(pilImage, tempFileObj)
     pilImage.close()
     tempFileObj.seek(0, 0)
-    return send_file(tempFileObj, as_attachment=True, attachment_filename='UserDocKeywords.txt')
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='UserDocKeywords.txt')
 
 
 @application.route('/reg_doc_kws', methods=['GET'])
@@ -234,7 +335,24 @@ def getregdockws():
     copyfileobj(pilImage, tempFileObj)
     pilImage.close()
     tempFileObj.seek(0, 0)
-    return send_file(tempFileObj, as_attachment=True, attachment_filename='RegDocKeywords.txt')
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='RegDocKeywords.txt')
+
+
+@application.route('/testkeywords', methods=['GET'])
+def gettestkeywords():
+    """
+        Returns testkeywords.txt
+
+        :return: testkeywords doc keyword file
+        :rtype: .txt
+    """
+    tempFileObj = NamedTemporaryFile(mode='w+b', suffix='log')
+    pilImage = open('Documents/test_keywords.csv', 'rb')
+    copyfileobj(pilImage, tempFileObj)
+    pilImage.close()
+    tempFileObj.seek(0, 0)
+    return send_file(tempFileObj, as_attachment=False, attachment_filename='test_keywords.csv')
+
 
 
 @application.route('/yulesinfo', methods=['GET'])

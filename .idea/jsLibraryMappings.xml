@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{bubble-chart, central-click, d3, d3-transform, extarray, jquery, lines, micro-observer, microplugin, misc}" />
+    <file url="file://$PROJECT_DIR$" libraries="{bubble-chart, central-click, d3, d3-transform, extarray, index, jquery, lines, micro-observer, microplugin, misc}" />
   </component>
 </project>

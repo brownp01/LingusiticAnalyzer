@@ -5,12 +5,24 @@
     <title>Linguistic Analyzer</title>
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 
-</head>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+
+    <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
+    <script src="reusablebubble.js"></script>
 
 
-<style>
+    <style>
     .yulesinfo {
         box-sizing: border-box;
         width: 675px;
@@ -25,6 +37,14 @@
         border-radius: 10px;
         border: 4px solid #54637a;
     }
+    .user-chart {
+        {#box-sizing: border-box;#}
+        {#width: 685px;#}
+        {#padding: 10px;#}
+        {#border-radius: 10px;#}
+        {#border: 4px solid #54637a;#}
+    }
+
     .uploadyulesk {
         box-sizing: border-box;
         padding: 10px;
@@ -55,8 +75,21 @@
     .yulesilabel {
         padding-top: 20px;
     }
-
+    body{
+        background: #d8c3a5;
+        opacity:5;
+    }
+    .jumbotron {
+        box-sizing: border-box;
+        border-radius: 10px;
+        border: 4px solid #0a1612;
+    }
 </style>
+
+
+</head>
+
+
 
 
 
@@ -65,14 +98,10 @@
     <div class="container">
         <div class="header">
 
-            <h3 class="text-info" align="right">Linguistic Analyzer</h3>
+            <h3 style="color:#080706" align="right">Linguistic Analyzer</h3>
         </div>
 
-        <div class="jumbotron">
-            <!--h5 align="right">Processing complete!</h5-->
-
-
-
+        <div class="jumbotron" style="color:#080706;background-color: #edeae5">
             <div class="yulesinfo" >
             <table>
                 <tr>
@@ -84,7 +113,7 @@
                         <!--YULES INFO BUTTON-->
                         <form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
                         <div align="right">
-                        <input class="btn btn-small btn-info" type="submit" value="What is this?">
+                        <input class="btn btn-small btn-info" type="submit" value="What is this?" style="background-color: #eec015;color:#1a1a1d">
                         </div>
                         </form>
                     </td>
@@ -134,60 +163,6 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
-<!--
-            <h3 align="center"><u>Yule's k Score</u></h3>
-
-            <p class="lead"></p>
-            <div class="d-inline-block">
-                <h4>Uploaded Doc: </h4></div>
-            <div class="d-inline-block">
-                <h4 style="color: crimson">#--YULESK_SCORE--#</h4>
-            </div>
-
-            <br>
-
-            <div class="d-inline-block">
-                <h4>Regulatory Doc: </h4></div>
-            <div class="d-inline-block">
-                <h4 style="color: crimson">#--REG_YULESK_SCORE--#</h4>
-            </div>
-
-            <h3 align="center"><u>Yule's i Score</u></h3>
-
-            <div class="d-inline-block">
-                <h4>Uploaded Doc: </h4></div>
-            <div class="d-inline-block">
-                <h4 style="color: crimson">#--YULESI_SCORE--#</h4>
-            </div>
-
-            <br>
-
-            <div class="d-inline-block">
-                <h4>Regulatory Doc: </h4></div>
-            <div class="d-inline-block">
-                <h4 style="color: crimson">#--REG_YULESI_SCORE--#</h4>
-            </div>
--->
-
-            <!--YULES INFO BUTTON-->
-            <!--form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
-                        <div align="right">
-                        <input class="btn btn-small btn-info" type="submit" value="What is this?">
-                        </div>
-                        </form-->
-
-
-
-
             <p class="lead"></p>
             <div class="d-inline-block">
                 <h5><b><u>Comparison Score: </u></b></h5></div>
@@ -195,12 +170,6 @@
                 <h5 style="color: crimson">#--COMPARISON_SCORE--#</h5>
             </div>
 
-            <!--Comparison INFO BUTTONS-->
-            <!--form action="/comparisoninfo" enctype="multipart/form-data" method="get" about="more info">
-            <div align="right">
-                <input class="btn btn-small btn-info" type="submit" value="What is this?">
-            </div>
-            </form-->
 
             <hr>
 
@@ -213,53 +182,70 @@
             </tr>
             <tr>
                 <td>
-                    <form action="/keywordsalienceimage" enctype="multipart/form-data" method="get">
+
+                    <form action="/keywordsalienceimage" target="_blank" enctype="multipart/form-data" method="get">
                     <div>
-                        <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Salience Graph">
+                        <input class="btn btn-small btn-secondary" type="image" value="View Keyword Salience Graph" style="background-color:#303f42;color: #ffffff">
+                    </div>
+                    </form>
+
+                </td>
+                <td>
+                    <form action="/linguistic_analyzer_log" target="_blank" enctype="multipart/form-data" method="get">
+                        <div>
+                        <input class="btn btn-small btn-link" type="submit" value="View Session Log" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/keywordfrequencyimage" target="_blank" enctype="multipart/form-data" method="get">
+                    <div>
+                        <input class="btn btn-small btn-secondary" type="submit" value="View Keyword Frequency Graph" style="background-color:#303f42;color: #ffffff">
                     </div>
                     </form>
                 </td>
                 <td>
-                    <form action="/linguistic_analyzer_log" enctype="multipart/form-data" method="get">
+                    <form action="/user_doc_kws" target="_blank" enctype="multipart/form-data" method="get">
                         <div>
-                        <input class="btn btn-small btn-link" type="submit" value="Download Session Log">
+                        <input class="btn btn-small btn-link" type="submit" value="View User Document Keyword Log" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
                         </div>
                     </form>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <form action="/keywordfrequencyimage" enctype="multipart/form-data" method="get">
-                    <div>
-                        <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Frequency Graph">
-                    </div>
+                     <form action="/keywordscoresimage" target="_blank" enctype="multipart/form-data" method="get">
+                        <div>
+                            <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Scores Graph" style="background-color:#303f42;color: #ffffff">
+                        </div>
                     </form>
                 </td>
                 <td>
-                    <form action="/user_doc_kws" enctype="multipart/form-data" method="get">
+                    <form action="/reg_doc_kws" target="_blank" enctype="multipart/form-data" method="get">
                         <div>
-                        <input class="btn btn-small btn-link" type="submit" value="Download User Document Keyword Log">
+                        <input class="btn btn-small btn-link" type="submit" value="View Comparison Document Keyword Log" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/" enctype="multipart/form-data" style="padding-left: 100px" method="get">
+                        <div>
+                            <input class="btn btn-lg btn-primary" type="submit" value="Home" style="background-color: #eec015;color:#1a1a1d">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/reusablebubble" enctype="multipart/form-data" style="padding-left: 18px" method="get">
+                        <div>
+                            <input class="btn btn-lg btn-warning" type="submit" value="Generate Bubble Chart" style="background-color:#303f42;color: #eec015;">
                         </div>
                     </form>
                 </td>
             </tr>
             <tr>
-                <td>
-                     <form action="/keywordscoresimage" enctype="multipart/form-data" method="get">
-                        <div>
-                            <input class="btn btn-small btn-secondary" type="submit" value="Download Keyword Scores Graph">
-                        </div>
-                    </form>
-                </td>
-                <td>
-                    <form action="/reg_doc_kws" enctype="multipart/form-data" method="get">
-                        <div>
-                        <input class="btn btn-small btn-link" type="submit" value="Download Comparison Document Keyword Log">
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
+
 
             </tr>
         </table>
@@ -267,7 +253,7 @@
 
         <br>
             <p>
-            <div style="height:180px;width:1050px;border:3px solid #ccc;font:10px/10px Georgia, Garamond, Serif;overflow
+            <div style="height:180px;width:1050px;padding:7px;border:3px solid #000000;font:10px/10px Georgia, Garamond, Serif;overflow
             :auto;">
             <p>ANALYTICS LOG - last 100 lines:</p>
 
@@ -276,14 +262,26 @@
             </p>
 
 
-            <!-- HOME BUTTON -->
-        <form action="/" enctype="multipart/form-data" method="get">
-            <div>
-                <input class="btn btn-lg btn-primary" type="submit" value="Home">
-            </div>
-        </form>
-
         </div>
+
+    <!--This is really cool. Navigates to given URL after 2 seconds. (Can change the 2)-->
+    <!--meta http-equiv="refresh" content="2;url=http://dotnet.org.za/"-->
+
+        <!--div class="user-chart" id="chart"><svg></svg></div>
+        <script>
+        //This is necessary at the moment to reload the document at that page
+        window.open('/testkeywords', '_blank').close();
+
+        d3.csv('testkeywords', function(error, data) {
+            if (error) {
+                console.error('Error getting or parsing the data.');
+                throw error;
+            }
+            var chart = bubbleChart().width(1000).height(800).forceApart(-700).minRadius(25).maxRadius(80).customColors(["M","F"],["#eec015","#6c7a7d"]);
+            d3.select('#chart').data(data).call(chart);
+        });
+
+        </script-->
 
         <div class="row marketing">
             <div class="col-lg-6">

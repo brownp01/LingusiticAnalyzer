@@ -14,6 +14,7 @@
     <orderEntry type="library" name="d3-transform" level="application" />
     <orderEntry type="library" name="d3" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="index" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />
