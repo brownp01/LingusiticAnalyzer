@@ -1,3 +1,6 @@
+2018-02-22 14:20:13.436613 ; [0.786 sec.] ; small_sample.pdf ; 4 ; Polaris_API_Guide.txt ; 997 ; 
+2018-02-22 14:15:29.371011 ; [16.844 sec.] ; Polaris_API_Guide_Rev5_(IL-1070101).pdf ; 997 ; small_sample.txt ; 4 ; 
+2018-02-21 14:45:25.174221 ; [1.179 sec.] ; simple_description.pdf ; 11 ; simple_description_name_switch.txt ; 11 ; 
 2018-02-21 14:36:07.831242 ; [0.785 sec.] ; small_sample_reword.pdf ; 4 ; small_sample.txt ; 4 ; 
 2018-02-21 14:26:27.390376 ; [23.524 sec.] ; BSI_14971_Application_of_risk_management_to_medical_devices.pdf ; 885 ; BSI_14971.txt ; 891 ; 
 2018-02-21 14:09:34.282500 ; [2.205 sec.] ; film_paper.pdf ; 443 ; BSI_14971.txt ; 891 ; 
