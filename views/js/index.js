@@ -12,7 +12,7 @@ $(document).ready(function () {
     //intersectInc: use @default
     //circleColor: use @default
     data: {
-      items:[{text: "MUSEUMS", count: "2"},{text: "TEST PDF", count: "1"},{text: "DENVER", count: "2"},{text: "NEW YORK", count: "1"},]
+      items:[{text: "TEST PDF", count: "1"},{text: "MUSEUMS", count: "3"},{text: "DENVER", count: "2"},{text: "NEW YORK", count: "1"},]
 
         //
         // {text: "Java", count: "236"},

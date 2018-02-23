@@ -15,8 +15,8 @@ def declarelogger():
     """
     Summary: Declares logger for the current session.
     """
-    if not os.path.isfile(LOG_FILE_PATH):
-        f = open(LOG_FILE_PATH, 'w+').close()
+    #if not os.path.isfile(LOG_FILE_PATH):
+    f = open(LOG_FILE_PATH, 'w').close()
     logging.basicConfig(level=logging.DEBUG, filename=LOG_FILE_PATH) #filename=LOG_FILE_PATH
     logging.info("API started")
 

@@ -15,7 +15,8 @@ import applicationconfig
 UPLOAD_FOLDER = 'downloads/'
 
 application = Flask(__name__)
-loggerStart = 0
+loggerStart = 0  #log file counter.
+
 
 
 def resource_path(relative_path):
@@ -34,6 +35,7 @@ def resource_path(relative_path):
 VIEWS = resource_path("views/")
 
 
+
 @application.route('/')
 def main():
     """
@@ -42,10 +44,17 @@ def main():
     :return: Home page
     :rtype: html
     """
+    global loggerStart
+
     # Creating new log file every time the program starts.
-    if common_functions.homeCount() == 0:
+    if loggerStart == 0:
         analyze_functions.declarelogger()
+    if loggerStart > 3:
+        analyze_functions.declarelogger()
+        loggerStart = 0
+
     f = open(VIEWS + "index.html", "r")  # opens file with name of "index.html"
+    loggerStart+=1
     return Response(f.read(), mimetype='text/html')
 
 

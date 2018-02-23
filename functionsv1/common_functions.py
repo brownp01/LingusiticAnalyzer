@@ -235,7 +235,7 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
         # PdfMiner writes an insane amount of logging statements (one per parsed word, it seems).
         # Remove the below line if you would like to see them.
-        logging.disable(logging.CRITICAL)
+        logging.disable(logging.INFO)
         # ----------This is the PDFMiner.six PDF Reader ----------#
         pages=None
         if not pages:
