@@ -10,6 +10,11 @@ import sys
 import os
 import time
 import applicationconfig
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
+import io
 
 
 UPLOAD_FOLDER = 'downloads/'
@@ -207,16 +212,6 @@ def analyze():
     except Exception as e:
         SystemError(e)
 
-
-@application.route('/newregdoc', methods=['GET'])
-def newregdoc():
-    """
-    Adds new regulatory document
-
-    :return: none
-    :rtype: none
-    """
-    regfilename = request.form.get('regdocname')
 
 @application.route('/backgroundimg', methods=['GET'])
 def getbackgroundimg():
@@ -423,6 +418,47 @@ def comparisoninfo():
                     identical then the score will be 100. This score is useful for seeing how well the semantic \
                     choices made in the user's document match up with the semantics present in the regulatory \
                     document."), mimetype='text/html')
+
+
+@application.route('/newregdoc', methods=['POST'])
+def newregdoc():
+    """
+    Adds new regulatory document
+
+    :return: none
+    :rtype: none
+    """
+
+    if 'datafile' not in request.files or request.files['datafile'].filename == "":
+        logging.warning('Cannot find "datafile" in request object')
+        returnhtml = common_functions.geterrorpage('No new file selected')
+        return Response(returnhtml, mimetype='text/html')
+
+    file = request.files['datafile']
+
+    regfilename = file.filename
+
+    # ----------- saving new regulatory file -------------#
+    f = open('RegulatoryDocuments/' + regfilename, 'w')
+    common_functions.savefile(file, 'RegulatoryDocuments/')
+
+    f.close()
+
+    # ----------- putting new regulatory file in list on home page -------------#
+    fhtml = open('views/index.html')
+    text = fhtml.read()
+    newhtml = text.replace('<option class="reg doc options" value="Select">Select</option>', '<option class="reg doc options" value="Select">Select</option><option value=' + '"' + regfilename + '"' + '>' + regfilename[:-4] + '</option>')
+
+
+    fhtml.close()
+
+
+    newindexhtml = open('views/index.html', 'w')
+    newindexhtml.write(newhtml)
+    newindexhtml.close()
+
+    return Response(newhtml, mimetype='text/html')
+
 
 
 if __name__ == '__main__':

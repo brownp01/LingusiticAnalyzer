@@ -1,7 +1,6 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [22/Feb/2018 17:55:21] "GET / HTTP/1.1" 200 -
-INFO:root:Started in Analyze
-INFO:root:saving file "HITRUST_CSF_v9.pdf"
-INFO:root:"HITRUST_CSF_v9.pdf" saved
-INFO:root:opening file "HITRUST_CSF_v9.pdf"
-INFO:root:PDF file processed
+INFO:werkzeug:127.0.0.1 - - [04/Mar/2018 12:03:48] "GET / HTTP/1.1" 200 -
+INFO:root:saving file "2_page_kafka.pdf"
+INFO:root:"2_page_kafka.pdf" saved
+INFO:root:opening file "2_page_kafka.pdf"
+INFO:werkzeug:127.0.0.1 - - [04/Mar/2018 12:03:55] "POST /newregdoc HTTP/1.1" 200 -

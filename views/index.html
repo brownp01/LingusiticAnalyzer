@@ -47,7 +47,9 @@
 
             <h2>Step 1.</h2>
             <h6>Please specify your file:</h6>
+
             <input type="file" name="datafile" size="40">
+
             <hr style="background-color: #1a1a1d">
 
             <table>
@@ -55,7 +57,7 @@
                     <td width="40%">
                         <h2>Step 2.</h2>
                         <h6><u>Select regulatory document to compare against</u></h6>
-                    <select name="regdocname" style="background-clip: border-box;width:95%">
+                    <select title="Regulatory Document" name="regdocname" style="background-clip: border-box;width:95%">
                         <option class="reg doc options" value="Select">Select</option>
                         <option value="small_sample.txt">small sample</option>
                         <option value="small_sample_reword.txt">small sample reword</option>
@@ -76,28 +78,41 @@
                             OR
                         </h3>
                     </td>
-                    <td width="30%">
+                    <td>
 
-                    <form action="/newregdoc" enctype="multipart/form-data" method="post">
-
+                        <h2>Alt Step 2.</h2>
                         <h6><u>Upload locally stored regulatory document</u></h6>
-                        <input class="btn btn-neutral" role="spinbutton" style="border: #06287e;border-radius: 10px;" type="file" value="Upload custom document">
-                        <input id="newregbutton" onclick="change()" class="btn btn-neutral" role="spinbutton" style="border: #06287e;border-radius: 10px;background-color:#303f42;color: #ffffff" type="submit" value="Upload custom document">
-                    </form>
 
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- ANALYZE BUTTON -->
+                        <input class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
+
+
+                    </td>
+                    </form>
+                    <td>
+
+                    </td>
+                    <td>
+                        <form action="/newregdoc" enctype="multipart/form-data" method="post">
+
+
+                            <input class="btn btn-neutral" style="border: #06287e;border-radius: 10px;" type="file" name="datafile" value="Upload custom document">
+
+
+                            <input id="addregdocbutton" class="btn btn-large" style="border: #06287e;border-radius: 10px;
+                            background-color:#303f42;color: #ffffff" type="submit" value="Add custom regulatory doc">
+                        </form>
                     </td>
                 </tr>
             </table>
 
             <hr style="background-color: #1a1a1d">
-            <!-- ANALYZE BUTTON -->
-
-            <div>
-                <input class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
-            </div>
-
-        </form>
-
 
             <br>
             <form action="/project" enctype="multipart/form-data" method="get">
@@ -106,7 +121,11 @@
             </div>
         </form>
 
+
         </div>
+
+
+
 
         <div class="row marketing">
             <div class="col-lg-6">

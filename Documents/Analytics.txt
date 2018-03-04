@@ -1,3 +1,17 @@
+2018-03-04 12:02:44.489987 ; [1.205 sec.] ; 3_page_kafka.pdf ; 63 ; BSI_14971.txt ; 891 ; 
+2018-03-01 15:10:22.260985 ; [0.869 sec.] ; 3_sentence_kafka.pdf ; 10 ; 10_page_kafka.pdf ; 0 ; 
+2018-03-01 15:06:34.925130 ; [0.776 sec.] ; 1_sentence_kafka.pdf ; 4 ; 1_page_kafka.pages.pdf ; 0 ; 
+2018-02-28 18:35:48.572260 ; [2.167 sec.] ; film_paper.pdf ; 444 ; BSI_14971.txt ; 891 ; 
+2018-02-28 18:35:25.605921 ; [2.182 sec.] ; film_paper.pdf ; 444 ; BSI_14971.txt ; 891 ; 
+2018-02-28 18:35:10.609176 ; [2.152 sec.] ; film_paper.pdf ; 444 ; BSI_14971.txt ; 891 ; 
+2018-02-28 18:34:41.913447 ; [2.148 sec.] ; film_paper.pdf ; 444 ; BSI_14971.txt ; 891 ; 
+2018-02-28 18:34:26.423324 ; [2.207 sec.] ; film_paper.pdf ; 444 ; BSI_14971.txt ; 891 ; 
+2018-02-28 18:32:06.606275 ; [5.211 sec.] ; film_paper.pdf ; 444 ; BSI_14971.txt ; 891 ; 
+2018-02-28 18:31:17.282011 ; [1.938 sec.] ; simple_description.pdf ; 11 ; simple_description.txt ; 11 ; 
+2018-02-28 18:30:43.260288 ; [3.051 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.pdf ; 0 ; 
+2018-02-28 18:29:34.936786 ; [3.771 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.pdf ; 0 ; 
+2018-02-28 17:56:56.364773 ; [12.261 sec.] ; small_sample_reword.pdf ; 4 ; transcript_summer_2015.pdf ; 0 ; 
+2018-02-28 17:54:33.027961 ; [2.035 sec.] ; small_sample.pdf ; 4 ; transcript_summer_2015.pdf ; 0 ; 
 2018-02-22 17:23:01.524277 ; [2.881 sec.] ; small_sample_reword.pdf ; 4 ; simple_description.txt ; 11 ; 
 2018-02-22 17:21:14.026261 ; [2.503 sec.] ; small_sample.pdf ; 4 ; small_sample_reword.txt ; 4 ; 
 2018-02-22 17:10:34.408438 ; [3.026 sec.] ; t_blant_reword.pdf ; 9 ; t_blant_reword.txt ; 9 ; 

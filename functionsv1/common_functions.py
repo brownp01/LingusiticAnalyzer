@@ -143,25 +143,25 @@ def getscorepage(kw_list, reg_kw_list):
         html_str = html_str + '<p>' + l + '</p>'
 
 
-    bubble_elements = ""
+    # bubble_elements = ""
 
     # index.js can only handle 13 values being loaded into the bubble graph (so break when count == 12)
-    count = 0
-    for kw in kw_list.list:
-        bubble_elements = bubble_elements + '{text: "' + kw.word + '", count: "' + str(kw.frequency) + '"},'
-        if count == 8:  # KEEP THIS BREAK AT 11 OR 12. PERFORMANCE ISSUE OTHERWISE
-            break
-        else:
-            count = count + 1
-
-    index_file = open('views/js/staticindex.js', 'r')
-    index_text = index_file.read()
-    index_file.close()
-    index_text = index_text.replace('items:[]', 'items:[' + bubble_elements + ']')
-
-    new_index = open('views/js/index.js', 'w')
-    new_index.write(index_text)
-    new_index.close()
+    # count = 0
+    # for kw in kw_list.list:
+    #     bubble_elements = bubble_elements + '{text: "' + kw.word + '", count: "' + str(kw.frequency) + '"},'
+    #     if count == 8:  # KEEP THIS BREAK AT 11 OR 12. PERFORMANCE ISSUE OTHERWISE
+    #         break
+    #     else:
+    #         count = count + 1
+    #
+    # index_file = open('views/js/staticindex.js', 'r')
+    # index_text = index_file.read()
+    # index_file.close()
+    # index_text = index_text.replace('items:[]', 'items:[' + bubble_elements + ']')
+    #
+    # new_index = open('views/js/index.js', 'w')
+    # new_index.write(index_text)
+    # new_index.close()
 
 
     # {text: "Java", count: "236"},
@@ -401,9 +401,10 @@ def extractkeywordfromtxt(filename):
     try:
         file = REGULATOR_FOLDER+filename
         i = 0
-        f = open(file, 'r')
+        f = open(file, 'r', errors='replace')
 
         logging.info("Extracting keyword info from " + filename)
+
 
         line_list = f.readline().split(',')
         yulesk = line_list[i]
