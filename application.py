@@ -9,7 +9,8 @@ from functionsv1 import analyze_functions
 import sys
 import os
 import time
-import applicationconfig
+import json
+#import applicationconfig
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -183,11 +184,17 @@ def analyze():
 
             if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
                 keyword_list = common_functions.interpretfile(file, localuploadfolder)
-                applicationconfig.NUM_KWS = len(keyword_list.list)
+
+                data = json.load((open('applicationconfig.json')))
+                data['NUM_KWS'] = len(keyword_list.list) # This probably won't actually write to the file
+
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
                 reg_keyword_list = common_functions.interpretexistingfile(regfilename)
-                applicationconfig.NUM_REG_KWS = len(reg_keyword_list.list)
+
+                data = json.load((open('applicationconfig.json')))
+                data['NUM_REG_KWS'] = len(reg_keyword_list.list) # This probably won't actually write to the file
+
 
                 # ---------------------------KEYWORD PLOT FUNCTIONS------------------------------- #
                 common_functions.plotkeywordsalience(keyword_list, reg_keyword_list, file.filename, regfilename)

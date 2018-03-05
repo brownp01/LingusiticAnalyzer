@@ -1,6 +1,89 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [04/Mar/2018 12:03:48] "GET / HTTP/1.1" 200 -
-INFO:root:saving file "2_page_kafka.pdf"
-INFO:root:"2_page_kafka.pdf" saved
-INFO:root:opening file "2_page_kafka.pdf"
-INFO:werkzeug:127.0.0.1 - - [04/Mar/2018 12:03:55] "POST /newregdoc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 11:21:36] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "1_sentence_kafka.pdf"
+INFO:root:"1_sentence_kafka.pdf" saved
+INFO:root:opening file "1_sentence_kafka.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 11:22:13] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 11:22:14] "GET /linguistic_analyzer_log?x=214&y=36 HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "1_sentence_kafka.pdf"
+INFO:root:"1_sentence_kafka.pdf" saved
+INFO:root:opening file "1_sentence_kafka.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 11:23:33] "POST /analyze HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "1_sentence_kafka.pdf"
+INFO:root:"1_sentence_kafka.pdf" saved
+INFO:root:opening file "1_sentence_kafka.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot

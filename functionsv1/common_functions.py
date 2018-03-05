@@ -19,7 +19,8 @@ matplotlib.use('agg',warn=False, force=True)
 from matplotlib import pyplot
 import numpy as np
 import datetime
-import applicationconfig
+#import applicationconfig
+import json
 
 
 DOWNLOAD_FOLDER = 'downloads/'
@@ -223,7 +224,12 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
     file_text = []
     filename = file.filename
-    chunk_size = int(applicationconfig.NUM_SEND_CHARS)
+
+
+
+    data = json.load((open('applicationconfig.json')))
+
+    chunk_size = int(data['NUM_SEND_CHARS'])
     try:
         # -- This is for testing, do not remove -- #
         if testdownload_folder is None and RegDoc is False:
@@ -310,14 +316,16 @@ def extractmicrosoftdocxtext(file, testdownload_folder=None):
 def splitintosize(file_text):
     """
     This function splits a list of keywords of any length into a lit of keywords eachof length specified by NUM_SEND_CHARS
-    in 'applicationconfig.py'
+    in 'applicationconfig.json'
 
     :param list file_text: list of document's words
     :return list file_text:
 
     """
     line = stringlisttolonglongstring(file_text)
-    n = applicationconfig.NUM_SEND_CHARS
+
+    data = json.load((open('applicationconfig.json')))
+    n = int(data['NUM_SEND_CHARS'])
 
     file_text = [line[i:i + n] for i in range(0, len(line), n)]
     return file_text
@@ -835,7 +843,9 @@ def generatebubblecsv(kw_list, reg_kw_list):
 
     for i in range(0, len(kw_list.list)):
         # in order to preserve color scheme, keywords from different files must alternate, so if one runs out, we stop.
-        if i >= len(reg_kw_list.list) or i >= applicationconfig.MAX_BUBBLES:
+
+        data = json.load(open('applicationconfig.json'))
+        if i >= len(reg_kw_list.list) or i >= int(data['MAX_BUBBLES']):
             break
         f.write(kw_list.list[i].word + ',' + str(kw_list.list[i].frequency) + ',' + str(kw_list.list[i].salience) + '\n')
         f.write(reg_kw_list.list[i].word + ',' + str(reg_kw_list.list[i].frequency) + ',' + str(reg_kw_list.list[i].salience) + '\n')
