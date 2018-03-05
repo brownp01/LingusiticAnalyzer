@@ -1,3 +1,4 @@
+2018-03-05 15:12:30.925131 ; [4.56 sec.] ; small_sample_reword.pdf ; 4 ; test.pdf ; 68 ; 
 2018-03-05 11:25:09.074086 ; [1.782 sec.] ; 1_sentence_kafka.pdf ; 4 ; small_sample.txt ; 4 ; 
 2018-03-04 12:02:44.489987 ; [1.205 sec.] ; 3_page_kafka.pdf ; 63 ; BSI_14971.txt ; 891 ; 
 2018-03-01 15:10:22.260985 ; [0.869 sec.] ; 3_sentence_kafka.pdf ; 10 ; 10_page_kafka.pdf ; 0 ; 

@@ -454,12 +454,9 @@ def newregdoc():
     # ----------- putting new regulatory file in list on home page -------------#
     fhtml = open('views/index.html')
     text = fhtml.read()
-    newhtml = text.replace('<option class="reg doc options" value="Select">Select</option>', '<option class="reg doc options" value="Select">Select</option><option value=' + '"' + regfilename + '"' + '>' + regfilename[:-4] + '</option>')
-
-
+    newhtml = text.replace('<option class="reg doc options" value="Select">Select</option>',
+                           '<option class="reg doc options" value="Select">Select</option>\n\t\t\t\t\t\t<option value=' + '"' + regfilename + '"' + '>' + regfilename[:-4] + '</option>')
     fhtml.close()
-
-
     newindexhtml = open('views/index.html', 'w')
     newindexhtml.write(newhtml)
     newindexhtml.close()

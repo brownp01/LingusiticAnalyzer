@@ -85,12 +85,27 @@ def interpretexistingfile(regfilename):
     :rtype: KeywordList
 
     """
-    #regfilenamePDF = common_functions.changefileextension(regfilename)
-    #reg_text = common_functions.getregulatorydoctext(regfilenamePDF)
-    #reg_keyword_list = analyze_functions.identifykeywords(reg_text)
-    reg_keyword_list = common_functions.extractkeywordfromtxt(regfilename)
-    #analyze_functions.calculatescores(reg_keyword_list, reg_text)
-    #reg_keyword_list.calculateavgscores()
+    if regfilename[-3:] == 'pdf':
+        reg_text = common_functions.getregulatorydoctext(regfilename)
+        reg_keyword_list = analyze_functions.identifykeywords(reg_text)
+        analyze_functions.calculatescores(reg_keyword_list, reg_text)
+        reg_keyword_list.calculateavgscores()
+        regfilenameTXT = common_functions.changefileextension(regfilename)
+        common_functions.outputkeywordtotext(reg_keyword_list, REGULATOR_FOLDER + regfilenameTXT)
+
+        #------- Change filename extension for reg doc path in 'index.html' to .txt after initial PDF analysis -------#
+
+        fhtml = open('views/index.html')
+        text = fhtml.read()
+        newhtml = text.replace('<option value=' + '"' + regfilename + '"' + '>',
+                               '<option value=' + '"' + regfilenameTXT + '"' + '>')
+        fhtml.close()
+        newindexhtml = open('views/index.html', 'w')
+        newindexhtml.write(newhtml)
+        newindexhtml.close()
+
+    else:
+        reg_keyword_list = common_functions.extractkeywordfromtxt(regfilename)
 
     common_functions.outputkeywordtotext(reg_keyword_list, 'Documents/Reg_Keywords.txt')
 
@@ -99,7 +114,7 @@ def interpretexistingfile(regfilename):
 
 def changefileextension(regfilename):
     """
-    Changes the file name string from .txt to .pdf.
+    Changes the file name string from .pdf to .txt.
 
     :param str regfilename: name of regulatory file
     :return: string with .pdf file extension
@@ -109,12 +124,12 @@ def changefileextension(regfilename):
 
     temp = list(regfilename)
     size = len(regfilename)
-    temp[size-3] = "p"
-    temp[size-2] = "d"
-    temp[size-1] = "f"
-    regfilenamePDF = "".join(temp)
+    temp[size-3] = "t"
+    temp[size-2] = "x"
+    temp[size-1] = "t"
+    regfilenameTXT = "".join(temp)
 
-    return regfilenamePDF
+    return regfilenameTXT
 
 
 def getscorepage(kw_list, reg_kw_list):
