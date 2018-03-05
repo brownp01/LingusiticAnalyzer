@@ -856,14 +856,36 @@ def generatebubblecsv(kw_list, reg_kw_list):
     f = open(DOCUMENTS_FOLDER + 'csvkeywords.csv', 'w')
     f.writelines(["keyword,frequency,salience\n", '----------------\n'])
 
+    breakCount = -1
+
     for i in range(0, len(kw_list.list)):
         # in order to preserve color scheme, keywords from different files must alternate, so if one runs out, we stop.
 
         data = json.load(open('applicationconfig.json'))
         if i >= len(reg_kw_list.list) or i >= int(data['MAX_BUBBLES']):
+            breakCount = i
+            writeToConfig("ACTUAL_BUBBLES", i)
             break
         f.write(kw_list.list[i].word + ',' + str(kw_list.list[i].frequency) + ',' + str(kw_list.list[i].salience) + '\n')
         f.write(reg_kw_list.list[i].word + ',' + str(reg_kw_list.list[i].frequency) + ',' + str(reg_kw_list.list[i].salience) + '\n')
 
+    if breakCount != -1:
+        writeToConfig("ACTUAL_BUBBLES", breakCount)
+    else:
+        writeToConfig("ACTUAL_BUBBLES", len(kw_list.list))
+
     f.close()
 
+def writeToConfig(key, value):
+    """
+        Writes value into applicationconfig.json file
+
+        :param key: key
+        :param value: value
+        :return: none
+
+    """
+    data = json.load((open('applicationconfig.json')))
+    data[key] = value
+    with open('applicationconfig.json', 'w') as outfile:
+        json.dump(data, outfile)

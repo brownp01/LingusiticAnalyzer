@@ -1,16 +1,10 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 15:23:40] "GET / HTTP/1.1" 200 -
-WARNING:root:Cannot find "datafile" in request object
-INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 15:23:44] "POST /newregdoc HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 15:23:45] "GET /? HTTP/1.1" 200 -
-INFO:root:saving file "test.pdf"
-INFO:root:"test.pdf" saved
-INFO:root:opening file "test.pdf"
-INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 15:23:57] "POST /newregdoc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:42] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:42] "GET /applicationconfig HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "small_sample_reword.pdf"
-INFO:root:"small_sample_reword.pdf" saved
-INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:saving file "6_sentence_kafka.pdf"
+INFO:root:"6_sentence_kafka.pdf" saved
+INFO:root:opening file "6_sentence_kafka.pdf"
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -38,3 +32,25 @@ INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:49] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:49] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:51] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:51] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:51] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:55] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:55] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:55] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:56] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:32:58] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:33:17] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Mar/2018 16:33:17] "GET /applicationconfig HTTP/1.1" 200 -

@@ -1,3 +1,8 @@
+2018-03-05 16:32:49.124449 ; [0.961 sec.] ; 6_sentence_kafka.pdf ; 14 ; 5_sentence_kafka.pdf ; 13 ; 
+2018-03-05 16:22:22.542830 ; [0.915 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
+2018-03-05 15:52:26.129907 ; [0.786 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
+2018-03-05 15:51:14.362304 ; [0.949 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.pdf ; 10 ; 
+2018-03-05 15:48:14.477923 ; [0.99 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.pdf ; 10 ; 
 2018-03-05 15:12:30.925131 ; [4.56 sec.] ; small_sample_reword.pdf ; 4 ; test.pdf ; 68 ; 
 2018-03-05 11:25:09.074086 ; [1.782 sec.] ; 1_sentence_kafka.pdf ; 4 ; small_sample.txt ; 4 ; 
 2018-03-04 12:02:44.489987 ; [1.205 sec.] ; 3_page_kafka.pdf ; 63 ; BSI_14971.txt ; 891 ; 

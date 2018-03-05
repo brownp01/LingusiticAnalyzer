@@ -69,13 +69,54 @@
 
     <div>
         <script>
+            // Retrieve config file values here ane
+            var forceApart, minRadius, maxRadius = 0;
 
+            // making API request to get contents of config file
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", '/applicationconfig', false ); // false for synchronous request
+            xmlHttp.send( null );
+
+            var text = xmlHttp.responseText;
+            var data = JSON.parse(text);
+
+            var userKwCount = data["NUM_KWS"].toString();
+            var regKWCount = data["NUM_REG_KWS"].toString();
+            var numOfubbles = parseInt(data['MAX_BUBBLES']);
+
+            //as numOfBubbles scales up, we need max radius to go down
+            //bub|| maxr|| forceapart
+            // 9 || 125 || -850
+            // 14|| 100 || -700
+            // 19|| 75  || -500
+            // 30|| 70  || -300
+
+            // Polynomial functions for dynamic graph sizing
+            maxRadius = ((-2.520661) * numOfubbles) + 137.9719;
+            forceApart = (26.23967 * numOfubbles) -970.814;
+            minRadius = (-0.5 * numOfubbles) + 30;
+
+            //Must set maximums and minimums so we don't go wild with bubbles that are too large, small, close, or far apart.
+            if(forceApart > -230)
+            {
+                forceApart = -230;
+            }
+            if(maxRadius < 40)
+            {
+                maxRadius = 40;
+            }
+            if(minRadius < 15)
+            {
+                minRadius = 15;
+            }
+
+            // Creating the bubble chart with the calculated values
             d3.csv('csvkeywords', function (error, data) {
                 if (error) {
                     console.error('Error getting or parsing the data.');
                     throw error;
                 }
-                var chart = bubbleChart().width(1300).height(875).forceApart(-850).minRadius(25).maxRadius(125).customColors(["M", "F"], ["#f3b54a", "#584848"]);
+                var chart = bubbleChart().width(1300).height(865).forceApart(forceApart).minRadius(minRadius).maxRadius(maxRadius).customColors(["M", "F"], ["#f3b54a", "#584848"]);
                 d3.select('#chart').data(data).call(chart);
             });
 

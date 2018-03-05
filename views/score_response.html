@@ -39,14 +39,6 @@
         border-radius: 10px;
         border: 4px solid #54637a;
     }
-    .user-chart {
-        {#box-sizing: border-box;#}
-        {#width: 685px;#}
-        {#padding: 10px;#}
-        {#border-radius: 10px;#}
-        {#border: 4px solid #54637a;#}
-    }
-
     .uploadyulesk {
         box-sizing: border-box;
         padding: 10px;
@@ -90,9 +82,6 @@
 
 
 </head>
-
-
-
 
 
 <body>
@@ -264,24 +253,6 @@
 
         </div>
 
-    <!--This is really cool. Navigates to given URL after 2 seconds. (Can change the 2)-->
-    <!--meta http-equiv="refresh" content="2;url=http://dotnet.org.za/"-->
-
-        <!--div class="user-chart" id="chart"><svg></svg></div>
-        <script>
-        //This is necessary at the moment to reload the document at that page
-        window.open('/testkeywords', '_blank').close();
-
-        d3.csv('testkeywords', function(error, data) {
-            if (error) {
-                console.error('Error getting or parsing the data.');
-                throw error;
-            }
-            var chart = bubbleChart().width(1000).height(800).forceApart(-700).minRadius(25).maxRadius(80).customColors(["M","F"],["#eec015","#6c7a7d"]);
-            d3.select('#chart').data(data).call(chart);
-        });
-
-        </script-->
 
         <div class="row marketing">
             <div class="col-lg-6">

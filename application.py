@@ -186,14 +186,15 @@ def analyze():
                 keyword_list = common_functions.interpretfile(file, localuploadfolder)
 
                 data = json.load((open('applicationconfig.json')))
-                data['NUM_KWS'] = len(keyword_list.list) # This probably won't actually write to the file
-
+                data['NUM_KWS'] = len(keyword_list.list)
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
                 reg_keyword_list = common_functions.interpretexistingfile(regfilename)
 
-                data = json.load((open('applicationconfig.json')))
-                data['NUM_REG_KWS'] = len(reg_keyword_list.list) # This probably won't actually write to the file
+                data['NUM_REG_KWS'] = len(reg_keyword_list.list)
+                with open('applicationconfig.json', 'w') as outfile:
+                    json.dump(data, outfile)
+
 
 
                 # ---------------------------KEYWORD PLOT FUNCTIONS------------------------------- #
@@ -427,6 +428,23 @@ def comparisoninfo():
                     document."), mimetype='text/html')
 
 
+@application.route('/applicationconfig', methods=['GET'])
+def getapplicationconfig():
+    """
+        Returns json application config file
+
+     :return: applicationconfig.json
+     :rtype: json file
+
+    """
+
+    f = open('applicationconfig.json')
+    returntext = f.read()
+    f.close()
+
+    return Response(returntext, mimetype='application/json')
+
+
 @application.route('/newregdoc', methods=['POST'])
 def newregdoc():
     """
@@ -435,6 +453,14 @@ def newregdoc():
     :return: none
     :rtype: none
     """
+
+    # ---- Set flag that tells popup to show? ---- #
+    # data = json.load(open('applicationconfig.json'))
+    # data["NEW_DOC_FLAG"] = "true"
+    #
+    # with open('applicationconfig.json', 'w') as outfile:
+    #     json.dump(data, outfile)
+
 
     if 'datafile' not in request.files or request.files['datafile'].filename == "":
         logging.warning('Cannot find "datafile" in request object')
@@ -461,7 +487,16 @@ def newregdoc():
     newindexhtml.write(newhtml)
     newindexhtml.close()
 
+    # data = json.load(open('applicationconfig.json'))
+    # data["NEW_DOC_FLAG"] = "false"
+    #
+    # with open('applicationconfig.json', 'w') as outfile:
+    #     json.dump(data, outfile)
+
     return Response(newhtml, mimetype='text/html')
+
+
+
 
 
 
