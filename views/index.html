@@ -7,12 +7,22 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script>
-        function change()
-        {
-            var elem = document.getElementById("myButton1");
-            if (elem.value=="Upload custom document") elem.value = "Document added to regulatory document list.";
-            else elem.value = "Close Curtain";
+        window.onload = function (ev) {
+            // making API request to get contents of config file
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", '/applicationconfig', false ); // false for synchronous request
+            xmlHttp.send( null );
+
+            var text = xmlHttp.responseText;
+            var data = JSON.parse(text);
+
+            if(data["NEW_DOC_FLAG"] == "true"){
+                alert('Thank you.\nNew Regulatory Document has been added to list.')
+            }
+
         }
+
+
     </script>
 
 
@@ -26,26 +36,12 @@
             border-radius: 10px;
             border: 4px solid #0a1612;
         }
+
     </style>
 
 </head>
 
 <body>
-
-    <script>
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", '/applicationconfig', false ); // false for synchronous request
-        xmlHttp.send( null );
-
-        var text = xmlHttp.responseText;
-        var data = JSON.parse(text);
-
-        if(data["NEW_DOC_FLAG"] == "true")
-        {
-            alert("New regulatory document added");
-        }
-
-    </script>
 
     <div class="container">
         <div class="header">
@@ -67,13 +63,16 @@
 
             <hr style="background-color: #1a1a1d">
 
-            <table>
+            <table style="border-collapse: collapse">
                 <tr>
-                    <td width="40%">
+                    <td width="60%" class="step2" style="border-top: solid 2px #000000;border-bottom:solid 2px #000000; border-right: solid 2px #000000;border-left: solid 2px #000000; padding-left: 9px;padding-right: 9px">
                         <h2>Step 2.</h2>
                         <h6><u>Select regulatory document to compare against</u></h6>
                     <select title="Regulatory Document" name="regdocname" style="background-clip: border-box;width:95%">
                         <option class="reg doc options" value="Select">Select</option>
+						<option value="100_page_hipsum.txt">100_page_hipsum</option>
+						<option value="20_page_hipsum.pdf">20_page_hipsum</option>
+						<option value="10_page_hipsum.pdf">10_page_hipsum</option>
 						<option value="3_sentence_kafka.pdf">3_sentence_kafka</option>
 						<option value="5_sentence_kafka.txt">5_sentence_kafka</option>
 						<option value="50_page_kafka.pdf">50_page_kafka</option>
@@ -92,15 +91,17 @@
                         <option value="Polaris_API_Guide.txt">Polaris API Guide Rev 5 (IL-1070101)</option>
                     </select>
                     </td>
-                    <td width="30%">
-                        <h3 style="padding-left: 70px">
+                    <td width="40%">
+
+                        <h3 style="padding-left: 100px">
                             OR
                         </h3>
                     </td>
-                    <td>
+                    <td class="altstep2" style="border-top: dashed 2px #000000;border-bottom: dashed 2px #000000;border-right: dashed 2px #000000;border-left: dashed 2px #000000;padding-right: 9px;padding-left: 9px;">
 
                         <h2>Alt Step 2.</h2>
                         <h6><u>Upload locally stored regulatory document</u></h6>
+                        <!--hr style="background-color: #E32E00;color: #E32E00"-->
 
 
 
@@ -108,6 +109,7 @@
                 </tr>
                 <tr>
                     <td>
+                        <hr>
                         <!-- ANALYZE BUTTON -->
                         <input class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
 
@@ -123,7 +125,7 @@
 
                             <input class="btn btn-neutral" style="border: #06287e;border-radius: 10px;" type="file" name="datafile" value="Upload custom document">
 
-
+                            <hr>
                             <input id="addregdocbutton" class="btn btn-large" style="border: #06287e;border-radius: 10px;
                             background-color:#303f42;color: #ffffff" type="submit" value="Add custom regulatory doc">
                         </form>

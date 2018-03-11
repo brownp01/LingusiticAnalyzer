@@ -10,12 +10,6 @@ import sys
 import os
 import time
 import json
-#import applicationconfig
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-from pdfminer.converter import TextConverter
-from pdfminer.layout import LAParams
-from pdfminer.pdfpage import PDFPage
-import io
 
 
 UPLOAD_FOLDER = 'downloads/'
@@ -60,7 +54,7 @@ def main():
         loggerStart = 0
 
     f = open(VIEWS + "index.html", "r")  # opens file with name of "index.html"
-    loggerStart+=1
+    loggerStart += 1
     return Response(f.read(), mimetype='text/html')
 
 
@@ -90,6 +84,7 @@ def reusablebubble():
 
     f = open(VIEWS + "reusable_bubble.html", "r")  # opens file with name of "reusable_bubble.html"
     return Response(f.read(), mimetype='text/html')
+
 
 @application.route('/keywordbubblechart')
 def keywordbubblechart():
@@ -140,6 +135,8 @@ def project():
     :rtype: html
     """
 
+    common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
+
     f = open(VIEWS + "info.html", "r")  # opens file with name of "index.html"
     return Response(f.read().replace('#--DESCRIPTION_TITLE--#', 'Project Information').replace('#--DESCRIPTION--#',
                     "This Linguistic Analyzer lets the user upload a description document and compares that document \
@@ -155,6 +152,9 @@ def analyze():
     :return: Information regarding the uploaded document's similarity to regulatory document
     :rtype: html
     """
+
+    # resetting document flag in case it was previously set when adding a new regulatory document to the list.
+    common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
 
     start_time = time.clock()
     regfilename = ''
@@ -453,6 +453,8 @@ def newregdoc():
     :return: none
     :rtype: none
     """
+
+    common_functions.writeToConfig('NEW_DOC_FLAG', 'true')
 
     # ---- Set flag that tells popup to show? ---- #
     # data = json.load(open('applicationconfig.json'))

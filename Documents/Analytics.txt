@@ -1,3 +1,8 @@
+2018-03-11 11:05:30.249320 ; [21.389 sec.] ; 10_page_hipsum.pdf ; 786 ; 100_page_hipsum.pdf ; 1006 ; 
+2018-03-11 11:04:02.934049 ; [20.891 sec.] ; 10_page_hipsum.pdf ; 786 ; 100_page_hipsum.pdf ; 1006 ; 
+2018-03-08 15:08:51.151861 ; [2.622 sec.] ; 10_page_kafka.pdf ; 115 ; BSI_14971.txt ; 891 ; 
+2018-03-08 15:08:00.358314 ; [3.186 sec.] ; 10_page_kafka.pdf ; 115 ; BSI_14971.txt ; 891 ; 
+2018-03-08 15:05:26.039524 ; [2.612 sec.] ; 10_page_kafka.pdf ; 115 ; BSI_14971.txt ; 891 ; 
 2018-03-05 16:32:49.124449 ; [0.961 sec.] ; 6_sentence_kafka.pdf ; 14 ; 5_sentence_kafka.pdf ; 13 ; 
 2018-03-05 16:22:22.542830 ; [0.915 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
 2018-03-05 15:52:26.129907 ; [0.786 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
