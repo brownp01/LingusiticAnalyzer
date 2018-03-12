@@ -195,7 +195,7 @@ def getscorepage(kw_list, reg_kw_list):
     returnhtml = f.read().replace('#--KEYWORD_SCORE--#', str(kw_list.getavgkeywordscore())). \
         replace('#--YULESK_SCORE--#', str(kw_list.getyuleskscore()))\
         .replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))\
-        .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list))) \
+        .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list)) + "/100.0") \
         .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
         .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
         .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore())) \

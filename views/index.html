@@ -17,7 +17,7 @@
             var data = JSON.parse(text);
 
             if(data["NEW_DOC_FLAG"] == "true"){
-                alert('Thank you.\nNew Regulatory Document has been added to list.')
+                alert('Success!\nNew Regulatory Document has been added to the list for selection.')
             }
 
         }
@@ -70,13 +70,7 @@
                         <h6><u>Select regulatory document to compare against</u></h6>
                     <select title="Regulatory Document" name="regdocname" style="background-clip: border-box;width:95%">
                         <option class="reg doc options" value="Select">Select</option>
-						<option value="100_page_hipsum.txt">100_page_hipsum</option>
-						<option value="20_page_hipsum.pdf">20_page_hipsum</option>
-						<option value="10_page_hipsum.pdf">10_page_hipsum</option>
-						<option value="3_sentence_kafka.pdf">3_sentence_kafka</option>
-						<option value="5_sentence_kafka.txt">5_sentence_kafka</option>
-						<option value="50_page_kafka.pdf">50_page_kafka</option>
-						<option value="t_blant_original.txt">t_blant_original</option>
+						<option value="10_page_hipsum.txt">10_page_hipsum</option>
                         <option value="small_sample.txt">small sample</option>
                         <option value="small_sample_reword.txt">small sample reword</option>
                         <option value="simple_description.txt">simple description</option>

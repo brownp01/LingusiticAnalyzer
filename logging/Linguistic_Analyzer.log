@@ -1,4 +1,60 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 11:12:38] "GET /? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 11:12:38] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 11:12:38] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:36:06] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:36:08] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:36:09] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:36:09] "GET /? HTTP/1.1" 200 -
+INFO:root:saving file "10_page_hipsum.pdf"
+INFO:root:"10_page_hipsum.pdf" saved
+INFO:root:opening file "10_page_hipsum.pdf"
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:38:29] "POST /newregdoc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:38:29] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:opening regulatory document
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:00] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:00] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:15] "GET /reg_doc_kws?x=95&y=20 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:43] "GET /user_doc_kws?x=134&y=23 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:47] "GET /keywordsalienceimage?x=160&y=13 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:49] "GET /keywordfrequencyimage?x=129&y=16 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:52] "GET /keywordscoresimage?x=166&y=18 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:56] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Mar/2018 20:39:56] "GET /applicationconfig HTTP/1.1" 200 -

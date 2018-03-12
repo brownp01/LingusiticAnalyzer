@@ -1,3 +1,10 @@
+2018-03-11 20:39:00.143817 ; [2.51 sec.] ; t_blant_original.pdf ; 10 ; 10_page_hipsum.pdf ; 786 ; 
+2018-03-11 20:33:36.292376 ; [0.836 sec.] ; simple_description.pdf ; 11 ; simple_description_name_switch.txt ; 11 ; 
+2018-03-11 20:32:20.226720 ; [0.759 sec.] ; small_sample_reword.pdf ; 4 ; small_sample_reword.txt ; 4 ; 
+2018-03-11 20:31:54.296501 ; [0.708 sec.] ; AnalyzerDescription_BACKWARD.pdf ; 5 ; small_sample_reword.txt ; 4 ; 
+2018-03-11 20:31:40.858035 ; [0.938 sec.] ; t_blant_reword.pdf ; 9 ; t_blant_reword.txt ; 9 ; 
+2018-03-11 20:30:27.307160 ; [0.742 sec.] ; small_sample.pdf ; 4 ; small_sample.txt ; 4 ; 
+2018-03-11 20:21:06.677025 ; [0.782 sec.] ; t_blant_reword.pdf ; 9 ; small_sample.txt ; 4 ; 
 2018-03-11 11:05:30.249320 ; [21.389 sec.] ; 10_page_hipsum.pdf ; 786 ; 100_page_hipsum.pdf ; 1006 ; 
 2018-03-11 11:04:02.934049 ; [20.891 sec.] ; 10_page_hipsum.pdf ; 786 ; 100_page_hipsum.pdf ; 1006 ; 
 2018-03-08 15:08:51.151861 ; [2.622 sec.] ; 10_page_kafka.pdf ; 115 ; BSI_14971.txt ; 891 ; 
