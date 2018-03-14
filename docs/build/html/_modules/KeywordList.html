@@ -1,0 +1,231 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>KeywordList &#8212; Linguistic Analyzer 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Linguistic Analyzer 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for KeywordList</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<div class="viewcode-block" id="KeywordList"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList">[docs]</a><span class="k">class</span> <span class="nc">KeywordList</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summary: A list that contains keywords. The list also contains unique keyword value, keyword score, yules k score, yules i score, average keyword </span>
+<span class="sd">             score and a document score.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uniquekeywords</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1">#self.keywordscore = 0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yuleskscore</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">documentscore</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="KeywordList.getdocumentscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getdocumentscore">[docs]</a>    <span class="k">def</span> <span class="nf">getdocumentscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: Returns document&#39;s score.</span>
+
+<span class="sd">        :return: document score</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">documentscore</span></div>
+
+<div class="viewcode-block" id="KeywordList.getavgkeywordscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getavgkeywordscore">[docs]</a>    <span class="k">def</span> <span class="nf">getavgkeywordscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: returns document&#39;s average keyword score.</span>
+
+<span class="sd">        :return: average keyword score</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span></div>
+
+<div class="viewcode-block" id="KeywordList.getkeywordscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getkeywordscore">[docs]</a>    <span class="k">def</span> <span class="nf">getkeywordscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: returns document&#39;s keyword score.</span>
+
+<span class="sd">        :return: keyword score of document</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywordscore</span></div>
+
+<div class="viewcode-block" id="KeywordList.getyuleskscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getyuleskscore">[docs]</a>    <span class="k">def</span> <span class="nf">getyuleskscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: returns document&#39;s Yule&#39;s k score.</span>
+
+<span class="sd">        :return: Yules K score</span>
+<span class="sd">        :rytpe: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yuleskscore</span></div>
+
+<div class="viewcode-block" id="KeywordList.getyulesiscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getyulesiscore">[docs]</a>    <span class="k">def</span> <span class="nf">getyulesiscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: returns document&#39;s Yule&#39;s i score.</span>
+
+<span class="sd">        :return: Yule&#39;s I score</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span></div>
+
+<div class="viewcode-block" id="KeywordList.calculateavgscores"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.calculateavgscores">[docs]</a>    <span class="k">def</span> <span class="nf">calculateavgscores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: calculates a document&#39;s average score values.</span>
+
+<span class="sd">        :return: void</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calculating average scores for document...&quot;</span><span class="p">)</span>
+        <span class="n">kwscoresum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">yulesksum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">yulesisum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+                <span class="n">kwscoresum</span> <span class="o">+=</span> <span class="n">kw</span><span class="o">.</span><span class="n">keywordscore</span>
+                <span class="n">yulesksum</span> <span class="o">+=</span> <span class="n">kw</span><span class="o">.</span><span class="n">yuleskscore</span>
+                <span class="n">yulesisum</span> <span class="o">+=</span> <span class="n">kw</span><span class="o">.</span><span class="n">yulesiscore</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">kwscoresum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgyuleskscore</span> <span class="o">=</span> <span class="n">yulesksum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgyulesiscore</span> <span class="o">=</span> <span class="n">yulesisum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">zde</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Division by 0 in &quot;KeywordList.calculateavgscore(). Scores not set&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgyulesiscore</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgyuleskscore</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Average scores for document complete.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KeywordList.insertkeyword"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.insertkeyword">[docs]</a>    <span class="k">def</span> <span class="nf">insertkeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: inserts new Keyword into Keyword list</span>
+
+<span class="sd">        :param Keyword keyword: an instance of the class keyword</span>
+<span class="sd">        :return: void</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check &quot;similar words&quot; lists</span>
+
+        <span class="c1"># Check for exact &quot;word&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existsinlist</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uniquekeywords</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getindexofword</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="KeywordList.existsinlist"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.existsinlist">[docs]</a>    <span class="k">def</span> <span class="nf">existsinlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: searches through the list of keywords and sees if any keywords shares the same Keyword.word.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str keyword_name: The keyword </span>
+<span class="sd">        :return: returns true if a keyword with keyword_name as Keyword.word exists in the list. False otherwise.</span>
+<span class="sd">        :rtype: bool</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">keyword_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="KeywordList.getindexofword"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getindexofword">[docs]</a>    <span class="k">def</span> <span class="nf">getindexofword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Summary: returns index of a Keyword in the list of Keywords</span>
+
+<span class="sd">        :param str key_name: keyword</span>
+<span class="sd">        :return: keyword index</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">keyword_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Linguistic Analyzer 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Paul Brown, Tyler Blanton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>
