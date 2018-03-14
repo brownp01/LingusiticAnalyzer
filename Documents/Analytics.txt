@@ -1,3 +1,9 @@
+2018-03-14 13:38:34.926642 ; [0.832 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
+2018-03-14 13:37:14.820828 ; [10.193 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
+2018-03-14 13:35:07.825891 ; [6.544 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
+2018-03-14 13:33:17.331532 ; [1.359 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
+2018-03-14 13:32:43.337169 ; [0.695 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
+2018-03-14 13:32:01.140332 ; [0.829 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
 2018-03-11 20:39:00.143817 ; [2.51 sec.] ; t_blant_original.pdf ; 10 ; 10_page_hipsum.pdf ; 786 ; 
 2018-03-11 20:33:36.292376 ; [0.836 sec.] ; simple_description.pdf ; 11 ; simple_description_name_switch.txt ; 11 ; 
 2018-03-11 20:32:20.226720 ; [0.759 sec.] ; small_sample_reword.pdf ; 4 ; small_sample_reword.txt ; 4 ; 
