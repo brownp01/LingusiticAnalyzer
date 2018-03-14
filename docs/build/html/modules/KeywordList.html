@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>KeywordList &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -49,8 +49,7 @@
 
 <div class="viewcode-block" id="KeywordList"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList">[docs]</a><span class="k">class</span> <span class="nc">KeywordList</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: A KeywordList that contains a list of keywords. Within the class, it also contains</span>
-<span class="sd">             unique keyword value, keyword score, yules k score, yules i score, average keyword </span>
+<span class="sd">    Summary: A list that contains keywords. The list also contains unique keyword value, keyword score, yules k score, yules i score, average keyword </span>
 <span class="sd">             score and a document score.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -58,7 +57,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uniquekeywords</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">keywordscore</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1">#self.keywordscore = 0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">yuleskscore</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">=</span> <span class="mi">0</span>
@@ -121,6 +120,7 @@
 <span class="sd">        :return: void</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calculating average scores for document...&quot;</span><span class="p">)</span>
         <span class="n">kwscoresum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">yulesksum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">yulesisum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -139,7 +139,9 @@
             <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Division by 0 in &quot;KeywordList.calculateavgscore(). Scores not set&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">avgyulesiscore</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">avgyuleskscore</span> <span class="o">=</span> <span class="mi">0</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avgyuleskscore</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Average scores for document complete.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="KeywordList.insertkeyword"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.insertkeyword">[docs]</a>    <span class="k">def</span> <span class="nf">insertkeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -223,7 +225,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>common_functions &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -61,12 +61,21 @@
 <span class="kn">from</span> <span class="nn">pdfminer.pdfpage</span> <span class="k">import</span> <span class="n">PDFPage</span>
 <span class="kn">import</span> <span class="nn">Keyword</span>
 <span class="kn">from</span> <span class="nn">KeywordList</span> <span class="k">import</span> <span class="n">KeywordList</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">,</span><span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="c1">#import applicationconfig</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">operator</span>
 
 
 <span class="n">DOWNLOAD_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;downloads/&#39;</span>
 <span class="n">REGULATOR_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;RegulatoryDocuments/&#39;</span>
+<span class="n">DOCUMENTS_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;Documents/&#39;</span>
+<span class="n">VIEWS_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;views/&#39;</span>
+
 
 <div class="viewcode-block" id="homeCount"><a class="viewcode-back" href="../functionsv1.html#common_functions.homeCount">[docs]</a><span class="k">def</span> <span class="nf">homeCount</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -82,7 +91,7 @@
 <span class="n">homeCount</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="c1"># going to handle all the mess that is in app.py</span>
+<span class="c1"># going to handle all the mess that is in application.py</span>
 <div class="viewcode-block" id="interpretfile"><a class="viewcode-back" href="../functionsv1.html#common_functions.interpretfile">[docs]</a><span class="k">def</span> <span class="nf">interpretfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">localuploadfolder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parses uploaded file&#39;s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects</span>
@@ -112,7 +121,13 @@
     <span class="c1"># -----------PUTTING KEYWORDS IN FILE----------- #</span>
     <span class="n">common_functions</span><span class="o">.</span><span class="n">outputkeywordtotext</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">keyword_list</span></div>
+
+    <span class="n">wordcount</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">file_text</span><span class="p">:</span>
+        <span class="n">wordcount</span> <span class="o">=</span> <span class="n">wordcount</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">wordcount</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="interpretexistingfile"><a class="viewcode-back" href="../functionsv1.html#common_functions.interpretexistingfile">[docs]</a><span class="k">def</span> <span class="nf">interpretexistingfile</span><span class="p">(</span><span class="n">regfilename</span><span class="p">):</span>
@@ -124,15 +139,54 @@
 <span class="sd">    :rtype: KeywordList</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">reg_text</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">getregulatorydoctext</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
-    <span class="n">reg_keyword_list</span> <span class="o">=</span> <span class="n">analyze_functions</span><span class="o">.</span><span class="n">identifykeywords</span><span class="p">(</span><span class="n">reg_text</span><span class="p">)</span>
-    <span class="n">analyze_functions</span><span class="o">.</span><span class="n">calculatescores</span><span class="p">(</span><span class="n">reg_keyword_list</span><span class="p">,</span> <span class="n">reg_text</span><span class="p">)</span>
-    <span class="n">reg_keyword_list</span><span class="o">.</span><span class="n">calculateavgscores</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">regfilename</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span><span class="p">:</span>
+        <span class="n">reg_text</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">getregulatorydoctext</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
+        <span class="n">reg_keyword_list</span> <span class="o">=</span> <span class="n">analyze_functions</span><span class="o">.</span><span class="n">identifykeywords</span><span class="p">(</span><span class="n">reg_text</span><span class="p">)</span>
+        <span class="n">analyze_functions</span><span class="o">.</span><span class="n">calculatescores</span><span class="p">(</span><span class="n">reg_keyword_list</span><span class="p">,</span> <span class="n">reg_text</span><span class="p">)</span>
+        <span class="n">reg_keyword_list</span><span class="o">.</span><span class="n">calculateavgscores</span><span class="p">()</span>
+        <span class="n">regfilenameTXT</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">changefileextension</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
+        <span class="n">common_functions</span><span class="o">.</span><span class="n">outputkeywordtotext</span><span class="p">(</span><span class="n">reg_keyword_list</span><span class="p">,</span> <span class="n">REGULATOR_FOLDER</span> <span class="o">+</span> <span class="n">regfilenameTXT</span><span class="p">)</span>
+
+        <span class="c1">#------- Change filename extension for reg doc path in &#39;index.html&#39; to .txt after initial PDF analysis -------#</span>
+
+        <span class="n">fhtml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/index.html&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">fhtml</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">newhtml</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&#39;</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">regfilename</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;&lt;option value=&#39;</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">regfilenameTXT</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+        <span class="n">fhtml</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">newindexhtml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">newindexhtml</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">newhtml</span><span class="p">)</span>
+        <span class="n">newindexhtml</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">reg_keyword_list</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">extractkeywordfromtxt</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
+
+    <span class="n">common_functions</span><span class="o">.</span><span class="n">outputkeywordtotext</span><span class="p">(</span><span class="n">reg_keyword_list</span><span class="p">,</span> <span class="s1">&#39;Documents/Reg_Keywords.txt&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">reg_keyword_list</span></div>
 
 
-<div class="viewcode-block" id="getscorepage"><a class="viewcode-back" href="../functionsv1.html#common_functions.getscorepage">[docs]</a><span class="k">def</span> <span class="nf">getscorepage</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">):</span>
+<div class="viewcode-block" id="changefileextension"><a class="viewcode-back" href="../functionsv1.html#common_functions.changefileextension">[docs]</a><span class="k">def</span> <span class="nf">changefileextension</span><span class="p">(</span><span class="n">regfilename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Changes the file name string from .pdf to .txt.</span>
+
+<span class="sd">    :param str regfilename: name of regulatory file</span>
+<span class="sd">    :return: string with .pdf file extension</span>
+<span class="sd">    :rtype: str</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
+    <span class="n">temp</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;t&quot;</span>
+    <span class="n">temp</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+    <span class="n">temp</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;t&quot;</span>
+    <span class="n">regfilenameTXT</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">regfilenameTXT</span></div>
+
+
+<div class="viewcode-block" id="getscorepage"><a class="viewcode-back" href="../functionsv1.html#common_functions.getscorepage">[docs]</a><span class="k">def</span> <span class="nf">getscorepage</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">,</span> <span class="n">userdocwordcount</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">regfilename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns html page that is populated with proper calculated Keyword, Comparison, and Yule&#39;s scores.</span>
 
@@ -142,16 +196,48 @@
 <span class="sd">    :rtype: str</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">html_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Begin score page response...&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Documents/Analytics.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">html_str</span> <span class="o">=</span> <span class="n">html_str</span> <span class="o">+</span> <span class="s1">&#39;&lt;p&gt;&#39;</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span>
+
+
+    <span class="n">numofkwoccurences</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+        <span class="n">numofkwoccurences</span> <span class="o">=</span> <span class="n">numofkwoccurences</span> <span class="o">+</span> <span class="n">kw</span><span class="o">.</span><span class="n">frequency</span>
+
+
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/score_response.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--KEYWORD_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getavgkeywordscore</span><span class="p">()))</span><span class="o">.</span> \
         <span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--YULESK_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getyuleskscore</span><span class="p">()))</span>\
         <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DOCUMENT_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getdocumentscore</span><span class="p">()))</span>\
         <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--COMPARISON_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">analyze_functions</span><span class="o">.</span><span class="n">calculatecomparisonscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">)))</span> \
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#-USER-DOC-NAME-#&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#-REG-DOC-NAME-#&#39;</span><span class="p">,</span> <span class="n">regfilename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">])</span> \
         <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--REG_YULESK_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">getyuleskscore</span><span class="p">()))</span> \
         <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--YULESI_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">getyulesiscore</span><span class="p">()))</span> \
-        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--REG_YULESI_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">getyulesiscore</span><span class="p">()))</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--REG_YULESI_SCORE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">getyulesiscore</span><span class="p">()))</span> \
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;ANALYTICS LOG - last 100 lines:&lt;/p&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;p&gt;ANALYTICS LOG - last 100 lines:&lt;/p&gt;&#39;</span> <span class="o">+</span> <span class="n">html_str</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--USER-DOC-KEYWORD-NUM--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)))</span> \
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--REG-DOC-KEYWORD-NUM--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)))</span> \
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--KEYWORDS-COMPRISE--#&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">((</span><span class="n">numofkwoccurences</span><span class="o">/</span><span class="n">userdocwordcount</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span>
 
     <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Score page response complete.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">returnhtml</span></div>
 
 
@@ -164,6 +250,9 @@
 <span class="sd">    :rtype: str</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s1">&#39;NEW_DOC_FLAG&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
+
     <span class="c1"># Returns error page</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/invalid_upload.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;##ERROR##&#39;</span><span class="p">,</span> <span class="n">errtext</span><span class="p">)</span>
@@ -187,6 +276,11 @@
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span>
 
+
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
+
+    <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;NUM_SEND_CHARS&#39;</span><span class="p">])</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># -- This is for testing, do not remove -- #</span>
         <span class="k">if</span> <span class="n">testdownload_folder</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">RegDoc</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
@@ -198,7 +292,7 @@
 
         <span class="c1"># PdfMiner writes an insane amount of logging statements (one per parsed word, it seems).</span>
         <span class="c1"># Remove the below line if you would like to see them.</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
         <span class="c1"># ----------This is the PDFMiner.six PDF Reader ----------#</span>
         <span class="n">pages</span><span class="o">=</span><span class="kc">None</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">pages</span><span class="p">:</span>
@@ -219,14 +313,18 @@
         <span class="n">text</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>        <span class="c1"># Worry - An incredibly long string may crash our application</span>
         <span class="n">output</span><span class="o">.</span><span class="n">close</span>
         <span class="c1"># --------End of PDFMiner reading --------#</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span> <span class="c1"># This re-enables logging</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>  <span class="c1"># This re-enables logging</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;PDF file processed&quot;</span><span class="p">)</span>
 
-        <span class="n">file_text</span> <span class="o">=</span> <span class="n">longstringtostringlist</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>  <span class="c1"># Converting long string to list of strings of size 1024</span>
+        <span class="n">file_text</span> <span class="o">=</span> <span class="n">longstringtostringlist</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)</span>  <span class="c1"># Converting long string to list of strings of size</span>
+
+
+
+
 
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">fnfe</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;**-- ERROR: unable to find file file --**&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">fnfe</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">fnfe</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
+        <span class="c1"># print(fnfe.strerror)</span>
     <span class="k">if</span> <span class="n">testdownload_folder</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">RegDoc</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>       <span class="c1"># If this is not a test, remove file</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">localdownload_folder</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>  <span class="c1"># Removes created file from directory.</span>
     <span class="k">return</span> <span class="n">cleantext</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span></div>
@@ -261,7 +359,27 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">fnfe</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">testdownload_folder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>  <span class="c1"># Removes created file from directory.</span>
+
+    <span class="n">file_text</span> <span class="o">=</span> <span class="n">splitintosize</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cleantext</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="splitintosize"><a class="viewcode-back" href="../functionsv1.html#common_functions.splitintosize">[docs]</a><span class="k">def</span> <span class="nf">splitintosize</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function splits a list of keywords of any length into a lit of keywords eachof length specified by NUM_SEND_CHARS</span>
+<span class="sd">    in &#39;applicationconfig.json&#39;</span>
+
+<span class="sd">    :param list file_text: list of document&#39;s words</span>
+<span class="sd">    :return list file_text:</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">stringlisttolonglongstring</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;NUM_SEND_CHARS&#39;</span><span class="p">])</span>
+
+    <span class="n">file_text</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">n</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">file_text</span></div>
 
 
 <div class="viewcode-block" id="savefile"><a class="viewcode-back" href="../functionsv1.html#common_functions.savefile">[docs]</a><span class="k">def</span> <span class="nf">savefile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">download_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -278,7 +396,8 @@
     <span class="k">if</span><span class="p">(</span><span class="n">download_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">DOWNLOAD_FOLDER</span> <span class="o">=</span> <span class="n">download_folder</span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="c1"># filename = secure_filename(file.filename)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span>
 
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;saving file &quot;&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
     <span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>  <span class="c1"># saves uploaded files</span>
@@ -287,29 +406,54 @@
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;opening file &quot;&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>  <span class="c1"># Logging</span></div>
 
 
-<div class="viewcode-block" id="outputkeywordtotext"><a class="viewcode-back" href="../functionsv1.html#common_functions.outputkeywordtotext">[docs]</a><span class="k">def</span> <span class="nf">outputkeywordtotext</span><span class="p">(</span><span class="n">keylist</span><span class="p">):</span>
+<div class="viewcode-block" id="outputkeywordtotext"><a class="viewcode-back" href="../functionsv1.html#common_functions.outputkeywordtotext">[docs]</a><span class="k">def</span> <span class="nf">outputkeywordtotext</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span> <span class="n">download_folder</span> <span class="o">=</span> <span class="s1">&#39;Documents/Keywords.txt&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function will write Keywords from an analyzed document to a .txt file</span>
 
 <span class="sd">    :param KeywordList keylist: list of document keywords</span>
 <span class="sd">    :return: void</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># TODO create file using document title of originating keywords</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Documents/Keywords.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Outputting keywords to .txt...&quot;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keylist</span><span class="o">.</span><span class="n">uniquekeywords</span><span class="p">):</span>
-        <span class="n">word</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span>
-        <span class="n">sal</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">salience</span>
-        <span class="n">freq</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span>
-        <span class="n">keyscore</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keywordscore</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">yulesK</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">yuleskscore</span>
+        <span class="n">yulesI</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">yulesiscore</span>
+        <span class="n">avgkeyscore</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">avgkeywordscore</span>
 
-        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">word</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">keyscore</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">yulesK</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">yulesI</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">avgkeyscore</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+        <span class="c1"># ------alphabetical order------- #</span>
+        <span class="c1"># TODO: Put in frequency order</span>
+        <span class="n">sortedkeywords</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="extractkeywordfromtxt"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractkeywordfromtxt">[docs]</a><span class="k">def</span> <span class="nf">extractkeywordfromtxt</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+
+
+
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keylist</span><span class="o">.</span><span class="n">uniquekeywords</span><span class="p">):</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span>
+            <span class="n">sal</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">salience</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span>
+            <span class="n">keyscore</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keywordscore</span>
+
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">word</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">keyscore</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Keyword .txt output complete.&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;*** Output keywords failed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; keywords outputted ***&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="extractkeywordfromtxt"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractkeywordfromtxt">[docs]</a><span class="k">def</span> <span class="nf">extractkeywordfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function will extract keyword information from .txt file and place into KeywordList object</span>
 
@@ -318,22 +462,45 @@
 <span class="sd">    :rtype: KeywordList</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
+
     <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">KeywordList</span><span class="p">()</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">line_list</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">word</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">sal</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">freq</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">keyscore</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">REGULATOR_FOLDER</span><span class="o">+</span><span class="n">filename</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
 
-        <span class="c1"># TODO modify input to Keyword Object to fit overall needs</span>
-        <span class="n">newKeyword</span> <span class="o">=</span> <span class="n">Keyword</span><span class="o">.</span><span class="n">Keyword</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">sal</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">keyscore</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))))</span>
-        <span class="n">keyword_list</span><span class="o">.</span><span class="n">insertkeyword</span><span class="p">(</span><span class="n">newKeyword</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Extracting keyword info from &quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
 
-    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">line_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">yulesk</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">yulesi</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">avgscore</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">keyword_list</span><span class="o">.</span><span class="n">yuleskscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">yulesk</span><span class="p">))</span>
+        <span class="n">keyword_list</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">yulesi</span><span class="p">))</span>
+        <span class="n">keyword_list</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">avgscore</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)))</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line_list</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">sal</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">keyscore</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>
+
+            <span class="c1"># TODO modify input to Keyword Object to fit overall needs</span>
+            <span class="n">newKeyword</span> <span class="o">=</span> <span class="n">Keyword</span><span class="o">.</span><span class="n">Keyword</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">sal</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">keyscore</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))))</span>
+            <span class="n">keyword_list</span><span class="o">.</span><span class="n">insertkeyword</span><span class="p">(</span><span class="n">newKeyword</span><span class="p">)</span>
+
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;keyword info extraction complete.&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;*** Keyword info extraction failed(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">uniquekeywords</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; uploaded). ***&quot;</span><span class="p">)</span>
+        <span class="c1">#logging.info(&quot;*** Keyword info extraction failed. ***&quot;)</span>
+
+
     <span class="k">return</span> <span class="n">keyword_list</span></div>
 
 
@@ -346,10 +513,13 @@
 <span class="sd">    :rtype: List[str]</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Cleaning text of special characters...&quot;</span><span class="p">)</span>
     <span class="n">printable</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">printable</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">text_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">printable</span><span class="p">,</span> <span class="n">text_list</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Clean text complete.&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">text_list</span></div>
 
@@ -401,16 +571,15 @@
 <span class="sd">    :rtype: Keyword</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">eName</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">name</span>
-    <span class="n">eType</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">type</span>
-    <span class="n">eSal</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">salience</span>
+    <span class="n">eName</span> <span class="o">=</span> <span class="n">entity</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+    <span class="n">eType</span> <span class="o">=</span> <span class="n">entity</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+    <span class="n">eSal</span> <span class="o">=</span> <span class="n">entity</span><span class="p">[</span><span class="s1">&#39;salience&#39;</span><span class="p">]</span>
     <span class="n">eFreq</span> <span class="o">=</span> <span class="n">getwordfrequency</span><span class="p">(</span><span class="n">eName</span><span class="p">,</span> <span class="n">file_text</span><span class="p">)</span>
 
-    <span class="c1"># newKeyword = Keyword.creacreatenewkeyword_overload_1(entity.name.upper(), entity.type, getwordfrequency(entity.name, file_text), entity.salience)</span>
     <span class="n">newKeyword</span> <span class="o">=</span> <span class="n">Keyword</span><span class="o">.</span><span class="n">Keyword</span><span class="p">(</span><span class="n">eName</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">eType</span><span class="p">,</span> <span class="n">eSal</span><span class="p">,</span> <span class="n">eFreq</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># the value 0 refers to default keywordscore</span>
 
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">newKeyword</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="c1">#for key, value in entity.metadata.items():</span>
+        <span class="c1">#newKeyword.metadata[key] = value</span>
     <span class="k">return</span> <span class="n">newKeyword</span></div>
 
 
@@ -449,10 +618,10 @@
         <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;could not access regulatory document&quot;&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
 
     <span class="c1"># print(reg_text)</span>
-    <span class="k">return</span> <span class="n">cleantext</span><span class="p">(</span><span class="n">reg_text</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">reg_text</span></div>
 
 
-<div class="viewcode-block" id="kwhighestfrequencies"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestfrequencies">[docs]</a><span class="k">def</span> <span class="nf">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">):</span>
+<div class="viewcode-block" id="kwhighestfrequencies"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestfrequencies">[docs]</a><span class="k">def</span> <span class="nf">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">numtopkws</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the top 10 most frequent Keywords in the user&#39;s uploaded file</span>
 
@@ -468,7 +637,7 @@
 
     <span class="c1"># This loop finds the 10 most common keywords in the keyword_list</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwlist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numtopkws</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwlist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">topkeywordfreq</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">frequency</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">kwlist</span><span class="p">)</span>
         <span class="n">topKeywordfreqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topkeywordfreq</span><span class="p">)</span>
 
@@ -527,6 +696,8 @@
     <span class="n">kwlist1</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">)</span>
     <span class="n">kwlist2</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list2</span><span class="p">)</span>
 
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting keyword salience...&quot;</span><span class="p">)</span>
+
     <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">p</span> <span class="o">=</span> <span class="p">[]</span>
@@ -551,17 +722,11 @@
         <span class="n">pyplot</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
         <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NO COMMON KEYWORDS TO PLOT&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
         <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topsalience.png&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No common keywords to plot&quot;</span><span class="p">)</span>
         <span class="k">return</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_xticks</span><span class="p">))</span>
-    <span class="c1"># colors = np.random.rand(d)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User doc: &quot;&#39;</span> <span class="o">+</span> <span class="n">doc1name</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regulatory doc: &quot;&#39;</span> <span class="o">+</span> <span class="n">doc2name</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-    <span class="c1"># pyplot.scatter(x - w, y, color=&#39;blue&#39;, label=&#39;doc1&#39;)</span>
-    <span class="c1"># pyplot.scatter(x, p, color=&#39;r&#39;, label=&#39;doc2&#39;)</span>
-    <span class="c1"># pyplot.plot(x,y)</span>
-    <span class="c1"># pyplot.plot(x - w, y, color=&#39;blue&#39;, label=&#39;doc1&#39;)</span>
-    <span class="c1"># pyplot.plot(x, p, color=&#39;r&#39;, label=&#39;doc2&#39;)</span>
-    <span class="c1"># pyplot.scatter(x,y,c=colors)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">my_xticks</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Salience of Most Common Keywords In File&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
@@ -569,7 +734,9 @@
     <span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Salience&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topsalience.png&#39;</span><span class="p">)</span></div>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topsalience.png&#39;</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plot complete.&quot;</span><span class="p">)</span></div>
     <span class="c1"># pyplot.show()</span>
 
 
@@ -580,7 +747,7 @@
 <span class="sd">    :param KeywordList keyword_list1: user KeywordList</span>
 <span class="sd">    :param KeywordList keyword_list2: regulatory KeywordList</span>
 <span class="sd">    :param str doc1name: user document name</span>
-<span class="sd">    :param str doc2name:regulatory document name</span>
+<span class="sd">    :param str doc2name: regulatory document name</span>
 <span class="sd">    :return: void</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -588,10 +755,10 @@
     <span class="c1"># Clearing previous graph just to be safe</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 
-    <span class="c1">#kwlist1 = common_functions.kwhighestfrequencies(keyword_list1)</span>
-    <span class="c1">#kwlist2 = common_functions.kwhighestfrequencies(keyword_list2)</span>
     <span class="n">kwlist1</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestkeyscores</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">)</span>
     <span class="n">kwlist2</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestkeyscores</span><span class="p">(</span><span class="n">keyword_list2</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting keyword scores...&quot;</span><span class="p">)</span>
 
     <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
@@ -617,17 +784,11 @@
         <span class="n">pyplot</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
         <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NO COMMON KEYWORDS TO PLOT&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
         <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topkeywordscores.png&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No keyword scores to plot&quot;</span><span class="p">)</span>
         <span class="k">return</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_xticks</span><span class="p">))</span>
-    <span class="c1"># colors = np.random.rand(d)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User doc: &quot;&#39;</span> <span class="o">+</span> <span class="n">doc1name</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regulatory doc: &quot;&#39;</span> <span class="o">+</span> <span class="n">doc2name</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-    <span class="c1"># pyplot.scatter(x - w, y, color=&#39;blue&#39;, label=&#39;doc1&#39;)</span>
-    <span class="c1"># pyplot.scatter(x, p, color=&#39;r&#39;, label=&#39;doc2&#39;)</span>
-    <span class="c1"># pyplot.plot(x,y)</span>
-    <span class="c1"># pyplot.plot(x - w, y, color=&#39;blue&#39;, label=&#39;doc1&#39;)</span>
-    <span class="c1"># pyplot.plot(x, p, color=&#39;r&#39;, label=&#39;doc2&#39;)</span>
-    <span class="c1"># pyplot.scatter(x,y,c=colors)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">my_xticks</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Keyword Score of Most Common Keywords In File&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
@@ -635,7 +796,9 @@
     <span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Keyword Score&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topkeywordscores.png&#39;</span><span class="p">)</span></div>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topkeywordscores.png&#39;</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting complete.&quot;</span><span class="p">)</span></div>
     <span class="c1"># pyplot.show()</span>
 
 <div class="viewcode-block" id="plotkeywordfrequency"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordfrequency">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordfrequency</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
@@ -655,8 +818,8 @@
 
     <span class="n">kwlist1</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">)</span>
     <span class="n">kwlist2</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list2</span><span class="p">)</span>
-    <span class="c1">#kwlist1 = common_functions.kwhighestkeyscores(keyword_list1)</span>
-    <span class="c1">#kwlist2 = common_functions.kwhighestkeyscores(keyword_list2)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting keyword frequency...&quot;</span><span class="p">)</span>
 
     <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
@@ -681,18 +844,12 @@
         <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="n">pyplot</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
         <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NO COMMON KEYWORDS TO PLOT&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-        <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topwordfrequency.png&#39;</span><span class="p">)</span>
+        <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topkeywordfrequency.png&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No keyword frequency to plot&quot;</span><span class="p">)</span>
         <span class="k">return</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_xticks</span><span class="p">))</span>
-    <span class="c1"># colors = np.random.rand(d)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User doc: &quot;&#39;</span> <span class="o">+</span> <span class="n">doc1name</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regulatory doc: &quot;&#39;</span> <span class="o">+</span> <span class="n">doc2name</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-    <span class="c1"># pyplot.scatter(x - w, y, color=&#39;blue&#39;, label=&#39;doc1&#39;)</span>
-    <span class="c1"># pyplot.scatter(x, p, color=&#39;r&#39;, label=&#39;doc2&#39;)</span>
-    <span class="c1"># pyplot.plot(x,y)</span>
-    <span class="c1"># pyplot.plot(x - w, y, color=&#39;blue&#39;, label=&#39;doc1&#39;)</span>
-    <span class="c1"># pyplot.plot(x, p, color=&#39;r&#39;, label=&#39;doc2&#39;)</span>
-    <span class="c1"># pyplot.scatter(x,y,c=colors)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">my_xticks</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Keyword Frequencies of Most Common Keywords In File&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
@@ -700,12 +857,83 @@
     <span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">pyplot</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topkeywordfrequency.png&#39;</span><span class="p">)</span></div>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DOWNLOAD_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;topkeywordfrequency.png&#39;</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Plotting complete.&quot;</span><span class="p">)</span></div>
     <span class="c1"># pyplot.show()</span>
 
 
+<div class="viewcode-block" id="printanalytics"><a class="viewcode-back" href="../functionsv1.html#common_functions.printanalytics">[docs]</a><span class="k">def</span> <span class="nf">printanalytics</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">regfilename</span><span class="p">,</span> <span class="n">keywordlist</span><span class="p">,</span> <span class="n">regkeywordlist</span><span class="p">,</span> <span class="n">calctime</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        prints the data passed in te argument to the ever-increasing file that contains data analytics information</span>
+
+<span class="sd">        :param str printstr: string to output to file</span>
+<span class="sd">        :return: void</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="n">str_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># KEEP THIS FORMATTING</span>
+    <span class="n">str_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span> <span class="o">+</span> <span class="s1">&#39; ; &#39;</span> <span class="o">+</span> <span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">calctime</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; sec.] ; &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39; ; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keywordlist</span><span class="o">.</span><span class="n">list</span><span class="p">))</span>\
+                    <span class="o">+</span> <span class="s1">&#39; ; &#39;</span> <span class="o">+</span> <span class="n">regfilename</span> <span class="o">+</span> <span class="s1">&#39; ; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">regkeywordlist</span><span class="o">.</span><span class="n">list</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; ; </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">printstr</span> <span class="o">=</span> <span class="n">str_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">DOCUMENTS_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;Analytics.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">DOCUMENTS_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;Analytics.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">printstr</span> <span class="o">+</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="generatebubblecsv"><a class="viewcode-back" href="../functionsv1.html#common_functions.generatebubblecsv">[docs]</a><span class="k">def</span> <span class="nf">generatebubblecsv</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new csv file with all the keywords</span>
+
+<span class="sd">        :param KeywordList kw_list: list of doc keywords</span>
+<span class="sd">        :param KeywordList reg_kw_list: list of reg doc keywords</span>
+<span class="sd">        :return: void</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">DOCUMENTS_FOLDER</span> <span class="o">+</span> <span class="s1">&#39;csvkeywords.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">([</span><span class="s2">&quot;keyword,frequency,salience</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;----------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">])</span>
+
+    <span class="n">breakCount</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)):</span>
+        <span class="c1"># in order to preserve color scheme, keywords from different files must alternate, so if one runs out, we stop.</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MAX_BUBBLES&#39;</span><span class="p">]):</span>
+            <span class="n">breakCount</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ACTUAL_BUBBLES&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">salience</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">salience</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">breakCount</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ACTUAL_BUBBLES&quot;</span><span class="p">,</span> <span class="n">breakCount</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ACTUAL_BUBBLES&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">))</span>
+
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="writeToConfig"><a class="viewcode-back" href="../functionsv1.html#common_functions.writeToConfig">[docs]</a><span class="k">def</span> <span class="nf">writeToConfig</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Writes value into applicationconfig.json file</span>
+
+<span class="sd">        :param key: key</span>
+<span class="sd">        :param value: value</span>
+<span class="sd">        :return: none</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -742,7 +970,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

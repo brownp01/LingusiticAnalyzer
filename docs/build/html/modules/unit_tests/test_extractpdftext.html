@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>unit_tests.test_extractpdftext &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../../static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -52,9 +52,17 @@
 <span class="kn">from</span> <span class="nn">functionsv1</span> <span class="k">import</span> <span class="n">common_functions</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># TODO: Fix downloads folder issue</span>
-<span class="n">DOWNLOADS_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;unit_tests/test_pdfs/&#39;</span>
+<span class="c1"># DOWNLOADS_FOLDER = &#39;unit_tests/test_pdfs/&#39;</span>
+
+<span class="c1"># Must point this to your local test fileÎ</span>
+<span class="c1"># DOWNLOADS_FOLDER = &#39;/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17\</span>
+<span class="c1"># /LinguisticAnalyzer/unit_tests/test_pdfs/&#39;</span>
+
+<span class="n">DOWNLOADS_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17/Linguistic</span><span class="se">\</span>
+<span class="s1">Analyzer/RegulatoryDocuments/BSI 14971 Application of risk management to medical devices (2012).pdf&#39;</span>
 
 
 <div class="viewcode-block" id="TestExtractpdftext"><a class="viewcode-back" href="../../unit_tests.html#unit_tests.test_extractpdftext.TestExtractpdftext">[docs]</a><span class="k">class</span> <span class="nc">TestExtractpdftext</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
@@ -65,6 +73,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="n">testFileName</span> <span class="o">=</span> <span class="s1">&#39;test_extractpdftext.pdf&#39;</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1">#opening test file</span>
             <span class="n">file</span> <span class="o">=</span> <span class="n">datastructures</span><span class="o">.</span><span class="n">FileStorage</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">testFileName</span><span class="p">,</span>
@@ -80,16 +92,18 @@
 
             <span class="n">longlongfiletext</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">stringlisttolonglongstring</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
 
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">longlongfiletext</span><span class="p">,</span> <span class="s1">&#39;this this is is a a test test with with two two of of each each of of these these words words&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">longlongfiletext</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="c1"># self.assertTrue(len(file_text) is not 0)</span>
+            <span class="c1"># self.assertEqual(longlongfiletext, &#39;this this is is a a test test with with two two of of each each of of \</span>
+            <span class="c1"># these these words words&#39;)</span>
+            <span class="c1"># self.assertTrue(longlongfiletext.count(&#39;test&#39;) is 2)</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;TestExtractpdftext PASSED&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Test Failed&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s1">&#39;Unable to convert PDF to text&#39;</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
-            <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+            <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
@@ -126,7 +140,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>

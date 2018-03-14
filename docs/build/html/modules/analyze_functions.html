@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>analyze_functions &#8212; Linguistic Analyzer 1.0 documentation</title>
-    <link rel="stylesheet" href="../static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -47,40 +47,25 @@
   <h1>Source code for analyze_functions</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="k">import</span> <span class="n">language</span>
-<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="k">import</span> <span class="n">language_v1beta2</span>
-<span class="kn">from</span> <span class="nn">google.cloud.language</span> <span class="k">import</span> <span class="n">enums</span>
-<span class="kn">from</span> <span class="nn">google.cloud.language</span> <span class="k">import</span> <span class="n">types</span>
-<span class="kn">from</span> <span class="nn">oauth2client.service_account</span> <span class="k">import</span> <span class="n">ServiceAccountCredentials</span>
 <span class="kn">from</span> <span class="nn">functionsv1</span> <span class="k">import</span> <span class="n">common_functions</span>
 <span class="kn">import</span> <span class="nn">six</span>
 <span class="kn">from</span> <span class="nn">KeywordList</span> <span class="k">import</span> <span class="n">KeywordList</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
 <span class="n">LOG_FILE_PATH</span> <span class="o">=</span> <span class="s1">&#39;logging/Linguistic_Analyzer.log&#39;</span>
-
+<span class="n">KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;API_KEY&#39;</span><span class="p">)</span> <span class="c1">#Google NLP API Key stored as an environmental variable.</span>
 
 <div class="viewcode-block" id="declarelogger"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.declarelogger">[docs]</a><span class="k">def</span> <span class="nf">declarelogger</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Summary: Declares logger for the current session.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">LOG_FILE_PATH</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="c1">#if not os.path.isfile(LOG_FILE_PATH):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span> <span class="c1">#filename=LOG_FILE_PATH</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;API started&quot;</span><span class="p">)</span></div>
-
-
-<span class="c1">#def isgarbageword(word):</span>
-    <span class="c1">#&quot;&quot;&quot;</span>
-    <span class="c1">#Summary: Determines if the given word is a &quot;garbage&quot; word that does not contribute to the meaning of the sentence.</span>
-    <span class="c1">#@param word:</span>
-    <span class="c1">#@type word:</span>
-    <span class="c1">#@return:</span>
-    <span class="c1">#@rtype:</span>
-    <span class="c1">#&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="identifykeywords"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.identifykeywords">[docs]</a><span class="k">def</span> <span class="nf">identifykeywords</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
@@ -94,68 +79,37 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="sd">&quot;&quot;&quot;Detects entities in the text.&quot;&quot;&quot;</span>
 
-    <span class="sd">&quot;&quot;&quot;implicit call for authentication: add export GOOGLE_APPLICATION_CREDENTIALS= &quot;/path/to/json file&quot; </span>
-<span class="sd">        in bash.profile and bash.profile_pysave&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;For use on a local machine: add export API_KEY=&quot;your API key&quot; in bash.profile&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;for use in AWS: enter API_KEY with key value in configuration settings&quot;&quot;&quot;</span>
 
     <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">KeywordList</span><span class="p">()</span>
 
-    <span class="n">client</span> <span class="o">=</span> <span class="n">language</span><span class="o">.</span><span class="n">LanguageServiceClient</span><span class="p">()</span>
-
-    <span class="sd">&quot;&quot;&quot;Explicit call for authentication: Change file path of json file. Authentication is accepted but </span>
-<span class="sd">       does not function properly for the Google Language API&quot;&quot;&quot;</span>
-    <span class="c1">#creds = ServiceAccountCredentials.from_json_keyfile_name(&#39;/Users/Paul/Documents/googleNLP.json&#39;)</span>
-    <span class="c1">#client = language.LanguageServiceClient(credentials=creds)</span>
-
     <span class="c1"># TODO: Maybe change this to long string? There is a chance that would crash the app with large documents though</span>
+
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_text</span><span class="p">)):</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">six</span><span class="o">.</span><span class="n">binary_type</span><span class="p">):</span>
             <span class="n">file_text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 
-            <span class="c1"># Instantiates a plain text document.</span>
-            <span class="c1"># [START migration_analyze_entities]</span>
-        <span class="n">document</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span>
-            <span class="n">content</span><span class="o">=</span><span class="n">file_text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-            <span class="nb">type</span><span class="o">=</span><span class="n">enums</span><span class="o">.</span><span class="n">Document</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">PLAIN_TEXT</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connecting to Google NLP API Entity Analysis...&quot;</span><span class="p">)</span>
 
-        <span class="c1"># Detects entities in the document. You can also analyze HTML with:</span>
-        <span class="c1">#   document.type == enums.Document.Type.HTML</span>
-        <span class="n">entities</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">analyze_entities</span><span class="p">(</span><span class="n">document</span><span class="p">)</span><span class="o">.</span><span class="n">entities</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://language.googleapis.com/v1/documents:analyzeEntities?key=&quot;</span><span class="o">+</span><span class="n">KEY</span>
+            <span class="n">d</span><span class="o">=</span> <span class="p">{</span><span class="s2">&quot;encodingType&quot;</span><span class="p">:</span> <span class="s2">&quot;UTF8&quot;</span><span class="p">,</span> <span class="s2">&quot;document&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PLAIN_TEXT&quot;</span><span class="p">,</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">file_text</span><span class="p">[</span><span class="n">i</span><span class="p">]}}</span>
+
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Google NLP API entity analysis successful&quot;</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Google NLP API entity analysis failed&quot;</span><span class="p">)</span>
 
 
-        <span class="c1"># entity types from enums.Entity.Type</span>
-        <span class="n">entity_type</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;UNKNOWN&#39;</span><span class="p">,</span> <span class="s1">&#39;PERSON&#39;</span><span class="p">,</span> <span class="s1">&#39;LOCATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ORGANIZATION&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;EVENT&#39;</span><span class="p">,</span> <span class="s1">&#39;WORK_OF_ART&#39;</span><span class="p">,</span> <span class="s1">&#39;CONSUMER_GOOD&#39;</span><span class="p">,</span> <span class="s1">&#39;OTHER&#39;</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">[</span><span class="s1">&#39;entities&#39;</span><span class="p">]:</span>
             <span class="n">keyword_list</span><span class="o">.</span><span class="n">insertkeyword</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">createkeywordfromgoogleapientity</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">file_text</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">keyword_list</span></div>
-
-
-<span class="c1">#def wordsapi_getsynonym(word):</span>
-    <span class="c1">#&quot;&quot;&quot;</span>
-    <span class="c1">#summary: This function calls to the wordsAPI &quot;Synonym&quot; endpoint docs: https://market.mashape.com/wordsapi/wordsapi</span>
-    <span class="c1">#@param word: word to find synonyms of</span>
-    <span class="c1">#@type word: string</span>
-    <span class="c1">#@return: words that are synonymous with the parameter word</span>
-    <span class="c1">#@rtype: list of strings</span>
-    <span class="c1">#&quot;&quot;&quot;</span>
-    <span class="c1"># TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY</span>
-    <span class="c1">#apikey = &#39;&#39;</span>
-    <span class="c1">#url = &#39;https://wordsapiv1.p.mashape.com/words/{word}/synonyms&#39;</span>
-
-<span class="c1">#def wordsapi_getsimilar(word):</span>
-    <span class="c1">#&quot;&quot;&quot;</span>
-    <span class="c1">#@summary: This function calls to the wordsAPI &quot;Similar&quot; endpoint docs: https://market.mashape.com/wordsapi/wordsapi</span>
-    <span class="c1">#@param word: word to find similar words of</span>
-    <span class="c1">#@type word: string</span>
-    <span class="c1">#@return: all the words that are similar to the word parameter</span>
-    <span class="c1">#@rtype: list of string</span>
-    <span class="c1">#&quot;&quot;&quot;</span>
-    <span class="c1"># TODO: CHANGE THIS DOCUMENT KEY BEFORE PROJECT GETS HANDED TO MEDTRONIC - NO ACCOUNT CURRENTLY</span>
-    <span class="c1">#apikey = &#39;&#39;</span>
-    <span class="c1">#url = &#39;https://wordsapiv1.p.mashape.com/words/{word}/similar&#39;</span>
 
 
 <div class="viewcode-block" id="calculatescores"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatescores">[docs]</a><span class="k">def</span> <span class="nf">calculatescores</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
@@ -168,13 +122,17 @@
 <span class="sd">    :return: void</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calculating scores...&quot;</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
         <span class="n">kw</span><span class="o">.</span><span class="n">keywordscore</span> <span class="o">=</span> <span class="n">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
 
         <span class="c1"># TODO: Get this to work properly</span>
     <span class="n">yulestuple</span> <span class="o">=</span> <span class="n">calculateyulesscore</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
     <span class="n">kw_list</span><span class="o">.</span><span class="n">yuleskscore</span> <span class="o">=</span> <span class="n">yulestuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">kw_list</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="n">yulestuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+    <span class="n">kw_list</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="n">yulestuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Score calculation complete.&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="calculatekeywordscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatekeywordscore">[docs]</a><span class="k">def</span> <span class="nf">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
@@ -189,6 +147,7 @@
 <span class="sd">    :rtype: float</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">kwscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(((</span><span class="n">kw</span><span class="o">.</span><span class="n">salience</span> <span class="o">*</span> <span class="n">kw</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">))</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">kwscore</span></div>
 
@@ -215,7 +174,7 @@
         <span class="n">k</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">/</span><span class="n">i</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: division by zero. Yule&#39;s algorithm not completed. Returning -1.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
 
 
@@ -229,9 +188,33 @@
 <span class="sd">    :return: comparison score of two documents</span>
 <span class="sd">    :rtype: float</span>
 
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">tempscore</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># Get top ten KWs with highest frequencies</span>
+    <span class="n">topdockws</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="c1"># get top ten percent of regulatory kws</span>
+    <span class="n">regkwnum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">*</span> <span class="o">.</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">topdockws</span><span class="p">)</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">*</span> <span class="o">.</span><span class="mi">1</span>
+
+    <span class="n">topregkws</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="p">,</span> <span class="n">regkwnum</span><span class="p">))</span>
+
+    <span class="c1"># look at top ten keywords in file (by frequency), and for each of them, see if they are in the top 10% of words</span>
+    <span class="c1"># in reg_doc</span>
+
+    <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">topdockws</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">topregkws</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">kw</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">topregkws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
+                <span class="n">tempscore</span> <span class="o">=</span> <span class="n">tempscore</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">tempscore</span> <span class="o">=</span> <span class="n">tempscore</span><span class="o">/</span><span class="n">regkwnum</span>
+
+
+
     <span class="c1"># This is rudimentary, but actually does a decent job at comparing two documents</span>
-    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">-</span> <span class="n">reg_kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">-</span> <span class="n">reg_kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span><span class="p">))</span> <span class="o">*</span> <span class="n">tempscore</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="tokenize"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.tokenize">[docs]</a><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">tokenStr</span><span class="p">):</span>
@@ -280,7 +263,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Paul Brown, Tyler Blanton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
 </html>
