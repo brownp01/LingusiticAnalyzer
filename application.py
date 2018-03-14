@@ -1,6 +1,5 @@
-from flask import Flask
-from flask import Response, request
-from flask import send_file
+from flask import Flask, Response, request, send_file, redirect
+
 from shutil import copyfileobj
 from tempfile import NamedTemporaryFile
 import logging
@@ -44,6 +43,13 @@ def main():
     :return: Home page
     :rtype: html
     """
+
+    #flash('temp', category='message')
+    #get_flashed_messages()
+
+    common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
+
+
     global loggerStart
 
     # Creating new log file every time the program starts.
@@ -156,6 +162,9 @@ def analyze():
     # resetting document flag in case it was previously set when adding a new regulatory document to the list.
     common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
 
+    userdocwordcount = 0
+    regdocwordcount = 0
+
     start_time = time.clock()
     regfilename = ''
     filename = ''
@@ -183,7 +192,7 @@ def analyze():
                 localuploadfolder = 'unit_tests/test_pdfs/'
 
             if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
-                keyword_list = common_functions.interpretfile(file, localuploadfolder)
+                [keyword_list, userdocwordcount] = common_functions.interpretfile(file, localuploadfolder)
 
                 data = json.load((open('applicationconfig.json')))
                 data['NUM_KWS'] = len(keyword_list.list)
@@ -210,7 +219,7 @@ def analyze():
             end_time = time.clock()
 
             common_functions.printanalytics(filename, regfilename, keyword_list, reg_keyword_list, end_time-start_time)
-            returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list)
+            returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list, userdocwordcount, filename, regfilename)
 
     except Exception as e:
         returnhtml = common_functions.geterrorpage('An unknown error has occurred')
@@ -456,14 +465,6 @@ def newregdoc():
 
     common_functions.writeToConfig('NEW_DOC_FLAG', 'true')
 
-    # ---- Set flag that tells popup to show? ---- #
-    # data = json.load(open('applicationconfig.json'))
-    # data["NEW_DOC_FLAG"] = "true"
-    #
-    # with open('applicationconfig.json', 'w') as outfile:
-    #     json.dump(data, outfile)
-
-
     if 'datafile' not in request.files or request.files['datafile'].filename == "":
         logging.warning('Cannot find "datafile" in request object')
         returnhtml = common_functions.geterrorpage('No new file selected')
@@ -489,13 +490,24 @@ def newregdoc():
     newindexhtml.write(newhtml)
     newindexhtml.close()
 
-    # data = json.load(open('applicationconfig.json'))
-    # data["NEW_DOC_FLAG"] = "false"
-    #
-    # with open('applicationconfig.json', 'w') as outfile:
-    #     json.dump(data, outfile)
-
     return Response(newhtml, mimetype='text/html')
+
+
+@application.route('/documentationredirect', methods=['GET'])
+def getdocumentationhome():
+    """
+        Returns index page nested in Documentation/_build/html which is the home page for our Sphinx-generated documentation
+
+        :return: html text
+
+    """
+    # f = open('file:///', 'r')
+    # # f = open('Documentation/_build/html/index.html', 'r')
+    # html = f.read()
+    # f.close()
+
+    #return Response(html, mimetype='text/html')
+    return redirect('https://tlblanton.github.io/LinguisticAnalyzer/', code=302)
 
 
 

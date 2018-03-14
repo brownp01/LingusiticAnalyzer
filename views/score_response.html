@@ -18,16 +18,18 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
-    <script src="reusablebubble.js"></script>
-
-
-
 
     <style>
     .yulesinfo {
         box-sizing: border-box;
         width: 675px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 4px solid #333333;
+    }
+    .analyticsarea {
+        box-sizing: border-box;
+        width: 380px;
         padding: 10px;
         border-radius: 10px;
         border: 4px solid #333333;
@@ -78,27 +80,39 @@
         border-radius: 10px;
         border: 4px solid #0a1612;
     }
+    .analyticstable tr, .analyticstable td{
+        {#border: 2px solid black;#}
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 27px;
+    }
+
 </style>
-
-
 </head>
-
 
 <body>
 
     <div class="container">
         <div class="header">
-
             <h3 style="color:#080706" align="right">Linguistic Analyzer</h3>
         </div>
 
+
         <div class="jumbotron" style="color:#080706;background-color: #edeae5">
-            <div class="yulesinfo" >
+            <h3 class="yulesklabel" align="left"><b><u>Results</u></b></h3>
+
             <table>
                 <tr>
+                    <td>
+                        <h5 class="yulesklabel" align="left"><b>Yule's Algorithm Information</b></h5>
+                    <div class="yulesinfo" >
+            <table>
+                <tr>
+
                     <div class = yuleskarea>
                     <td>
-                        <h6 class="yulesklabel" align="left"><b><u>Yule's k Score</u></b></h6>
+                            <h6 class="yulesklabel" align="left"><b><u>Yule's k Score</u></b></h6>
+
                     </td>
                     <td>
                         <!--YULES INFO BUTTON-->
@@ -150,25 +164,63 @@
 
             </table>
             </div>
+                    </td>
+                    <td>
+                        <h5 class="yulesklabel" align="left"><b>Analytics</b></h5>
+                        <div class="analyticsarea">
+                            <p><small><b>You compared <i><u>#-USER-DOC-NAME-#</u></i> and <i><u>#-REG-DOC-NAME-#</u></i></b></small></p>
+                            <hr>
+                            <table class="analyticstable" style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <p><small><u>Total User Document Keywords: </u></small></p>
+                                    </td>
+                                    <td>
+                                        <p><small>#--USER-DOC-KEYWORD-NUM--#</small></p>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><small><u>Total Regulatory Document Keywords: </u></small></p>
+                                    </td>
+                                    <td>
+                                        <p><small>#--REG-DOC-KEYWORD-NUM--#</small></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                        <p><small><u>Percentage of User Document That Keywords Comprise: </u></small></p>
+                                    </td>
+                                    <td>
+                                        <p><small>#--KEYWORDS-COMPRISE--#</small></p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </td>
+                </tr>
+
+
+
+            </table>
 
 
             <p class="lead"></p>
             <div class="d-inline-block">
                 <h5><b><u>Comparison Score: </u></b></h5></div>
             <div class="d-inline-block">
-                <h5 style="color: crimson">#--COMPARISON_SCORE--#</h5>
+                <h5 style="color: crimson">#--COMPARISON_SCORE--#% similar</h5>
             </div>
 
 
             <hr>
 
-
+        <h5 class="yulesklabel" align="left"><b>Graphs and Information</b></h5>
         <div class="downloadarea">
         <table>
-
-            <tr>
-                <th><h6><u>Downloads</u></h6></th>
-            </tr>
             <tr>
                 <td>
 
@@ -198,7 +250,7 @@
                 <td>
                     <form action="/user_doc_kws" target="_blank" enctype="multipart/form-data" method="get">
                         <div>
-                        <input class="btn btn-small btn-link" type="image" value="View User Document Keyword Log" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
+                        <input class="btn btn-small btn-link" type="image" value="View User Document Keywords" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
                         </div>
                     </form>
                 </td>
@@ -207,14 +259,14 @@
                 <td>
                      <form action="/keywordscoresimage" target="_blank" enctype="multipart/form-data" method="get">
                         <div>
-                            <input class="btn btn-small btn-secondary" type="image" value="Download Keyword Scores Graph" style="background-color:#303f42;color: #ffffff">
+                            <input class="btn btn-small btn-secondary" type="image" value="View Keyword Scores Graph" style="background-color:#303f42;color: #ffffff">
                         </div>
                     </form>
                 </td>
                 <td>
                     <form action="/reg_doc_kws" target="_blank" enctype="multipart/form-data" method="get">
                         <div>
-                        <input class="btn btn-small btn-link" type="image" value="View Comparison Document Keyword Log" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
+                        <input class="btn btn-small btn-link" type="image" value="View Comparison Document Keywords" style="background-color: #ffffff;color:#eec015;box-sizing: border-box;border-color: #333333;border-radius: 10px">
                         </div>
                     </form>
                 </td>
@@ -239,6 +291,24 @@
             </tr>
         </table>
         </div>
+            <!--table>
+                <tr>
+                    <td>
+                    <form action="/" enctype="multipart/form-data" style="padding-left: 100px" method="get">
+                        <div>
+                            <input class="btn btn-lg btn-primary" type="submit" value="Home" style="background-color: #eec015;color:#1a1a1d">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="/keywordbubblechart" target="_blank" enctype="multipart/form-data" style="padding-left: 18px" method="get">
+                        <div>
+                            <input class="btn btn-lg btn-warning" type="submit" value="Generate Bubble Chart" style="background-color:#303f42;color: #eec015;">
+                        </div>
+                    </form>
+                </td>
+                </tr>
+            </table-->
 
         <br>
             <p>

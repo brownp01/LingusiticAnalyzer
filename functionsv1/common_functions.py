@@ -21,6 +21,7 @@ import numpy as np
 import datetime
 #import applicationconfig
 import json
+import operator
 
 
 DOWNLOAD_FOLDER = 'downloads/'
@@ -73,7 +74,13 @@ def interpretfile(file, localuploadfolder):
     # -----------PUTTING KEYWORDS IN FILE----------- #
     common_functions.outputkeywordtotext(keyword_list)
 
-    return keyword_list
+
+    wordcount = 0
+
+    for chunk in file_text:
+        wordcount = wordcount + len(chunk.split())
+
+    return [keyword_list, wordcount]
 
 
 def interpretexistingfile(regfilename):
@@ -132,7 +139,7 @@ def changefileextension(regfilename):
     return regfilenameTXT
 
 
-def getscorepage(kw_list, reg_kw_list):
+def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
     """
     Returns html page that is populated with proper calculated Keyword, Comparison, and Yule's scores.
 
@@ -159,36 +166,11 @@ def getscorepage(kw_list, reg_kw_list):
         html_str = html_str + '<p>' + l + '</p>'
 
 
-    # bubble_elements = ""
+    numofkwoccurences = 0
 
-    # index.js can only handle 13 values being loaded into the bubble graph (so break when count == 12)
-    # count = 0
-    # for kw in kw_list.list:
-    #     bubble_elements = bubble_elements + '{text: "' + kw.word + '", count: "' + str(kw.frequency) + '"},'
-    #     if count == 8:  # KEEP THIS BREAK AT 11 OR 12. PERFORMANCE ISSUE OTHERWISE
-    #         break
-    #     else:
-    #         count = count + 1
-    #
-    # index_file = open('views/js/staticindex.js', 'r')
-    # index_text = index_file.read()
-    # index_file.close()
-    # index_text = index_text.replace('items:[]', 'items:[' + bubble_elements + ']')
-    #
-    # new_index = open('views/js/index.js', 'w')
-    # new_index.write(index_text)
-    # new_index.close()
+    for kw in kw_list.list:
+        numofkwoccurences = numofkwoccurences + kw.frequency
 
-
-    # {text: "Java", count: "236"},
-    # {text: ".Net", count: "382"},
-    # {text: "Php", count: "170"},
-    # {text: "Ruby", count: "123"},
-    # {text: "D", count: "12"},
-    # {text: "Python", count: "170"},
-    # {text: "C/C++", count: "100"},
-    # {text: "Pascal", count: "10"},
-    # {text: "Something", count: "170"},
 
 
     f = open("views/score_response.html", "r")
@@ -196,11 +178,15 @@ def getscorepage(kw_list, reg_kw_list):
         replace('#--YULESK_SCORE--#', str(kw_list.getyuleskscore()))\
         .replace('#--DOCUMENT_SCORE--#', str(kw_list.getdocumentscore()))\
         .replace('#--COMPARISON_SCORE--#', str(analyze_functions.calculatecomparisonscore(kw_list, reg_kw_list))) \
+        .replace('#-USER-DOC-NAME-#', filename[:-4]) \
+        .replace('#-REG-DOC-NAME-#', regfilename[:-4]) \
         .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
         .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
         .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore())) \
-        .replace('<p>ANALYTICS LOG - last 100 lines:</p>', '<p>ANALYTICS LOG - last 100 lines:</p>' + html_str)
-
+        .replace('<p>ANALYTICS LOG - last 100 lines:</p>', '<p>ANALYTICS LOG - last 100 lines:</p>' + html_str) \
+        .replace('#--USER-DOC-KEYWORD-NUM--#', str(len(kw_list.list))) \
+        .replace('#--REG-DOC-KEYWORD-NUM--#', str(len(reg_kw_list.list))) \
+        .replace('#--KEYWORDS-COMPRISE--#', str('%.3f' % ((numofkwoccurences/userdocwordcount) * 100)) + '%')
 
     f.close()
 
@@ -217,6 +203,9 @@ def geterrorpage(errtext="Unknown Error"):
     :rtype: str
 
     """
+
+    common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
+
     # Returns error page
     f = open("views/invalid_upload.html", "r")
     returnhtml = f.read().replace('##ERROR##', errtext)
@@ -390,6 +379,15 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
         avgkeyscore = keylist.avgkeywordscore
 
         file.write(str(yulesK) + "," + str(yulesI) + "," + str(avgkeyscore) + "\n")
+
+        # ------alphabetical order------- #
+        # TODO: Put in frequency order
+        sortedkeywords = sorted(keylist.list, key=operator.attrgetter('frequency'))
+
+
+
+
+
 
         for i in range(0, keylist.uniquekeywords):
             word = keylist.list[i].word

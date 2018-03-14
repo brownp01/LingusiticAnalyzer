@@ -17,7 +17,7 @@
             var data = JSON.parse(text);
 
             if(data["NEW_DOC_FLAG"] == "true"){
-                alert('Thank you.\nNew Regulatory Document has been added to list.')
+                alert('Thank you.\nNew Regulatory Document has been added to list.\nPlease re-select file in Step 1.')
             }
 
         }
@@ -70,12 +70,6 @@
                         <h6><u>Select regulatory document to compare against</u></h6>
                     <select title="Regulatory Document" name="regdocname" style="background-clip: border-box;width:95%">
                         <option class="reg doc options" value="Select">Select</option>
-						<option value="100_page_hipsum.txt">100_page_hipsum</option>
-						<option value="20_page_hipsum.pdf">20_page_hipsum</option>
-						<option value="10_page_hipsum.pdf">10_page_hipsum</option>
-						<option value="3_sentence_kafka.pdf">3_sentence_kafka</option>
-						<option value="5_sentence_kafka.txt">5_sentence_kafka</option>
-						<option value="50_page_kafka.pdf">50_page_kafka</option>
 						<option value="t_blant_original.txt">t_blant_original</option>
                         <option value="small_sample.txt">small sample</option>
                         <option value="small_sample_reword.txt">small sample reword</option>
@@ -102,8 +96,6 @@
                         <h2>Alt Step 2.</h2>
                         <h6><u>Upload locally stored regulatory document</u></h6>
                         <!--hr style="background-color: #E32E00;color: #E32E00"-->
-
-
 
                     </td>
                 </tr>
@@ -136,11 +128,24 @@
             <hr style="background-color: #1a1a1d">
 
             <br>
-            <form action="/project" enctype="multipart/form-data" method="get">
+
             <div>
-                <input class="btn btn-lg btn-info" type="submit" value="Info" style="background-color:#303f42;color: #eec015">
+                <table>
+                    <tr>
+                        <td style="padding-left: 20px;padding-right: 20px">
+                            <form action="/project" enctype="multipart/form-data" method="get">
+                                <input class="btn btn-lg btn-info" type="submit" value="Info" style="background-color:#303f42;color: #eec015;">
+                            </form>
+                        </td>
+                        <td style="padding-left: 20px;padding-right: 20px">
+                            <form action="/documentationredirect" enctype="multipart/form-data" method="get", target="_blank">
+                                <input class="btn btn-lg btn-info" type="submit" value="Documentation" style="background-color:#303f42;color: #eec015;">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
             </div>
-        </form>
 
 
         </div>
