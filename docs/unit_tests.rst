@@ -26,6 +26,14 @@ test\_extractpdftext module
     :undoc-members:
     :show-inheritance:
 
+test\_outputkeywordtotext module
+---------------------------------------------
+
+.. automodule:: unit_tests.test_outputkeywordtotext
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 test\_pdfanddocxarereadthesame module
 --------------------------------------------------
 
@@ -33,4 +41,5 @@ test\_pdfanddocxarereadthesame module
     :members:
     :undoc-members:
     :show-inheritance:
+
 
