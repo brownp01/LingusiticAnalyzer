@@ -1,0 +1,492 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>application module &#8212; Linguistic Analyzer 2.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="unit_tests package" href="unit_tests.html" />
+    <link rel="prev" title="analyze module" href="analyze.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="unit_tests.html" title="unit_tests package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="analyze.html" title="analyze module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linguistic Analyzer 2.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-application">
+<span id="application-module"></span><h1>application module<a class="headerlink" href="#module-application" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="application.analyze">
+<code class="descclassname">application.</code><code class="descname">analyze</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives uploaded document and comparison document choice and executes logic to compare them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Information regarding the uploaded document’s similarity to regulatory document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.bubbletest">
+<code class="descclassname">application.</code><code class="descname">bubbletest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#bubbletest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.bubbletest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Page for testing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Test page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.comparisoninfo">
+<code class="descclassname">application.</code><code class="descname">comparisoninfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#comparisoninfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.comparisoninfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comparison Information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">graph html page that describes the Linguistic Analyzer’s Comparison Score</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getapplicationconfig">
+<code class="descclassname">application.</code><code class="descname">getapplicationconfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getapplicationconfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getapplicationconfig" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Returns json application config file</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">applicationconfig.json</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">json file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getbackgroundimg">
+<code class="descclassname">application.</code><code class="descname">getbackgroundimg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getbackgroundimg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getbackgroundimg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns png image of file at</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">png</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getbackgroundwordsimg">
+<code class="descclassname">application.</code><code class="descname">getbackgroundwordsimg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getbackgroundwordsimg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getbackgroundwordsimg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns png image of a graph of words background</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">png</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getcsvkeywords">
+<code class="descclassname">application.</code><code class="descname">getcsvkeywords</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getcsvkeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getcsvkeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns csvkeywords.csv</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">csvkeywords keyword file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">csv</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getdocumentationhome">
+<code class="descclassname">application.</code><code class="descname">getdocumentationhome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getdocumentationhome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getdocumentationhome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns index page nested in Documentation/_build/html which is the home page for our Sphinx-generated documentation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">html text</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getkwfreeqimage">
+<code class="descclassname">application.</code><code class="descname">getkwfreeqimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getkwfreeqimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getkwfreeqimage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Keyword frequency graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">png</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getkwsalienceimage">
+<code class="descclassname">application.</code><code class="descname">getkwsalienceimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getkwsalienceimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getkwsalienceimage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns png image of a graph of top salience keywords</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">png</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getkwscoresimage">
+<code class="descclassname">application.</code><code class="descname">getkwscoresimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getkwscoresimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getkwscoresimage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns png image of a graph of keyword scores</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">png</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getlinguisticanalyzerlog">
+<code class="descclassname">application.</code><code class="descname">getlinguisticanalyzerlog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getlinguisticanalyzerlog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getlinguisticanalyzerlog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns LinguisticAnalyzer.log</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">log file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">log</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getregdockws">
+<code class="descclassname">application.</code><code class="descname">getregdockws</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getregdockws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getregdockws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Reg_Keywords.txt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">regulatory doc keyword file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">txt</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.gettestkeywords">
+<code class="descclassname">application.</code><code class="descname">gettestkeywords</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#gettestkeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.gettestkeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns test_keywords.csv</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">test_keywords doc keyword file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">csv</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.getuserdockws">
+<code class="descclassname">application.</code><code class="descname">getuserdockws</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#getuserdockws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getuserdockws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Keywords.txt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">keyword file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">txt</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.indexjs">
+<code class="descclassname">application.</code><code class="descname">indexjs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#indexjs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.indexjs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Page for testing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Test page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.keywordbubblechart">
+<code class="descclassname">application.</code><code class="descname">keywordbubblechart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#keywordbubblechart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.keywordbubblechart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns bubble chart html page</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bubble chart html page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.main">
+<code class="descclassname">application.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Home page of the Linguistic Analyzer API</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Home page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.newregdoc">
+<code class="descclassname">application.</code><code class="descname">newregdoc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#newregdoc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.newregdoc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds new regulatory document</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">none</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">none</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.project">
+<code class="descclassname">application.</code><code class="descname">project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an html page containing details about the Linguistic Analyzer project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Home page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.resource_path">
+<code class="descclassname">application.</code><code class="descname">resource_path</code><span class="sig-paren">(</span><em>relative_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#resource_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.resource_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Summary: Function to determine correct file path of directories for use within an IDE or executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>relative_path</strong> (<em>str</em>) – the path of a directory relative to a local environment</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">base_path in relation to executable environment and relative_path of local environment</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.reusablebubble">
+<code class="descclassname">application.</code><code class="descname">reusablebubble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#reusablebubble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.reusablebubble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Page for testing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Test page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.reusablebubblejs">
+<code class="descclassname">application.</code><code class="descname">reusablebubblejs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#reusablebubblejs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.reusablebubblejs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Page for testing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Test page</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="application.yulesinfo">
+<code class="descclassname">application.</code><code class="descname">yulesinfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/application.html#yulesinfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.yulesinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yule’s Info</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Page that describes Yule’s k and Yule’s i algorithms</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="analyze.html"
+                        title="previous chapter">analyze module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="unit_tests.html"
+                        title="next chapter">unit_tests package</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="unit_tests.html" title="unit_tests package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="analyze.html" title="analyze module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linguistic Analyzer 2.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Paul Brown, Tyler Blanton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>
