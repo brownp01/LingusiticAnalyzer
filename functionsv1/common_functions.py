@@ -169,7 +169,7 @@ def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
     numofkwoccurences = 0
 
     for kw in kw_list.list:
-        numofkwoccurences = numofkwoccurences + kw.frequency
+        numofkwoccurences += kw.frequency
 
 
 

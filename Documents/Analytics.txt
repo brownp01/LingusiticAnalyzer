@@ -1,3 +1,11 @@
+2018-03-15 12:47:31.646711 ; [36.03 sec.] ; 50_page_kafka.pdf ; 115 ; small_sample_reword.txt ; 4 ; 
+2018-03-15 12:42:19.695072 ; [17.527 sec.] ; 20_page_hipsum.pdf ; 343 ; small_sample.txt ; 4 ; 
+2018-03-14 21:25:32.103955 ; [6.373 sec.] ; simple_description.pdf ; 11 ; small_sample.txt ; 4 ; 
+2018-03-14 21:20:06.921581 ; [7.406 sec.] ; t_blant_original.pdf ; 10 ; small_sample.txt ; 4 ; 
+2018-03-14 21:08:35.418340 ; [2.33 sec.] ; test.pdf ; 68 ; small_sample.txt ; 4 ; 
+2018-03-14 21:04:20.089697 ; [45.674 sec.] ; IEC_TR_80002-1.pdf ; 1093 ; small_sample.txt ; 4 ; 
+2018-03-14 20:57:10.521725 ; [47.242 sec.] ; IEC_TR_80002-1.pdf ; 1093 ; small_sample.txt ; 4 ; 
+2018-03-14 20:52:04.963988 ; [74.511 sec.] ; BSI_14971.pdf ; 889 ; BSI_14971.txt ; 891 ; 
 2018-03-14 13:38:34.926642 ; [0.832 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
 2018-03-14 13:37:14.820828 ; [10.193 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
 2018-03-14 13:35:07.825891 ; [6.544 sec.] ; t_blant_original.pdf ; 10 ; t_blant_original.txt ; 0 ; 
