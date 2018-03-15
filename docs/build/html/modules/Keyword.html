@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Keyword &#8212; Linguistic Analyzer 2.0 documentation</title>
+    <link rel="stylesheet" href="../static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Linguistic Analyzer 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for Keyword</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">doxypypy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<div class="viewcode-block" id="Keyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword">[docs]</a><span class="k">class</span> <span class="nc">Keyword</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    summary: Stores a specific keyword and it&#39;s associated information.</span>
+<span class="sd">             The constructor accepts the word, type, salience, frequency and keyscore.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nWord</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nType</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nSal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nFreq</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nKeyscore</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word</span> <span class="o">=</span> <span class="n">nWord</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">nType</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salience</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nSal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">nFreq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keywordscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nKeyscore</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarWords</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yuleskscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_similarWordFrequency</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="Keyword.wordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.wordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">wordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the frequency value of a word</span>
+<span class="sd">        :rtype: int </span>
+<span class="sd">         &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span></div>
+
+<div class="viewcode-block" id="Keyword.similarwordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.similarwordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">similarwordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the frequency of a similar word in a document</span>
+<span class="sd">        :rtype: int </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_similarWordFrequency</span></div>
+
+<div class="viewcode-block" id="Keyword.issimilar"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.issimilar">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">issimilar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passedWord</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class</span>
+<span class="sd">        </span>
+<span class="sd">        :param str passedWord: word</span>
+<span class="sd">        :return: boolean value of True or False</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">passedWord</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span></div></div>
+
+        <span class="c1"># TODO: Implement some impressive algorithm here that checks synonyms?</span>
+
+
+
+    
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Linguistic Analyzer 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Paul Brown, Tyler Blanton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

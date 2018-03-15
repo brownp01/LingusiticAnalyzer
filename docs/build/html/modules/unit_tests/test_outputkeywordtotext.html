@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>unit_tests.test_outputkeywordtotext &#8212; Linguistic Analyzer 2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Linguistic Analyzer 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for unit_tests.test_outputkeywordtotext</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">unittest</span> <span class="k">import</span> <span class="n">TestCase</span>
+<span class="kn">import</span> <span class="nn">Keyword</span>
+<span class="kn">import</span> <span class="nn">KeywordList</span>
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="k">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="k">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">functionsv1</span> <span class="k">import</span> <span class="n">common_functions</span>
+<span class="kn">from</span> <span class="nn">werkzeug</span> <span class="k">import</span> <span class="n">datastructures</span>
+<span class="kn">from</span> <span class="nn">functionsv1</span> <span class="k">import</span> <span class="n">common_functions</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">functionsv1</span> <span class="k">import</span> <span class="n">analyze_functions</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="c1"># Right click the &#39;test_pdfs&#39; folder in the explorer, select &#39;copy path&#39; and paste that value here</span>
+<span class="n">DOWNLOADS_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17</span><span class="se">\</span>
+<span class="s1">/LinguisticAnalyzer/unit_tests/test_pdfs/&#39;</span>
+
+<span class="c1"># Right click the &#39;Keywords.txt&#39; file in the explorer, select &#39;copy path&#39; and paste that value here</span>
+<span class="n">OUTPUT_KW_PATH</span> <span class="o">=</span> <span class="s1">&#39;/Users/tlblanton/Documents/UC_Denver/2017_fall/senior_design/linguistic_analyzer/11_7_17</span><span class="se">\</span>
+<span class="s1">/LinguisticAnalyzer/Documents/Keywords.txt&#39;</span>
+
+
+<div class="viewcode-block" id="TestOutputkeywordtotext"><a class="viewcode-back" href="../../unit_tests.html#unit_tests.test_outputkeywordtotext.TestOutputkeywordtotext">[docs]</a><span class="k">class</span> <span class="nc">TestOutputkeywordtotext</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="TestOutputkeywordtotext.test_outputkeywordtotext"><a class="viewcode-back" href="../../unit_tests.html#unit_tests.test_outputkeywordtotext.TestOutputkeywordtotext.test_outputkeywordtotext">[docs]</a>    <span class="k">def</span> <span class="nf">test_outputkeywordtotext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">testFileName</span> <span class="o">=</span> <span class="s1">&#39;test_dfwpdftext.pdf&#39;</span>        <span class="c1"># Name os test file</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># opening test file</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="n">datastructures</span><span class="o">.</span><span class="n">FileStorage</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">testFileName</span><span class="p">,</span>
+                                              <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;application/pdf&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;datafile&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s2">&quot;File could not be opened&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Grabbing text from pdf file</span>
+            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span><span class="p">:</span>
+                <span class="n">file_text</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">extractpdftext</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">DOWNLOADS_FOLDER</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;docx&#39;</span><span class="p">:</span>
+                <span class="n">file_text</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">extractmicrosoftdocxtext</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+            <span class="c1"># identifying keywords of pdf file</span>
+            <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">analyze_functions</span><span class="o">.</span><span class="n">identifykeywords</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
+
+            <span class="c1"># outputting keyword information to file &#39;Keywords.txt&#39;</span>
+            <span class="n">common_functions</span><span class="o">.</span><span class="n">outputkeywordtotext</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">OUTPUT_KW_PATH</span><span class="p">)</span>
+
+            <span class="n">word_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># populating word_list with words from &#39;Keywords.txt&#39;</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OUTPUT_KW_PATH</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">word_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+            <span class="n">kw_string_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+                <span class="n">kw_string_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">word</span><span class="p">)</span>
+
+            <span class="c1"># Asserting that the words we epected to be inserted into</span>
+            <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">kw_string_list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Test Failed&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s1">&#39;unable to output keyword list to file.&#39;</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Linguistic Analyzer 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Paul Brown, Tyler Blanton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>
