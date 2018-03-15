@@ -1,9 +1,10 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 12:45:43] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 13:54:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 13:54:30] "GET /applicationconfig HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "50_page_kafka.pdf"
-INFO:root:"50_page_kafka.pdf" saved
-INFO:root:opening file "50_page_kafka.pdf"
+INFO:root:saving file "INFEGY INSIGHTS_11_10 (1).pdf"
+INFO:root:"INFEGY INSIGHTS_11_10 (1).pdf" saved
+INFO:root:opening file "INFEGY INSIGHTS_11_10 (1).pdf"
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -17,7 +18,7 @@ INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
-INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:Extracting keyword info from small_sample.txt
 INFO:root:keyword info extraction complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
@@ -27,8 +28,8 @@ INFO:root:Plotting keyword scores...
 INFO:root:No keyword scores to plot
 INFO:root:Plotting keyword frequency...
 INFO:root:No keyword frequency to plot
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
 INFO:root:Begin score page response...
 INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 12:50:51] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 12:51:16] "GET /? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 12:51:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2018 14:15:45] "POST /analyze HTTP/1.1" 200 -

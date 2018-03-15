@@ -1,3 +1,5 @@
+2018-03-15 14:15:45.400892 ; [1232.912 sec.] ; INFEGY INSIGHTS_11_10 (1).pdf ; 156 ; small_sample.txt ; 4 ; 
+2018-03-15 13:53:14.227052 ; [14.972 sec.] ; AtlasAPIv2Documentation.pdf ; 792 ; small_sample.txt ; 4 ; 
 2018-03-15 12:47:31.646711 ; [36.03 sec.] ; 50_page_kafka.pdf ; 115 ; small_sample_reword.txt ; 4 ; 
 2018-03-15 12:42:19.695072 ; [17.527 sec.] ; 20_page_hipsum.pdf ; 343 ; small_sample.txt ; 4 ; 
 2018-03-14 21:25:32.103955 ; [6.373 sec.] ; simple_description.pdf ; 11 ; small_sample.txt ; 4 ; 

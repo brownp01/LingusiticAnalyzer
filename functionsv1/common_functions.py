@@ -851,28 +851,36 @@ def generatebubblecsv(kw_list, reg_kw_list):
         :return: void
     """
 
-    f = open(DOCUMENTS_FOLDER + 'csvkeywords.csv', 'w')
-    f.writelines(["keyword,frequency,salience\n", '----------------\n'])
+    try:
+        logging.info("Generating Bubble Chart CSV...")
 
-    breakCount = -1
+        f = open(DOCUMENTS_FOLDER + 'csvkeywords.csv', 'w')
+        f.writelines(["keyword,frequency,salience\n", '----------------\n'])
 
-    for i in range(0, len(kw_list.list)):
-        # in order to preserve color scheme, keywords from different files must alternate, so if one runs out, we stop.
+        breakCount = -1
 
-        data = json.load(open('applicationconfig.json'))
-        if i >= len(reg_kw_list.list) or i >= int(data['MAX_BUBBLES']):
-            breakCount = i
-            writeToConfig("ACTUAL_BUBBLES", i)
-            break
-        f.write(kw_list.list[i].word + ',' + str(kw_list.list[i].frequency) + ',' + str(kw_list.list[i].salience) + '\n')
-        f.write(reg_kw_list.list[i].word + ',' + str(reg_kw_list.list[i].frequency) + ',' + str(reg_kw_list.list[i].salience) + '\n')
+        for i in range(0, len(kw_list.list)):
+            # in order to preserve color scheme, keywords from different files must alternate, so if one runs out, we stop.
 
-    if breakCount != -1:
-        writeToConfig("ACTUAL_BUBBLES", breakCount)
-    else:
-        writeToConfig("ACTUAL_BUBBLES", len(kw_list.list))
+            data = json.load(open('applicationconfig.json'))
+            if i >= len(reg_kw_list.list) or i >= int(data['MAX_BUBBLES']):
+                breakCount = i
+                writeToConfig("ACTUAL_BUBBLES", i)
+                break
+            f.write(kw_list.list[i].word + ',' + str(kw_list.list[i].frequency) + ',' + str(kw_list.list[i].salience) + '\n')
+            f.write(reg_kw_list.list[i].word + ',' + str(reg_kw_list.list[i].frequency) + ',' + str(reg_kw_list.list[i].salience) + '\n')
 
-    f.close()
+        if breakCount != -1:
+            writeToConfig("ACTUAL_BUBBLES", breakCount)
+        else:
+            writeToConfig("ACTUAL_BUBBLES", len(kw_list.list))
+
+        f.close()
+
+        logging.info("Bubble Chart CSV generation successful")
+
+    except Exception as e:
+        logging.info("Bubble Chart CSV generation failed.")
 
 def writeToConfig(key, value):
     """
