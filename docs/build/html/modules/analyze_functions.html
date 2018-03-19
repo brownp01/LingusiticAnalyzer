@@ -60,27 +60,49 @@
 
 <div class="viewcode-block" id="declarelogger"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.declarelogger">[docs]</a><span class="k">def</span> <span class="nf">declarelogger</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: Declares logger for the current session.</span>
+<span class="sd">    Summary: Declares logger for the current session. Logging statements are re-directed to a local logging file.</span>
+<span class="sd">    The logging level is set to DEBUG.</span>
+
+<span class="sd">    LOG_FILE_PATH = &#39;logging/Linguistic_Analyzer.log&#39;</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#if not os.path.isfile(LOG_FILE_PATH):</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span> <span class="c1">#filename=LOG_FILE_PATH</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;API started&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="identifykeywords"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.identifykeywords">[docs]</a><span class="k">def</span> <span class="nf">identifykeywords</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: Calls the Google NLP API to extract Keyword information from text</span>
+<span class="sd">    Summary: Calls the Google NLP API to extract Keyword information from text. The &#39;analyze entities&#39; from the API</span>
+<span class="sd">    is utilized. The information retained from the API is &#39;entity&#39; (keyword) and the &#39;salience&#39; value of</span>
+<span class="sd">    a particular keyword.</span>
 
-<span class="sd">    :param str file_text: text of document</span>
+<span class="sd">    Information regarding the Google NLP API can be found at: https://cloud.google.com/natural-language/</span>
+
+<span class="sd">    For use on a local machine: add export API_KEY=&quot;your API key&quot; in bash.profile or whichever file contains</span>
+<span class="sd">    environmental variable setup.</span>
+
+<span class="sd">    For use in AWS: enter &#39;API_KEY&#39; with key value in AWS configuration settings</span>
+
+<span class="sd">    *file_text* contains the text of a particular document in a list of strings. The original idea here was concern that</span>
+<span class="sd">    a long string of text would crash the app due to memory constraints. However, if document text is broken up and sent</span>
+<span class="sd">    to the API as such, the analysis would not encompass the document in its entirety. Instead, the scores provided would</span>
+<span class="sd">    be focused on each &#39;chunk&#39; of text. Therefore, analysis of an entire document would be inaccurate. The list of strings</span>
+<span class="sd">    idea here has remained, but the &#39;chunk&#39; size for *file_text* can be configured in /applicationconfig.json. Default settings</span>
+<span class="sd">    allow for a single string text input of a document into the API.</span>
+
+<span class="sd">    For each entity identified by the API, :func:`commonfunctions.createkeywordfromgoogleapientity` is used to extract the information</span>
+<span class="sd">    from the *entities* dictionary variable and places it into a :class:`Keyword`. The returned Keyword is then placed</span>
+<span class="sd">    into the :class:`KeywordList` object via :func:`KeywordList.insertkeyword`.</span>
+
+<span class="sd">    :param List[str] file_text: text of document</span>
 <span class="sd">    :return: KeywordList object</span>
 <span class="sd">    :rtype: KeywordList</span>
+<span class="sd">    :raises: Exception</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="sd">&quot;&quot;&quot;Detects entities in the text.&quot;&quot;&quot;</span>
-
-    <span class="sd">&quot;&quot;&quot;For use on a local machine: add export API_KEY=&quot;your API key&quot; in bash.profile&quot;&quot;&quot;</span>
-    <span class="sd">&quot;&quot;&quot;for use in AWS: enter API_KEY with key value in configuration settings&quot;&quot;&quot;</span>
 
     <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">KeywordList</span><span class="p">()</span>
 
@@ -98,7 +120,7 @@
             <span class="n">d</span><span class="o">=</span> <span class="p">{</span><span class="s2">&quot;encodingType&quot;</span><span class="p">:</span> <span class="s2">&quot;UTF8&quot;</span><span class="p">,</span> <span class="s2">&quot;document&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PLAIN_TEXT&quot;</span><span class="p">,</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">file_text</span><span class="p">[</span><span class="n">i</span><span class="p">]}}</span>
 
             <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
-            <span class="n">entities</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>   <span class="c1">#takes JSON given data from API and puts info into an &#39;entities&#39; dictionary</span>
 
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Google NLP API entity analysis successful&quot;</span><span class="p">)</span>
             
@@ -114,11 +136,11 @@
 
 <div class="viewcode-block" id="calculatescores"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatescores">[docs]</a><span class="k">def</span> <span class="nf">calculatescores</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: Calculate Yule&#39;s k and i scores, and keywords scores for a given document</span>
+<span class="sd">    Summary: function that calls :func:`calculatekeywordscore` and :func:`calculateyulesscore` and inputs those values</span>
+<span class="sd">    into :class:`Keyword` and :class:`KeywordList` respectively for a particular document.</span>
 
 <span class="sd">    :param KeywordList kw_list: list of Keywords</span>
-<span class="sd">    :param str file_text: Text of file</span>
-<span class="sd">    :type file_text: List[string]</span>
+<span class="sd">    :param List[str] file_text: Text of file</span>
 <span class="sd">    :return: void</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -135,13 +157,14 @@
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Score calculation complete.&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="calculatekeywordscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatekeywordscore">[docs]</a><span class="k">def</span> <span class="nf">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
+<div class="viewcode-block" id="calculatekeywordscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatekeywordscore">[docs]</a><span class="k">def</span> <span class="nf">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: calculate a keyword score for a single keyword</span>
+<span class="sd">    Summary: calculate a keyword score for a single keyword. The current algorithm utilized is:</span>
+<span class="sd">    [(keyword salience * keyword frequency) / (total keywords)] * 1000.</span>
+<span class="sd">    Since the salience and frequency of a particular keyword is important to the overall feel of a document, these values</span>
+<span class="sd">    are used to calculate the score.</span>
 
-<span class="sd">    :param KeywordList kw_list: all keywords</span>
-<span class="sd">    :param file_text: file&#39;s entire text</span>
-<span class="sd">    :type file_text: list[str]</span>
+<span class="sd">    :param KeywordList kw_list: all Keywords of a document.</span>
 <span class="sd">    :param Keyword kw: keyword</span>
 <span class="sd">    :return: keyword score</span>
 <span class="sd">    :rtype: float</span>
@@ -155,12 +178,18 @@
 <span class="c1"># TODO: Get this to work properly</span>
 <div class="viewcode-block" id="calculateyulesscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculateyulesscore">[docs]</a><span class="k">def</span> <span class="nf">calculateyulesscore</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: calculates Yule&#39;s K scores for givven keyword argument</span>
+<span class="sd">    Summary: calculates Yule&#39;s K/I scores for a given document. These scores are used to determine the lexical richness</span>
+<span class="sd">    of a given document.</span>
+
+<span class="sd">    This function starts by ensuring that *file_text* is converted into a long string vice a list of strings to ensure</span>
+<span class="sd">    accurate calculation of the scores. Then, the string is split into tokens via :func:`tokenize`. The Yule&#39;s K/I algorithm</span>
+<span class="sd">    is implemented based on the tokens provided. If there is a *&#39;Division by Zero&#39;* error, an exception will be raised and</span>
+<span class="sd">    the default score value will be **&#39;-1&#39;**</span>
 <span class="sd">    </span>
-<span class="sd">    :param file_text: plain text of document</span>
-<span class="sd">    :type file_text: list[str]</span>
-<span class="sd">    :return: Yules score of text file</span>
+<span class="sd">    :param List[str] file_text: plain text of document</span>
+<span class="sd">    :return: Yules score of text file [Yule&#39;s K, Yule&#39;s I]</span>
 <span class="sd">    :rtype: float</span>
+<span class="sd">    :raises: ZeroDivisionError</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -180,8 +209,16 @@
 
 <div class="viewcode-block" id="calculatecomparisonscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatecomparisonscore">[docs]</a><span class="k">def</span> <span class="nf">calculatecomparisonscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: Compares the calculated scores of the two documents and </span>
-<span class="sd">             generates value based on that comparison</span>
+<span class="sd">    Summary: Compares the calculated scores of the two documents and generates value based on that comparison.</span>
+
+<span class="sd">    1. The top 10 Keywords with the highest frequency is gathered from the user document.</span>
+<span class="sd">    2. The top 10% of the regulatory document Keywords are gathered.</span>
+<span class="sd">    3. For the top 10 Keywords in the user document, if they are in the top 10% of words in the regulatory document, a value</span>
+<span class="sd">       of &#39;1&#39; is added to a variable called *tempscore*.</span>
+<span class="sd">    4. *tempscore* / top 10% of reg doc keywords = the new *tempscore*</span>
+<span class="sd">    5. The final score that is returned:</span>
+<span class="sd">       100 - [abs(average keyword score of user doc - average keyword score of reg doc)] * *tempscore*</span>
+
 
 <span class="sd">    :param KeywordList kw_list: list of Keywords</span>
 <span class="sd">    :param KeywordList reg_kw_list: list of Keywords</span>

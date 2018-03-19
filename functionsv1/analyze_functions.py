@@ -13,27 +13,49 @@ KEY = os.environ.get('API_KEY') #Google NLP API Key stored as an environmental v
 
 def declarelogger():
     """
-    Summary: Declares logger for the current session.
+    Summary: Declares logger for the current session. Logging statements are re-directed to a local logging file.
+    The logging level is set to DEBUG.
+
+    LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
+
     """
     #if not os.path.isfile(LOG_FILE_PATH):
     f = open(LOG_FILE_PATH, 'w').close()
-    logging.basicConfig(level=logging.DEBUG, filename=LOG_FILE_PATH) #filename=LOG_FILE_PATH
+    logging.basicConfig(level=logging.DEBUG, filename=LOG_FILE_PATH)
     logging.info("API started")
 
 
 def identifykeywords(file_text):
     """
-    Summary: Calls the Google NLP API to extract Keyword information from text
+    Summary: Calls the Google NLP API to extract Keyword information from text. The 'analyze entities' from the API
+    is utilized. The information retained from the API is 'entity' (keyword) and the 'salience' value of
+    a particular keyword.
 
-    :param str file_text: text of document
+    Information regarding the Google NLP API can be found at: https://cloud.google.com/natural-language/
+
+    For use on a local machine: add export API_KEY="your API key" in bash.profile or whichever file contains
+    environmental variable setup.
+
+    For use in AWS: enter 'API_KEY' with key value in AWS configuration settings
+
+    *file_text* contains the text of a particular document in a list of strings. The original idea here was concern that
+    a long string of text would crash the app due to memory constraints. However, if document text is broken up and sent
+    to the API as such, the analysis would not encompass the document in its entirety. Instead, the scores provided would
+    be focused on each 'chunk' of text. Therefore, analysis of an entire document would be inaccurate. The list of strings
+    idea here has remained, but the 'chunk' size for *file_text* can be configured in /applicationconfig.json. Default settings
+    allow for a single string text input of a document into the API.
+
+    For each entity identified by the API, :func:`commonfunctions.createkeywordfromgoogleapientity` is used to extract the information
+    from the *entities* dictionary variable and places it into a :class:`Keyword`. The returned Keyword is then placed
+    into the :class:`KeywordList` object via :func:`KeywordList.insertkeyword`.
+
+    :param List[str] file_text: text of document
     :return: KeywordList object
     :rtype: KeywordList
+    :raises: Exception
 
     """
     """Detects entities in the text."""
-
-    """For use on a local machine: add export API_KEY="your API key" in bash.profile"""
-    """for use in AWS: enter API_KEY with key value in configuration settings"""
 
     keyword_list = KeywordList()
 
@@ -51,7 +73,7 @@ def identifykeywords(file_text):
             d= {"encodingType": "UTF8", "document": {"type": "PLAIN_TEXT","content": file_text[i]}}
 
             r = requests.post(url, json=d)
-            entities = json.loads(r.text)
+            entities = json.loads(r.text)   #takes JSON given data from API and puts info into an 'entities' dictionary
 
             logging.info("Google NLP API entity analysis successful")
             
@@ -67,11 +89,11 @@ def identifykeywords(file_text):
 
 def calculatescores(kw_list, file_text):
     """
-    Summary: Calculate Yule's k and i scores, and keywords scores for a given document
+    Summary: function that calls :func:`calculatekeywordscore` and :func:`calculateyulesscore` and inputs those values
+    into :class:`Keyword` and :class:`KeywordList` respectively for a particular document.
 
     :param KeywordList kw_list: list of Keywords
-    :param str file_text: Text of file
-    :type file_text: List[string]
+    :param List[str] file_text: Text of file
     :return: void
 
     """
@@ -88,13 +110,14 @@ def calculatescores(kw_list, file_text):
     logging.info("Score calculation complete.")
 
 
-def calculatekeywordscore(kw_list, file_text, kw):
+def calculatekeywordscore(kw_list, kw):
     """
-    Summary: calculate a keyword score for a single keyword
+    Summary: calculate a keyword score for a single keyword. The current algorithm utilized is:
+    [(keyword salience * keyword frequency) / (total keywords)] * 1000.
+    Since the salience and frequency of a particular keyword is important to the overall feel of a document, these values
+    are used to calculate the score.
 
-    :param KeywordList kw_list: all keywords
-    :param file_text: file's entire text
-    :type file_text: list[str]
+    :param KeywordList kw_list: all Keywords of a document.
     :param Keyword kw: keyword
     :return: keyword score
     :rtype: float
@@ -108,12 +131,18 @@ def calculatekeywordscore(kw_list, file_text, kw):
 # TODO: Get this to work properly
 def calculateyulesscore(file_text):
     """
-    Summary: calculates Yule's K scores for givven keyword argument
+    Summary: calculates Yule's K/I scores for a given document. These scores are used to determine the lexical richness
+    of a given document.
+
+    This function starts by ensuring that *file_text* is converted into a long string vice a list of strings to ensure
+    accurate calculation of the scores. Then, the string is split into tokens via :func:`tokenize`. The Yule's K/I algorithm
+    is implemented based on the tokens provided. If there is a *'Division by Zero'* error, an exception will be raised and
+    the default score value will be **'-1'**
     
-    :param file_text: plain text of document
-    :type file_text: list[str]
-    :return: Yules score of text file
+    :param List[str] file_text: plain text of document
+    :return: Yules score of text file [Yule's K, Yule's I]
     :rtype: float
+    :raises: ZeroDivisionError
 
     """
     try:
@@ -133,8 +162,16 @@ def calculateyulesscore(file_text):
 
 def calculatecomparisonscore(kw_list, reg_kw_list):
     """
-    Summary: Compares the calculated scores of the two documents and 
-             generates value based on that comparison
+    Summary: Compares the calculated scores of the two documents and generates value based on that comparison.
+
+    1. The top 10 Keywords with the highest frequency is gathered from the user document.
+    2. The top 10% of the regulatory document Keywords are gathered.
+    3. For the top 10 Keywords in the user document, if they are in the top 10% of words in the regulatory document, a value
+       of '1' is added to a variable called *tempscore*.
+    4. *tempscore* / top 10% of reg doc keywords = the new *tempscore*
+    5. The final score that is returned:
+       100 - [abs(average keyword score of user doc - average keyword score of reg doc)] * *tempscore*
+
 
     :param KeywordList kw_list: list of Keywords
     :param KeywordList reg_kw_list: list of Keywords
