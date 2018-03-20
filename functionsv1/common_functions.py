@@ -47,14 +47,21 @@ homeCount.counter = 0
 # going to handle all the mess that is in application.py
 def interpretfile(file, localuploadfolder):
     """
-        Parses uploaded file's text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects
+    Summary: Function that handles uploaded user document. The following occurs:
 
-        :param fileStorage file: file to be interpreted
-        :param str localuploadfolder: Place to temporary store file so it can be read from
-        :return: list of file's Keywords
-        :rtype: KeywordList
+    1. Extracts text from a pdf file with :func:`extractpdftext`.
+    2. Identifies keywords with :func:`analyze_functions.identifykeywords`.
+    3. Calculates various scores for each keyword with :func:`analyze_functions.calculatescores` and
+       :func:`KeywordList.KeywordList.calculateavgscores`.
+    4. Exports keyword information to a *.txt* file via :func:`outputkeywordtotext`.
+    5. Determines total word count for a *file*. The value is stored in the variable *wordcount*
 
-        """
+    :param fileStorage file: file to be interpreted
+    :param str localuploadfolder: Place to temporary store file so it can be read from
+    :return: list of file's Keywords, wordcount
+    :rtype: KeywordList, int
+
+    """
     file_text = []
 
     # -----------GRABBING TEXT FROM FILE----------- #
@@ -85,10 +92,29 @@ def interpretfile(file, localuploadfolder):
 
 def interpretexistingfile(regfilename):
     """
-    Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.
+    Summary: Function that handles a newly uploaded regulatory doc or an existing regulatory document. The following occurs:
+
+    1. Checks *regfilename* to determine if it's a .pdf. If it's a .pdf, then that means that this is the first time
+       a regulatory document has been published to the app. Analysis of the document needs to occur.
+
+       - Extracts text from a pdf file with :func:`getregulatorydoctext`.
+       - Identifies keywords with :func:`analyze_functions.identifykeywords`.
+       - Calculates various scores for each keyword with :func:`analyze_functions.calculatescores` and
+         :func:`KeywordList.KeywordList.calculateavgscores`.
+       - The file extension is changed from *.pdf* to *.txt*. This is done so that the existing filename with extension can
+         be used when exporting information to *.txt* file.
+       - Exports keyword information to a *.txt* file via :func:`outputkeywordtotext`.
+       - 'views/index.html' is edited to include the new regulatory document file path for future selection on the app
+         home page. The file path points to the *.txt* version of the document so analysis does not occur again.
+
+    2. If the *regfilename* is not a *pdf* file, then it's a *txt* file. Analysis of the file does not need to occur
+       since it was previously done.
+
+       - The keywords with associated information are extracted from the *txt* file via :func:`extractkeywordfromtxt`.
+
 
     :param str regfilename: name of regulatory file
-    :return: list of analyzed Keyword objects
+    :return: Keyword list of regulatory document.
     :rtype: KeywordList
 
     """
@@ -121,7 +147,7 @@ def interpretexistingfile(regfilename):
 
 def changefileextension(regfilename):
     """
-    Changes the file name string from .pdf to .txt.
+    Summary: Changes the file name string from *.pdf* to *.txt*.
 
     :param str regfilename: name of regulatory file
     :return: string with .pdf file extension
@@ -141,10 +167,14 @@ def changefileextension(regfilename):
 
 def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
     """
-    Returns html page that is populated with proper calculated Keyword, Comparison, and Yule's scores.
+    Summary: Returns 'views/score_response.html' page that is populated with proper calculated Keyword, Comparison,
+    and Yule's scores.
 
     :param KeywordList kw_list: list of user document's Keyword objects
     :param KeywordList reg_kw_list: list of regulatory document's Keywords
+    :param int userdocwordcount: word count of user document
+    :param str filename: user document's file name
+    :param str regfilename: regulatory document's file name
     :return: html page with scores displayed
     :rtype: str
 
@@ -196,7 +226,7 @@ def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
 
 def geterrorpage(errtext="Unknown Error"):
     """
-    Populates error message with proper response and returns html
+    Summary: Populates error message with proper response and returns html
 
     :param str errtext: text of error
     :return: html page with error displayed
