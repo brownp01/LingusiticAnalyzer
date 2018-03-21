@@ -81,6 +81,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes variables for logging session</span>
 
+
 <span class="sd">        :return: void</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">returnVal</span> <span class="o">=</span> <span class="n">homeCount</span><span class="o">.</span><span class="n">counter</span>
@@ -94,14 +95,22 @@
 <span class="c1"># going to handle all the mess that is in application.py</span>
 <div class="viewcode-block" id="interpretfile"><a class="viewcode-back" href="../functionsv1.html#common_functions.interpretfile">[docs]</a><span class="k">def</span> <span class="nf">interpretfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">localuploadfolder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parses uploaded file&#39;s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects</span>
+<span class="sd">    Summary: Function that handles uploaded user document. The following occurs:</span>
 
-<span class="sd">        :param fileStorage file: file to be interpreted</span>
-<span class="sd">        :param str localuploadfolder: Place to temporary store file so it can be read from</span>
-<span class="sd">        :return: list of file&#39;s Keywords</span>
-<span class="sd">        :rtype: KeywordList</span>
+<span class="sd">    1. Extracts text from a pdf file with :func:`extractpdftext`.</span>
+<span class="sd">    2. Identifies keywords with :func:`analyze_functions.identifykeywords`.</span>
+<span class="sd">    3. Calculates various scores for each keyword with :func:`analyze_functions.calculatescores` and</span>
+<span class="sd">       :func:`KeywordList.KeywordList.calculateavgscores`.</span>
+<span class="sd">    4. Exports keyword information to a *.txt* file via :func:`outputkeywordtotext`.</span>
+<span class="sd">    5. Determines total word count for a *file*. The value is stored in the variable *wordcount*</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="sd">    :param fileStorage file: file to be interpreted</span>
+<span class="sd">    :param str localuploadfolder: Place to temporary store file so it can be read from</span>
+<span class="sd">    :return: list of file&#39;s Keywords, wordcount</span>
+<span class="sd">    :rtype: KeywordList, int</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1"># -----------GRABBING TEXT FROM FILE----------- #</span>
@@ -132,10 +141,29 @@
 
 <div class="viewcode-block" id="interpretexistingfile"><a class="viewcode-back" href="../functionsv1.html#common_functions.interpretexistingfile">[docs]</a><span class="k">def</span> <span class="nf">interpretexistingfile</span><span class="p">(</span><span class="n">regfilename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.</span>
+<span class="sd">    Summary: Function that handles a newly uploaded regulatory doc or an existing regulatory document. The following occurs:</span>
+
+<span class="sd">    1. Checks *regfilename* to determine if it&#39;s a .pdf. If it&#39;s a .pdf, then that means that this is the first time</span>
+<span class="sd">       a regulatory document has been published to the app. Analysis of the document needs to occur.</span>
+
+<span class="sd">       - Extracts text from a pdf file with :func:`getregulatorydoctext`.</span>
+<span class="sd">       - Identifies keywords with :func:`analyze_functions.identifykeywords`.</span>
+<span class="sd">       - Calculates various scores for each keyword with :func:`analyze_functions.calculatescores` and</span>
+<span class="sd">         :func:`KeywordList.KeywordList.calculateavgscores`.</span>
+<span class="sd">       - The file extension is changed from *.pdf* to *.txt*. This is done so that the existing filename with extension can</span>
+<span class="sd">         be used when exporting information to *.txt* file.</span>
+<span class="sd">       - Exports keyword information to a *.txt* file via :func:`outputkeywordtotext`.</span>
+<span class="sd">       - &#39;views/index.html&#39; is edited to include the new regulatory document file path for future selection on the app</span>
+<span class="sd">         home page. The file path points to the *.txt* version of the document so analysis does not occur again.</span>
+
+<span class="sd">    2. If the *regfilename* is not a *pdf* file, then it&#39;s a *txt* file. Analysis of the file does not need to occur</span>
+<span class="sd">       since it was previously done.</span>
+
+<span class="sd">       - The keywords with associated information are extracted from the *txt* file via :func:`extractkeywordfromtxt`.</span>
+
 
 <span class="sd">    :param str regfilename: name of regulatory file</span>
-<span class="sd">    :return: list of analyzed Keyword objects</span>
+<span class="sd">    :return: Keyword list of regulatory document.</span>
 <span class="sd">    :rtype: KeywordList</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -168,7 +196,8 @@
 
 <div class="viewcode-block" id="changefileextension"><a class="viewcode-back" href="../functionsv1.html#common_functions.changefileextension">[docs]</a><span class="k">def</span> <span class="nf">changefileextension</span><span class="p">(</span><span class="n">regfilename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Changes the file name string from .pdf to .txt.</span>
+<span class="sd">    Summary: Changes the file name string from *.pdf* to *.txt*.</span>
+
 
 <span class="sd">    :param str regfilename: name of regulatory file</span>
 <span class="sd">    :return: string with .pdf file extension</span>
@@ -188,10 +217,15 @@
 
 <div class="viewcode-block" id="getscorepage"><a class="viewcode-back" href="../functionsv1.html#common_functions.getscorepage">[docs]</a><span class="k">def</span> <span class="nf">getscorepage</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">,</span> <span class="n">userdocwordcount</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">regfilename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns html page that is populated with proper calculated Keyword, Comparison, and Yule&#39;s scores.</span>
+<span class="sd">    Summary: Returns &#39;views/score_response.html&#39; page that is populated with proper calculated Keyword, Comparison,</span>
+<span class="sd">    and Yule&#39;s scores.</span>
+
 
 <span class="sd">    :param KeywordList kw_list: list of user document&#39;s Keyword objects</span>
 <span class="sd">    :param KeywordList reg_kw_list: list of regulatory document&#39;s Keywords</span>
+<span class="sd">    :param int userdocwordcount: word count of user document</span>
+<span class="sd">    :param str filename: user document&#39;s file name</span>
+<span class="sd">    :param str regfilename: regulatory document&#39;s file name</span>
 <span class="sd">    :return: html page with scores displayed</span>
 <span class="sd">    :rtype: str</span>
 
@@ -243,7 +277,8 @@
 
 <div class="viewcode-block" id="geterrorpage"><a class="viewcode-back" href="../functionsv1.html#common_functions.geterrorpage">[docs]</a><span class="k">def</span> <span class="nf">geterrorpage</span><span class="p">(</span><span class="n">errtext</span><span class="o">=</span><span class="s2">&quot;Unknown Error&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Populates error message with proper response and returns html</span>
+<span class="sd">    Summary: Populates error message with proper response and returns html</span>
+
 
 <span class="sd">    :param str errtext: text of error</span>
 <span class="sd">    :return: html page with error displayed</span>
@@ -262,21 +297,28 @@
 
 <div class="viewcode-block" id="extractpdftext"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractpdftext">[docs]</a><span class="k">def</span> <span class="nf">extractpdftext</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">testdownload_folder</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">RegDoc</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extracts Text from PDF document referenced in given file argument</span>
+<span class="sd">    Summary: Extracts text from PDF document referenced in the given file argument using the :mod:`PDFMiner` python package.</span>
+
+<span class="sd">    The first part of the code assigns a &quot;chunk&quot; size via the value *NUM_SEND_CHARS* set in /applicationconfig.json.</span>
+<span class="sd">    *chunk_size* is designated to break up a long string of text into a list of strings, if needed. The default setting</span>
+<span class="sd">    for this allows for a single string of text.</span>
+
+<span class="sd">    Before starting the PDF text extraction, logging is disabled due to the amount of statements PDFMiner produces in the</span>
+<span class="sd">    log.</span>
+
 
 <span class="sd">    :param fileStorage file: the PDF file to extract text from</span>
 <span class="sd">    :param str testdownload_folder: specific download folder if necessary</span>
 <span class="sd">    :param bool RegDoc: flag specifying whether this is a user doc or a regulatory doc</span>
 <span class="sd">    :return: file&#39;s text</span>
 <span class="sd">    :rtype: List[str]</span>
+<span class="sd">    :raises: FileNotFoundError</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">localdownload_folder</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span>
-
-
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
 
@@ -288,7 +330,6 @@
             <span class="n">savefile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">localdownload_folder</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">testdownload_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">localdownload_folder</span> <span class="o">=</span> <span class="n">testdownload_folder</span>
-
 
         <span class="c1"># PdfMiner writes an insane amount of logging statements (one per parsed word, it seems).</span>
         <span class="c1"># Remove the below line if you would like to see them.</span>
@@ -319,9 +360,6 @@
         <span class="n">file_text</span> <span class="o">=</span> <span class="n">longstringtostringlist</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)</span>  <span class="c1"># Converting long string to list of strings of size</span>
 
 
-
-
-
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">fnfe</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">fnfe</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
         <span class="c1"># print(fnfe.strerror)</span>
@@ -332,7 +370,8 @@
 
 <div class="viewcode-block" id="extractmicrosoftdocxtext"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractmicrosoftdocxtext">[docs]</a><span class="k">def</span> <span class="nf">extractmicrosoftdocxtext</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">testdownload_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extracts text from any &quot;.docx&quot; document and returns it.</span>
+<span class="sd">    Summary: Extracts text from any *.docx* document and returns it.</span>
+
 
 <span class="sd">    :param fileStorage file: the file to save</span>
 <span class="sd">    :param str testdownload_folder: Specific download folder is necessary</span>
@@ -366,25 +405,28 @@
 
 <div class="viewcode-block" id="splitintosize"><a class="viewcode-back" href="../functionsv1.html#common_functions.splitintosize">[docs]</a><span class="k">def</span> <span class="nf">splitintosize</span><span class="p">(</span><span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function splits a list of keywords of any length into a lit of keywords eachof length specified by NUM_SEND_CHARS</span>
-<span class="sd">    in &#39;applicationconfig.json&#39;</span>
+<span class="sd">    Summary: This function splits a list of keywords of any length into a list of keywords each of length specified by</span>
+<span class="sd">    NUM_SEND_CHARS in &#39;/applicationconfig.json&#39;</span>
+
 
 <span class="sd">    :param list file_text: list of document&#39;s words</span>
-<span class="sd">    :return list file_text:</span>
+<span class="sd">    :return: file_text</span>
+<span class="sd">    :rtype: List[str]</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">stringlisttolonglongstring</span><span class="p">(</span><span class="n">file_text</span><span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;NUM_SEND_CHARS&#39;</span><span class="p">])</span>
-
     <span class="n">file_text</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">n</span><span class="p">)]</span>
+
     <span class="k">return</span> <span class="n">file_text</span></div>
 
 
 <div class="viewcode-block" id="savefile"><a class="viewcode-back" href="../functionsv1.html#common_functions.savefile">[docs]</a><span class="k">def</span> <span class="nf">savefile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">download_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Save&#39;s given file to /Downloads folder&quot;</span>
+<span class="sd">    Summary: Save&#39;s given file to &#39;/Downloads&#39; folder.</span>
+
 
 <span class="sd">    :param fileStorage file: the file to save</span>
 <span class="sd">    :param str download_folder: specific download folder if necessary</span>
@@ -408,14 +450,23 @@
 
 <div class="viewcode-block" id="outputkeywordtotext"><a class="viewcode-back" href="../functionsv1.html#common_functions.outputkeywordtotext">[docs]</a><span class="k">def</span> <span class="nf">outputkeywordtotext</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span> <span class="n">download_folder</span> <span class="o">=</span> <span class="s1">&#39;Documents/Keywords.txt&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function will write Keywords from an analyzed document to a .txt file</span>
+<span class="sd">    Summary: This function will write Keywords and associated data from an analyzed document to a *.txt* file.</span>
+
+<span class="sd">    - The first line written to the file is the Yule&#39;s K, Yule&#39;s I and average keyscore of a :class:`KeywordList` object.</span>
+<span class="sd">    - The second and following lines include the Keyword, Salience score, Frequency of keyword, and the Keyword score from</span>
+<span class="sd">      the :class:`Keyword` object.</span>
+<span class="sd">    - An **Exception** will raise if the output of Keywords to a *.txt* file does not fully complete. This is an issue that</span>
+<span class="sd">      occurs in the AWS Beanstalk environment. Running the app on a local machine should not throw the Exception, based</span>
+<span class="sd">      on testing.</span>
+
 
 <span class="sd">    :param KeywordList keylist: list of document keywords</span>
+<span class="sd">    :param str download_folder: location to save the *.txt* file.</span>
 <span class="sd">    :return: void</span>
+<span class="sd">    :raises: Exception</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># TODO create file using document title of originating keywords</span>
     <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Outputting keywords to .txt...&quot;</span><span class="p">)</span>
@@ -430,11 +481,6 @@
         <span class="c1"># ------alphabetical order------- #</span>
         <span class="c1"># TODO: Put in frequency order</span>
         <span class="n">sortedkeywords</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">))</span>
-
-
-
-
-
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keylist</span><span class="o">.</span><span class="n">uniquekeywords</span><span class="p">):</span>
             <span class="n">word</span> <span class="o">=</span> <span class="n">keylist</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span>
@@ -455,14 +501,25 @@
 
 <div class="viewcode-block" id="extractkeywordfromtxt"><a class="viewcode-back" href="../functionsv1.html#common_functions.extractkeywordfromtxt">[docs]</a><span class="k">def</span> <span class="nf">extractkeywordfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function will extract keyword information from .txt file and place into KeywordList object</span>
+<span class="sd">    Summary: This function will extract existing keyword information from *.txt file* and place it into the :class:`KeywordList`</span>
+<span class="sd">    object.</span>
+
+<span class="sd">    - This function will read in the first line of an existing *.txt* file and place the Yule&#39;s K, Yule&#39;s I, and average</span>
+<span class="sd">      keyword score into a :class:`KeywordList` object.</span>
+<span class="sd">    - For the second and remaining lines, the Keyword, Salience score, Frequency of keyword, and Keyword score are placed</span>
+<span class="sd">      into a :class:`Keyword` object, and then inserted in a :class:`KeywordList` object via the</span>
+<span class="sd">      :func:`KeywordList.KeywordList.insertkeyword` function.</span>
+<span class="sd">    - An **Exception** will raise if the extraction of keywords from a *.txt* file does not fully complete. This is an</span>
+<span class="sd">      issue that occurs in the AWS Beanstalk environment. Running the app on a local machine should not throw the Exception,</span>
+<span class="sd">      based on testing.</span>
+
 
 <span class="sd">    :param str file: location of .txt file</span>
 <span class="sd">    :return: keyword list in file</span>
 <span class="sd">    :rtype: KeywordList</span>
+<span class="sd">    :raises: Exception</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-
 
     <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">KeywordList</span><span class="p">()</span>
 
@@ -472,7 +529,6 @@
         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
 
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Extracting keyword info from &quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-
 
         <span class="n">line_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
         <span class="n">yulesk</span> <span class="o">=</span> <span class="n">line_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -498,15 +554,13 @@
 
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;*** Keyword info extraction failed(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">uniquekeywords</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; uploaded). ***&quot;</span><span class="p">)</span>
-        <span class="c1">#logging.info(&quot;*** Keyword info extraction failed. ***&quot;)</span>
-
 
     <span class="k">return</span> <span class="n">keyword_list</span></div>
 
 
 <div class="viewcode-block" id="cleantext"><a class="viewcode-back" href="../functionsv1.html#common_functions.cleantext">[docs]</a><span class="k">def</span> <span class="nf">cleantext</span><span class="p">(</span><span class="n">text_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Removes special characters from text</span>
+<span class="sd">    Summary: Removes special characters from text.</span>
 
 <span class="sd">    :param List[str] text_list: a text string </span>
 <span class="sd">    :return: text_list with no special chars</span>
@@ -525,7 +579,8 @@
 
 <div class="viewcode-block" id="printStringList"><a class="viewcode-back" href="../functionsv1.html#common_functions.printStringList">[docs]</a><span class="k">def</span> <span class="nf">printStringList</span><span class="p">(</span><span class="n">textList</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Helper function that prints a list of strings</span>
+<span class="sd">    Summary: Helper function that prints a list of strings</span>
+
 
 <span class="sd">    :param List[str] textList: a text string</span>
 <span class="sd">    :return: void</span>
@@ -535,37 +590,49 @@
 
 <div class="viewcode-block" id="longstringtostringlist"><a class="viewcode-back" href="../functionsv1.html#common_functions.longstringtostringlist">[docs]</a><span class="k">def</span> <span class="nf">longstringtostringlist</span><span class="p">(</span><span class="n">longstring</span><span class="p">,</span> <span class="n">strsize</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This functions splits a long string &quot;longstring&quot; into strings of size &quot;strsize&quot; and returns a list of those strings.</span>
+<span class="sd">    Summary: This functions splits a long string *longstring* into strings of size *strsize* and returns a list of those</span>
+<span class="sd">    strings.</span>
 
-<span class="sd">    :param string longstring: text of file</span>
+
+<span class="sd">    :param str longstring: text of file</span>
 <span class="sd">    :param int strsize: requested length of each string in created list of strings</span>
-<span class="sd">    :return: file text</span>
+<span class="sd">    :return: return_list</span>
 <span class="sd">    :rtype: List[str]</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">return_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">longstring</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">strsize</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">longstring</span><span class="p">),</span> <span class="n">strsize</span><span class="p">)]</span>
+
     <span class="k">return</span> <span class="n">return_list</span></div>
 
 <div class="viewcode-block" id="stringlisttolonglongstring"><a class="viewcode-back" href="../functionsv1.html#common_functions.stringlisttolonglongstring">[docs]</a><span class="k">def</span> <span class="nf">stringlisttolonglongstring</span><span class="p">(</span><span class="n">string_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Helper function to turn list of string into one long long string</span>
+<span class="sd">    Summary: Helper function to turn a list of strings into one long long string.</span>
 
 <span class="sd">    :param List[str] string_list: a string of text</span>
 <span class="sd">    :return: file&#39;s text</span>
-<span class="sd">    :rtype: long string</span>
+<span class="sd">    :rtype: long str</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">long_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_list</span><span class="p">)):</span>
         <span class="n">long_string</span> <span class="o">+=</span> <span class="n">string_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
     <span class="k">return</span> <span class="n">long_string</span></div>
 
 
 <div class="viewcode-block" id="createkeywordfromgoogleapientity"><a class="viewcode-back" href="../functionsv1.html#common_functions.createkeywordfromgoogleapientity">[docs]</a><span class="k">def</span> <span class="nf">createkeywordfromgoogleapientity</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a Keyword from a single entity that is returned by the google API</span>
+<span class="sd">    Summary: Creates a Keyword from a single entity that is returned by the google NLP API.</span>
 
-<span class="sd">    :param Entity entity: Google API response entity object</span>
+<span class="sd">    - The &#39;name&#39; or Keyword, Type of keyword, Salience score, and Frequency of the keyword is inputted in the</span>
+<span class="sd">      :class:`Keyword` object. A default value of *0* is used for the keyword score. Keyword score is determined further</span>
+<span class="sd">      on in the app.</span>
+<span class="sd">    - The frequency of a keyword is found by using the :func:`getwordfrequency` function.</span>
+
+
+<span class="sd">    :param dict entity: Google API response entity object</span>
 <span class="sd">    :param List[str] file_text: entire text of file</span>
 <span class="sd">    :return: Populated Keyword object</span>
 <span class="sd">    :rtype: Keyword</span>
@@ -585,10 +652,11 @@
 
 <div class="viewcode-block" id="getwordfrequency"><a class="viewcode-back" href="../functionsv1.html#common_functions.getwordfrequency">[docs]</a><span class="k">def</span> <span class="nf">getwordfrequency</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">file_text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Determines frequency of the given word in the file&#39;s text</span>
+<span class="sd">    Summary: Determines frequency of the given word in the file&#39;s text</span>
+
 
 <span class="sd">    :param str word: Word to find frequency of</span>
-<span class="sd">    :param List[str] filetext: list of string containing entire text of file</span>
+<span class="sd">    :param List[str] file_text: list of string containing entire text of file</span>
 <span class="sd">    :return: frequency of word parameter in text</span>
 <span class="sd">    :rtype: int</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -600,11 +668,14 @@
 
 <div class="viewcode-block" id="getregulatorydoctext"><a class="viewcode-back" href="../functionsv1.html#common_functions.getregulatorydoctext">[docs]</a><span class="k">def</span> <span class="nf">getregulatorydoctext</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Looks in the RegulatoryDocuments folder for the file with the given file name and return&#39;s its text as a list of string</span>
+<span class="sd">    Summary: Looks in the &#39;/RegulatoryDocuments&#39; folder for the file with the given *filename* and return&#39;s its text as a</span>
+<span class="sd">    list of strings. The :func:`extractpdftext` function is utilized.</span>
+
 
 <span class="sd">    :param str filename: name of regulatory file without file ending on it</span>
-<span class="sd">    :return: list of strings of length 1024 containing text of file</span>
+<span class="sd">    :return: file text</span>
 <span class="sd">    :rtype: List[str]</span>
+<span class="sd">    :raises: FileNotFoundError</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -614,18 +685,20 @@
             <span class="n">file</span> <span class="o">=</span> <span class="n">FileStorage</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 
         <span class="n">reg_text</span> <span class="o">=</span> <span class="n">extractpdftext</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">RegDoc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="ow">and</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;could not access regulatory document&quot;&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
 
-    <span class="c1"># print(reg_text)</span>
     <span class="k">return</span> <span class="n">reg_text</span></div>
 
 
 <div class="viewcode-block" id="kwhighestfrequencies"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestfrequencies">[docs]</a><span class="k">def</span> <span class="nf">kwhighestfrequencies</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">numtopkws</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the top 10 most frequent Keywords in the user&#39;s uploaded file</span>
+<span class="sd">    Summary: Returns the top 10 most frequent Keywords in an uploaded file.</span>
+
 
 <span class="sd">    :param KeywordList keyword_list: List of Keyword objects</span>
+<span class="sd">    :param int numtopkws: number of keywords to return.</span>
 <span class="sd">    :return: Keywords with highest frequencies</span>
 <span class="sd">    :rtype: List[Keyword]</span>
 
@@ -651,7 +724,8 @@
 
 <div class="viewcode-block" id="kwhighestkeyscores"><a class="viewcode-back" href="../functionsv1.html#common_functions.kwhighestkeyscores">[docs]</a><span class="k">def</span> <span class="nf">kwhighestkeyscores</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns ten Keywords with the highest Keyword scores</span>
+<span class="sd">    Summary: Returns ten Keywords with the highest Keyword scores</span>
+
 
 <span class="sd">    :param KeywordList keyword_list: list of Keyword objects</span>
 <span class="sd">    :return: list of top keyword scores</span>
@@ -680,7 +754,10 @@
 
 <div class="viewcode-block" id="plotkeywordsalience"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordsalience">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordsalience</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
+<span class="sd">    Summary: Plots salience scores of most frequently used keywords. Pulls keywords from *keyword_list1* and compares</span>
+<span class="sd">    against *keyword_list2*. The :mod:`matplotlib` python package is used to aide in plotting the data.</span>
+
+<span class="sd">    If there are no common keywords to plot, a blank plot will display with the title &quot;No Common Keywords to Plot&quot;.</span>
 
 <span class="sd">    :param KeywordList keyword_list1: user KeywordList</span>
 <span class="sd">    :param KeywordList keyword_list2: regulatory KeywordList</span>
@@ -742,7 +819,11 @@
 
 <div class="viewcode-block" id="plotkeywordscores"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordscores">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordscores</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</span>
+<span class="sd">    Summary: Plots keyword score of the most frequently used keywords. Pulls keywords from *keyword_list1* and compares</span>
+<span class="sd">    against *keyword_list2*. The :mod:`matplotlib` python package is used to aide in plotting the data.</span>
+
+<span class="sd">    If there are no common keywords to plot, a blank plot will display with the title &quot;No Common Keywords to Plot&quot;.</span>
+
 
 <span class="sd">    :param KeywordList keyword_list1: user KeywordList</span>
 <span class="sd">    :param KeywordList keyword_list2: regulatory KeywordList</span>
@@ -803,7 +884,11 @@
 
 <div class="viewcode-block" id="plotkeywordfrequency"><a class="viewcode-back" href="../functionsv1.html#common_functions.plotkeywordfrequency">[docs]</a><span class="k">def</span> <span class="nf">plotkeywordfrequency</span><span class="p">(</span><span class="n">keyword_list1</span><span class="p">,</span> <span class="n">keyword_list2</span><span class="p">,</span> <span class="n">doc1name</span><span class="o">=</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="n">doc2name</span> <span class="o">=</span> <span class="s1">&#39;doc2&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plots keyword score of most frequently used keywords. Saves graph to &quot;/Downloads&quot; folder</span>
+<span class="sd">    Summary: Plots keyword score of most frequently used keywords. Pulls keywords from *keyword_list1* and compares</span>
+<span class="sd">    against *keyword_list2*. The :mod:`matplotlib` python package is used to aide in plotting the data.</span>
+
+<span class="sd">    If there are no common keywords to plot, a blank plot will display with the title &quot;No Common Keywords to Plot&quot;.</span>
+
 
 <span class="sd">    :param KeywordList keyword_list1: user document keywords</span>
 <span class="sd">    :param KeywordList keyword_list2: regulatory document keywords</span>
@@ -865,12 +950,24 @@
 
 <div class="viewcode-block" id="printanalytics"><a class="viewcode-back" href="../functionsv1.html#common_functions.printanalytics">[docs]</a><span class="k">def</span> <span class="nf">printanalytics</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">regfilename</span><span class="p">,</span> <span class="n">keywordlist</span><span class="p">,</span> <span class="n">regkeywordlist</span><span class="p">,</span> <span class="n">calctime</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        prints the data passed in te argument to the ever-increasing file that contains data analytics information</span>
+<span class="sd">    Summary: Saves the data passed in the argument to the ever-increasing file &#39;/downloads/Analytics.txt&#39; that contains</span>
+<span class="sd">    data analytics information.</span>
+<span class="sd">    Analytic information includes:</span>
 
-<span class="sd">        :param str printstr: string to output to file</span>
-<span class="sd">        :return: void</span>
+<span class="sd">    - Date/Time</span>
+<span class="sd">    - Processing time</span>
+<span class="sd">    - user doc file name and number of keywords</span>
+<span class="sd">    - regulatory doc file name and number of keywords</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="sd">    :param str filename: name of user document file</span>
+<span class="sd">    :param str regfilename: name of regulatory document file</span>
+<span class="sd">    :param KeywordList keywordlist: user document Keyword list</span>
+<span class="sd">    :param KeywordList regkeywordlist: regulatory document Keyword list.</span>
+<span class="sd">    :param int calctime: processing time of app.</span>
+<span class="sd">    :return: void</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">str_list</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -891,11 +988,14 @@
 
 <div class="viewcode-block" id="generatebubblecsv"><a class="viewcode-back" href="../functionsv1.html#common_functions.generatebubblecsv">[docs]</a><span class="k">def</span> <span class="nf">generatebubblecsv</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">reg_kw_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates a new csv file with all the keywords</span>
+<span class="sd">    Summary: Creates a new *csv* file with all the keywords. The *csv* file is used to generate the Bubble Chart.</span>
 
-<span class="sd">        :param KeywordList kw_list: list of doc keywords</span>
-<span class="sd">        :param KeywordList reg_kw_list: list of reg doc keywords</span>
-<span class="sd">        :return: void</span>
+
+<span class="sd">    :param KeywordList kw_list: list of doc keywords</span>
+<span class="sd">    :param KeywordList reg_kw_list: list of reg doc keywords</span>
+<span class="sd">    :return: void</span>
+<span class="sd">    :raises: Exception</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -929,15 +1029,18 @@
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Bubble Chart CSV generation failed.&quot;</span><span class="p">)</span></div>
 
+
 <div class="viewcode-block" id="writeToConfig"><a class="viewcode-back" href="../functionsv1.html#common_functions.writeToConfig">[docs]</a><span class="k">def</span> <span class="nf">writeToConfig</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Writes value into applicationconfig.json file</span>
+<span class="sd">    Summary: Writes *value* into the &#39;/applicationconfig.json&#39; file.</span>
 
-<span class="sd">        :param key: key</span>
-<span class="sd">        :param value: value</span>
-<span class="sd">        :return: none</span>
+
+<span class="sd">    :param str key: variable in which *value* is being written to</span>
+<span class="sd">    :param value: value</span>
+<span class="sd">    :return: none</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
     <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>

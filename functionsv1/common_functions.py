@@ -34,6 +34,7 @@ def homeCount():
     """
         Initializes variables for logging session
 
+
         :return: void
     """
     returnVal = homeCount.counter
@@ -55,6 +56,7 @@ def interpretfile(file, localuploadfolder):
        :func:`KeywordList.KeywordList.calculateavgscores`.
     4. Exports keyword information to a *.txt* file via :func:`outputkeywordtotext`.
     5. Determines total word count for a *file*. The value is stored in the variable *wordcount*
+
 
     :param fileStorage file: file to be interpreted
     :param str localuploadfolder: Place to temporary store file so it can be read from
@@ -149,6 +151,7 @@ def changefileextension(regfilename):
     """
     Summary: Changes the file name string from *.pdf* to *.txt*.
 
+
     :param str regfilename: name of regulatory file
     :return: string with .pdf file extension
     :rtype: str
@@ -169,6 +172,7 @@ def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
     """
     Summary: Returns 'views/score_response.html' page that is populated with proper calculated Keyword, Comparison,
     and Yule's scores.
+
 
     :param KeywordList kw_list: list of user document's Keyword objects
     :param KeywordList reg_kw_list: list of regulatory document's Keywords
@@ -228,6 +232,7 @@ def geterrorpage(errtext="Unknown Error"):
     """
     Summary: Populates error message with proper response and returns html
 
+
     :param str errtext: text of error
     :return: html page with error displayed
     :rtype: str
@@ -245,21 +250,28 @@ def geterrorpage(errtext="Unknown Error"):
 
 def extractpdftext(file, testdownload_folder = None, RegDoc = False):
     """
-    Extracts Text from PDF document referenced in given file argument
+    Summary: Extracts text from PDF document referenced in the given file argument using the :mod:`PDFMiner` python package.
+
+    The first part of the code assigns a "chunk" size via the value *NUM_SEND_CHARS* set in /applicationconfig.json.
+    *chunk_size* is designated to break up a long string of text into a list of strings, if needed. The default setting
+    for this allows for a single string of text.
+
+    Before starting the PDF text extraction, logging is disabled due to the amount of statements PDFMiner produces in the
+    log.
+
 
     :param fileStorage file: the PDF file to extract text from
     :param str testdownload_folder: specific download folder if necessary
     :param bool RegDoc: flag specifying whether this is a user doc or a regulatory doc
     :return: file's text
     :rtype: List[str]
+    :raises: FileNotFoundError
 
     """
     localdownload_folder = ''
 
     file_text = []
     filename = file.filename
-
-
 
     data = json.load((open('applicationconfig.json')))
 
@@ -271,7 +283,6 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
             savefile(file, localdownload_folder)
         elif testdownload_folder is not None:
             localdownload_folder = testdownload_folder
-
 
         # PdfMiner writes an insane amount of logging statements (one per parsed word, it seems).
         # Remove the below line if you would like to see them.
@@ -302,9 +313,6 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
         file_text = longstringtostringlist(text, chunk_size)  # Converting long string to list of strings of size
 
 
-
-
-
     except FileNotFoundError as fnfe:
         logging.info(fnfe.strerror)
         # print(fnfe.strerror)
@@ -315,7 +323,8 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
 
 def extractmicrosoftdocxtext(file, testdownload_folder=None):
     """
-    Extracts text from any ".docx" document and returns it.
+    Summary: Extracts text from any *.docx* document and returns it.
+
 
     :param fileStorage file: the file to save
     :param str testdownload_folder: Specific download folder is necessary
@@ -349,25 +358,28 @@ def extractmicrosoftdocxtext(file, testdownload_folder=None):
 
 def splitintosize(file_text):
     """
-    This function splits a list of keywords of any length into a lit of keywords eachof length specified by NUM_SEND_CHARS
-    in 'applicationconfig.json'
+    Summary: This function splits a list of keywords of any length into a list of keywords each of length specified by
+    NUM_SEND_CHARS in '/applicationconfig.json'
+
 
     :param list file_text: list of document's words
-    :return list file_text:
+    :return: file_text
+    :rtype: List[str]
 
     """
     line = stringlisttolonglongstring(file_text)
 
     data = json.load((open('applicationconfig.json')))
     n = int(data['NUM_SEND_CHARS'])
-
     file_text = [line[i:i + n] for i in range(0, len(line), n)]
+
     return file_text
 
 
 def savefile(file, download_folder=None):
     """
-    Save's given file to /Downloads folder"
+    Summary: Save's given file to '/Downloads' folder.
+
 
     :param fileStorage file: the file to save
     :param str download_folder: specific download folder if necessary
@@ -391,14 +403,23 @@ def savefile(file, download_folder=None):
 
 def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
     """
-    This function will write Keywords from an analyzed document to a .txt file
+    Summary: This function will write Keywords and associated data from an analyzed document to a *.txt* file.
+
+    - The first line written to the file is the Yule's K, Yule's I and average keyscore of a :class:`KeywordList` object.
+    - The second and following lines include the Keyword, Salience score, Frequency of keyword, and the Keyword score from
+      the :class:`Keyword` object.
+    - An **Exception** will raise if the output of Keywords to a *.txt* file does not fully complete. This is an issue that
+      occurs in the AWS Beanstalk environment. Running the app on a local machine should not throw the Exception, based
+      on testing.
+
 
     :param KeywordList keylist: list of document keywords
+    :param str download_folder: location to save the *.txt* file.
     :return: void
+    :raises: Exception
 
     """
 
-    # TODO create file using document title of originating keywords
     counter = 0
     try:
         logging.info("Outputting keywords to .txt...")
@@ -413,11 +434,6 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
         # ------alphabetical order------- #
         # TODO: Put in frequency order
         sortedkeywords = sorted(keylist.list, key=operator.attrgetter('frequency'))
-
-
-
-
-
 
         for i in range(0, keylist.uniquekeywords):
             word = keylist.list[i].word
@@ -438,14 +454,25 @@ def outputkeywordtotext(keylist, download_folder = 'Documents/Keywords.txt'):
 
 def extractkeywordfromtxt(filename):
     """
-    This function will extract keyword information from .txt file and place into KeywordList object
+    Summary: This function will extract existing keyword information from *.txt file* and place it into the :class:`KeywordList`
+    object.
+
+    - This function will read in the first line of an existing *.txt* file and place the Yule's K, Yule's I, and average
+      keyword score into a :class:`KeywordList` object.
+    - For the second and remaining lines, the Keyword, Salience score, Frequency of keyword, and Keyword score are placed
+      into a :class:`Keyword` object, and then inserted in a :class:`KeywordList` object via the
+      :func:`KeywordList.KeywordList.insertkeyword` function.
+    - An **Exception** will raise if the extraction of keywords from a *.txt* file does not fully complete. This is an
+      issue that occurs in the AWS Beanstalk environment. Running the app on a local machine should not throw the Exception,
+      based on testing.
+
 
     :param str file: location of .txt file
     :return: keyword list in file
     :rtype: KeywordList
+    :raises: Exception
 
     """
-
 
     keyword_list = KeywordList()
 
@@ -455,7 +482,6 @@ def extractkeywordfromtxt(filename):
         f = open(file, 'r', errors='replace')
 
         logging.info("Extracting keyword info from " + filename)
-
 
         line_list = f.readline().split(',')
         yulesk = line_list[i]
@@ -481,15 +507,13 @@ def extractkeywordfromtxt(filename):
 
     except Exception as e:
         logging.info("*** Keyword info extraction failed(" + str(keyword_list.uniquekeywords) + " uploaded). ***")
-        #logging.info("*** Keyword info extraction failed. ***")
-
 
     return keyword_list
 
 
 def cleantext(text_list):
     """
-    Removes special characters from text
+    Summary: Removes special characters from text.
 
     :param List[str] text_list: a text string 
     :return: text_list with no special chars
@@ -508,7 +532,8 @@ def cleantext(text_list):
 
 def printStringList(textList):
     """
-    Helper function that prints a list of strings
+    Summary: Helper function that prints a list of strings
+
 
     :param List[str] textList: a text string
     :return: void
@@ -518,37 +543,49 @@ def printStringList(textList):
 
 def longstringtostringlist(longstring, strsize):
     """
-    This functions splits a long string "longstring" into strings of size "strsize" and returns a list of those strings.
+    Summary: This functions splits a long string *longstring* into strings of size *strsize* and returns a list of those
+    strings.
 
-    :param string longstring: text of file
+
+    :param str longstring: text of file
     :param int strsize: requested length of each string in created list of strings
-    :return: file text
+    :return: return_list
     :rtype: List[str]
 
     """
 
     return_list = [longstring[i:i + strsize] for i in range(0, len(longstring), strsize)]
+
     return return_list
 
 def stringlisttolonglongstring(string_list):
     """
-    Helper function to turn list of string into one long long string
+    Summary: Helper function to turn a list of strings into one long long string.
 
     :param List[str] string_list: a string of text
     :return: file's text
-    :rtype: long string
+    :rtype: long str
+
     """
+
     long_string = ""
     for i in range(0, len(string_list)):
         long_string += string_list[i].rstrip()
+
     return long_string
 
 
 def createkeywordfromgoogleapientity(entity, file_text):
     """
-    Creates a Keyword from a single entity that is returned by the google API
+    Summary: Creates a Keyword from a single entity that is returned by the google NLP API.
 
-    :param Entity entity: Google API response entity object
+    - The 'name' or Keyword, Type of keyword, Salience score, and Frequency of the keyword is inputted in the
+      :class:`Keyword` object. A default value of *0* is used for the keyword score. Keyword score is determined further
+      on in the app.
+    - The frequency of a keyword is found by using the :func:`getwordfrequency` function.
+
+
+    :param dict entity: Google API response entity object
     :param List[str] file_text: entire text of file
     :return: Populated Keyword object
     :rtype: Keyword
@@ -568,10 +605,11 @@ def createkeywordfromgoogleapientity(entity, file_text):
 
 def getwordfrequency(word, file_text):
     """
-    Determines frequency of the given word in the file's text
+    Summary: Determines frequency of the given word in the file's text
+
 
     :param str word: Word to find frequency of
-    :param List[str] filetext: list of string containing entire text of file
+    :param List[str] file_text: list of string containing entire text of file
     :return: frequency of word parameter in text
     :rtype: int
     """
@@ -583,11 +621,14 @@ def getwordfrequency(word, file_text):
 
 def getregulatorydoctext(filename):
     """
-    Looks in the RegulatoryDocuments folder for the file with the given file name and return's its text as a list of string
+    Summary: Looks in the '/RegulatoryDocuments' folder for the file with the given *filename* and return's its text as a
+    list of strings. The :func:`extractpdftext` function is utilized.
+
 
     :param str filename: name of regulatory file without file ending on it
-    :return: list of strings of length 1024 containing text of file
+    :return: file text
     :rtype: List[str]
+    :raises: FileNotFoundError
 
     """
     try:
@@ -597,18 +638,20 @@ def getregulatorydoctext(filename):
             file = FileStorage(fp)
 
         reg_text = extractpdftext(file, RegDoc=True)
+
     except FileNotFoundError and ValueError as e:
         logging.error('could not access regulatory document"' + filename + '"')
 
-    # print(reg_text)
     return reg_text
 
 
 def kwhighestfrequencies(keyword_list, numtopkws = 10):
     """
-    Returns the top 10 most frequent Keywords in the user's uploaded file
+    Summary: Returns the top 10 most frequent Keywords in an uploaded file.
+
 
     :param KeywordList keyword_list: List of Keyword objects
+    :param int numtopkws: number of keywords to return.
     :return: Keywords with highest frequencies
     :rtype: List[Keyword]
 
@@ -634,7 +677,8 @@ def kwhighestfrequencies(keyword_list, numtopkws = 10):
 
 def kwhighestkeyscores(keyword_list):
     """
-    Returns ten Keywords with the highest Keyword scores
+    Summary: Returns ten Keywords with the highest Keyword scores
+
 
     :param KeywordList keyword_list: list of Keyword objects
     :return: list of top keyword scores
@@ -663,7 +707,10 @@ def kwhighestkeyscores(keyword_list):
 
 def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2
+    Summary: Plots salience scores of most frequently used keywords. Pulls keywords from *keyword_list1* and compares
+    against *keyword_list2*. The :mod:`matplotlib` python package is used to aide in plotting the data.
+
+    If there are no common keywords to plot, a blank plot will display with the title "No Common Keywords to Plot".
 
     :param KeywordList keyword_list1: user KeywordList
     :param KeywordList keyword_list2: regulatory KeywordList
@@ -725,7 +772,11 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
 
 def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2
+    Summary: Plots keyword score of the most frequently used keywords. Pulls keywords from *keyword_list1* and compares
+    against *keyword_list2*. The :mod:`matplotlib` python package is used to aide in plotting the data.
+
+    If there are no common keywords to plot, a blank plot will display with the title "No Common Keywords to Plot".
+
 
     :param KeywordList keyword_list1: user KeywordList
     :param KeywordList keyword_list2: regulatory KeywordList
@@ -786,7 +837,11 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
 
 def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
-    Plots keyword score of most frequently used keywords. Saves graph to "/Downloads" folder
+    Summary: Plots keyword score of most frequently used keywords. Pulls keywords from *keyword_list1* and compares
+    against *keyword_list2*. The :mod:`matplotlib` python package is used to aide in plotting the data.
+
+    If there are no common keywords to plot, a blank plot will display with the title "No Common Keywords to Plot".
+
 
     :param KeywordList keyword_list1: user document keywords
     :param KeywordList keyword_list2: regulatory document keywords
@@ -848,12 +903,24 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
 
 def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime):
     """
-        prints the data passed in te argument to the ever-increasing file that contains data analytics information
+    Summary: Saves the data passed in the argument to the ever-increasing file '/downloads/Analytics.txt' that contains
+    data analytics information.
+    Analytic information includes:
 
-        :param str printstr: string to output to file
-        :return: void
+    - Date/Time
+    - Processing time
+    - user doc file name and number of keywords
+    - regulatory doc file name and number of keywords
 
-        """
+
+    :param str filename: name of user document file
+    :param str regfilename: name of regulatory document file
+    :param KeywordList keywordlist: user document Keyword list
+    :param KeywordList regkeywordlist: regulatory document Keyword list.
+    :param int calctime: processing time of app.
+    :return: void
+
+    """
 
     str_list = []
 
@@ -874,11 +941,14 @@ def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime)
 
 def generatebubblecsv(kw_list, reg_kw_list):
     """
-        Creates a new csv file with all the keywords
+    Summary: Creates a new *csv* file with all the keywords. The *csv* file is used to generate the Bubble Chart.
 
-        :param KeywordList kw_list: list of doc keywords
-        :param KeywordList reg_kw_list: list of reg doc keywords
-        :return: void
+
+    :param KeywordList kw_list: list of doc keywords
+    :param KeywordList reg_kw_list: list of reg doc keywords
+    :return: void
+    :raises: Exception
+
     """
 
     try:
@@ -912,15 +982,18 @@ def generatebubblecsv(kw_list, reg_kw_list):
     except Exception as e:
         logging.info("Bubble Chart CSV generation failed.")
 
+
 def writeToConfig(key, value):
     """
-        Writes value into applicationconfig.json file
+    Summary: Writes *value* into the '/applicationconfig.json' file.
 
-        :param key: key
-        :param value: value
-        :return: none
+
+    :param str key: variable in which *value* is being written to
+    :param value: value
+    :return: none
 
     """
+
     data = json.load((open('applicationconfig.json')))
     data[key] = value
     with open('applicationconfig.json', 'w') as outfile:

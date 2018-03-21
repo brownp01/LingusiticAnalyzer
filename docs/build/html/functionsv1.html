@@ -58,7 +58,7 @@
 <dl class="function">
 <dt id="common_functions.changefileextension">
 <code class="descclassname">common_functions.</code><code class="descname">changefileextension</code><span class="sig-paren">(</span><em>regfilename</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#changefileextension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.changefileextension" title="Permalink to this definition">¶</a></dt>
-<dd><p>Changes the file name string from .pdf to .txt.</p>
+<dd><p>Summary: Changes the file name string from <em>.pdf</em> to <em>.txt</em>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -76,7 +76,7 @@
 <dl class="function">
 <dt id="common_functions.cleantext">
 <code class="descclassname">common_functions.</code><code class="descname">cleantext</code><span class="sig-paren">(</span><em>text_list</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#cleantext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.cleantext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes special characters from text</p>
+<dd><p>Summary: Removes special characters from text.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -94,13 +94,19 @@
 <dl class="function">
 <dt id="common_functions.createkeywordfromgoogleapientity">
 <code class="descclassname">common_functions.</code><code class="descname">createkeywordfromgoogleapientity</code><span class="sig-paren">(</span><em>entity</em>, <em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#createkeywordfromgoogleapientity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.createkeywordfromgoogleapientity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a Keyword from a single entity that is returned by the google API</p>
+<dd><p>Summary: Creates a Keyword from a single entity that is returned by the google NLP API.</p>
+<ul class="simple">
+<li>The ‘name’ or Keyword, Type of keyword, Salience score, and Frequency of the keyword is inputted in the
+<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> object. A default value of <em>0</em> is used for the keyword score. Keyword score is determined further
+on in the app.</li>
+<li>The frequency of a keyword is found by using the <a class="reference internal" href="#common_functions.getwordfrequency" title="common_functions.getwordfrequency"><code class="xref py py-func docutils literal"><span class="pre">getwordfrequency()</span></code></a> function.</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>entity</strong> (<em>Entity</em>) – Google API response entity object</li>
+<li><strong>entity</strong> (<em>dict</em>) – Google API response entity object</li>
 <li><strong>file_text</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – entire text of file</li>
 </ul>
 </td>
@@ -118,7 +124,18 @@
 <dl class="function">
 <dt id="common_functions.extractkeywordfromtxt">
 <code class="descclassname">common_functions.</code><code class="descname">extractkeywordfromtxt</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#extractkeywordfromtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.extractkeywordfromtxt" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function will extract keyword information from .txt file and place into KeywordList object</p>
+<dd><p>Summary: This function will extract existing keyword information from <em>.txt file</em> and place it into the <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a>
+object.</p>
+<ul class="simple">
+<li>This function will read in the first line of an existing <em>.txt</em> file and place the Yule’s K, Yule’s I, and average
+keyword score into a <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object.</li>
+<li>For the second and remaining lines, the Keyword, Salience score, Frequency of keyword, and Keyword score are placed
+into a <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> object, and then inserted in a <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object via the
+<a class="reference internal" href="KeywordList.html#KeywordList.KeywordList.insertkeyword" title="KeywordList.KeywordList.insertkeyword"><code class="xref py py-func docutils literal"><span class="pre">KeywordList.KeywordList.insertkeyword()</span></code></a> function.</li>
+<li>An <strong>Exception</strong> will raise if the extraction of keywords from a <em>.txt</em> file does not fully complete. This is an
+issue that occurs in the AWS Beanstalk environment. Running the app on a local machine should not throw the Exception,
+based on testing.</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -129,6 +146,8 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></td>
 </tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">Exception</td>
+</tr>
 </tbody>
 </table>
 </dd></dl>
@@ -136,7 +155,7 @@
 <dl class="function">
 <dt id="common_functions.extractmicrosoftdocxtext">
 <code class="descclassname">common_functions.</code><code class="descname">extractmicrosoftdocxtext</code><span class="sig-paren">(</span><em>file</em>, <em>testdownload_folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#extractmicrosoftdocxtext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.extractmicrosoftdocxtext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extracts text from any “.docx” document and returns it.</p>
+<dd><p>Summary: Extracts text from any <em>.docx</em> document and returns it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -160,7 +179,12 @@
 <dl class="function">
 <dt id="common_functions.extractpdftext">
 <code class="descclassname">common_functions.</code><code class="descname">extractpdftext</code><span class="sig-paren">(</span><em>file</em>, <em>testdownload_folder=None</em>, <em>RegDoc=False</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#extractpdftext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.extractpdftext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extracts Text from PDF document referenced in given file argument</p>
+<dd><p>Summary: Extracts text from PDF document referenced in the given file argument using the <code class="xref py py-mod docutils literal"><span class="pre">PDFMiner</span></code> python package.</p>
+<p>The first part of the code assigns a “chunk” size via the value <em>NUM_SEND_CHARS</em> set in /applicationconfig.json.
+<em>chunk_size</em> is designated to break up a long string of text into a list of strings, if needed. The default setting
+for this allows for a single string of text.</p>
+<p>Before starting the PDF text extraction, logging is disabled due to the amount of statements PDFMiner produces in the
+log.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -175,7 +199,10 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file’s text</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[str]</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">List[str]</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">FileNotFoundError</p>
 </td>
 </tr>
 </tbody>
@@ -185,7 +212,7 @@
 <dl class="function">
 <dt id="common_functions.generatebubblecsv">
 <code class="descclassname">common_functions.</code><code class="descname">generatebubblecsv</code><span class="sig-paren">(</span><em>kw_list</em>, <em>reg_kw_list</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#generatebubblecsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.generatebubblecsv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new csv file with all the keywords</p>
+<dd><p>Summary: Creates a new <em>csv</em> file with all the keywords. The <em>csv</em> file is used to generate the Bubble Chart.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -196,7 +223,10 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">void</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">void</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">Exception</p>
 </td>
 </tr>
 </tbody>
@@ -206,7 +236,7 @@
 <dl class="function">
 <dt id="common_functions.geterrorpage">
 <code class="descclassname">common_functions.</code><code class="descname">geterrorpage</code><span class="sig-paren">(</span><em>errtext='Unknown Error'</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#geterrorpage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.geterrorpage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Populates error message with proper response and returns html</p>
+<dd><p>Summary: Populates error message with proper response and returns html</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -224,16 +254,19 @@
 <dl class="function">
 <dt id="common_functions.getregulatorydoctext">
 <code class="descclassname">common_functions.</code><code class="descname">getregulatorydoctext</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#getregulatorydoctext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.getregulatorydoctext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Looks in the RegulatoryDocuments folder for the file with the given file name and return’s its text as a list of string</p>
+<dd><p>Summary: Looks in the ‘/RegulatoryDocuments’ folder for the file with the given <em>filename</em> and return’s its text as a
+list of strings. The <a class="reference internal" href="#common_functions.extractpdftext" title="common_functions.extractpdftext"><code class="xref py py-func docutils literal"><span class="pre">extractpdftext()</span></code></a> function is utilized.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – name of regulatory file without file ending on it</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of strings of length 1024 containing text of file</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">file text</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[str]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">FileNotFoundError</td>
 </tr>
 </tbody>
 </table>
@@ -242,7 +275,8 @@
 <dl class="function">
 <dt id="common_functions.getscorepage">
 <code class="descclassname">common_functions.</code><code class="descname">getscorepage</code><span class="sig-paren">(</span><em>kw_list</em>, <em>reg_kw_list</em>, <em>userdocwordcount</em>, <em>filename</em>, <em>regfilename</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#getscorepage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.getscorepage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns html page that is populated with proper calculated Keyword, Comparison, and Yule’s scores.</p>
+<dd><p>Summary: Returns ‘views/score_response.html’ page that is populated with proper calculated Keyword, Comparison,
+and Yule’s scores.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -250,6 +284,9 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of user document’s Keyword objects</li>
 <li><strong>reg_kw_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of regulatory document’s Keywords</li>
+<li><strong>userdocwordcount</strong> (<em>int</em>) – word count of user document</li>
+<li><strong>filename</strong> (<em>str</em>) – user document’s file name</li>
+<li><strong>regfilename</strong> (<em>str</em>) – regulatory document’s file name</li>
 </ul>
 </td>
 </tr>
@@ -266,14 +303,14 @@
 <dl class="function">
 <dt id="common_functions.getwordfrequency">
 <code class="descclassname">common_functions.</code><code class="descname">getwordfrequency</code><span class="sig-paren">(</span><em>word</em>, <em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#getwordfrequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.getwordfrequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines frequency of the given word in the file’s text</p>
+<dd><p>Summary: Determines frequency of the given word in the file’s text</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>word</strong> (<em>str</em>) – Word to find frequency of</li>
-<li><strong>filetext</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – list of string containing entire text of file</li>
+<li><strong>file_text</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – list of string containing entire text of file</li>
 </ul>
 </td>
 </tr>
@@ -304,14 +341,34 @@
 <dl class="function">
 <dt id="common_functions.interpretexistingfile">
 <code class="descclassname">common_functions.</code><code class="descname">interpretexistingfile</code><span class="sig-paren">(</span><em>regfilename</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#interpretexistingfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.interpretexistingfile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parses, identifies keywords and analyzes content of chosen regulatory file document is being compares against.</p>
+<dd><p>Summary: Function that handles a newly uploaded regulatory doc or an existing regulatory document. The following occurs:</p>
+<ol class="arabic simple">
+<li>Checks <em>regfilename</em> to determine if it’s a .pdf. If it’s a .pdf, then that means that this is the first time
+a regulatory document has been published to the app. Analysis of the document needs to occur.<ul>
+<li>Extracts text from a pdf file with <a class="reference internal" href="#common_functions.getregulatorydoctext" title="common_functions.getregulatorydoctext"><code class="xref py py-func docutils literal"><span class="pre">getregulatorydoctext()</span></code></a>.</li>
+<li>Identifies keywords with <a class="reference internal" href="#analyze_functions.identifykeywords" title="analyze_functions.identifykeywords"><code class="xref py py-func docutils literal"><span class="pre">analyze_functions.identifykeywords()</span></code></a>.</li>
+<li>Calculates various scores for each keyword with <a class="reference internal" href="#analyze_functions.calculatescores" title="analyze_functions.calculatescores"><code class="xref py py-func docutils literal"><span class="pre">analyze_functions.calculatescores()</span></code></a> and
+<a class="reference internal" href="KeywordList.html#KeywordList.KeywordList.calculateavgscores" title="KeywordList.KeywordList.calculateavgscores"><code class="xref py py-func docutils literal"><span class="pre">KeywordList.KeywordList.calculateavgscores()</span></code></a>.</li>
+<li>The file extension is changed from <em>.pdf</em> to <em>.txt</em>. This is done so that the existing filename with extension can
+be used when exporting information to <em>.txt</em> file.</li>
+<li>Exports keyword information to a <em>.txt</em> file via <a class="reference internal" href="#common_functions.outputkeywordtotext" title="common_functions.outputkeywordtotext"><code class="xref py py-func docutils literal"><span class="pre">outputkeywordtotext()</span></code></a>.</li>
+<li>‘views/index.html’ is edited to include the new regulatory document file path for future selection on the app
+home page. The file path points to the <em>.txt</em> version of the document so analysis does not occur again.</li>
+</ul>
+</li>
+<li>If the <em>regfilename</em> is not a <em>pdf</em> file, then it’s a <em>txt</em> file. Analysis of the file does not need to occur
+since it was previously done.<ul>
+<li>The keywords with associated information are extracted from the <em>txt</em> file via <a class="reference internal" href="#common_functions.extractkeywordfromtxt" title="common_functions.extractkeywordfromtxt"><code class="xref py py-func docutils literal"><span class="pre">extractkeywordfromtxt()</span></code></a>.</li>
+</ul>
+</li>
+</ol>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regfilename</strong> (<em>str</em>) – name of regulatory file</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of analyzed Keyword objects</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Keyword list of regulatory document.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></td>
 </tr>
@@ -322,7 +379,15 @@
 <dl class="function">
 <dt id="common_functions.interpretfile">
 <code class="descclassname">common_functions.</code><code class="descname">interpretfile</code><span class="sig-paren">(</span><em>file</em>, <em>localuploadfolder</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#interpretfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.interpretfile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parses uploaded file’s text, identifies keywords, analyzes keywords, and returns a list of Keyword Objects</p>
+<dd><p>Summary: Function that handles uploaded user document. The following occurs:</p>
+<ol class="arabic simple">
+<li>Extracts text from a pdf file with <a class="reference internal" href="#common_functions.extractpdftext" title="common_functions.extractpdftext"><code class="xref py py-func docutils literal"><span class="pre">extractpdftext()</span></code></a>.</li>
+<li>Identifies keywords with <a class="reference internal" href="#analyze_functions.identifykeywords" title="analyze_functions.identifykeywords"><code class="xref py py-func docutils literal"><span class="pre">analyze_functions.identifykeywords()</span></code></a>.</li>
+<li>Calculates various scores for each keyword with <a class="reference internal" href="#analyze_functions.calculatescores" title="analyze_functions.calculatescores"><code class="xref py py-func docutils literal"><span class="pre">analyze_functions.calculatescores()</span></code></a> and
+<a class="reference internal" href="KeywordList.html#KeywordList.KeywordList.calculateavgscores" title="KeywordList.KeywordList.calculateavgscores"><code class="xref py py-func docutils literal"><span class="pre">KeywordList.KeywordList.calculateavgscores()</span></code></a>.</li>
+<li>Exports keyword information to a <em>.txt</em> file via <a class="reference internal" href="#common_functions.outputkeywordtotext" title="common_functions.outputkeywordtotext"><code class="xref py py-func docutils literal"><span class="pre">outputkeywordtotext()</span></code></a>.</li>
+<li>Determines total word count for a <em>file</em>. The value is stored in the variable <em>wordcount</em></li>
+</ol>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -333,10 +398,10 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of file’s Keywords</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of file’s Keywords, wordcount</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList">KeywordList</a>, int</p>
 </td>
 </tr>
 </tbody>
@@ -346,16 +411,22 @@
 <dl class="function">
 <dt id="common_functions.kwhighestfrequencies">
 <code class="descclassname">common_functions.</code><code class="descname">kwhighestfrequencies</code><span class="sig-paren">(</span><em>keyword_list</em>, <em>numtopkws=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#kwhighestfrequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.kwhighestfrequencies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the top 10 most frequent Keywords in the user’s uploaded file</p>
+<dd><p>Summary: Returns the top 10 most frequent Keywords in an uploaded file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – List of Keyword objects</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>keyword_list</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – List of Keyword objects</li>
+<li><strong>numtopkws</strong> (<em>int</em>) – number of keywords to return.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Keywords with highest frequencies</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Keywords with highest frequencies</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword">Keyword</a>]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword">Keyword</a>]</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -364,7 +435,7 @@
 <dl class="function">
 <dt id="common_functions.kwhighestkeyscores">
 <code class="descclassname">common_functions.</code><code class="descname">kwhighestkeyscores</code><span class="sig-paren">(</span><em>keyword_list</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#kwhighestkeyscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.kwhighestkeyscores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns ten Keywords with the highest Keyword scores</p>
+<dd><p>Summary: Returns ten Keywords with the highest Keyword scores</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -382,18 +453,19 @@
 <dl class="function">
 <dt id="common_functions.longstringtostringlist">
 <code class="descclassname">common_functions.</code><code class="descname">longstringtostringlist</code><span class="sig-paren">(</span><em>longstring</em>, <em>strsize</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#longstringtostringlist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.longstringtostringlist" title="Permalink to this definition">¶</a></dt>
-<dd><p>This functions splits a long string “longstring” into strings of size “strsize” and returns a list of those strings.</p>
+<dd><p>Summary: This functions splits a long string <em>longstring</em> into strings of size <em>strsize</em> and returns a list of those
+strings.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>longstring</strong> (<em>string</em>) – text of file</li>
+<li><strong>longstring</strong> (<em>str</em>) – text of file</li>
 <li><strong>strsize</strong> (<em>int</em>) – requested length of each string in created list of strings</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file text</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">return_list</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[str]</p>
@@ -406,14 +478,30 @@
 <dl class="function">
 <dt id="common_functions.outputkeywordtotext">
 <code class="descclassname">common_functions.</code><code class="descname">outputkeywordtotext</code><span class="sig-paren">(</span><em>keylist</em>, <em>download_folder='Documents/Keywords.txt'</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#outputkeywordtotext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.outputkeywordtotext" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function will write Keywords from an analyzed document to a .txt file</p>
+<dd><p>Summary: This function will write Keywords and associated data from an analyzed document to a <em>.txt</em> file.</p>
+<ul class="simple">
+<li>The first line written to the file is the Yule’s K, Yule’s I and average keyscore of a <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object.</li>
+<li>The second and following lines include the Keyword, Salience score, Frequency of keyword, and the Keyword score from
+the <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> object.</li>
+<li>An <strong>Exception</strong> will raise if the output of Keywords to a <em>.txt</em> file does not fully complete. This is an issue that
+occurs in the AWS Beanstalk environment. Running the app on a local machine should not throw the Exception, based
+on testing.</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keylist</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of document keywords</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>keylist</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – list of document keywords</li>
+<li><strong>download_folder</strong> (<em>str</em>) – location to save the <em>.txt</em> file.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">void</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">Exception</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -422,7 +510,9 @@
 <dl class="function">
 <dt id="common_functions.plotkeywordfrequency">
 <code class="descclassname">common_functions.</code><code class="descname">plotkeywordfrequency</code><span class="sig-paren">(</span><em>keyword_list1</em>, <em>keyword_list2</em>, <em>doc1name='doc1'</em>, <em>doc2name='doc2'</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#plotkeywordfrequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.plotkeywordfrequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots keyword score of most frequently used keywords. Saves graph to “/Downloads” folder</p>
+<dd><p>Summary: Plots keyword score of most frequently used keywords. Pulls keywords from <em>keyword_list1</em> and compares
+against <em>keyword_list2</em>. The <code class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></code> python package is used to aide in plotting the data.</p>
+<p>If there are no common keywords to plot, a blank plot will display with the title “No Common Keywords to Plot”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -445,7 +535,9 @@
 <dl class="function">
 <dt id="common_functions.plotkeywordsalience">
 <code class="descclassname">common_functions.</code><code class="descname">plotkeywordsalience</code><span class="sig-paren">(</span><em>keyword_list1</em>, <em>keyword_list2</em>, <em>doc1name='doc1'</em>, <em>doc2name='doc2'</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#plotkeywordsalience"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.plotkeywordsalience" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots salience of most frequently used keywords. Pulls KWs from list1, compares against list2</p>
+<dd><p>Summary: Plots salience scores of most frequently used keywords. Pulls keywords from <em>keyword_list1</em> and compares
+against <em>keyword_list2</em>. The <code class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></code> python package is used to aide in plotting the data.</p>
+<p>If there are no common keywords to plot, a blank plot will display with the title “No Common Keywords to Plot”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -468,7 +560,9 @@
 <dl class="function">
 <dt id="common_functions.plotkeywordscores">
 <code class="descclassname">common_functions.</code><code class="descname">plotkeywordscores</code><span class="sig-paren">(</span><em>keyword_list1</em>, <em>keyword_list2</em>, <em>doc1name='doc1'</em>, <em>doc2name='doc2'</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#plotkeywordscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.plotkeywordscores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots keyword score of most frequently used keywords. Pulls KWs from list1, compares against list2</p>
+<dd><p>Summary: Plots keyword score of the most frequently used keywords. Pulls keywords from <em>keyword_list1</em> and compares
+against <em>keyword_list2</em>. The <code class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></code> python package is used to aide in plotting the data.</p>
+<p>If there are no common keywords to plot, a blank plot will display with the title “No Common Keywords to Plot”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -491,7 +585,7 @@
 <dl class="function">
 <dt id="common_functions.printStringList">
 <code class="descclassname">common_functions.</code><code class="descname">printStringList</code><span class="sig-paren">(</span><em>textList</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#printStringList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.printStringList" title="Permalink to this definition">¶</a></dt>
-<dd><p>Helper function that prints a list of strings</p>
+<dd><p>Summary: Helper function that prints a list of strings</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -507,14 +601,30 @@
 <dl class="function">
 <dt id="common_functions.printanalytics">
 <code class="descclassname">common_functions.</code><code class="descname">printanalytics</code><span class="sig-paren">(</span><em>filename</em>, <em>regfilename</em>, <em>keywordlist</em>, <em>regkeywordlist</em>, <em>calctime</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#printanalytics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.printanalytics" title="Permalink to this definition">¶</a></dt>
-<dd><p>prints the data passed in te argument to the ever-increasing file that contains data analytics information</p>
+<dd><p>Summary: Saves the data passed in the argument to the ever-increasing file ‘/downloads/Analytics.txt’ that contains
+data analytics information.
+Analytic information includes:</p>
+<ul class="simple">
+<li>Date/Time</li>
+<li>Processing time</li>
+<li>user doc file name and number of keywords</li>
+<li>regulatory doc file name and number of keywords</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>printstr</strong> (<em>str</em>) – string to output to file</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) – name of user document file</li>
+<li><strong>regfilename</strong> (<em>str</em>) – name of regulatory document file</li>
+<li><strong>keywordlist</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – user document Keyword list</li>
+<li><strong>regkeywordlist</strong> (<a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><em>KeywordList</em></a>) – regulatory document Keyword list.</li>
+<li><strong>calctime</strong> (<em>int</em>) – processing time of app.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">void</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -523,7 +633,7 @@
 <dl class="function">
 <dt id="common_functions.savefile">
 <code class="descclassname">common_functions.</code><code class="descname">savefile</code><span class="sig-paren">(</span><em>file</em>, <em>download_folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#savefile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.savefile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save’s given file to /Downloads folder”</p>
+<dd><p>Summary: Save’s given file to ‘/Downloads’ folder.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -544,16 +654,17 @@
 <dl class="function">
 <dt id="common_functions.splitintosize">
 <code class="descclassname">common_functions.</code><code class="descname">splitintosize</code><span class="sig-paren">(</span><em>file_text</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#splitintosize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.splitintosize" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function splits a list of keywords of any length into a lit of keywords eachof length specified by NUM_SEND_CHARS
-in ‘applicationconfig.json’</p>
+<dd><p>Summary: This function splits a list of keywords of any length into a list of keywords each of length specified by
+NUM_SEND_CHARS in ‘/applicationconfig.json’</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_text</strong> (<em>list</em>) – list of document’s words</td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Return list file_text:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">file_text</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[str]</td>
 </tr>
 </tbody>
 </table>
@@ -562,7 +673,7 @@ in ‘applicationconfig.json’</p>
 <dl class="function">
 <dt id="common_functions.stringlisttolonglongstring">
 <code class="descclassname">common_functions.</code><code class="descname">stringlisttolonglongstring</code><span class="sig-paren">(</span><em>string_list</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#stringlisttolonglongstring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.stringlisttolonglongstring" title="Permalink to this definition">¶</a></dt>
-<dd><p>Helper function to turn list of string into one long long string</p>
+<dd><p>Summary: Helper function to turn a list of strings into one long long string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -571,7 +682,7 @@ in ‘applicationconfig.json’</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">file’s text</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">long string</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">long str</td>
 </tr>
 </tbody>
 </table>
@@ -580,13 +691,13 @@ in ‘applicationconfig.json’</p>
 <dl class="function">
 <dt id="common_functions.writeToConfig">
 <code class="descclassname">common_functions.</code><code class="descname">writeToConfig</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="modules/common_functions.html#writeToConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common_functions.writeToConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes value into applicationconfig.json file</p>
+<dd><p>Summary: Writes <em>value</em> into the ‘/applicationconfig.json’ file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>key</strong> – key</li>
+<li><strong>key</strong> (<em>str</em>) – variable in which <em>value</em> is being written to</li>
 <li><strong>value</strong> – value</li>
 </ul>
 </td>
@@ -732,9 +843,9 @@ to the API as such, the analysis would not encompass the document in its entiret
 be focused on each ‘chunk’ of text. Therefore, analysis of an entire document would be inaccurate. The list of strings
 idea here has remained, but the ‘chunk’ size for <em>file_text</em> can be configured in /applicationconfig.json. Default settings
 allow for a single string text input of a document into the API.</p>
-<p>For each entity identified by the API, <code class="xref py py-func docutils literal"><span class="pre">commonfunctions.createkeywordfromgoogleapientity()</span></code> is used to extract the information
+<p>For each entity identified by the API, <a class="reference internal" href="#common_functions.createkeywordfromgoogleapientity" title="common_functions.createkeywordfromgoogleapientity"><code class="xref py py-func docutils literal"><span class="pre">common_functions.createkeywordfromgoogleapientity()</span></code></a> is used to extract the information
 from the <em>entities</em> dictionary variable and places it into a <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a>. The returned Keyword is then placed
-into the <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object via <code class="xref py py-func docutils literal"><span class="pre">KeywordList.insertkeyword()</span></code>.</p>
+into the <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object via <a class="reference internal" href="KeywordList.html#KeywordList.KeywordList.insertkeyword" title="KeywordList.KeywordList.insertkeyword"><code class="xref py py-func docutils literal"><span class="pre">KeywordList.KeywordList.insertkeyword()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
