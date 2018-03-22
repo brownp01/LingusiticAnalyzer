@@ -3,8 +3,9 @@ import logging
 
 class Keyword:
     """
-    summary: Stores a specific keyword and it's associated information.
-             The constructor accepts the word, type, salience, frequency and keyscore.
+    Summary: Stores a specific keyword and it's associated information. The constructor accepts the word, type, salience,
+    frequency and keyscore of a specific keyword.
+
     """
 
     def __init__(self, nWord = "", nType = 0, nSal = 0, nFreq = 0, nKeyscore = 0):
@@ -21,14 +22,19 @@ class Keyword:
 
     def wordfrequency(self):
         """
-        :return: the frequency value of a word
-        :rtype: int 
+        Summary: returns keyword frequency.
+
+        :return: frequency value
+        :rtype: int
+
          """
         return self.frequency
 
     def similarwordfrequency(self):
         """
-        :return: the frequency of a similar word in a document
+        Summary: Returns the frequency of a similar word in a document.
+
+        :return: frequency value
         :rtype: int 
 
         """
@@ -37,18 +43,13 @@ class Keyword:
     @classmethod
     def issimilar(self, passedWord):
         """
-        summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class
+        Summary: Determines if the passed keyword is similar to (or exactly the same as) the main word in the class.
         
         :param str passedWord: word
         :return: boolean value of True or False
         :rtype: bool
         
         """
+
         if passedWord == self.word:
             return True
-
-        # TODO: Implement some impressive algorithm here that checks synonyms?
-
-
-
-    

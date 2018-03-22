@@ -69,12 +69,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Summary: Function to determine correct file path of directories for use within an IDE or executable.</span>
 
+
 <span class="sd">    :param str relative_path: the path of a directory relative to a local environment</span>
-<span class="sd">    :return: base_path in relation to executable environment and relative_path of local environment</span>
-<span class="sd">    :rtype: string</span>
+<span class="sd">    :return: *base_path* in relation to executable environment and *relative_path* of local environment</span>
+<span class="sd">    :rtype: str</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">base_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">relative_path</span><span class="p">)</span></div>
 
 
@@ -85,112 +87,139 @@
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../application.html#application.main">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Home page of the Linguistic Analyzer API</span>
+<span class="sd">    Summary: Home page of the Linguistic Analyzer API.</span>
+
+<span class="sd">    A *loggerStart* variable is used here to keep track of home page instances in relation to logging.</span>
+<span class="sd">    :func:`analyze_functions.declarelogger` is used to start a new instance of the log.</span>
 
 <span class="sd">    :return: Home page</span>
 <span class="sd">    :rtype: html</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">#flash(&#39;temp&#39;, category=&#39;message&#39;)</span>
     <span class="c1">#get_flashed_messages()</span>
 
-    <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s1">&#39;NEW_DOC_FLAG&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
+    <span class="c1">#sets the NEW_DOC_FLAG to false as a default setting. NEW_DOC_FLAG indicates whether a regulatory document was dynamically</span>
+    <span class="c1">#added to the app.</span>
 
+    <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s1">&#39;NEW_DOC_FLAG&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
 
     <span class="k">global</span> <span class="n">loggerStart</span>
 
     <span class="c1"># Creating new log file every time the program starts.</span>
     <span class="k">if</span> <span class="n">loggerStart</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">analyze_functions</span><span class="o">.</span><span class="n">declarelogger</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">loggerStart</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">loggerStart</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
         <span class="n">analyze_functions</span><span class="o">.</span><span class="n">declarelogger</span><span class="p">()</span>
         <span class="n">loggerStart</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;index.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
     <span class="n">loggerStart</span> <span class="o">+=</span> <span class="mi">1</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="bubbletest"><a class="viewcode-back" href="../application.html#application.bubbletest">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/bubbletest&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">bubbletest</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Page for testing</span>
+<span class="sd">    Summary: Page for bubble chart testing.</span>
 
-<span class="sd">        :return: Test page</span>
-<span class="sd">        :rtype: html</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="sd">    :return: Test page</span>
+<span class="sd">    :rtype: html</span>
+
+<span class="sd">     &quot;&quot;&quot;</span>
+
     <span class="c1"># Creating new log file every time the program starts.</span>
     <span class="k">if</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">homeCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">analyze_functions</span><span class="o">.</span><span class="n">declarelogger</span><span class="p">()</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="reusablebubble"><a class="viewcode-back" href="../application.html#application.reusablebubble">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/reusablebubble&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">reusablebubble</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Page for testing</span>
+<span class="sd">    Summary: Page for bubble chart testing.</span>
 
-<span class="sd">            :return: Test page</span>
-<span class="sd">            :rtype: html</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+
+<span class="sd">    :return: Test page</span>
+<span class="sd">    :rtype: html</span>
+
+<span class="sd">     &quot;&quot;&quot;</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;reusable_bubble.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;reusable_bubble.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="keywordbubblechart"><a class="viewcode-back" href="../application.html#application.keywordbubblechart">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordbubblechart&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">keywordbubblechart</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns bubble chart html page</span>
+<span class="sd">    Summary: Returns bubble chart html page.</span>
 
-<span class="sd">        :return: bubble chart html page</span>
-<span class="sd">        :rtype: html</span>
+<span class="sd">    :return: bubble chart html page</span>
+<span class="sd">    :rtype: html</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;bubble_chart.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;reusable_bubble.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="reusablebubblejs"><a class="viewcode-back" href="../application.html#application.reusablebubblejs">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/reusablebubble.js&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">reusablebubblejs</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Page for testing</span>
+<span class="sd">    Summary: Page for bubble chart testing.</span>
 
-<span class="sd">            :return: Test page</span>
-<span class="sd">            :rtype: html</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    :return: Test page</span>
+<span class="sd">    :rtype: html</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;js/reusable_bubble.js&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="indexjs"><a class="viewcode-back" href="../application.html#application.indexjs">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/index.js&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">indexjs</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Page for testing</span>
+<span class="sd">    Summary: Page for testing</span>
 
-<span class="sd">            :return: Test page</span>
-<span class="sd">            :rtype: html</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">    :return: Test page</span>
+<span class="sd">    :rtype: html</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># Creating new log file every time the program starts.</span>
     <span class="k">if</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">homeCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">analyze_functions</span><span class="o">.</span><span class="n">declarelogger</span><span class="p">()</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;js/index.js&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="project"><a class="viewcode-back" href="../application.html#application.project">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/project&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">project</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns an html page containing details about the Linguistic Analyzer project.</span>
+<span class="sd">    Summary: Returns an html page containing details about the Linguistic Analyzer project.</span>
 
-<span class="sd">    :return: Home page</span>
+
+<span class="sd">    :return: App summary</span>
 <span class="sd">    :rtype: html</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s1">&#39;NEW_DOC_FLAG&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">VIEWS</span> <span class="o">+</span> <span class="s2">&quot;info.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION_TITLE--#&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Information&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION--#&#39;</span><span class="p">,</span>
                     <span class="s2">&quot;This Linguistic Analyzer lets the user upload a description document and compares that document </span><span class="se">\</span>
 <span class="s2">                    against a regulatory document using Yule&#39;s k and Yule&#39;s i Algorithms, as well as a keyword scores algorithm.</span><span class="se">\</span>
@@ -200,10 +229,34 @@
 <div class="viewcode-block" id="analyze"><a class="viewcode-back" href="../application.html#application.analyze">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/analyze&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">analyze</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Receives uploaded document and comparison document choice and executes logic to compare them.</span>
+<span class="sd">    Summary: Receives uploaded document and comparison document choice and executes various functions to compare them.</span>
+
+<span class="sd">    - This functions starts by verifying that a valid file has been uploaded. Error handling also occurs here if no</span>
+<span class="sd">      file has been selected.</span>
+<span class="sd">    - Process User Document</span>
+
+<span class="sd">        - All functions relating to the analysis of a user doc is handled by :func:`common_functions.interpretfile`.</span>
+
+<span class="sd">    - Process Regulatory Document</span>
+
+<span class="sd">        - All functions relating to the analysis of a reg doc is handled by :func:`common_functions.interpretexistingfile`.</span>
+
+<span class="sd">    - Process Various Graph Displays</span>
+
+<span class="sd">        - All functions related to processing graphical displays of the analyzed data is handled here.</span>
+
+<span class="sd">            - :func:`common_functions.plotkeywordsalience`.</span>
+<span class="sd">            - :func:`common_functions.plotkeywordscores`.</span>
+<span class="sd">            - :func:`common_functions.plotkeywordfrequency`.</span>
+<span class="sd">            - :func:`common_functions.generatebubblecsv`.</span>
+
+<span class="sd">    An **Exception** will be raised if there is an error in the analysis process. An *&quot;Unknown Error Has Occurred&quot;* web</span>
+<span class="sd">    page will be displayed.</span>
 
 <span class="sd">    :return: Information regarding the uploaded document&#39;s similarity to regulatory document</span>
 <span class="sd">    :rtype: html</span>
+<span class="sd">    :raises: Exception</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># resetting document flag in case it was previously set when adding a new regulatory document to the list.</span>
@@ -280,11 +333,13 @@
 <div class="viewcode-block" id="getbackgroundimg"><a class="viewcode-back" href="../application.html#application.getbackgroundimg">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/backgroundimg&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getbackgroundimg</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns png image of file at</span>
+<span class="sd">    Summary: Returns *png* image of file.</span>
 
-<span class="sd">        :return: graph</span>
-<span class="sd">        :rtype: png</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">    :return: graph</span>
+<span class="sd">    :rtype: png</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/img/background.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
@@ -297,15 +352,14 @@
 <div class="viewcode-block" id="getkwsalienceimage"><a class="viewcode-back" href="../application.html#application.getkwsalienceimage">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordsalienceimage&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getkwsalienceimage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns png image of a graph of top salience keywords</span>
+<span class="sd">    Summary: Returns *png* image of a graph of top salience keywords.</span>
 
 <span class="sd">    :return: graph</span>
 <span class="sd">    :rtype: png</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">return_html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-
 
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;downloads/topsalience.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
@@ -319,15 +373,14 @@
 <div class="viewcode-block" id="getbackgroundwordsimg"><a class="viewcode-back" href="../application.html#application.getbackgroundwordsimg">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/backgroundwordsimg&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getbackgroundwordsimg</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns png image of a graph of words background</span>
+<span class="sd">    Summary: Returns *png* image of a graph of words background.</span>
 
 <span class="sd">    :return: graph</span>
 <span class="sd">    :rtype: png</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">return_html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-
 
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/img/words_background_1.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
@@ -341,11 +394,13 @@
 <div class="viewcode-block" id="getkwscoresimage"><a class="viewcode-back" href="../application.html#application.getkwscoresimage">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordscoresimage&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getkwscoresimage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns png image of a graph of keyword scores</span>
+<span class="sd">    Summary: Returns *png* image of a graph of keyword scores.</span>
 
 <span class="sd">    :return: graph</span>
 <span class="sd">    :rtype: png</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;downloads/topkeywordscores.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
@@ -358,11 +413,13 @@
 <div class="viewcode-block" id="getkwfreeqimage"><a class="viewcode-back" href="../application.html#application.getkwfreeqimage">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/keywordfrequencyimage&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getkwfreeqimage</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns Keyword frequency graph</span>
+<span class="sd">    Summary: Returns *png* image of a keyword frequency graph.</span>
 
 <span class="sd">    :return: graph</span>
 <span class="sd">    :rtype: png</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;downloads/topkeywordfrequency.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
@@ -374,91 +431,110 @@
 <div class="viewcode-block" id="getlinguisticanalyzerlog"><a class="viewcode-back" href="../application.html#application.getlinguisticanalyzerlog">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/linguistic_analyzer_log&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getlinguisticanalyzerlog</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns LinguisticAnalyzer.log</span>
+<span class="sd">    Summary: Returns &quot;LinguisticAnalyzer.log&quot;.</span>
 
-<span class="sd">        :return: log file</span>
-<span class="sd">        :rtype: .log</span>
+<span class="sd">    :return: log file</span>
+<span class="sd">    :rtype: log</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;logging/Linguistic_Analyzer.log&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
     <span class="n">pilImage</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">tempFileObj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">tempFileObj</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">attachment_filename</span><span class="o">=</span><span class="s1">&#39;Linguistic_Analyzer.log&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="getuserdockws"><a class="viewcode-back" href="../application.html#application.getuserdockws">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/user_doc_kws&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getuserdockws</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns Keywords.txt</span>
+<span class="sd">    Summary: Returns &quot;Keywords.txt&quot; which contains information regarding a user&#39;s document keywords.</span>
 
-<span class="sd">        :return: keyword file</span>
-<span class="sd">        :rtype: .txt</span>
+<span class="sd">    :return: keyword file</span>
+<span class="sd">    :rtype: txt</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Documents/Keywords.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
     <span class="n">pilImage</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">tempFileObj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">tempFileObj</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">attachment_filename</span><span class="o">=</span><span class="s1">&#39;UserDocKeywords.txt&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="getregdockws"><a class="viewcode-back" href="../application.html#application.getregdockws">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/reg_doc_kws&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getregdockws</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns Reg_Keywords.txt</span>
+<span class="sd">    Summary: Returns &quot;Reg_Keywords.txt&quot; which contains information regarding a regulatory document&#39;s keywords.</span>
 
-<span class="sd">        :return: regulatory doc keyword file</span>
-<span class="sd">        :rtype: .txt</span>
+<span class="sd">    :return: regulatory doc keyword file</span>
+<span class="sd">    :rtype: txt</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Documents/Reg_Keywords.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
     <span class="n">pilImage</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">tempFileObj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">tempFileObj</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">attachment_filename</span><span class="o">=</span><span class="s1">&#39;RegDocKeywords.txt&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="gettestkeywords"><a class="viewcode-back" href="../application.html#application.gettestkeywords">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/testkeywords&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">gettestkeywords</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns test_keywords.csv</span>
+<span class="sd">    Summary: Returns &quot;test_keywords.csv&quot; which contains keywords for bubble chart information.</span>
 
-<span class="sd">        :return: test_keywords doc keyword file</span>
-<span class="sd">        :rtype: .csv</span>
+<span class="sd">    :return: test_keywords doc keyword file</span>
+<span class="sd">    :rtype: csv</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Documents/test_keywords.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
     <span class="n">pilImage</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">tempFileObj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">tempFileObj</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">attachment_filename</span><span class="o">=</span><span class="s1">&#39;test_keywords.csv&#39;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="getcsvkeywords"><a class="viewcode-back" href="../application.html#application.getcsvkeywords">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/csvkeywords&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getcsvkeywords</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns csvkeywords.csv</span>
+<span class="sd">    Summary: Returns &quot;csvkeywords.csv&quot; which contains keywords for bubble chart information.</span>
 
-<span class="sd">        :return: csvkeywords keyword file</span>
-<span class="sd">        :rtype: .csv</span>
+<span class="sd">    :return: csvkeywords keyword file</span>
+<span class="sd">    :rtype: csv</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tempFileObj</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w+b&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">pilImage</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Documents/csvkeywords.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">copyfileobj</span><span class="p">(</span><span class="n">pilImage</span><span class="p">,</span> <span class="n">tempFileObj</span><span class="p">)</span>
     <span class="n">pilImage</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">tempFileObj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">tempFileObj</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">attachment_filename</span><span class="o">=</span><span class="s1">&#39;csvkeywords.csv&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="yulesinfo"><a class="viewcode-back" href="../application.html#application.yulesinfo">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/yulesinfo&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">yulesinfo</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Yule&#39;s Info</span>
+<span class="sd">    Summary: Returns an html page regarding Yule&#39;s Info.</span>
 
-<span class="sd">    :return: Page that describes Yule&#39;s k and Yule&#39;s i algorithms</span>
+<span class="sd">    :return: Page that describes Yule&#39;s K and Yule&#39;s I algorithms</span>
 <span class="sd">    :rtype: html</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/info.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION_TITLE--#&#39;</span><span class="p">,</span> <span class="s2">&quot;Yule&#39;s k and Yule&#39;s i algorithms&quot;</span><span class="p">)</span>\
         <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION--#&#39;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">Yule&#39;s k</span><span class="se">\&quot;</span><span class="s2"> and </span><span class="se">\&quot;</span><span class="s2">Yule&#39;s i</span><span class="se">\&quot;</span><span class="s2"> are calculated values that represent the </span><span class="se">\</span>
 <span class="s2">        semantic richness of a given text. We utilize this algorithm because semantic richness is one benchmark by </span><span class="se">\</span>
@@ -470,12 +546,15 @@
 <div class="viewcode-block" id="comparisoninfo"><a class="viewcode-back" href="../application.html#application.comparisoninfo">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/comparisoninfo&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">comparisoninfo</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Comparison Information</span>
+<span class="sd">    Summary: Returns an html page regarding comparison score information.</span>
 
 <span class="sd">    :return: graph html page that describes the Linguistic Analyzer&#39;s Comparison Score</span>
 <span class="sd">    :rtype: html</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;views/info.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>  <span class="c1"># opens file with name of &quot;index.html&quot;</span>
+
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION_TITLE--#&#39;</span><span class="p">,</span> <span class="s2">&quot;Yule&#39;s k and Yule&#39;s i algorithms&quot;</span><span class="p">)</span> \
                     <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#--DESCRIPTION--#&#39;</span><span class="p">,</span> <span class="s2">&quot;This score takes into account the calculated score, </span><span class="se">\</span>
 <span class="s2">                    frequency, and adjacent words for each keyword in both documents. If the given documents are </span><span class="se">\</span>
@@ -487,10 +566,10 @@
 <div class="viewcode-block" id="getapplicationconfig"><a class="viewcode-back" href="../application.html#application.getapplicationconfig">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/applicationconfig&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getapplicationconfig</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns json application config file</span>
+<span class="sd">    Summary: Returns a json application config file.</span>
 
-<span class="sd">     :return: applicationconfig.json</span>
-<span class="sd">     :rtype: json file</span>
+<span class="sd">    :return: */applicationconfig.json*</span>
+<span class="sd">    :rtype: json</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -504,10 +583,15 @@
 <div class="viewcode-block" id="newregdoc"><a class="viewcode-back" href="../application.html#application.newregdoc">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/newregdoc&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">newregdoc</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Adds new regulatory document</span>
+<span class="sd">    Summary: Dynamically adds a new regulatory document to the app.</span>
 
-<span class="sd">    :return: none</span>
-<span class="sd">    :rtype: none</span>
+<span class="sd">    - A new regulatory document is saved into the app via :func:`common_functions.savefile`.</span>
+<span class="sd">    - */views/index.html* is edited to include a reference to the new regulatory document so it can be selected by user.</span>
+<span class="sd">    - Home page is reloaded with newly added document reference.</span>
+
+<span class="sd">    :return: updated */views/index.html* page</span>
+<span class="sd">    :rtype: html</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s1">&#39;NEW_DOC_FLAG&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
@@ -543,9 +627,10 @@
 <div class="viewcode-block" id="getdocumentationhome"><a class="viewcode-back" href="../application.html#application.getdocumentationhome">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/documentationredirect&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getdocumentationhome</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns index page nested in Documentation/_build/html which is the home page for our Sphinx-generated documentation</span>
+<span class="sd">    Summary: Returns redirect page where app documentation is referenced.</span>
 
-<span class="sd">        :return: html text</span>
+<span class="sd">    :return: html text</span>
+<span class="sd">    :rtype: str</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># f = open(&#39;file:///&#39;, &#39;r&#39;)</span>
@@ -555,9 +640,6 @@
 
     <span class="c1">#return Response(html, mimetype=&#39;text/html&#39;)</span>
     <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;https://tlblanton.github.io/LinguisticAnalyzer/&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">302</span><span class="p">)</span></div>
-
-
-
 
 
 

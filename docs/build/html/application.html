@@ -56,7 +56,44 @@
 <dl class="function">
 <dt id="application.analyze">
 <code class="descclassname">application.</code><code class="descname">analyze</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.analyze" title="Permalink to this definition">¶</a></dt>
-<dd><p>Receives uploaded document and comparison document choice and executes logic to compare them.</p>
+<dd><p>Summary: Receives uploaded document and comparison document choice and executes various functions to compare them.</p>
+<ul>
+<li><p class="first">This functions starts by verifying that a valid file has been uploaded. Error handling also occurs here if no
+file has been selected.</p>
+</li>
+<li><p class="first">Process User Document</p>
+<blockquote>
+<div><ul class="simple">
+<li>All functions relating to the analysis of a user doc is handled by <a class="reference internal" href="functionsv1.html#common_functions.interpretfile" title="common_functions.interpretfile"><code class="xref py py-func docutils literal"><span class="pre">common_functions.interpretfile()</span></code></a>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Process Regulatory Document</p>
+<blockquote>
+<div><ul class="simple">
+<li>All functions relating to the analysis of a reg doc is handled by <a class="reference internal" href="functionsv1.html#common_functions.interpretexistingfile" title="common_functions.interpretexistingfile"><code class="xref py py-func docutils literal"><span class="pre">common_functions.interpretexistingfile()</span></code></a>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Process Various Graph Displays</p>
+<blockquote>
+<div><ul>
+<li><p class="first">All functions related to processing graphical displays of the analyzed data is handled here.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="functionsv1.html#common_functions.plotkeywordsalience" title="common_functions.plotkeywordsalience"><code class="xref py py-func docutils literal"><span class="pre">common_functions.plotkeywordsalience()</span></code></a>.</li>
+<li><a class="reference internal" href="functionsv1.html#common_functions.plotkeywordscores" title="common_functions.plotkeywordscores"><code class="xref py py-func docutils literal"><span class="pre">common_functions.plotkeywordscores()</span></code></a>.</li>
+<li><a class="reference internal" href="functionsv1.html#common_functions.plotkeywordfrequency" title="common_functions.plotkeywordfrequency"><code class="xref py py-func docutils literal"><span class="pre">common_functions.plotkeywordfrequency()</span></code></a>.</li>
+<li><a class="reference internal" href="functionsv1.html#common_functions.generatebubblecsv" title="common_functions.generatebubblecsv"><code class="xref py py-func docutils literal"><span class="pre">common_functions.generatebubblecsv()</span></code></a>.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>An <strong>Exception</strong> will be raised if there is an error in the analysis process. An <em>“Unknown Error Has Occurred”</em> web
+page will be displayed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -65,6 +102,8 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
 </tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">Exception</td>
+</tr>
 </tbody>
 </table>
 </dd></dl>
@@ -72,7 +111,7 @@
 <dl class="function">
 <dt id="application.bubbletest">
 <code class="descclassname">application.</code><code class="descname">bubbletest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#bubbletest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.bubbletest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Page for testing</p>
+<dd><p>Summary: Page for bubble chart testing.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -88,7 +127,7 @@
 <dl class="function">
 <dt id="application.comparisoninfo">
 <code class="descclassname">application.</code><code class="descname">comparisoninfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#comparisoninfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.comparisoninfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Comparison Information</p>
+<dd><p>Summary: Returns an html page regarding comparison score information.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -104,15 +143,14 @@
 <dl class="function">
 <dt id="application.getapplicationconfig">
 <code class="descclassname">application.</code><code class="descname">getapplicationconfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getapplicationconfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getapplicationconfig" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div>Returns json application config file</div></blockquote>
+<dd><p>Summary: Returns a json application config file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">applicationconfig.json</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><em>/applicationconfig.json</em></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">json file</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">json</td>
 </tr>
 </tbody>
 </table>
@@ -121,7 +159,7 @@
 <dl class="function">
 <dt id="application.getbackgroundimg">
 <code class="descclassname">application.</code><code class="descname">getbackgroundimg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getbackgroundimg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getbackgroundimg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns png image of file at</p>
+<dd><p>Summary: Returns <em>png</em> image of file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -137,7 +175,7 @@
 <dl class="function">
 <dt id="application.getbackgroundwordsimg">
 <code class="descclassname">application.</code><code class="descname">getbackgroundwordsimg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getbackgroundwordsimg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getbackgroundwordsimg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns png image of a graph of words background</p>
+<dd><p>Summary: Returns <em>png</em> image of a graph of words background.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -153,7 +191,7 @@
 <dl class="function">
 <dt id="application.getcsvkeywords">
 <code class="descclassname">application.</code><code class="descname">getcsvkeywords</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getcsvkeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getcsvkeywords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns csvkeywords.csv</p>
+<dd><p>Summary: Returns “csvkeywords.csv” which contains keywords for bubble chart information.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -169,12 +207,14 @@
 <dl class="function">
 <dt id="application.getdocumentationhome">
 <code class="descclassname">application.</code><code class="descname">getdocumentationhome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getdocumentationhome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getdocumentationhome" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns index page nested in Documentation/_build/html which is the home page for our Sphinx-generated documentation</p>
+<dd><p>Summary: Returns redirect page where app documentation is referenced.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">html text</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
 </tbody>
 </table>
@@ -183,7 +223,7 @@
 <dl class="function">
 <dt id="application.getkwfreeqimage">
 <code class="descclassname">application.</code><code class="descname">getkwfreeqimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getkwfreeqimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getkwfreeqimage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns Keyword frequency graph</p>
+<dd><p>Summary: Returns <em>png</em> image of a keyword frequency graph.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -199,7 +239,7 @@
 <dl class="function">
 <dt id="application.getkwsalienceimage">
 <code class="descclassname">application.</code><code class="descname">getkwsalienceimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getkwsalienceimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getkwsalienceimage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns png image of a graph of top salience keywords</p>
+<dd><p>Summary: Returns <em>png</em> image of a graph of top salience keywords.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -215,7 +255,7 @@
 <dl class="function">
 <dt id="application.getkwscoresimage">
 <code class="descclassname">application.</code><code class="descname">getkwscoresimage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getkwscoresimage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getkwscoresimage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns png image of a graph of keyword scores</p>
+<dd><p>Summary: Returns <em>png</em> image of a graph of keyword scores.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -231,7 +271,7 @@
 <dl class="function">
 <dt id="application.getlinguisticanalyzerlog">
 <code class="descclassname">application.</code><code class="descname">getlinguisticanalyzerlog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getlinguisticanalyzerlog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getlinguisticanalyzerlog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns LinguisticAnalyzer.log</p>
+<dd><p>Summary: Returns “LinguisticAnalyzer.log”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -247,7 +287,7 @@
 <dl class="function">
 <dt id="application.getregdockws">
 <code class="descclassname">application.</code><code class="descname">getregdockws</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getregdockws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getregdockws" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns Reg_Keywords.txt</p>
+<dd><p>Summary: Returns “Reg_Keywords.txt” which contains information regarding a regulatory document’s keywords.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -263,7 +303,7 @@
 <dl class="function">
 <dt id="application.gettestkeywords">
 <code class="descclassname">application.</code><code class="descname">gettestkeywords</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#gettestkeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.gettestkeywords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns test_keywords.csv</p>
+<dd><p>Summary: Returns “test_keywords.csv” which contains keywords for bubble chart information.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -279,7 +319,7 @@
 <dl class="function">
 <dt id="application.getuserdockws">
 <code class="descclassname">application.</code><code class="descname">getuserdockws</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#getuserdockws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.getuserdockws" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns Keywords.txt</p>
+<dd><p>Summary: Returns “Keywords.txt” which contains information regarding a user’s document keywords.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -295,7 +335,7 @@
 <dl class="function">
 <dt id="application.indexjs">
 <code class="descclassname">application.</code><code class="descname">indexjs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#indexjs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.indexjs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Page for testing</p>
+<dd><p>Summary: Page for testing</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -311,7 +351,7 @@
 <dl class="function">
 <dt id="application.keywordbubblechart">
 <code class="descclassname">application.</code><code class="descname">keywordbubblechart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#keywordbubblechart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.keywordbubblechart" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns bubble chart html page</p>
+<dd><p>Summary: Returns bubble chart html page.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -327,7 +367,9 @@
 <dl class="function">
 <dt id="application.main">
 <code class="descclassname">application.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>Home page of the Linguistic Analyzer API</p>
+<dd><p>Summary: Home page of the Linguistic Analyzer API.</p>
+<p>A <em>loggerStart</em> variable is used here to keep track of home page instances in relation to logging.
+<a class="reference internal" href="functionsv1.html#analyze_functions.declarelogger" title="analyze_functions.declarelogger"><code class="xref py py-func docutils literal"><span class="pre">analyze_functions.declarelogger()</span></code></a> is used to start a new instance of the log.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -343,14 +385,19 @@
 <dl class="function">
 <dt id="application.newregdoc">
 <code class="descclassname">application.</code><code class="descname">newregdoc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#newregdoc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.newregdoc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds new regulatory document</p>
+<dd><p>Summary: Dynamically adds a new regulatory document to the app.</p>
+<ul class="simple">
+<li>A new regulatory document is saved into the app via <a class="reference internal" href="functionsv1.html#common_functions.savefile" title="common_functions.savefile"><code class="xref py py-func docutils literal"><span class="pre">common_functions.savefile()</span></code></a>.</li>
+<li><em>/views/index.html</em> is edited to include a reference to the new regulatory document so it can be selected by user.</li>
+<li>Home page is reloaded with newly added document reference.</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">none</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">updated <em>/views/index.html</em> page</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">none</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
 </tr>
 </tbody>
 </table>
@@ -359,12 +406,12 @@
 <dl class="function">
 <dt id="application.project">
 <code class="descclassname">application.</code><code class="descname">project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.project" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an html page containing details about the Linguistic Analyzer project.</p>
+<dd><p>Summary: Returns an html page containing details about the Linguistic Analyzer project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Home page</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">App summary</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
 </tr>
@@ -382,9 +429,9 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>relative_path</strong> (<em>str</em>) – the path of a directory relative to a local environment</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">base_path in relation to executable environment and relative_path of local environment</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><em>base_path</em> in relation to executable environment and <em>relative_path</em> of local environment</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
 </tbody>
 </table>
@@ -393,7 +440,7 @@
 <dl class="function">
 <dt id="application.reusablebubble">
 <code class="descclassname">application.</code><code class="descname">reusablebubble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#reusablebubble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.reusablebubble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Page for testing</p>
+<dd><p>Summary: Page for bubble chart testing.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -409,7 +456,7 @@
 <dl class="function">
 <dt id="application.reusablebubblejs">
 <code class="descclassname">application.</code><code class="descname">reusablebubblejs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#reusablebubblejs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.reusablebubblejs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Page for testing</p>
+<dd><p>Summary: Page for bubble chart testing.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -425,12 +472,12 @@
 <dl class="function">
 <dt id="application.yulesinfo">
 <code class="descclassname">application.</code><code class="descname">yulesinfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/application.html#yulesinfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#application.yulesinfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Yule’s Info</p>
+<dd><p>Summary: Returns an html page regarding Yule’s Info.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Page that describes Yule’s k and Yule’s i algorithms</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Page that describes Yule’s K and Yule’s I algorithms</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">html</td>
 </tr>

@@ -540,7 +540,7 @@ def newregdoc():
 
     - A new regulatory document is saved into the app via :func:`common_functions.savefile`.
     - */views/index.html* is edited to include a reference to the new regulatory document so it can be selected by user.
-    - Home page is reloaded with newly added document reference. 
+    - Home page is reloaded with newly added document reference.
 
     :return: updated */views/index.html* page
     :rtype: html

@@ -2,8 +2,8 @@ import logging
 
 class KeywordList:
     """
-    Summary: A list that contains keywords. The list also contains unique keyword value, keyword score, yules k score, yules i score, average keyword 
-             score and a document score.
+    Summary: A list that contains :class:`Keyword`. *KeywordList* also contains unique keyword value, keyword score,
+    Yule's K score, Yule's I score, average keyword score and a document score.
 
     """
 
@@ -20,8 +20,8 @@ class KeywordList:
         """
         Summary: Returns document's score.
 
-        :return: document score
-        :rtype: int 
+        :return: score
+        :rtype: int
 
         """
         return self.documentscore
@@ -30,8 +30,8 @@ class KeywordList:
         """
         Summary: returns document's average keyword score.
 
-        :return: average keyword score
-        :rtype: int 
+        :return: score
+        :rtype: int
 
         """
         return self.avgkeywordscore
@@ -40,37 +40,38 @@ class KeywordList:
         """
         Summary: returns document's keyword score.
 
-        :return: keyword score of document
-        :rtype: int 
+        :return: score
+        :rtype: float
 
         """
         return self.keywordscore
 
     def getyuleskscore(self):
         """
-        Summary: returns document's Yule's k score.
+        Summary: returns document's Yule's I score.
 
-        :return: Yules K score
-        :rytpe: int 
+        :return: score
+        :rytpe: float
 
         """
         return self.yuleskscore
 
     def getyulesiscore(self):
         """
-        Summary: returns document's Yule's i score.
+        Summary: returns document's Yule's I score.
 
-        :return: Yule's I score
-        :rtype: int 
+        :return: score
+        :rtype: float
 
         """
         return self.yulesiscore
 
     def calculateavgscores(self):
         """
-        Summary: calculates a document's average score values.
+        Summary: calculates a document's average score values and sets the values in the *KeywordList*
 
         :return: void
+        :raises: ZeroDivisionError
 
         """
         logging.info("Calculating average scores for document...")
@@ -98,7 +99,11 @@ class KeywordList:
 
     def insertkeyword(self, keyword):
         """
-        Summary: inserts new Keyword into Keyword list
+        Summary: inserts a new :class:`Keyword` into *KeywordList*.
+
+        - First, a check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the
+          :class:`Keyword` is inserted into the list.
+        - If a keyword already exists in the list, then that keyword's frequency is increased by 1.
 
         :param Keyword keyword: an instance of the class keyword
         :return: void
@@ -131,9 +136,9 @@ class KeywordList:
 
     def getindexofword(self, keyword_name):
         """
-        Summary: returns index of a Keyword in the list of Keywords
+        Summary: returns the index of a :class:`Keyword` in the list of Keywords.
 
-        :param str key_name: keyword
+        :param str keyword_name: keyword
         :return: keyword index
         :rtype: int 
 
@@ -141,4 +146,5 @@ class KeywordList:
         for i in range(0, len(self.list)):
             if self.list[i].word == keyword_name:
                 return i
+
         return -1

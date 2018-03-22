@@ -49,8 +49,8 @@
 
 <div class="viewcode-block" id="KeywordList"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList">[docs]</a><span class="k">class</span> <span class="nc">KeywordList</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Summary: A list that contains keywords. The list also contains unique keyword value, keyword score, yules k score, yules i score, average keyword </span>
-<span class="sd">             score and a document score.</span>
+<span class="sd">    Summary: A list that contains :class:`Keyword`. *KeywordList* also contains unique keyword value, keyword score,</span>
+<span class="sd">    Yule&#39;s K score, Yule&#39;s I score, average keyword score and a document score.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -67,8 +67,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summary: Returns document&#39;s score.</span>
 
-<span class="sd">        :return: document score</span>
-<span class="sd">        :rtype: int </span>
+<span class="sd">        :return: score</span>
+<span class="sd">        :rtype: int</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">documentscore</span></div>
@@ -77,8 +77,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summary: returns document&#39;s average keyword score.</span>
 
-<span class="sd">        :return: average keyword score</span>
-<span class="sd">        :rtype: int </span>
+<span class="sd">        :return: score</span>
+<span class="sd">        :rtype: int</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avgkeywordscore</span></div>
@@ -87,37 +87,38 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summary: returns document&#39;s keyword score.</span>
 
-<span class="sd">        :return: keyword score of document</span>
-<span class="sd">        :rtype: int </span>
+<span class="sd">        :return: score</span>
+<span class="sd">        :rtype: float</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywordscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.getyuleskscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getyuleskscore">[docs]</a>    <span class="k">def</span> <span class="nf">getyuleskscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns document&#39;s Yule&#39;s k score.</span>
+<span class="sd">        Summary: returns document&#39;s Yule&#39;s I score.</span>
 
-<span class="sd">        :return: Yules K score</span>
-<span class="sd">        :rytpe: int </span>
+<span class="sd">        :return: score</span>
+<span class="sd">        :rytpe: float</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yuleskscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.getyulesiscore"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getyulesiscore">[docs]</a>    <span class="k">def</span> <span class="nf">getyulesiscore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns document&#39;s Yule&#39;s i score.</span>
+<span class="sd">        Summary: returns document&#39;s Yule&#39;s I score.</span>
 
-<span class="sd">        :return: Yule&#39;s I score</span>
-<span class="sd">        :rtype: int </span>
+<span class="sd">        :return: score</span>
+<span class="sd">        :rtype: float</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">yulesiscore</span></div>
 
 <div class="viewcode-block" id="KeywordList.calculateavgscores"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.calculateavgscores">[docs]</a>    <span class="k">def</span> <span class="nf">calculateavgscores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: calculates a document&#39;s average score values.</span>
+<span class="sd">        Summary: calculates a document&#39;s average score values and sets the values in the *KeywordList*</span>
 
 <span class="sd">        :return: void</span>
+<span class="sd">        :raises: ZeroDivisionError</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calculating average scores for document...&quot;</span><span class="p">)</span>
@@ -145,7 +146,11 @@
 
 <div class="viewcode-block" id="KeywordList.insertkeyword"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.insertkeyword">[docs]</a>    <span class="k">def</span> <span class="nf">insertkeyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: inserts new Keyword into Keyword list</span>
+<span class="sd">        Summary: inserts a new :class:`Keyword` into *KeywordList*.</span>
+
+<span class="sd">        - First, a check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the</span>
+<span class="sd">          :class:`Keyword` is inserted into the list.</span>
+<span class="sd">        - If a keyword already exists in the list, then that keyword&#39;s frequency is increased by 1.</span>
 
 <span class="sd">        :param Keyword keyword: an instance of the class keyword</span>
 <span class="sd">        :return: void</span>
@@ -178,9 +183,9 @@
 
 <div class="viewcode-block" id="KeywordList.getindexofword"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.getindexofword">[docs]</a>    <span class="k">def</span> <span class="nf">getindexofword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Summary: returns index of a Keyword in the list of Keywords</span>
+<span class="sd">        Summary: returns the index of a :class:`Keyword` in the list of Keywords.</span>
 
-<span class="sd">        :param str key_name: keyword</span>
+<span class="sd">        :param str keyword_name: keyword</span>
 <span class="sd">        :return: keyword index</span>
 <span class="sd">        :rtype: int </span>
 
@@ -188,6 +193,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">keyword_name</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">i</span>
+
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div></div>
 </pre></div>
 

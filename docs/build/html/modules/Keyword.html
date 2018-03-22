@@ -50,8 +50,9 @@
 
 <div class="viewcode-block" id="Keyword"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword">[docs]</a><span class="k">class</span> <span class="nc">Keyword</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    summary: Stores a specific keyword and it&#39;s associated information.</span>
-<span class="sd">             The constructor accepts the word, type, salience, frequency and keyscore.</span>
+<span class="sd">    Summary: Stores a specific keyword and it&#39;s associated information. The constructor accepts the word, type, salience,</span>
+<span class="sd">    frequency and keyscore of a specific keyword.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nWord</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nType</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nSal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nFreq</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nKeyscore</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
@@ -68,14 +69,19 @@
 
 <div class="viewcode-block" id="Keyword.wordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.wordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">wordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :return: the frequency value of a word</span>
-<span class="sd">        :rtype: int </span>
+<span class="sd">        Summary: returns keyword frequency.</span>
+
+<span class="sd">        :return: frequency value</span>
+<span class="sd">        :rtype: int</span>
+
 <span class="sd">         &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span></div>
 
 <div class="viewcode-block" id="Keyword.similarwordfrequency"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.similarwordfrequency">[docs]</a>    <span class="k">def</span> <span class="nf">similarwordfrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :return: the frequency of a similar word in a document</span>
+<span class="sd">        Summary: Returns the frequency of a similar word in a document.</span>
+
+<span class="sd">        :return: frequency value</span>
 <span class="sd">        :rtype: int </span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -84,21 +90,16 @@
 <div class="viewcode-block" id="Keyword.issimilar"><a class="viewcode-back" href="../Keyword.html#Keyword.Keyword.issimilar">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">issimilar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passedWord</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        summary: determines if the passed keyword is similar to (or exactly the same as) the main word in the class</span>
+<span class="sd">        Summary: Determines if the passed keyword is similar to (or exactly the same as) the main word in the class.</span>
 <span class="sd">        </span>
 <span class="sd">        :param str passedWord: word</span>
 <span class="sd">        :return: boolean value of True or False</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="n">passedWord</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span></div></div>
-
-        <span class="c1"># TODO: Implement some impressive algorithm here that checks synonyms?</span>
-
-
-
-    
 </pre></div>
 
           </div>

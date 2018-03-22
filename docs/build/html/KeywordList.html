@@ -57,19 +57,19 @@
 <dt id="KeywordList.KeywordList">
 <em class="property">class </em><code class="descclassname">KeywordList.</code><code class="descname">KeywordList</code><a class="reference internal" href="modules/KeywordList.html#KeywordList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="docutils">
-<dt>Summary: A list that contains keywords. The list also contains unique keyword value, keyword score, yules k score, yules i score, average keyword </dt>
-<dd>score and a document score.</dd>
-</dl>
+<p>Summary: A list that contains <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a>. <em>KeywordList</em> also contains unique keyword value, keyword score,
+Yule’s K score, Yule’s I score, average keyword score and a document score.</p>
 <dl class="method">
 <dt id="KeywordList.KeywordList.calculateavgscores">
 <code class="descname">calculateavgscores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/KeywordList.html#KeywordList.calculateavgscores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.calculateavgscores" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: calculates a document’s average score values.</p>
+<dd><p>Summary: calculates a document’s average score values and sets the values in the <em>KeywordList</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ZeroDivisionError</td>
 </tr>
 </tbody>
 </table>
@@ -101,7 +101,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">average keyword score</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">score</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
 </tr>
@@ -117,7 +117,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">document score</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">score</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
 </tr>
@@ -128,12 +128,12 @@
 <dl class="method">
 <dt id="KeywordList.KeywordList.getindexofword">
 <code class="descname">getindexofword</code><span class="sig-paren">(</span><em>keyword_name</em><span class="sig-paren">)</span><a class="reference internal" href="modules/KeywordList.html#KeywordList.getindexofword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getindexofword" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: returns index of a Keyword in the list of Keywords</p>
+<dd><p>Summary: returns the index of a <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> in the list of Keywords.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key_name</strong> (<em>str</em>) – keyword</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword_name</strong> (<em>str</em>) – keyword</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">keyword index</td>
 </tr>
@@ -151,9 +151,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">keyword score of document</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">score</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
@@ -162,14 +162,14 @@
 <dl class="method">
 <dt id="KeywordList.KeywordList.getyulesiscore">
 <code class="descname">getyulesiscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/KeywordList.html#KeywordList.getyulesiscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getyulesiscore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: returns document’s Yule’s i score.</p>
+<dd><p>Summary: returns document’s Yule’s I score.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Yule’s I score</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">score</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
@@ -178,14 +178,14 @@
 <dl class="method">
 <dt id="KeywordList.KeywordList.getyuleskscore">
 <code class="descname">getyuleskscore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/KeywordList.html#KeywordList.getyuleskscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.getyuleskscore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: returns document’s Yule’s k score.</p>
+<dd><p>Summary: returns document’s Yule’s I score.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Yules K score</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">score</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Rytpe:</th><td class="field-body">int</td>
+<tr class="field-even field"><th class="field-name">Rytpe:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
@@ -194,7 +194,12 @@
 <dl class="method">
 <dt id="KeywordList.KeywordList.insertkeyword">
 <code class="descname">insertkeyword</code><span class="sig-paren">(</span><em>keyword</em><span class="sig-paren">)</span><a class="reference internal" href="modules/KeywordList.html#KeywordList.insertkeyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.insertkeyword" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary: inserts new Keyword into Keyword list</p>
+<dd><p>Summary: inserts a new <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> into <em>KeywordList</em>.</p>
+<ul class="simple">
+<li>First, a check if the keyword already exists is handled by <a class="reference internal" href="#KeywordList.KeywordList.existsinlist" title="KeywordList.KeywordList.existsinlist"><code class="xref py py-func docutils literal"><span class="pre">existsinlist()</span></code></a>. If it does not exist, the
+<a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> is inserted into the list.</li>
+<li>If a keyword already exists in the list, then that keyword’s frequency is increased by 1.</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
