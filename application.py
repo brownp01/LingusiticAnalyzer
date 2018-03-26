@@ -9,8 +9,8 @@ import sys
 import os
 import time
 import json
-import progressbar
-from multiprocessing import Pool, Process
+#import progressbar
+#from multiprocessing import Pool, Process
 
 
 UPLOAD_FOLDER = 'downloads/'

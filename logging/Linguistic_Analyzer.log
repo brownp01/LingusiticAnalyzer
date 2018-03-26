@@ -1,34 +1,9 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:35] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:35] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:35] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:35] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:36] "GET /linguistic_analyzer_log?x=87&y=23 HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:38] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:38] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:38] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:38] "GET /? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:39] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:39] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:39] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:12:18] "GET / HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-WARNING:root:Cannot find "datafile" in request object
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:42] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:44] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:51] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:51] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:51] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:13:51] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:root:Started in Analyze
-INFO:root:saving file "10_page_kafka.pdf"
-INFO:root:"10_page_kafka.pdf" saved
-INFO:root:opening file "10_page_kafka.pdf"
+INFO:root:saving file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:"AnalyzerDescription_BACKWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_BACKWARD.pdf"
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -37,90 +12,7 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googlea
 DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
 INFO:root:Google NLP API entity analysis successful
 INFO:root:Calculating scores...
-INFO:root:Score calculation complete.
-INFO:root:Calculating average scores for document...
-INFO:root:Average scores for document complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:opening regulatory document
-INFO:root:PDF file processed
-INFO:root:Cleaning text of special characters...
-INFO:root:Clean text complete.
-INFO:root:Connecting to Google NLP API Entity Analysis...
-DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
-DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
-INFO:root:Google NLP API entity analysis successful
-INFO:root:Calculating scores...
-INFO:root:Score calculation complete.
-INFO:root:Calculating average scores for document...
-INFO:root:Average scores for document complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Plotting keyword salience...
-INFO:root:Plot complete.
-INFO:root:Plotting keyword scores...
-INFO:root:Plotting complete.
-INFO:root:Plotting keyword frequency...
-INFO:root:Plotting complete.
-INFO:root:Generating Bubble Chart CSV...
-INFO:root:Bubble Chart CSV generation successful
-INFO:root:Begin score page response...
-INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:14:07] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:32] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:32] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:32] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:32] "GET / HTTP/1.1" 200 -
-INFO:root:Started in Analyze
-INFO:root:saving file "10_page_kafka.pdf"
-INFO:root:"10_page_kafka.pdf" saved
-INFO:root:opening file "10_page_kafka.pdf"
-INFO:root:PDF file processed
-INFO:root:Cleaning text of special characters...
-INFO:root:Clean text complete.
-INFO:root:Connecting to Google NLP API Entity Analysis...
-DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
-DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
-INFO:root:Google NLP API entity analysis successful
-INFO:root:Calculating scores...
-INFO:root:Score calculation complete.
-INFO:root:Calculating average scores for document...
-INFO:root:Average scores for document complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Extracting keyword info from small_sample_reword.txt
-INFO:root:keyword info extraction complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Plotting keyword salience...
-INFO:root:No common keywords to plot
-INFO:root:Plotting keyword scores...
-INFO:root:No keyword scores to plot
-INFO:root:Plotting keyword frequency...
-INFO:root:No keyword frequency to plot
-INFO:root:Generating Bubble Chart CSV...
-INFO:root:Bubble Chart CSV generation successful
-INFO:root:Begin score page response...
-INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:48] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:50] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:50] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:50] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:15:50] "GET /? HTTP/1.1" 200 -
-INFO:root:Started in Analyze
-INFO:root:saving file "10_page_kafka.pdf"
-INFO:root:"10_page_kafka.pdf" saved
-INFO:root:opening file "10_page_kafka.pdf"
-INFO:root:PDF file processed
-INFO:root:Cleaning text of special characters...
-INFO:root:Clean text complete.
-INFO:root:Connecting to Google NLP API Entity Analysis...
-DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
-DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
-INFO:root:Google NLP API entity analysis successful
-INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
 INFO:root:Score calculation complete.
 INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
@@ -140,30 +32,15 @@ INFO:root:Generating Bubble Chart CSV...
 INFO:root:Bubble Chart CSV generation successful
 INFO:root:Begin score page response...
 INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:09] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:10] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:13] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:13] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:13] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:13] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:15] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:15] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:15] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:15] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:15] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:15] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:18] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:12:34] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:12:38] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:12:38] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:12:38] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:12:38] "GET /? HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "10_page_kafka.pdf"
-INFO:root:"10_page_kafka.pdf" saved
-INFO:root:opening file "10_page_kafka.pdf"
+INFO:root:saving file "IEC_TR_80002-1.pdf"
+INFO:root:"IEC_TR_80002-1.pdf" saved
+INFO:root:opening file "IEC_TR_80002-1.pdf"
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -172,6 +49,80 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googlea
 DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
 INFO:root:Google NLP API entity analysis successful
 INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:13:26] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:13:49] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:13:49] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:13:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:13:49] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:"AnalyzerDescription_BACKWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from AnalyzerDescription_BACKWARD.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:02] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:30] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:30] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:30] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:30] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:"AnalyzerDescription_BACKWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
 INFO:root:Score calculation complete.
 INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
@@ -191,4 +142,78 @@ INFO:root:Generating Bubble Chart CSV...
 INFO:root:Bubble Chart CSV generation successful
 INFO:root:Begin score page response...
 INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 16:16:39] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:42] "POST /analyze HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:"AnalyzerDescription_BACKWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:49] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:50] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:50] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:50] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:14:50] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:"AnalyzerDescription_BACKWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:No common keywords to plot
+INFO:root:Plotting keyword scores...
+INFO:root:No keyword scores to plot
+INFO:root:Plotting keyword frequency...
+INFO:root:No keyword frequency to plot
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:15:01] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:17:25] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:17:25] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:17:25] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Mar/2018 17:17:25] "GET /applicationconfig HTTP/1.1" 200 -
