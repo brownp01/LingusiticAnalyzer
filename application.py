@@ -9,6 +9,8 @@ import sys
 import os
 import time
 import json
+import progressbar
+from multiprocessing import Pool, Process
 
 
 UPLOAD_FOLDER = 'downloads/'
@@ -34,7 +36,6 @@ def resource_path(relative_path):
 
 
 VIEWS = resource_path("views/")
-
 
 
 @application.route('/')
@@ -212,6 +213,8 @@ def analyze():
 
     """
 
+    #bar = progressbar.Bar()
+
     # resetting document flag in case it was previously set when adding a new regulatory document to the list.
     common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
 
@@ -245,6 +248,13 @@ def analyze():
                 localuploadfolder = 'unit_tests/test_pdfs/'
 
             if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
+
+                # The 'with' portion below is an example of concurrency in Python.
+                # with Pool(5) as p:
+                #     p = Process(target=common_functions.interpretfile, args=(file, localuploadfolder))
+                #     p.start()
+                #     p.join()
+
                 [keyword_list, userdocwordcount] = common_functions.interpretfile(file, localuploadfolder)
 
                 data = json.load((open('applicationconfig.json')))

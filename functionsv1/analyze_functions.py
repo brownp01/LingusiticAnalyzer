@@ -110,7 +110,7 @@ def calculatescores(kw_list, file_text):
     logging.info("Score calculation complete.")
 
 
-def calculatekeywordscore(kw_list, kw):
+def calculatekeywordscore(kw_list, file_text, kw):
     """
     Summary: calculate a keyword score for a single keyword. The current algorithm utilized is:
     [(keyword salience * keyword frequency) / (total keywords)] * 1000.

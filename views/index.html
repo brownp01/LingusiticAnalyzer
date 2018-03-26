@@ -6,7 +6,14 @@
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" />
+
+        <!-- The Stylesheets -->
+        <link href="assets/css/style.css" rel="stylesheet" />
+
     <script>
+
+
         window.onload = function (ev) {
             // making API request to get contents of config file
             var xmlHttp = new XMLHttpRequest();
@@ -23,6 +30,36 @@
         }
 
 
+        function move() {
+          var elem = document.getElementById("myBar");
+          var width = 1;
+          var id = setInterval(frame, 10);
+          function frame() {
+            if (width >= 100) {
+                width = 1;
+                //clearInterval(id);
+            } else {
+              width +=0.6;
+              elem.style.width = width + '%';
+            }
+          }
+        }
+
+        function alertme() {
+            window.alert("Analyzing will begin when you close this message. Please not that large files may take a while to analyze");
+        }
+
+        function AnalyzeMessage(){
+            document.getElementById("Analyze Message").style.visibility = "visible";
+        }
+
+        function ShowSpinner() {
+            document.getElementById("Spinner").style.visibility = "visible";
+
+            alertme();
+
+        }
+
     </script>
 
 
@@ -37,11 +74,54 @@
             border: 4px solid #0a1612;
         }
 
+        #myProgress {
+          width: 100%;
+          background-color: #ddd;
+        }
+
+        #myBar {
+          width: 1%;
+          height: 30px;
+          background-color: #4CAF50;
+        }
+
+
+        .loader {
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid blue;
+          border-right: 16px solid green;
+          border-bottom: 16px solid red;
+          border-left: 16px solid pink;
+          width: 120px;
+          height: 120px;
+          -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
     </style>
+
 
 </head>
 
 <body>
+
+
+
+
+
+
 
     <div class="container">
         <div class="header">
@@ -70,6 +150,9 @@
                         <h6><u>Select regulatory document to compare against</u></h6>
                     <select title="Regulatory Document" name="regdocname" style="background-clip: border-box;width:95%">
                         <option class="reg doc options" value="Select">Select</option>
+						<option value="3_page_kafka.txt">3_page_kafka</option>
+						<option value="ling_an_logo.jpg">ling_an_logo</option>
+						<option value="ling_an_logo.jpg">ling_an_logo</option>
                         <option value="small_sample.txt">small sample</option>
                         <option value="small_sample_reword.txt">small sample reword</option>
                         <option value="simple_description.txt">simple description</option>
@@ -102,11 +185,15 @@
                     <td>
                         <hr>
                         <!-- ANALYZE BUTTON -->
-                        <input class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
+                        <input onclick="ShowSpinner()" class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
+
+                        <div class="loader" id="Spinner" style="visibility:hidden;"></div>
+
 
 
                     </td>
                     </form>
+
                     <td>
 
                     </td>
@@ -152,6 +239,7 @@
 
 
 
+
         <div class="row marketing">
             <div class="col-lg-6">
                 <h4>Authors</h4>
@@ -173,6 +261,8 @@
     </div>
 
 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="assets/js/script.js"></script>
 
 </body>
 
