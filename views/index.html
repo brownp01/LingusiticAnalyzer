@@ -23,10 +23,18 @@
             var text = xmlHttp.responseText;
             var data = JSON.parse(text);
 
+            document.getElementById("Spinner").style.visibility = "hidden";
+
             if(data["NEW_DOC_FLAG"] == "true"){
                 alert('Thank you.\nNew Regulatory Document has been added to list.\nPlease re-select file in Step 1.')
             }
 
+        }
+
+        function SpinFaster(){
+            window.alert("Analyzing will begin when you close this message. Please note that large files may take a while to analyze");
+            document.getElementById("Spinner").style.animation = "animation: spin 2s linear infinite;";
+            document.getElementById("Spinner").style.visibility = "visible";
         }
 
 
@@ -56,7 +64,10 @@
         function ShowSpinner() {
             document.getElementById("Spinner").style.visibility = "visible";
 
-            alertme();
+        }
+
+        function LoadingText(){
+            document.getElementById("AnalyzeButton").value = "Loading...";
 
         }
 
@@ -90,13 +101,13 @@
           border: 16px solid #f3f3f3;
           border-radius: 50%;
           border-top: 16px solid blue;
-          border-right: 16px solid green;
-          border-bottom: 16px solid red;
-          border-left: 16px solid pink;
-          width: 75px;
-          height: 75px;
+          border-right: 16px solid white;
+          border-bottom: 16px solid white;
+          border-left: 16px solid white;
+          width: 62px;
+          height: 62px;
           -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
+          {#animation: spin 13s linear infinite;#}
         }
 
         /* Safari */
@@ -176,14 +187,23 @@
                 <tr>
                     <td>
                         <hr>
-                        <!-- ANALYZE BUTTON -->
-                        <input onclick="ShowSpinner()" class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
 
-                        <div class="loader" id="Spinner" style="visibility:hidden;"></div>
-
-
+                        <table>
+                            <tr>
+                                <td>
+                                    <!-- ANALYZE BUTTON -->
+                                    <!--input onclick="ShowSpinner()" class="btn btn-lg" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d"-->
+                                    <!--input onclick="SpinFaster()" class="btn btn-lg" id="AnalyzeButton" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d"-->
+                                    <input onclick="LoadingText()" class="btn btn-lg" id="AnalyzeButton" type="submit" value="Analyze" style="background-color: #eec015;color:#1a1a1d">
+                                </td>
+                                <td>
+                                    <div class="loader" id="Spinner" style="visibility:hidden; animation:spin 3s linear infinite "></div>
+                                </td>
+                            </tr>
+                        </table>
 
                     </td>
+
                     </form>
 
                     <td>
