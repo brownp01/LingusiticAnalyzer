@@ -181,30 +181,100 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
 
     """
 
-    tempscore = 0.0
+    data = json.load((open('applicationconfig.json')))
+    numkws = int(data["NUM_KWS"])
+    numregkws = int(data["NUM_REG_KWS"])
+    sharedkws = ""
+    peripheralkws = ""
 
-    # Get top ten KWs with highest frequencies
-    topdockws = list(common_functions.kwhighestfrequencies(kw_list, 10))
+    score = 0.0
 
-    # get top ten percent of regulatory kws
-    regkwnum = len(reg_kw_list.list) if len(reg_kw_list.list) * .1 < len(topdockws) else len(reg_kw_list.list) * .1
+    #constants
+    EXACT_MATCH_POINTS = 5
+    PARTIAL_MATCH_POINTS = 5
 
-    topregkws = list(common_functions.kwhighestfrequencies(reg_kw_list, regkwnum))
-
-    # look at top ten keywords in file (by frequency), and for each of them, see if they are in the top 10% of words
-    # in reg_doc
-
-    for kw in topdockws:
-        for i in range(0, len(topregkws)):
-            if kw.word == topregkws[i].word:
-                tempscore = tempscore + 1
-
-    tempscore = tempscore/regkwnum
+    # makes sure we grab the same number of keywords from each list. If there are 100 KWs and 85 reg KWs, we take 85 as
+    # a sample size
+    intersectedmax = numkws
+    if numregkws < intersectedmax:
+        intersectedmax = numregkws
 
 
+    topdockws = list(common_functions.kwhighestfrequencies(kw_list, intersectedmax))
 
-    # This is rudimentary, but actually does a decent job at comparing two documents
-    return round((100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore)) * tempscore, 2)
+    # create a list of strings to iterate through
+    topdockwstringslist = list()
+    for i in range(len(topdockws)):
+        topdockwstringslist.append(topdockws[i].word)
+
+
+    topregkws = list(common_functions.kwhighestfrequencies(reg_kw_list, intersectedmax))
+
+    # create a list of strings to iterate through
+    topregkwstringlist = list()
+    for i in range(len(topregkws)):
+        topregkwstringlist.append(topregkws[i].word)
+
+    # If every single keyword is identified in the other list
+    POINTS_POSSIBLE = EXACT_MATCH_POINTS * intersectedmax
+    POINTS_TO_PASS_FULL = (EXACT_MATCH_POINTS * (intersectedmax/2)) + (PARTIAL_MATCH_POINTS + (intersectedmax/2))
+    POINTS_TO_PASS_MEDIUM = (EXACT_MATCH_POINTS * (intersectedmax/3)) + (PARTIAL_MATCH_POINTS + (intersectedmax/3))
+    POINTS_TO_PASS_LOW = (EXACT_MATCH_POINTS * (intersectedmax / 4)) + (PARTIAL_MATCH_POINTS + (intersectedmax / 4))
+
+    for i in range(len(topdockws)):
+        if topdockws[i].word in topregkwstringlist:
+            # if the exact same keyword is recognized in the reg document KWs, we add 5 points.
+            score = score + EXACT_MATCH_POINTS
+            sharedkws = sharedkws + topdockws[i].word + ","
+        else:
+            # if the keyword is contained in some keyword phrases in the other document
+            for x in range(len(topregkws)):
+                if topdockws[i].word in topregkwstringlist[x]:
+                    score = score + PARTIAL_MATCH_POINTS
+                    peripheralkws = peripheralkws + topdockws[i].word + ","
+
+    if score > POINTS_TO_PASS_FULL:
+        common_functions.writeToConfig("ANALYZE_STATUS", "green")
+    elif score > POINTS_TO_PASS_MEDIUM:
+        common_functions.writeToConfig("ANALYZE_STATUS", "orange")
+    elif score > POINTS_TO_PASS_LOW:
+        common_functions.writeToConfig("ANALYZE_STATUS", "yellow")
+    else:
+        common_functions.writeToConfig("ANALYZE_STATUS", "red")
+
+    common_functions.writeToConfig("SHARED_KWS", sharedkws)
+    common_functions.writeToConfig("PERIPHERAL_KWS", peripheralkws)
+
+    return round(((score/POINTS_POSSIBLE) * 100), 2)
+
+
+
+
+
+    # ----------- Everything below here is the original algorithm. Everything above is a test------------ #
+
+    # tempscore = 0.0
+    #
+    # # Get top ten KWs with highest frequencies
+    # topdockws = list(common_functions.kwhighestfrequencies(kw_list, 10))
+    #
+    # # get top ten percent of regulatory kws
+    # regkwnum = len(reg_kw_list.list) if len(reg_kw_list.list) * .1 < len(topdockws) else len(reg_kw_list.list) * .1
+    #
+    # topregkws = list(common_functions.kwhighestfrequencies(reg_kw_list, regkwnum))
+    #
+    # # look at top ten keywords in file (by frequency), and for each of them, see if they are in the top 10% of words
+    # # in reg_doc
+    #
+    # for kw in topdockws:
+    #     for i in range(0, len(topregkws)):
+    #         if kw.word == topregkws[i].word:
+    #             tempscore = tempscore + 1
+    #
+    # tempscore = tempscore/regkwnum
+    #
+    # # This is rudimentary, but actually does a decent job at comparing two documents
+    # return round((100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore)) * tempscore, 2)
 
 
 def tokenize(tokenStr):

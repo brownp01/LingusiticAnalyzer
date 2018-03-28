@@ -19,6 +19,24 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
 
+    <script>
+
+        window.onload = function(ev){
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", '/applicationconfig', false ); // false for synchronous request
+            xmlHttp.send( null );
+
+            var text = xmlHttp.responseText;
+            var data = JSON.parse(text);
+
+            document.getElementById("CompScore").style.borderColor = data["ANALYZE_STATUS"].toString();
+            document.getElementById("sharedkws").innerHTML = data["SHARED_KWS"].toString();
+            document.getElementById("peripherallysharedkws").innerHTML = data["PERIPHERAL_KWS"].toString();
+        }
+
+    </script>
+
     <style>
     .yulesinfo {
         box-sizing: border-box;
@@ -166,35 +184,55 @@
             </div>
                     </td>
                     <td>
-                        <h5 class="yulesklabel" align="left"><b>Analytics</b></h5>
-                        <div class="analyticsarea">
-                            <p><small><b>You compared <i><u>#-USER-DOC-NAME-#</u></i> and <i><u>#-REG-DOC-NAME-#</u></i></b></small></p>
+                        <h5 class="yulesklabel" align="left"><b>Analytics (scrollable)</b></h5>
+                        <div class="analyticsarea" style="height:300px;width:350px;padding:7px;border:3px inset #000000;font:12px/12px Georgia, Garamond, Serif;overflow:auto;">
+                            <p style="padding: 5px;"><b>You compared <i><u>#-USER-DOC-NAME-#</u></i> and <i><u>#-REG-DOC-NAME-#</u></i></b></p>
                             <hr>
                             <table class="analyticstable" style="width: 100%;">
                                 <tr>
                                     <td>
-                                        <p><small><u>Total User Document Keywords: </u></small></p>
+                                        <p><u>Total User Document Keywords: </u></p>
                                     </td>
                                     <td>
-                                        <p><small>#--USER-DOC-KEYWORD-NUM--#</small></p>
+                                        <p>#--USER-DOC-KEYWORD-NUM--#</p>
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><small><u>Total Regulatory Document Keywords: </u></small></p>
+                                        <p><u>Total Regulatory Document Keywords: </u></p>
                                     </td>
                                     <td>
-                                        <p><small>#--REG-DOC-KEYWORD-NUM--#</small></p>
+                                        <p>#--REG-DOC-KEYWORD-NUM--#</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
 
-                                        <p><small><u>Percentage of User Document That Keywords Comprise: </u></small></p>
+                                        <p><u>Percentage of User Document That Keywords Comprise: </u></p>
                                     </td>
                                     <td>
-                                        <p><small>#--KEYWORDS-COMPRISE--#</small></p>
+                                        <p>#--KEYWORDS-COMPRISE--#</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><u>Shared Keywords: </u></p>
+                                    </td>
+                                    <td>
+                                        <div style="height:150px;width:260px;padding:7px;border:3px inset #000000;font:12px/12px Georgia, Garamond, Serif;overflow:auto;">
+                                        <p id="sharedkws"></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><u>Peripherally Shared Keywords: </u></p>
+                                    </td>
+                                    <td>
+                                        <div style="height:100px;width:260px;padding:7px;border:3px inset #000000;font:12px/12px Georgia, Garamond, Serif;overflow:auto;">
+                                        <p id="peripherallysharedkws"></p>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
@@ -207,15 +245,17 @@
 
             </table>
 
-
+            <div id="CompScore" style="border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
             <p class="lead"></p>
             <div class="d-inline-block">
-                <h5><b><u>Comparison Score: </u></b></h5></div>
+                <h5><b><u>Comparison Score*: </u></b></h5></div>
             <div class="d-inline-block">
-                <h5 style="color: crimson">#--COMPARISON_SCORE--#% similar</h5>
+                <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
             </div>
-
-
+            </div>
+            <div style="text-align: right">
+            <small><font size="1">*Border color indicates similarity status. Options from best (most similar) to worst (least similar) are <font color="green">Green</font>, <font color="orange">Orange</font>, <font color="yellow" style="background-color: #333333">Yellow</font>, and <font color="red">Red</font></font> </small>
+            </div>
             <hr>
 
         <h5 class="yulesklabel" align="left"><b>Graphs and Information</b></h5>
