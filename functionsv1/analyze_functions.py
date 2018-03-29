@@ -45,9 +45,9 @@ def identifykeywords(file_text):
     idea here has remained, but the 'chunk' size for *file_text* can be configured in /applicationconfig.json. Default settings
     allow for a single string text input of a document into the API.
 
-    For each entity identified by the API, :func:`common_functions.createkeywordfromgoogleapientity` is used to extract the information
-    from the *entities* dictionary variable and places it into a :class:`Keyword`. The returned Keyword is then placed
-    into the :class:`KeywordList` object via :func:`KeywordList.KeywordList.insertkeyword`.
+    For each entity identified by the API, :func:`common_functions.createkeywordfromgoogleapientity` is used to extract
+    the information from the *entities* dictionary variable and places it into a :class:`Keyword`. The returned Keyword
+    is then placed into the :class:`KeywordList` object via :func:`KeywordList.KeywordList.insertkeyword`.
 
     :param List[str] file_text: text of document
     :return: KeywordList object

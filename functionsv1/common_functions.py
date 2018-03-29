@@ -153,7 +153,7 @@ def changefileextension(regfilename):
 
 
     :param str regfilename: name of regulatory file
-    :return: string with .pdf file extension
+    :return: string with *.txt* file extension
     :rtype: str
 
     """

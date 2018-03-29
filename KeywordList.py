@@ -101,9 +101,9 @@ class KeywordList:
         """
         Summary: inserts a new :class:`Keyword` into *KeywordList*.
 
-        - First, a check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the
+        - A check if the keyword is a letter. If it's a letter, it will not be added to the list. 
+        - A check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the
           :class:`Keyword` is inserted into the list.
-        - If a keyword already exists in the list, then that keyword's frequency is increased by 1.
 
         :param Keyword keyword: an instance of the class keyword
         :return: void
@@ -112,13 +112,15 @@ class KeywordList:
 
         # Check "similar words" lists
 
+        # if single letter, do not insert.
+        if len(keyword.word.upper()) == 1:
+            return
+
         # Check for exact "word"
         if not self.existsinlist(keyword.word.upper()):
             self.list.append(keyword)
             self.uniquekeywords += 1
-        else:
-            index = self.getindexofword(keyword.word.upper())
-            self.list[index].frequency += 1
+
 
     def existsinlist(self, keyword_name):
         """
