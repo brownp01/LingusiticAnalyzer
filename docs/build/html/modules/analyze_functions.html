@@ -92,9 +92,9 @@
 <span class="sd">    idea here has remained, but the &#39;chunk&#39; size for *file_text* can be configured in /applicationconfig.json. Default settings</span>
 <span class="sd">    allow for a single string text input of a document into the API.</span>
 
-<span class="sd">    For each entity identified by the API, :func:`common_functions.createkeywordfromgoogleapientity` is used to extract the information</span>
-<span class="sd">    from the *entities* dictionary variable and places it into a :class:`Keyword`. The returned Keyword is then placed</span>
-<span class="sd">    into the :class:`KeywordList` object via :func:`KeywordList.KeywordList.insertkeyword`.</span>
+<span class="sd">    For each entity identified by the API, :func:`common_functions.createkeywordfromgoogleapientity` is used to extract</span>
+<span class="sd">    the information from the *entities* dictionary variable and places it into a :class:`Keyword`. The returned Keyword</span>
+<span class="sd">    is then placed into the :class:`KeywordList` object via :func:`KeywordList.KeywordList.insertkeyword`.</span>
 
 <span class="sd">    :param List[str] file_text: text of document</span>
 <span class="sd">    :return: KeywordList object</span>
@@ -157,7 +157,7 @@
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Score calculation complete.&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="calculatekeywordscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatekeywordscore">[docs]</a><span class="k">def</span> <span class="nf">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
+<div class="viewcode-block" id="calculatekeywordscore"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.calculatekeywordscore">[docs]</a><span class="k">def</span> <span class="nf">calculatekeywordscore</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">file_text</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Summary: calculate a keyword score for a single keyword. The current algorithm utilized is:</span>
 <span class="sd">    [(keyword salience * keyword frequency) / (total keywords)] * 1000.</span>
@@ -228,30 +228,100 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">tempscore</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
+    <span class="n">numkws</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;NUM_KWS&quot;</span><span class="p">])</span>
+    <span class="n">numregkws</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;NUM_REG_KWS&quot;</span><span class="p">])</span>
+    <span class="n">sharedkws</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">peripheralkws</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="c1"># Get top ten KWs with highest frequencies</span>
-    <span class="n">topdockws</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    <span class="c1"># get top ten percent of regulatory kws</span>
-    <span class="n">regkwnum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">*</span> <span class="o">.</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">topdockws</span><span class="p">)</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">*</span> <span class="o">.</span><span class="mi">1</span>
+    <span class="c1">#constants</span>
+    <span class="n">EXACT_MATCH_POINTS</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">PARTIAL_MATCH_POINTS</span> <span class="o">=</span> <span class="mi">5</span>
 
-    <span class="n">topregkws</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="p">,</span> <span class="n">regkwnum</span><span class="p">))</span>
-
-    <span class="c1"># look at top ten keywords in file (by frequency), and for each of them, see if they are in the top 10% of words</span>
-    <span class="c1"># in reg_doc</span>
-
-    <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">topdockws</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">topregkws</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">kw</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">topregkws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
-                <span class="n">tempscore</span> <span class="o">=</span> <span class="n">tempscore</span> <span class="o">+</span> <span class="mi">1</span>
-
-    <span class="n">tempscore</span> <span class="o">=</span> <span class="n">tempscore</span><span class="o">/</span><span class="n">regkwnum</span>
+    <span class="c1"># makes sure we grab the same number of keywords from each list. If there are 100 KWs and 85 reg KWs, we take 85 as</span>
+    <span class="c1"># a sample size</span>
+    <span class="n">intersectedmax</span> <span class="o">=</span> <span class="n">numkws</span>
+    <span class="k">if</span> <span class="n">numregkws</span> <span class="o">&lt;</span> <span class="n">intersectedmax</span><span class="p">:</span>
+        <span class="n">intersectedmax</span> <span class="o">=</span> <span class="n">numregkws</span>
 
 
+    <span class="n">topdockws</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">kw_list</span><span class="p">,</span> <span class="n">intersectedmax</span><span class="p">))</span>
 
-    <span class="c1"># This is rudimentary, but actually does a decent job at comparing two documents</span>
-    <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span> <span class="o">-</span> <span class="n">reg_kw_list</span><span class="o">.</span><span class="n">avgkeywordscore</span><span class="p">))</span> <span class="o">*</span> <span class="n">tempscore</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
+    <span class="c1"># create a list of strings to iterate through</span>
+    <span class="n">topdockwstringslist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">topdockws</span><span class="p">)):</span>
+        <span class="n">topdockwstringslist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topdockws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span><span class="p">)</span>
+
+
+    <span class="n">topregkws</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_functions</span><span class="o">.</span><span class="n">kwhighestfrequencies</span><span class="p">(</span><span class="n">reg_kw_list</span><span class="p">,</span> <span class="n">intersectedmax</span><span class="p">))</span>
+
+    <span class="c1"># create a list of strings to iterate through</span>
+    <span class="n">topregkwstringlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">topregkws</span><span class="p">)):</span>
+        <span class="n">topregkwstringlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topregkws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span><span class="p">)</span>
+
+    <span class="c1"># If every single keyword is identified in the other list</span>
+    <span class="n">POINTS_POSSIBLE</span> <span class="o">=</span> <span class="n">EXACT_MATCH_POINTS</span> <span class="o">*</span> <span class="n">intersectedmax</span>
+    <span class="n">POINTS_TO_PASS_FULL</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXACT_MATCH_POINTS</span> <span class="o">*</span> <span class="p">(</span><span class="n">intersectedmax</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">PARTIAL_MATCH_POINTS</span> <span class="o">+</span> <span class="p">(</span><span class="n">intersectedmax</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">POINTS_TO_PASS_MEDIUM</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXACT_MATCH_POINTS</span> <span class="o">*</span> <span class="p">(</span><span class="n">intersectedmax</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">PARTIAL_MATCH_POINTS</span> <span class="o">+</span> <span class="p">(</span><span class="n">intersectedmax</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">POINTS_TO_PASS_LOW</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXACT_MATCH_POINTS</span> <span class="o">*</span> <span class="p">(</span><span class="n">intersectedmax</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">PARTIAL_MATCH_POINTS</span> <span class="o">+</span> <span class="p">(</span><span class="n">intersectedmax</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">topdockws</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">topdockws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="ow">in</span> <span class="n">topregkwstringlist</span><span class="p">:</span>
+            <span class="c1"># if the exact same keyword is recognized in the reg document KWs, we add 5 points.</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="n">EXACT_MATCH_POINTS</span>
+            <span class="n">sharedkws</span> <span class="o">=</span> <span class="n">sharedkws</span> <span class="o">+</span> <span class="n">topdockws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># if the keyword is contained in some keyword phrases in the other document</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">topregkws</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">topdockws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="ow">in</span> <span class="n">topregkwstringlist</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
+                    <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="n">PARTIAL_MATCH_POINTS</span>
+                    <span class="n">peripheralkws</span> <span class="o">=</span> <span class="n">peripheralkws</span> <span class="o">+</span> <span class="n">topdockws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">word</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span>
+
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">POINTS_TO_PASS_FULL</span><span class="p">:</span>
+        <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ANALYZE_STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">POINTS_TO_PASS_MEDIUM</span><span class="p">:</span>
+        <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ANALYZE_STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">POINTS_TO_PASS_LOW</span><span class="p">:</span>
+        <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ANALYZE_STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;ANALYZE_STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+    <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;SHARED_KWS&quot;</span><span class="p">,</span> <span class="n">sharedkws</span><span class="p">)</span>
+    <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s2">&quot;PERIPHERAL_KWS&quot;</span><span class="p">,</span> <span class="n">peripheralkws</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(((</span><span class="n">score</span><span class="o">/</span><span class="n">POINTS_POSSIBLE</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+
+
+
+    <span class="c1"># ----------- Everything below here is the original algorithm. Everything above is a test------------ #</span>
+
+    <span class="c1"># tempscore = 0.0</span>
+    <span class="c1">#</span>
+    <span class="c1"># # Get top ten KWs with highest frequencies</span>
+    <span class="c1"># topdockws = list(common_functions.kwhighestfrequencies(kw_list, 10))</span>
+    <span class="c1">#</span>
+    <span class="c1"># # get top ten percent of regulatory kws</span>
+    <span class="c1"># regkwnum = len(reg_kw_list.list) if len(reg_kw_list.list) * .1 &lt; len(topdockws) else len(reg_kw_list.list) * .1</span>
+    <span class="c1">#</span>
+    <span class="c1"># topregkws = list(common_functions.kwhighestfrequencies(reg_kw_list, regkwnum))</span>
+    <span class="c1">#</span>
+    <span class="c1"># # look at top ten keywords in file (by frequency), and for each of them, see if they are in the top 10% of words</span>
+    <span class="c1"># # in reg_doc</span>
+    <span class="c1">#</span>
+    <span class="c1"># for kw in topdockws:</span>
+    <span class="c1">#     for i in range(0, len(topregkws)):</span>
+    <span class="c1">#         if kw.word == topregkws[i].word:</span>
+    <span class="c1">#             tempscore = tempscore + 1</span>
+    <span class="c1">#</span>
+    <span class="c1"># tempscore = tempscore/regkwnum</span>
+    <span class="c1">#</span>
+    <span class="c1"># # This is rudimentary, but actually does a decent job at comparing two documents</span>
+    <span class="c1"># return round((100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore)) * tempscore, 2)</span>
 
 
 <div class="viewcode-block" id="tokenize"><a class="viewcode-back" href="../functionsv1.html#analyze_functions.tokenize">[docs]</a><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">tokenStr</span><span class="p">):</span>

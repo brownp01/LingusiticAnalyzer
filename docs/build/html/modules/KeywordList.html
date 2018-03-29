@@ -148,9 +148,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summary: inserts a new :class:`Keyword` into *KeywordList*.</span>
 
-<span class="sd">        - First, a check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the</span>
+<span class="sd">        - A check if the keyword is a letter. If it&#39;s a letter, it will not be added to the list.</span>
+<span class="sd">        - A check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the</span>
 <span class="sd">          :class:`Keyword` is inserted into the list.</span>
-<span class="sd">        - If a keyword already exists in the list, then that keyword&#39;s frequency is increased by 1.</span>
 
 <span class="sd">        :param Keyword keyword: an instance of the class keyword</span>
 <span class="sd">        :return: void</span>
@@ -159,13 +159,15 @@
 
         <span class="c1"># Check &quot;similar words&quot; lists</span>
 
+        <span class="c1"># if single letter, do not insert.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span>
+
         <span class="c1"># Check for exact &quot;word&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existsinlist</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">uniquekeywords</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getindexofword</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="o">+=</span> <span class="mi">1</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uniquekeywords</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
 
 <div class="viewcode-block" id="KeywordList.existsinlist"><a class="viewcode-back" href="../KeywordList.html#KeywordList.KeywordList.existsinlist">[docs]</a>    <span class="k">def</span> <span class="nf">existsinlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
