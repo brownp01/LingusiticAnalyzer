@@ -196,9 +196,9 @@ Yule’s K score, Yule’s I score, average keyword score and a document score.<
 <code class="descname">insertkeyword</code><span class="sig-paren">(</span><em>keyword</em><span class="sig-paren">)</span><a class="reference internal" href="modules/KeywordList.html#KeywordList.insertkeyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#KeywordList.KeywordList.insertkeyword" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: inserts a new <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> into <em>KeywordList</em>.</p>
 <ul class="simple">
-<li>First, a check if the keyword already exists is handled by <a class="reference internal" href="#KeywordList.KeywordList.existsinlist" title="KeywordList.KeywordList.existsinlist"><code class="xref py py-func docutils literal"><span class="pre">existsinlist()</span></code></a>. If it does not exist, the
+<li>A check if the keyword is a letter. If it’s a letter, it will not be added to the list.</li>
+<li>A check if the keyword already exists is handled by <a class="reference internal" href="#KeywordList.KeywordList.existsinlist" title="KeywordList.KeywordList.existsinlist"><code class="xref py py-func docutils literal"><span class="pre">existsinlist()</span></code></a>. If it does not exist, the
 <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> is inserted into the list.</li>
-<li>If a keyword already exists in the list, then that keyword’s frequency is increased by 1.</li>
 </ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

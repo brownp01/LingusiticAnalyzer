@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="analyze module" href="analyze.html" />
+    <link rel="next" title="application module" href="application.html" />
     <link rel="prev" title="KeywordList module" href="KeywordList.html" /> 
   </head>
   <body>
@@ -37,7 +37,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="analyze.html" title="analyze module"
+          <a href="application.html" title="application module"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="KeywordList.html" title="KeywordList module"
@@ -65,7 +65,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regfilename</strong> (<em>str</em>) – name of regulatory file</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string with .pdf file extension</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string with <em>.txt</em> file extension</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
@@ -747,7 +747,7 @@ of ‘1’ is added to a variable called <em>tempscore</em>.</li>
 
 <dl class="function">
 <dt id="analyze_functions.calculatekeywordscore">
-<code class="descclassname">analyze_functions.</code><code class="descname">calculatekeywordscore</code><span class="sig-paren">(</span><em>kw_list</em>, <em>kw</em><span class="sig-paren">)</span><a class="reference internal" href="modules/analyze_functions.html#calculatekeywordscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.calculatekeywordscore" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">analyze_functions.</code><code class="descname">calculatekeywordscore</code><span class="sig-paren">(</span><em>kw_list</em>, <em>file_text</em>, <em>kw</em><span class="sig-paren">)</span><a class="reference internal" href="modules/analyze_functions.html#calculatekeywordscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analyze_functions.calculatekeywordscore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summary: calculate a keyword score for a single keyword. The current algorithm utilized is:
 [(keyword salience * keyword frequency) / (total keywords)] * 1000.
 Since the salience and frequency of a particular keyword is important to the overall feel of a document, these values
@@ -843,9 +843,9 @@ to the API as such, the analysis would not encompass the document in its entiret
 be focused on each ‘chunk’ of text. Therefore, analysis of an entire document would be inaccurate. The list of strings
 idea here has remained, but the ‘chunk’ size for <em>file_text</em> can be configured in /applicationconfig.json. Default settings
 allow for a single string text input of a document into the API.</p>
-<p>For each entity identified by the API, <a class="reference internal" href="#common_functions.createkeywordfromgoogleapientity" title="common_functions.createkeywordfromgoogleapientity"><code class="xref py py-func docutils literal"><span class="pre">common_functions.createkeywordfromgoogleapientity()</span></code></a> is used to extract the information
-from the <em>entities</em> dictionary variable and places it into a <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a>. The returned Keyword is then placed
-into the <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object via <a class="reference internal" href="KeywordList.html#KeywordList.KeywordList.insertkeyword" title="KeywordList.KeywordList.insertkeyword"><code class="xref py py-func docutils literal"><span class="pre">KeywordList.KeywordList.insertkeyword()</span></code></a>.</p>
+<p>For each entity identified by the API, <a class="reference internal" href="#common_functions.createkeywordfromgoogleapientity" title="common_functions.createkeywordfromgoogleapientity"><code class="xref py py-func docutils literal"><span class="pre">common_functions.createkeywordfromgoogleapientity()</span></code></a> is used to extract
+the information from the <em>entities</em> dictionary variable and places it into a <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a>. The returned Keyword
+is then placed into the <a class="reference internal" href="KeywordList.html#module-KeywordList" title="KeywordList"><code class="xref py py-class docutils literal"><span class="pre">KeywordList</span></code></a> object via <a class="reference internal" href="KeywordList.html#KeywordList.KeywordList.insertkeyword" title="KeywordList.KeywordList.insertkeyword"><code class="xref py py-func docutils literal"><span class="pre">KeywordList.KeywordList.insertkeyword()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -893,8 +893,8 @@ into the <a class="reference internal" href="KeywordList.html#module-KeywordList
   <p class="topless"><a href="KeywordList.html"
                         title="previous chapter">KeywordList module</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="analyze.html"
-                        title="next chapter">analyze module</a></p>
+  <p class="topless"><a href="application.html"
+                        title="next chapter">application module</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -919,7 +919,7 @@ into the <a class="reference internal" href="KeywordList.html#module-KeywordList
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="analyze.html" title="analyze module"
+          <a href="application.html" title="application module"
              >next</a> |</li>
         <li class="right" >
           <a href="KeywordList.html" title="KeywordList module"

@@ -7,7 +7,7 @@ SPHINXBUILD  ?= sphinx-build
 PAPER        ?=
 BUILDDIR      = build
 PDFBUILDDIR   = /tmp
-PDF           = LinguisticAnalyzer.pdf
+PDF           = build/html/LinguisticAnalyzer.pdf
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_elements.papersize=a4
