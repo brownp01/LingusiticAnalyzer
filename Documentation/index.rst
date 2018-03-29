@@ -13,7 +13,6 @@ Welcome to Linguistic Analyzer's documentation!
    Keyword
    KeywordList
    functionsv1
-   analyze
    application
    unit_tests
    behave_tests

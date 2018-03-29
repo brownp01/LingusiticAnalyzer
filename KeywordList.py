@@ -101,7 +101,7 @@ class KeywordList:
         """
         Summary: inserts a new :class:`Keyword` into *KeywordList*.
 
-        - A check if the keyword is a letter. If it's a letter, it will not be added to the list. 
+        - A check if the keyword is a letter. If it's a letter, it will not be added to the list.
         - A check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the
           :class:`Keyword` is inserted into the list.
 
