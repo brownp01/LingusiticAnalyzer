@@ -113,7 +113,7 @@ class KeywordList:
         # Check "similar words" lists
 
         # if single letter, do not insert.
-        if len(keyword.word.upper()) == 1:
+        if len(keyword.word) <= 2 or keyword.word == "Pope":
             return
 
         # Check for exact "word"
