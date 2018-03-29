@@ -31,44 +31,8 @@
 
         }
 
-        function SpinFaster(){
-            window.alert("Analyzing will begin when you close this message. Please note that large files may take a while to analyze");
-            document.getElementById("Spinner").style.animation = "animation: spin 2s linear infinite;";
-            document.getElementById("Spinner").style.visibility = "visible";
-        }
-
-
-        function move() {
-          var elem = document.getElementById("myBar");
-          var width = 1;
-          var id = setInterval(frame, 10);
-          function frame() {
-            if (width >= 100) {
-                width = 1;
-                //clearInterval(id);
-            } else {
-              width +=0.6;
-              elem.style.width = width + '%';
-            }
-          }
-        }
-
-        function alertme() {
-            window.alert("Analysis will begin when you close this message. Please note that large files may take a while to analyze");
-        }
-
-        function AnalyzeMessage(){
-            document.getElementById("Analyze Message").style.visibility = "visible";
-        }
-
-        function ShowSpinner() {
-            document.getElementById("Spinner").style.visibility = "visible";
-
-        }
-
         function LoadingText(){
-            document.getElementById("AnalyzeButton").value = "Loading...";
-
+            window.alert("Analysis will begin when you close this message. Please note that large files may take a while to analyze");
         }
 
     </script>
@@ -84,18 +48,6 @@
             border-radius: 10px;
             border: 4px solid #0a1612;
         }
-
-        #myProgress {
-          width: 100%;
-          background-color: #ddd;
-        }
-
-        #myBar {
-          width: 1%;
-          height: 30px;
-          background-color: #4CAF50;
-        }
-
 
         .loader {
           border: 16px solid #f3f3f3;
@@ -120,21 +72,16 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
-
     </style>
-
-
 </head>
 
 <body>
-
 
     <div class="container">
         <div class="header">
 
             <h3 style="color:#080706" align="right">Linguistic Analyzer</h3>
         </div>
-
 
         <div class="jumbotron" style="color:#080706;background-color: #edeae5">
             <h2 style="padding-left: 400px;font: bold 2em Helvetica, sans-serif;" > <u>Linguistic Analyzer</u></h2>
@@ -187,7 +134,6 @@
                 <tr>
                     <td>
                         <hr>
-
                         <table>
                             <tr>
                                 <td>
@@ -201,11 +147,8 @@
                                 </td>
                             </tr>
                         </table>
-
                     </td>
-
                     </form>
-
                     <td>
 
                     </td>
@@ -222,11 +165,8 @@
                     </td>
                 </tr>
             </table>
-
             <hr style="background-color: #1a1a1d">
-
             <br>
-
             <div>
                 <table>
                     <tr>
@@ -244,14 +184,7 @@
                 </table>
 
             </div>
-
-
         </div>
-
-
-
-
-
         <div class="row marketing">
             <div class="col-lg-6">
                 <h4>Authors</h4>
@@ -262,7 +195,6 @@
             <div class="col-lg-6">
                 <h4>Client</h4>
                 <p>Benjamin Pope</p>
-
             </div>
         </div>
 

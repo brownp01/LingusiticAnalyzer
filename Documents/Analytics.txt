@@ -1,3 +1,9 @@
+2018-03-29 15:40:01.094949 ; [2.077 sec.] ; film_paper.pdf ; 439 ; simple_description.txt ; 11 ; 
+2018-03-29 15:30:13.112632 ; [24.022 sec.] ; BSI 14971 Application of risk management to medical devices copy.pdf ; 878 ; BSI_14971.txt ; 887 ; 
+2018-03-29 15:12:34.639276 ; [24.64 sec.] ; BSI 14971 Application of risk management to medical devices copy.pdf ; 878 ; BSI_14971.txt ; 887 ; 
+2018-03-29 15:11:11.052374 ; [0.844 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
+2018-03-29 15:08:48.427054 ; [24.615 sec.] ; BSI_14971_Application_of_risk_management_to_medical_devices.pdf ; 878 ; simple_description.txt ; 11 ; 
+2018-03-29 15:01:40.896638 ; [0.892 sec.] ; t_blant_original.pdf ; 10 ; t_blant_reword.txt ; 9 ; 
 2018-03-29 14:09:49.765207 ; [14.307 sec.] ; IEC_TR_80002-1.pdf ; 1088 ; IEC_TR_80002-1.txt ; 1089 ; 
 2018-03-29 14:08:23.473556 ; [20.915 sec.] ; BSI _14971.pdf ; 885 ; BSI_14971.txt ; 887 ; 
 2018-03-29 14:06:50.076231 ; [2.911 sec.] ; S508C_Common_Cyber_Language.pdf ; 646 ; IEC_62304.txt ; 1061 ; 

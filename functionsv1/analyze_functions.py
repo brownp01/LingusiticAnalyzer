@@ -231,7 +231,7 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
             for x in range(len(topregkws)):
                 if topdockws[i].word in topregkwstringlist[x]:
                     score = score + PARTIAL_MATCH_POINTS
-                    peripheralkws = peripheralkws + topdockws[i].word + ","
+                    peripheralkws = peripheralkws + "[" + topdockws[i].word + "," + topregkwstringlist[x] + "]"
 
     if score > POINTS_TO_PASS_FULL:
         common_functions.writeToConfig("ANALYZE_STATUS", "green")
