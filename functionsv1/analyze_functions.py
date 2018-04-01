@@ -162,16 +162,15 @@ def calculateyulesscore(file_text):
 
 def calculatecomparisonscore(kw_list, reg_kw_list):
     """
-    Summary: Compares the calculated scores of the two documents and generates value based on that comparison.
+    Summary: Compares keywords in each document and assigns scores based on exact matches and peripheral matches
+    (i.e. "risk" vs. "risk analysis").
 
-    1. The top 10 Keywords with the highest frequency is gathered from the user document.
-    2. The top 10% of the regulatory document Keywords are gathered.
-    3. For the top 10 Keywords in the user document, if they are in the top 10% of words in the regulatory document, a value
-       of '1' is added to a variable called *tempscore*.
-    4. *tempscore* / top 10% of reg doc keywords = the new *tempscore*
-    5. The final score that is returned:
-       100 - [abs(average keyword score of user doc - average keyword score of reg doc)] * *tempscore*
-
+    1. List is populated for each document with x keywords, where x is equal to the length of the keyword list
+        containing the least elements.
+    2. Values are calculated to determine what various grades of comparison might be (green, orange, yellow, and red)
+    3. One list is compared to th other. If there is an exact keyword match, 5 points are added to total score. If there
+        is a peripheral match, then 3 points are added to total.
+    4. The final score is returned. round(((score/POINTS_POSSIBLE) * 100), 2)
 
     :param KeywordList kw_list: list of Keywords
     :param KeywordList reg_kw_list: list of Keywords
@@ -191,7 +190,7 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
 
     #constants
     EXACT_MATCH_POINTS = 5
-    PARTIAL_MATCH_POINTS = 5
+    PARTIAL_MATCH_POINTS = 3
 
     # makes sure we grab the same number of keywords from each list. If there are 100 KWs and 85 reg KWs, we take 85 as
     # a sample size
