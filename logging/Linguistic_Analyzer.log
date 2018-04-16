@@ -1,0 +1,6 @@
+INFO:root:API started
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:20] "GET /documentationredirect? HTTP/1.1" 302 -

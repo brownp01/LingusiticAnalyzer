@@ -165,12 +165,12 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
     Summary: Compares keywords in each document and assigns scores based on exact matches and peripheral matches
     (i.e. "risk" vs. "risk analysis").
 
-    1. List is populated for each document with x keywords, where x is equal to the length of the keyword list
-        containing the least elements.
+    1. List is populated for each document with x keywords, where x is equal to the length of the :class:`KeywordList`
+       containing the least elements.
     2. Values are calculated to determine what various grades of comparison might be (green, orange, yellow, and red)
-    3. One list is compared to th other. If there is an exact keyword match, 5 points are added to total score. If there
-        is a peripheral match, then 3 points are added to total.
-    4. The final score is returned. round(((score/POINTS_POSSIBLE) * 100), 2)
+    3. One list is compared to the other. If there is an exact keyword match, 5 points are added to the total *score*. If
+       there is a peripheral match, then 3 points are added to total.
+    4. The final score is returned. (*score*/POINTS_POSSIBLE) * 100
 
     :param KeywordList kw_list: list of Keywords
     :param KeywordList reg_kw_list: list of Keywords
