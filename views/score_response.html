@@ -52,15 +52,20 @@
             var text = xmlHttp.responseText;
             var jsonData = JSON.parse(text);
 
-            var sharedNum = jsonData["SHARED_KWS"].split(',').length;
-            if(isNaN(sharedNum)) sharedNum = 0;
+            var sharedNum = jsonData["SHARED_KWS"].split(',').length - 1;
+            if(isNaN(sharedNum) || jsonData["SHARED_KWS"].toString() == "" || sharedNum < 0)
+            {
+                sharedNum = 0;
+            }
 
-            var peripheralNum = jsonData["PERIPHERAL_KWS"].split(',').length;
-            if(isNaN(peripheralNum)) peripheralNum = 0;
-
+            var peripheralNum = jsonData["PERIPHERAL_KWS"].split(',').length - 1;
+            if(isNaN(peripheralNum) || jsonData["PERIPHERAL_KWS"].toString() == "" || peripheralNum < 0) {
+                peripheralNum = 0;
+            }
 
 
             var notSharedNum = parseInt(jsonData["NUM_KWS"].toString()) - peripheralNum - sharedNum;
+
 
             var donutChartArr = [['Task', 'Hours Per Day'], ['Shared', sharedNum], ['Peripherally Shared', peripheralNum], ['Not Shared', notSharedNum]];
 
