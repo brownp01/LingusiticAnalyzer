@@ -18,6 +18,7 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+    <!--script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script-->
 
     <script>
 
@@ -31,10 +32,48 @@
             var data = JSON.parse(text);
 
             document.getElementById("CompScore").style.borderColor = data["ANALYZE_STATUS"].toString();
+            document.getElementById("donutchart").style.borderColor = data["ANALYZE_STATUS"].toString();
             document.getElementById("sharedkws").innerHTML = data["SHARED_KWS"].toString();
             document.getElementById("peripherallysharedkws").innerHTML = data["PERIPHERAL_KWS"].toString();
         }
 
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", '/applicationconfig', false ); // false for synchronous request
+            xmlHttp.send( null );
+
+            var text = xmlHttp.responseText;
+            var jsonData = JSON.parse(text);
+
+            var sharedNum = jsonData["SHARED_KWS"].split(',').length;
+            if(isNaN(sharedNum)) sharedNum = 0;
+
+            var peripheralNum = jsonData["PERIPHERAL_KWS"].split(',').length;
+            if(isNaN(peripheralNum)) peripheralNum = 0;
+
+
+
+            var notSharedNum = parseInt(jsonData["NUM_KWS"].toString()) - peripheralNum - sharedNum;
+
+            var donutChartArr = [['Task', 'Hours Per Day'], ['Shared', sharedNum], ['Peripherally Shared', peripheralNum], ['Not Shared', notSharedNum]];
+
+            var data = google.visualization.arrayToDataTable(donutChartArr);
+
+            var options = {
+              title: 'User Document Keyword Insight',
+              pieHole: 0.4
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+      }
     </script>
 
     <style>
@@ -104,6 +143,11 @@
         padding-right: 20px;
         height: 27px;
     }
+    .vl {
+        border-left: 2px solid black;
+        height: 200px;
+        padding: 10px;
+    }
 
 </style>
 </head>
@@ -116,8 +160,52 @@
         </div>
 
 
-        <div class="jumbotron" style="color:#080706;background-color: #edeae5">
+
+            <div class="jumbotron" style="color:#080706;background-color: #edeae5">
             <h3 class="yulesklabel" align="left"><b><u>Results</u></b></h3>
+
+
+        <table>
+            <tr>
+                <td style="border-right: 2px solid gray;padding-right: 10px">
+                    <div id="CompScore" style="width:70%;border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
+                    <p class="lead"></p>
+                    <div class="d-inline-block">
+                        <h5><b><u>Comparison Score*: </u></b></h5></div>
+                    <div class="d-inline-block">
+                        <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
+                    </div>
+                    </div>
+                    <div style="text-align: left">
+                        <small><font size="1"><u>*Border color indicates similarity status. Options from best (most similar) to worst (least similar) are <font color="green">Green</font>, <font color="orange">Orange</font>, <font color="yellow" style="background-color: #333333">Yellow</font>, and <font color="red">Red</font></u></font> </small>
+                    </div>
+                </td>
+                <td style="border-left: 2px solid gray; padding-left: 10px">
+
+                    <!--div id="piechart"></div-->
+                    <div id="donutchart" style="width: 420px; height: 250px; border-style: outset;padding: 6px;border-width: 6px;border-color: #FF0000;"></div>
+                </td>
+            </tr>
+
+
+        </table>
+
+
+             <!--div id="CompScore"; style="width:40%;border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
+            <p class="lead"></p>
+            <div class="d-inline-block">
+                <h5><b><u>Comparison Score*: </u></b></h5></div>
+            <div class="d-inline-block">
+                <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
+            </div>
+            </div>
+            <div style="text-align: left">
+            <small><font size="1">*Border color indicates similarity status. Options from best (most similar) to worst (least similar) are <font color="green">Green</font>, <font color="orange">Orange</font>, <font color="yellow" style="background-color: #333333">Yellow</font>, and <font color="red">Red</font></font> </small>
+            </div-->
+
+            <hr>
+
+
 
             <table>
                 <tr>
@@ -134,7 +222,7 @@
                     </td>
                     <td>
                         <!--YULES INFO BUTTON-->
-                        <form action="/yulesinfo" enctype="multipart/form-data" method="get" about="more info">
+                        <form action="/yulesinfo" enctype="multipart/form-data" target="_blank" method="get" about="more info">
                         <div align="right">
                         <input class="btn btn-small btn-info" type="submit" value="What is this?" style="background-color: #eec015;color:#1a1a1d">
                         </div>
@@ -243,17 +331,7 @@
 
             </table>
 
-            <div id="CompScore" style="border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
-            <p class="lead"></p>
-            <div class="d-inline-block">
-                <h5><b><u>Comparison Score*: </u></b></h5></div>
-            <div class="d-inline-block">
-                <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
-            </div>
-            </div>
-            <div style="text-align: right">
-            <small><font size="1">*Border color indicates similarity status. Options from best (most similar) to worst (least similar) are <font color="green">Green</font>, <font color="orange">Orange</font>, <font color="yellow" style="background-color: #333333">Yellow</font>, and <font color="red">Red</font></font> </small>
-            </div>
+
             <hr>
 
         <h5 class="yulesklabel" align="left"><b>Graphs and Information</b></h5>
@@ -329,25 +407,6 @@
             </tr>
         </table>
         </div>
-            <!--table>
-                <tr>
-                    <td>
-                    <form action="/" enctype="multipart/form-data" style="padding-left: 100px" method="get">
-                        <div>
-                            <input class="btn btn-lg btn-primary" type="submit" value="Home" style="background-color: #eec015;color:#1a1a1d">
-                        </div>
-                    </form>
-                </td>
-                <td>
-                    <form action="/keywordbubblechart" target="_blank" enctype="multipart/form-data" style="padding-left: 18px" method="get">
-                        <div>
-                            <input class="btn btn-lg btn-warning" type="submit" value="Generate Bubble Chart" style="background-color:#303f42;color: #eec015;">
-                        </div>
-                    </form>
-                </td>
-                </tr>
-            </table-->
-
         <br>
             <p>
             <div style="height:180px;width:1050px;padding:7px;border:3px solid #000000;font:10px/10px Georgia, Garamond, Serif;overflow
