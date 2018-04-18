@@ -1,12 +1,33 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:05:49] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:05:49] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:05:49] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:05:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:23:23] "GET / HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "20_page_kafka.pdf"
-INFO:root:"20_page_kafka.pdf" saved
-INFO:root:opening file "20_page_kafka.pdf"
+INFO:root:saving file "2411_Project_SP17.pdf"
+INFO:root:"2411_Project_SP17.pdf" saved
+INFO:root:opening file "2411_Project_SP17.pdf"
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+WARNING:root:Error: division by zero. Yule's algorithm not completed. Returning -1.
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+WARNING:root:Division by 0 in "KeywordList.calculateavgscore(). Scores not set
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:23:36] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:23:43] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:23:43] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:23:43] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:23:43] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "S508C_Common_Cyber_Language.pdf"
+INFO:root:"S508C_Common_Cyber_Language.pdf" saved
+INFO:root:opening file "S508C_Common_Cyber_Language.pdf"
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -20,32 +41,20 @@ INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
-INFO:root:Extracting keyword info from 10_page_hipsum.txt
+INFO:root:Extracting keyword info from BSI_14971.txt
 INFO:root:keyword info extraction complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
 INFO:root:Plotting keyword salience...
 INFO:root:Plot complete.
 INFO:root:Plotting keyword scores...
-INFO:root:No keyword scores to plot
+INFO:root:Plotting complete.
 INFO:root:Plotting keyword frequency...
 INFO:root:Plotting complete.
 INFO:root:Generating Bubble Chart CSV...
 INFO:root:Bubble Chart CSV generation successful
 INFO:root:Begin score page response...
 INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:21] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:26] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:26] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:47] "GET /keywordbubblechart? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:47] "GET /reusablebubble.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:47] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:47] "GET /csvkeywords HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:47] "GET /keywordbubblechart? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:47] "GET /reusablebubble.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:48] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:06:48] "GET /csvkeywords HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:07:01] "GET /reg_doc_kws?x=206&y=24 HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:07:01] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:08:30] "GET /user_doc_kws?x=219&y=16 HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:08:30] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:24:31] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:24:32] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:24:32] "GET /applicationconfig HTTP/1.1" 200 -

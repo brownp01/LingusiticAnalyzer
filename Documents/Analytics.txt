@@ -1,3 +1,4 @@
+2018-04-18 12:24:31.259703 ; [4.22 sec.] ; S508C_Common_Cyber_Language.pdf ; 644 ; BSI_14971.txt ; 885 ; 
 2018-04-18 12:06:21.038988 ; [4.326 sec.] ; 20_page_kafka.pdf ; 118 ; 10_page_hipsum.txt ; 764 ; 
 2018-04-16 15:34:40.995461 ; [0.736 sec.] ; small_sample_reword.pdf ; 4 ; small_sample.txt ; 4 ; 
 2018-04-16 15:34:18.229489 ; [0.705 sec.] ; 2_sentence_kafka.pdf ; 9 ; 10_page_hipsum.txt ; 764 ; 
