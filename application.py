@@ -256,9 +256,13 @@ def analyze():
                 #     p.join()
 
                 [keyword_list, userdocwordcount] = common_functions.interpretfile(file, localuploadfolder)
+                if len(keyword_list.list) == 0:
+                    returnhtml = common_functions.geterrorpage("Error: No keywords generated from " + file.filename + ". Try using file with searchable text.")
+                    return Response(returnhtml, mimetype='text/html')
 
                 data = json.load((open('applicationconfig.json')))
                 data['NUM_KWS'] = len(keyword_list.list)
+
 
                 # --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #
                 reg_keyword_list = common_functions.interpretexistingfile(regfilename)
@@ -277,7 +281,7 @@ def analyze():
 
             else:
                 logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
-                returnhtml = common_functions.geterrorpage('Invalid file type ' +file.filename[-4:] + '. Please only use .pdf')
+                returnhtml = common_functions.geterrorpage('Error: Invalid file type ' +file.filename[-4:] + '. Please only use .pdf')
                 return Response(returnhtml, mimetype='text/html')
 
             end_time = time.clock()
