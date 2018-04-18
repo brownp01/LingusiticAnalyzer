@@ -1,6 +1,16 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:18] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 15:57:20] "GET /documentationredirect? HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:16] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:16] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:16] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:Invalid File type .png. Responding with error page
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:26] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:36] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:36] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:36] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:36] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:56] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:56] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:56] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 11:39:56] "GET /? HTTP/1.1" 200 -

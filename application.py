@@ -277,7 +277,8 @@ def analyze():
 
             else:
                 logging.info('Invalid File type ' + file.filename[-4:] + '. Responding with error page')
-                returnhtml = common_functions.geterrorpage()
+                returnhtml = common_functions.geterrorpage('Invalid file type ' +file.filename[-4:] + '. Please only use .pdf')
+                return Response(returnhtml, mimetype='text/html')
 
             end_time = time.clock()
 
