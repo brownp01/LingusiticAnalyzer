@@ -48,7 +48,7 @@
             height: 20px;
             margin: 5px;
             border: 1px solid #1a1a1d;
-            background: #584848;
+            background: #6b819b;
         }
         body{
             background: #d8c3a5;
@@ -116,7 +116,7 @@
                     console.error('Error getting or parsing the data.');
                     throw error;
                 }
-                var chart = bubbleChart().width(1300).height(865).forceApart(forceApart).minRadius(minRadius).maxRadius(maxRadius).customColors(["M", "F"], ["#f3b54a", "#584848"]);
+                var chart = bubbleChart().width(1300).height(865).forceApart(forceApart).minRadius(minRadius).maxRadius(maxRadius).customColors(["M", "F"], ["#f3b54a", "#6b819b"]);
                 d3.select('#chart').data(data).call(chart);
             });
 
