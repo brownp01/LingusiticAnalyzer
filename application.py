@@ -572,24 +572,32 @@ def newregdoc():
     file = request.files['datafile']
 
     regfilename = file.filename
+    if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
 
-    # ----------- saving new regulatory file -------------#
-    f = open('RegulatoryDocuments/' + regfilename, 'w')
-    common_functions.savefile(file, 'RegulatoryDocuments/')
+        # ----------- saving new regulatory file -------------#
+        f = open('RegulatoryDocuments/' + regfilename, 'w')
+        common_functions.savefile(file, 'RegulatoryDocuments/')
 
-    f.close()
+        f.close()
 
-    # ----------- putting new regulatory file in list on home page -------------#
-    fhtml = open('views/index.html')
-    text = fhtml.read()
-    newhtml = text.replace('<option class="reg doc options" value="Select">Select</option>',
+        # ----------- putting new regulatory file in list on home page -------------#
+        fhtml = open('views/index.html')
+        text = fhtml.read()
+        newhtml = text.replace('<option class="reg doc options" value="Select">Select</option>',
                            '<option class="reg doc options" value="Select">Select</option>\n\t\t\t\t\t\t<option value=' + '"' + regfilename + '"' + '>' + regfilename[:-4] + '</option>')
-    fhtml.close()
-    newindexhtml = open('views/index.html', 'w')
-    newindexhtml.write(newhtml)
-    newindexhtml.close()
+        fhtml.close()
+        newindexhtml = open('views/index.html', 'w')
+        newindexhtml.write(newhtml)
+        newindexhtml.close()
 
-    return Response(newhtml, mimetype='text/html')
+        return Response(newhtml, mimetype='text/html')
+
+    else:
+        logging.info('Invalid regulatory document file type ' + file.filename[-4:] + '. Responding with error page')
+        returnhtml = common_functions.geterrorpage(
+            'Error: Invalid file type ' + file.filename[-4:] + '. Please only use .pdf')
+        return Response(returnhtml, mimetype='text/html')
+
 
 
 @application.route('/documentationredirect', methods=['GET'])
