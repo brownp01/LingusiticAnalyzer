@@ -78,7 +78,7 @@ def identifykeywords(file_text):
             logging.info("Google NLP API entity analysis successful")
             
         except Exception as e:
-            logging.info("Google NLP API entity analysis failed")
+            logging.info("Google NLP API entity analysis failed. Verify internet connection or API_KEY access")
 
 
         for entity in entities['entities']:

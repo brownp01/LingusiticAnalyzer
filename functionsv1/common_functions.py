@@ -300,6 +300,9 @@ def extractpdftext(file, testdownload_folder = None, RegDoc = False):
         interpreter = PDFPageInterpreter(manager, converter)
 
         infile = open(localdownload_folder + file.filename, 'rb')
+        logging.disable(logging.NOTSET)
+        logging.info("PDF scrubber processing " + file.filename)
+        logging.disable(logging.INFO)
         for page in PDFPage.get_pages(infile, pagenums):
             interpreter.process_page(page)
         infile.close()

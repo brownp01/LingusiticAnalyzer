@@ -1,17 +1,18 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:20] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:20] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:20] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:20] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:root:Invalid regulatory document file type .png. Responding with error page
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:31] "POST /newregdoc HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:34] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:34] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:34] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:40:34] "GET /? HTTP/1.1" 200 -
-INFO:root:Invalid regulatory document file type .cpp. Responding with error page
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:42:14] "POST /newregdoc HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:42:18] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:42:18] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:42:18] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 12:42:18] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 13:54:04] "GET / HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:"AnalyzerDescription_BACKWARD.pdf" saved
+INFO:root:opening file "AnalyzerDescription_BACKWARD.pdf"
+INFO:root:PDF scrubber processing AnalyzerDescription_BACKWARD.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+INFO:root:Google NLP API entity analysis failed. Verify internet connection or API_KEY access
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 13:54:19] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 13:54:43] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 13:54:43] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 13:54:43] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Apr/2018 13:54:43] "GET /? HTTP/1.1" 200 -

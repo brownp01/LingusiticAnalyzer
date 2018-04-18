@@ -17,6 +17,7 @@ UPLOAD_FOLDER = 'downloads/'
 
 application = Flask(__name__)
 loggerStart = 0  #log file counter.
+LOG_FILE_PATH = 'logging/Linguistic_Analyzer.log'
 
 
 
@@ -290,7 +291,9 @@ def analyze():
             returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list, userdocwordcount, filename, regfilename)
 
     except Exception as e:
-        returnhtml = common_functions.geterrorpage('An unknown error has occurred')
+        with open(LOG_FILE_PATH) as myfile:
+            errtext = list(myfile)[-1]
+        returnhtml = common_functions.geterrorpage('ERROR: ' + errtext)
 
     try:
         return Response(returnhtml, mimetype='text/html')
