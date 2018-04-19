@@ -1,3 +1,10 @@
+2018-04-19 16:25:26.802599 ; [3.327 sec.] ; draft.pdf ; 291 ; draft.txt ; 291 ; 
+2018-04-19 16:24:56.287969 ; [5.941 sec.] ; draft.pdf ; 291 ; draft.pdf ; 291 ; 
+2018-04-19 16:18:57.595104 ; [3.287 sec.] ; draft.pdf ; 294 ; draft.txt ; 13 ; 
+2018-04-19 16:17:32.426758 ; [5.819 sec.] ; draft.pdf ; 294 ; draft.pdf ; 294 ; 
+2018-04-19 14:50:00.710157 ; [3.392 sec.] ; draft.pdf ; 294 ; Lu_Prog3.txt ; 214 ; 
+2018-04-19 14:36:32.871976 ; [5.387 sec.] ; draft.pdf ; 294 ; Lu_Prog3.pdf ; 214 ; 
+2018-04-18 17:49:22.561224 ; [20.394 sec.] ; BSI _14971.pdf ; 880 ; IEC_TR_80002-1.txt ; 1085 ; 
 2018-04-18 12:24:31.259703 ; [4.22 sec.] ; S508C_Common_Cyber_Language.pdf ; 644 ; BSI_14971.txt ; 885 ; 
 2018-04-18 12:06:21.038988 ; [4.326 sec.] ; 20_page_kafka.pdf ; 118 ; 10_page_hipsum.txt ; 764 ; 
 2018-04-16 15:34:40.995461 ; [0.736 sec.] ; small_sample_reword.pdf ; 4 ; small_sample.txt ; 4 ; 

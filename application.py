@@ -258,7 +258,8 @@ def analyze():
 
                 [keyword_list, userdocwordcount] = common_functions.interpretfile(file, localuploadfolder)
                 if len(keyword_list.list) == 0:
-                    returnhtml = common_functions.geterrorpage("Error: No keywords generated from " + file.filename + ". Try using file with searchable text.")
+                    returnhtml = common_functions.geterrorpage(
+                        "Error: No keywords generated from " + file.filename + ". Try using a PDF file with searchable text.")
                     return Response(returnhtml, mimetype='text/html')
 
                 data = json.load((open('applicationconfig.json')))

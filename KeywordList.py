@@ -115,6 +115,8 @@ class KeywordList:
         # if single letter, do not insert.
         if len(keyword.word) <= 2 or keyword.word == "Pope":
             return
+        elif "," in keyword.word:
+            return
 
         # Check for exact "word"
         if not self.existsinlist(keyword.word.upper()):
