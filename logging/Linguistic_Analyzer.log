@@ -1,17 +1,20 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:26] "GET / HTTP/1.1" 200 -
-INFO:root:saving file "draft.pdf"
-INFO:root:"draft.pdf" saved
-INFO:root:opening file "draft.pdf"
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:36] "POST /newregdoc HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:36] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:36] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:36] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:08] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:08] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:08] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:08] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:47:09] "GET /applicationconfig HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "draft.pdf"
-INFO:root:"draft.pdf" saved
-INFO:root:opening file "draft.pdf"
-INFO:root:PDF scrubber processing draft.pdf
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -25,59 +28,7 @@ INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
-INFO:root:opening regulatory document
-INFO:root:PDF scrubber processing RegulatoryDocuments/draft.pdf
-INFO:root:PDF file processed
-INFO:root:Cleaning text of special characters...
-INFO:root:Clean text complete.
-INFO:root:Connecting to Google NLP API Entity Analysis...
-DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
-DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
-INFO:root:Google NLP API entity analysis successful
-INFO:root:Calculating scores...
-INFO:root:Score calculation complete.
-INFO:root:Calculating average scores for document...
-INFO:root:Average scores for document complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Plotting keyword salience...
-INFO:root:Plot complete.
-INFO:root:Plotting keyword scores...
-INFO:root:Plotting complete.
-INFO:root:Plotting keyword frequency...
-INFO:root:Plotting complete.
-INFO:root:Generating Bubble Chart CSV...
-INFO:root:Bubble Chart CSV generation successful
-INFO:root:Begin score page response...
-INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:56] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:56] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:24:56] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:13] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:13] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:13] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:13] "GET /? HTTP/1.1" 200 -
-INFO:root:Started in Analyze
-INFO:root:saving file "draft.pdf"
-INFO:root:"draft.pdf" saved
-INFO:root:opening file "draft.pdf"
-INFO:root:PDF scrubber processing draft.pdf
-INFO:root:PDF file processed
-INFO:root:Cleaning text of special characters...
-INFO:root:Clean text complete.
-INFO:root:Connecting to Google NLP API Entity Analysis...
-DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
-DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
-INFO:root:Google NLP API entity analysis successful
-INFO:root:Calculating scores...
-INFO:root:Score calculation complete.
-INFO:root:Calculating average scores for document...
-INFO:root:Average scores for document complete.
-INFO:root:Outputting keywords to .txt...
-INFO:root:Keyword .txt output complete.
-INFO:root:Extracting keyword info from draft.txt
+INFO:root:Extracting keyword info from small_sample_reword.txt
 INFO:root:keyword info extraction complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
@@ -91,6 +42,841 @@ INFO:root:Generating Bubble Chart CSV...
 INFO:root:Bubble Chart CSV generation successful
 INFO:root:Begin score page response...
 INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:26] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:27] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [19/Apr/2018 16:25:27] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:48:01] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:48:01] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:48:01] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:48:40] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:48:41] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:48:41] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:49:42] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:49:42] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:49:42] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:49:50] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:49:50] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:49:50] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:06] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:06] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:06] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:17] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:17] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:17] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:28] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:29] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:50:29] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:51:28] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:51:28] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:51:28] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:51:40] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:51:40] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:51:40] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:00] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:00] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:00] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:16] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "small_sample_reword.pdf"
+INFO:root:"small_sample_reword.pdf" saved
+INFO:root:opening file "small_sample_reword.pdf"
+INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from small_sample.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:27] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:27] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:27] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:39] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:39] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:39] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:57] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:57] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:52:57] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:53:09] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:53:09] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:53:09] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:53:59] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:53:59] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:53:59] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:54:16] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:54:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:54:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:54:41] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:54:42] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:54:42] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:55:18] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:55:19] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:55:19] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:55:31] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:55:32] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:55:32] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:06] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:07] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:07] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:30] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:30] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:30] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:42] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:42] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:56:42] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from t_blant_reword.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:07] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:07] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:07] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:14] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:14] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:14] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:14] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:16] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:16] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:17] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:17] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:17] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:17] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:33] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:35] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:35] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:35] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:35] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:No regulatory document specified
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:46] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:48] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:48] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:48] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:48] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+WARNING:root:Cannot find "datafile" in request object
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:52] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:53] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:53] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:53] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:53] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 15:57:55] "GET /documentationredirect? HTTP/1.1" 302 -

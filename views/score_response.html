@@ -4,9 +4,15 @@
 <head>
     <title>Linguistic Analyzer</title>
 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+    <!--link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet"-->
+
+    <!--link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
 
     <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
@@ -176,9 +182,9 @@
                     <div id="CompScore" style="width:70%;border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
                     <p class="lead"></p>
                     <div class="d-inline-block">
-                        <h5><b><u>Comparison Score*: </u></b></h5></div>
+                        <h3><b><u>Comparison Score*: </u></b></h3></div>
                     <div class="d-inline-block">
-                        <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
+                        <h3 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h3>
                     </div>
                     </div>
                     <div style="text-align: left">
@@ -195,34 +201,19 @@
 
         </table>
 
-
-             <!--div id="CompScore"; style="width:40%;border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
-            <p class="lead"></p>
-            <div class="d-inline-block">
-                <h5><b><u>Comparison Score*: </u></b></h5></div>
-            <div class="d-inline-block">
-                <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
-            </div>
-            </div>
-            <div style="text-align: left">
-            <small><font size="1">*Border color indicates similarity status. Options from best (most similar) to worst (least similar) are <font color="green">Green</font>, <font color="orange">Orange</font>, <font color="yellow" style="background-color: #333333">Yellow</font>, and <font color="red">Red</font></font> </small>
-            </div-->
-
             <hr>
-
-
 
             <table>
                 <tr>
                     <td>
-                        <h5 class="yulesklabel" align="left"><b>Yule's Algorithm Information</b></h5>
+                        <h3 class="yulesklabel" align="left"><b>Yule's Algorithm Information</b></h3>
                     <div class="yulesinfo" >
             <table>
                 <tr>
 
                     <div class = yuleskarea>
                     <td>
-                            <h6 class="yulesklabel" align="left"><b><u>Yule's k Score</u></b></h6>
+                            <h4 class="yulesklabel" align="left"><b><u>Yule's k Score</u></b></h4>
 
                     </td>
                     <td>
@@ -277,8 +268,8 @@
             </div>
                     </td>
                     <td>
-                        <h5 class="yulesklabel" align="left"><b>Analytics (scrollable)</b></h5>
-                        <div class="analyticsarea" style="height:300px;width:350px;padding:7px;border:3px inset #000000;font:12px/12px Georgia, Garamond, Serif;overflow:auto;">
+                        <h3 class="yulesklabel" align="left"><b>Analytics (scrollable)</b></h3>
+                        <div class="analyticsarea" style="height:300px;width:350px;padding:7px;border:3px inset #000000;font:20px/20px Georgia, Serif;overflow:auto;">
                             <p style="padding: 5px;"><b>You compared <i><u>#-USER-DOC-NAME-#</u></i> and <i><u>#-REG-DOC-NAME-#</u></i></b></p>
                             <hr>
                             <table class="analyticstable" style="width: 100%;">
@@ -313,7 +304,7 @@
                                         <p><u>Shared Keywords: </u></p>
                                     </td>
                                     <td>
-                                        <div style="height:150px;width:260px;padding:7px;border:3px inset #000000;font:12px/12px Georgia, Garamond, Serif;overflow:auto;">
+                                        <div style="height:150px;width:260px;padding:7px;border:3px inset #000000;font:20px/20px Georgia, Garamond, Serif;overflow:auto;">
                                         <p id="sharedkws"></p>
                                         </div>
                                     </td>
@@ -323,7 +314,7 @@
                                         <p><u>Peripherally Shared Keywords: </u></p>
                                     </td>
                                     <td>
-                                        <div style="height:100px;width:260px;padding:7px;border:3px inset #000000;font:12px/12px Georgia, Garamond, Serif;overflow:auto;">
+                                        <div style="height:100px;width:260px;padding:7px;border:3px inset #000000;font:20px/20px Georgia, Garamond, Serif;overflow:auto;">
                                         <p id="peripherallysharedkws"></p>
                                         </div>
                                     </td>
@@ -339,7 +330,7 @@
 
             <hr>
 
-        <h5 class="yulesklabel" align="left"><b>Graphs and Information</b></h5>
+        <h3 class="yulesklabel" align="left"><b>Graphs and Information</b></h3>
         <div class="downloadarea">
         <table>
             <tr>
@@ -414,7 +405,7 @@
         </div>
         <br>
             <p>
-            <div style="height:180px;width:1050px;padding:7px;border:3px solid #000000;font:10px/10px Georgia, Garamond, Serif;overflow
+            <div style="height:180px;width:1050px;padding:7px;border:3px solid #000000;font:8px/8px Georgia, Garamond, Serif;overflow
             :auto;">
             <p>ANALYTICS LOG - last 100 lines:</p>
 
