@@ -197,7 +197,7 @@ def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
             count = count + 1
 
     for l in lines:
-        html_str = html_str + '<p style="font-size:12px">' + l + '</p>'
+        html_str = html_str + '<p>' + l + '</p>'
 
 
     numofkwoccurences = 0
@@ -217,8 +217,7 @@ def getscorepage(kw_list, reg_kw_list, userdocwordcount, filename, regfilename):
         .replace('#--REG_YULESK_SCORE--#', str(reg_kw_list.getyuleskscore())) \
         .replace('#--YULESI_SCORE--#', str(kw_list.getyulesiscore())) \
         .replace('#--REG_YULESI_SCORE--#', str(reg_kw_list.getyulesiscore())) \
-        .replace('<p>ANALYTICS LOG - last 100 lines:</p>', '<p style="font-size:14px">ANALYTICS LOG - last 100 lines:</p>'
-                 + html_str) \
+        .replace('<p>ANALYTICS LOG - last 100 lines:</p>', '<p>ANALYTICS LOG - last 100 lines:</p>'+ html_str) \
         .replace('#--USER-DOC-KEYWORD-NUM--#', str(len(kw_list.list))) \
         .replace('#--REG-DOC-KEYWORD-NUM--#', str(len(reg_kw_list.list))) \
         .replace('#--KEYWORDS-COMPRISE--#', str('%.3f' % ((numofkwoccurences/userdocwordcount) * 100)) + '%')
