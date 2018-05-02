@@ -46,7 +46,6 @@
             
   <h1>Source code for application</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="k">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span><span class="p">,</span> <span class="n">redirect</span>
-
 <span class="kn">from</span> <span class="nn">shutil</span> <span class="k">import</span> <span class="n">copyfileobj</span>
 <span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">NamedTemporaryFile</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -56,14 +55,13 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="c1">#import progressbar</span>
-<span class="c1">#from multiprocessing import Pool, Process</span>
 
 
 <span class="n">UPLOAD_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;downloads/&#39;</span>
 
 <span class="n">application</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">loggerStart</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">#log file counter.</span>
+<span class="n">LOG_FILE_PATH</span> <span class="o">=</span> <span class="s1">&#39;logging/Linguistic_Analyzer.log&#39;</span>
 
 
 
@@ -97,9 +95,6 @@
 <span class="sd">    :rtype: html</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1">#flash(&#39;temp&#39;, category=&#39;message&#39;)</span>
-    <span class="c1">#get_flashed_messages()</span>
 
     <span class="c1">#sets the NEW_DOC_FLAG to false as a default setting. NEW_DOC_FLAG indicates whether a regulatory document was dynamically</span>
     <span class="c1">#added to the app.</span>
@@ -260,8 +255,6 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1">#bar = progressbar.Bar()</span>
-
     <span class="c1"># resetting document flag in case it was previously set when adding a new regulatory document to the list.</span>
     <span class="n">common_functions</span><span class="o">.</span><span class="n">writeToConfig</span><span class="p">(</span><span class="s1">&#39;NEW_DOC_FLAG&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
 
@@ -277,7 +270,6 @@
         <span class="n">localuploadfolder</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Started in Analyze&#39;</span><span class="p">)</span>
         <span class="n">returnhtml</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="c1"># regfilename = &#39;small_sample.pdf&#39;</span>
 
         <span class="k">if</span> <span class="s1">&#39;datafile&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;datafile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot find &quot;datafile&quot; in request object&#39;</span><span class="p">)</span>
@@ -295,17 +287,17 @@
                 <span class="n">localuploadfolder</span> <span class="o">=</span> <span class="s1">&#39;unit_tests/test_pdfs/&#39;</span>
 
             <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span> <span class="ow">or</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;docx&#39;</span><span class="p">:</span>
-
-                <span class="c1"># The &#39;with&#39; portion below is an example of concurrency in Python.</span>
-                <span class="c1"># with Pool(5) as p:</span>
-                <span class="c1">#     p = Process(target=common_functions.interpretfile, args=(file, localuploadfolder))</span>
-                <span class="c1">#     p.start()</span>
-                <span class="c1">#     p.join()</span>
-
                 <span class="p">[</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">userdocwordcount</span><span class="p">]</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">interpretfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">localuploadfolder</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">(</span>
+                        <span class="s2">&quot;Error: No keywords generated from &quot;</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;. Try using a PDF file with searchable text.&quot;</span><span class="p">)</span>
+
+                    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">returnhtml</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
 
                 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;applicationconfig.json&#39;</span><span class="p">)))</span>
                 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;NUM_KWS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
+
 
                 <span class="c1"># --------------------------PROCESS REGULATORY DOCUMENT---------------------------- #</span>
                 <span class="n">reg_keyword_list</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">interpretexistingfile</span><span class="p">(</span><span class="n">regfilename</span><span class="p">)</span>
@@ -324,7 +316,8 @@
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Invalid File type &#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;. Responding with error page&#39;</span><span class="p">)</span>
-                <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">()</span>
+                <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">(</span><span class="s1">&#39;Error: Invalid file type &#39;</span> <span class="o">+</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;. Please only use .pdf&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">returnhtml</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
 
             <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
 
@@ -332,7 +325,11 @@
             <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">getscorepage</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="n">reg_keyword_list</span><span class="p">,</span> <span class="n">userdocwordcount</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">regfilename</span><span class="p">)</span>
 
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">(</span><span class="s1">&#39;An unknown error has occurred&#39;</span><span class="p">)</span>
+
+        <span class="c1">#Error page will display last line in log file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span> <span class="k">as</span> <span class="n">myfile</span><span class="p">:</span>
+            <span class="n">errtext</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">myfile</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="n">errtext</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">returnhtml</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
@@ -614,24 +611,32 @@
     <span class="n">file</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;datafile&#39;</span><span class="p">]</span>
 
     <span class="n">regfilename</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span>
+    <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span> <span class="ow">or</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;docx&#39;</span><span class="p">:</span>
 
-    <span class="c1"># ----------- saving new regulatory file -------------#</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;RegulatoryDocuments/&#39;</span> <span class="o">+</span> <span class="n">regfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-    <span class="n">common_functions</span><span class="o">.</span><span class="n">savefile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;RegulatoryDocuments/&#39;</span><span class="p">)</span>
+        <span class="c1"># ----------- saving new regulatory file -------------#</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;RegulatoryDocuments/&#39;</span> <span class="o">+</span> <span class="n">regfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">common_functions</span><span class="o">.</span><span class="n">savefile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;RegulatoryDocuments/&#39;</span><span class="p">)</span>
 
-    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="c1"># ----------- putting new regulatory file in list on home page -------------#</span>
-    <span class="n">fhtml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/index.html&#39;</span><span class="p">)</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">fhtml</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">newhtml</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;option class=&quot;reg doc options&quot; value=&quot;Select&quot;&gt;Select&lt;/option&gt;&#39;</span><span class="p">,</span>
+        <span class="c1"># ----------- putting new regulatory file in list on home page -------------#</span>
+        <span class="n">fhtml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/index.html&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">fhtml</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">newhtml</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;option class=&quot;reg doc options&quot; value=&quot;Select&quot;&gt;Select&lt;/option&gt;&#39;</span><span class="p">,</span>
                            <span class="s1">&#39;&lt;option class=&quot;reg doc options&quot; value=&quot;Select&quot;&gt;Select&lt;/option&gt;</span><span class="se">\n\t\t\t\t\t\t</span><span class="s1">&lt;option value=&#39;</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">regfilename</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">regfilename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">)</span>
-    <span class="n">fhtml</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">newindexhtml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-    <span class="n">newindexhtml</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">newhtml</span><span class="p">)</span>
-    <span class="n">newindexhtml</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">fhtml</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">newindexhtml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;views/index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">newindexhtml</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">newhtml</span><span class="p">)</span>
+        <span class="n">newindexhtml</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">newhtml</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">newhtml</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Invalid regulatory document file type &#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;. Responding with error page&#39;</span><span class="p">)</span>
+        <span class="n">returnhtml</span> <span class="o">=</span> <span class="n">common_functions</span><span class="o">.</span><span class="n">geterrorpage</span><span class="p">(</span>
+            <span class="s1">&#39;Error: Invalid file type &#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;. Please only use .pdf&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">returnhtml</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="getdocumentationhome"><a class="viewcode-back" href="../application.html#application.getdocumentationhome">[docs]</a><span class="nd">@application</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/documentationredirect&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
@@ -643,12 +648,7 @@
 <span class="sd">    :rtype: str</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># f = open(&#39;file:///&#39;, &#39;r&#39;)</span>
-    <span class="c1"># # f = open(&#39;Documentation/_build/html/index.html&#39;, &#39;r&#39;)</span>
-    <span class="c1"># html = f.read()</span>
-    <span class="c1"># f.close()</span>
 
-    <span class="c1">#return Response(html, mimetype=&#39;text/html&#39;)</span>
     <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;https://tlblanton.github.io/LinguisticAnalyzer/&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">302</span><span class="p">)</span></div>
 
 

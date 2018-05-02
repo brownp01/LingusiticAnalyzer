@@ -149,6 +149,7 @@
 <span class="sd">        Summary: inserts a new :class:`Keyword` into *KeywordList*.</span>
 
 <span class="sd">        - A check if the keyword is a letter. If it&#39;s a letter, it will not be added to the list.</span>
+<span class="sd">        - A check if the keyword contains a comma. If a comma is present, it will not be added to the list.</span>
 <span class="sd">        - A check if the keyword already exists is handled by :func:`existsinlist`. If it does not exist, the</span>
 <span class="sd">          :class:`Keyword` is inserted into the list.</span>
 
@@ -161,6 +162,8 @@
 
         <span class="c1"># if single letter, do not insert.</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">keyword</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="s2">&quot;Pope&quot;</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="s2">&quot;,&quot;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
             <span class="k">return</span>
 
         <span class="c1"># Check for exact &quot;word&quot;</span>

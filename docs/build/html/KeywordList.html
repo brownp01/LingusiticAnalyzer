@@ -197,6 +197,7 @@ Yule’s K score, Yule’s I score, average keyword score and a document score.<
 <dd><p>Summary: inserts a new <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> into <em>KeywordList</em>.</p>
 <ul class="simple">
 <li>A check if the keyword is a letter. If it’s a letter, it will not be added to the list.</li>
+<li>A check if the keyword contains a comma. If a comma is present, it will not be added to the list.</li>
 <li>A check if the keyword already exists is handled by <a class="reference internal" href="#KeywordList.KeywordList.existsinlist" title="KeywordList.KeywordList.existsinlist"><code class="xref py py-func docutils literal"><span class="pre">existsinlist()</span></code></a>. If it does not exist, the
 <a class="reference internal" href="Keyword.html#module-Keyword" title="Keyword"><code class="xref py py-class docutils literal"><span class="pre">Keyword</span></code></a> is inserted into the list.</li>
 </ul>
