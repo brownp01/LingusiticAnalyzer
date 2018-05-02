@@ -1,5 +1,4 @@
 import os
-from werkzeug.utils import secure_filename
 import logging
 from functionsv1 import common_functions
 from functionsv1 import analyze_functions
@@ -19,7 +18,6 @@ matplotlib.use('agg',warn=False, force=True)
 from matplotlib import pyplot
 import numpy as np
 import datetime
-#import applicationconfig
 import json
 import operator
 
@@ -601,8 +599,7 @@ def createkeywordfromgoogleapientity(entity, file_text):
 
     newKeyword = Keyword.Keyword(eName.upper(), eType, eSal, eFreq, 0)  # the value 0 refers to default keywordscore
 
-    #for key, value in entity.metadata.items():
-        #newKeyword.metadata[key] = value
+
     return newKeyword
 
 
@@ -770,7 +767,6 @@ def plotkeywordsalience(keyword_list1, keyword_list2, doc1name='doc1', doc2name 
     pyplot.savefig(DOWNLOAD_FOLDER + 'topsalience.png')
 
     logging.info("Plot complete.")
-    # pyplot.show()
 
 
 def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
@@ -836,7 +832,7 @@ def plotkeywordscores(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordscores.png')
 
     logging.info("Plotting complete.")
-    # pyplot.show()
+
 
 def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name = 'doc2'):
     """
@@ -901,7 +897,7 @@ def plotkeywordfrequency(keyword_list1, keyword_list2, doc1name='doc1', doc2name
     pyplot.savefig(DOWNLOAD_FOLDER + 'topkeywordfrequency.png')
 
     logging.info("Plotting complete.")
-    # pyplot.show()
+
 
 
 def printanalytics(filename, regfilename, keywordlist, regkeywordlist, calctime):

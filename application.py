@@ -1,5 +1,4 @@
 from flask import Flask, Response, request, send_file, redirect
-
 from shutil import copyfileobj
 from tempfile import NamedTemporaryFile
 import logging
@@ -9,8 +8,6 @@ import sys
 import os
 import time
 import json
-#import progressbar
-#from multiprocessing import Pool, Process
 
 
 UPLOAD_FOLDER = 'downloads/'
@@ -51,9 +48,6 @@ def main():
     :rtype: html
 
     """
-
-    #flash('temp', category='message')
-    #get_flashed_messages()
 
     #sets the NEW_DOC_FLAG to false as a default setting. NEW_DOC_FLAG indicates whether a regulatory document was dynamically
     #added to the app.
@@ -214,8 +208,6 @@ def analyze():
 
     """
 
-    #bar = progressbar.Bar()
-
     # resetting document flag in case it was previously set when adding a new regulatory document to the list.
     common_functions.writeToConfig('NEW_DOC_FLAG', 'false')
 
@@ -231,7 +223,6 @@ def analyze():
         localuploadfolder = None
         logging.info('Started in Analyze')
         returnhtml = ""
-        # regfilename = 'small_sample.pdf'
 
         if 'datafile' not in request.files or request.files['datafile'].filename == "":
             logging.warning('Cannot find "datafile" in request object')
@@ -249,17 +240,12 @@ def analyze():
                 localuploadfolder = 'unit_tests/test_pdfs/'
 
             if file.filename[-3:] == 'pdf' or file.filename[-4:] == 'docx':
-
-                # The 'with' portion below is an example of concurrency in Python.
-                # with Pool(5) as p:
-                #     p = Process(target=common_functions.interpretfile, args=(file, localuploadfolder))
-                #     p.start()
-                #     p.join()
-
                 [keyword_list, userdocwordcount] = common_functions.interpretfile(file, localuploadfolder)
+
                 if len(keyword_list.list) == 0:
                     returnhtml = common_functions.geterrorpage(
                         "Error: No keywords generated from " + file.filename + ". Try using a PDF file with searchable text.")
+
                     return Response(returnhtml, mimetype='text/html')
 
                 data = json.load((open('applicationconfig.json')))
@@ -292,6 +278,8 @@ def analyze():
             returnhtml = common_functions.getscorepage(keyword_list, reg_keyword_list, userdocwordcount, filename, regfilename)
 
     except Exception as e:
+
+        #Error page will display last line in log file
         with open(LOG_FILE_PATH) as myfile:
             errtext = list(myfile)[-1]
         returnhtml = common_functions.geterrorpage('ERROR: ' + errtext)
@@ -613,12 +601,7 @@ def getdocumentationhome():
     :rtype: str
 
     """
-    # f = open('file:///', 'r')
-    # # f = open('Documentation/_build/html/index.html', 'r')
-    # html = f.read()
-    # f.close()
 
-    #return Response(html, mimetype='text/html')
     return redirect('https://tlblanton.github.io/LinguisticAnalyzer/', code=302)
 
 

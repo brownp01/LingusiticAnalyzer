@@ -18,7 +18,6 @@
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
-    <!--script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script-->
 
     <script>
 
@@ -67,7 +66,8 @@
             var notSharedNum = parseInt(jsonData["NUM_KWS"].toString()) - peripheralNum - sharedNum;
 
 
-            var donutChartArr = [['Task', 'Hours Per Day'], ['Shared', sharedNum], ['Peripherally Shared', peripheralNum], ['Not Shared', notSharedNum]];
+            var donutChartArr = [['Task', 'Hours Per Day'], ['Shared', sharedNum], ['Peripherally Shared', peripheralNum],
+                ['Not Shared', notSharedNum]];
 
             var data = google.visualization.arrayToDataTable(donutChartArr);
 
@@ -194,24 +194,7 @@
 
 
         </table>
-
-
-             <!--div id="CompScore"; style="width:40%;border-style: outset;padding: 4px;border-width: 6px;border-color: #FF0000">
-            <p class="lead"></p>
-            <div class="d-inline-block">
-                <h5><b><u>Comparison Score*: </u></b></h5></div>
-            <div class="d-inline-block">
-                <h5 style="color: #20435c">#--COMPARISON_SCORE--#% similar</h5>
-            </div>
-            </div>
-            <div style="text-align: left">
-            <small><font size="1">*Border color indicates similarity status. Options from best (most similar) to worst (least similar) are <font color="green">Green</font>, <font color="orange">Orange</font>, <font color="yellow" style="background-color: #333333">Yellow</font>, and <font color="red">Red</font></font> </small>
-            </div-->
-
             <hr>
-
-
-
             <table>
                 <tr>
                     <td>

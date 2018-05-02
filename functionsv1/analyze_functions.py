@@ -248,34 +248,6 @@ def calculatecomparisonscore(kw_list, reg_kw_list):
 
 
 
-
-
-    # ----------- Everything below here is the original algorithm. Everything above is a test------------ #
-
-    # tempscore = 0.0
-    #
-    # # Get top ten KWs with highest frequencies
-    # topdockws = list(common_functions.kwhighestfrequencies(kw_list, 10))
-    #
-    # # get top ten percent of regulatory kws
-    # regkwnum = len(reg_kw_list.list) if len(reg_kw_list.list) * .1 < len(topdockws) else len(reg_kw_list.list) * .1
-    #
-    # topregkws = list(common_functions.kwhighestfrequencies(reg_kw_list, regkwnum))
-    #
-    # # look at top ten keywords in file (by frequency), and for each of them, see if they are in the top 10% of words
-    # # in reg_doc
-    #
-    # for kw in topdockws:
-    #     for i in range(0, len(topregkws)):
-    #         if kw.word == topregkws[i].word:
-    #             tempscore = tempscore + 1
-    #
-    # tempscore = tempscore/regkwnum
-    #
-    # # This is rudimentary, but actually does a decent job at comparing two documents
-    # return round((100 - abs(kw_list.avgkeywordscore - reg_kw_list.avgkeywordscore)) * tempscore, 2)
-
-
 def tokenize(tokenStr):
     """
     Summary: Splits up string into individual tokens.

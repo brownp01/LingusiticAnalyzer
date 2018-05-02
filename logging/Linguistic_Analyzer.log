@@ -1,18 +1,25 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:23] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:23] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:23] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:23] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:25] "GET /project? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:27] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:27] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:27] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:27] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:55:55] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:55:55] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:55:55] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:55:55] "GET /applicationconfig HTTP/1.1" 200 -
 INFO:root:Started in Analyze
-INFO:root:saving file "small_sample_reword.pdf"
-INFO:root:"small_sample_reword.pdf" saved
-INFO:root:opening file "small_sample_reword.pdf"
-INFO:root:PDF scrubber processing small_sample_reword.pdf
+INFO:root:Invalid File type .zip. Responding with error page
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:06] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:13] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:13] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:13] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:13] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:30] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:32] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:32] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:32] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:32] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "t_blant_original.pdf"
+INFO:root:"t_blant_original.pdf" saved
+INFO:root:opening file "t_blant_original.pdf"
+INFO:root:PDF scrubber processing t_blant_original.pdf
 INFO:root:PDF file processed
 INFO:root:Cleaning text of special characters...
 INFO:root:Clean text complete.
@@ -26,7 +33,7 @@ INFO:root:Calculating average scores for document...
 INFO:root:Average scores for document complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
-INFO:root:Extracting keyword info from small_sample_reword.txt
+INFO:root:Extracting keyword info from t_blant_reword.txt
 INFO:root:keyword info extraction complete.
 INFO:root:Outputting keywords to .txt...
 INFO:root:Keyword .txt output complete.
@@ -40,18 +47,16 @@ INFO:root:Generating Bubble Chart CSV...
 INFO:root:Bubble Chart CSV generation successful
 INFO:root:Begin score page response...
 INFO:root:Score page response complete.
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:40] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:41] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:41] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:48] "GET /yulesinfo? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:49] "GET /? HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:49] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:49] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:49] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:root:Started in Analyze
-WARNING:root:Cannot find "datafile" in request object
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:52] "POST /analyze HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:53] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:53] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:53] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [30/Apr/2018 20:12:53] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:48] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:56:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:02] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:03] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/May/2018 19:57:03] "GET /csvkeywords HTTP/1.1" 200 -

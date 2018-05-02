@@ -1,5 +1,3 @@
-import doxypypy
-import logging
 
 class Keyword:
     """
