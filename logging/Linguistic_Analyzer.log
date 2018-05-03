@@ -1,6 +1,61 @@
 INFO:root:API started
-INFO:werkzeug:127.0.0.1 - - [01/May/2018 20:32:25] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [01/May/2018 20:32:26] "GET /assets/css/style.css HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [01/May/2018 20:32:26] "GET /assets/js/script.js HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [01/May/2018 20:32:26] "GET /applicationconfig HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [01/May/2018 20:32:27] "GET /documentationredirect? HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:11] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:11] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:11] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:12] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:14] "GET /project? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:16] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:16] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:16] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:16] "GET /? HTTP/1.1" 200 -
+INFO:root:Started in Analyze
+INFO:root:saving file "simple_description.pdf"
+INFO:root:"simple_description.pdf" saved
+INFO:root:opening file "simple_description.pdf"
+INFO:root:PDF scrubber processing simple_description.pdf
+INFO:root:PDF file processed
+INFO:root:Cleaning text of special characters...
+INFO:root:Clean text complete.
+INFO:root:Connecting to Google NLP API Entity Analysis...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): language.googleapis.com
+DEBUG:urllib3.connectionpool:https://language.googleapis.com:443 "POST /v1/documents:analyzeEntities?key=AIzaSyCDNjT3mKH4IULOJhuownlChygUUiNum_0 HTTP/1.1" 200 None
+INFO:root:Google NLP API entity analysis successful
+INFO:root:Calculating scores...
+INFO:root:Score calculation complete.
+INFO:root:Calculating average scores for document...
+INFO:root:Average scores for document complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Extracting keyword info from simple_description_name_switch.txt
+INFO:root:keyword info extraction complete.
+INFO:root:Outputting keywords to .txt...
+INFO:root:Keyword .txt output complete.
+INFO:root:Plotting keyword salience...
+INFO:root:Plot complete.
+INFO:root:Plotting keyword scores...
+INFO:root:Plotting complete.
+INFO:root:Plotting keyword frequency...
+INFO:root:Plotting complete.
+INFO:root:Generating Bubble Chart CSV...
+INFO:root:Bubble Chart CSV generation successful
+INFO:root:Begin score page response...
+INFO:root:Score page response complete.
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:37] "POST /analyze HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:38] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:38] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:45] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:45] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /keywordbubblechart? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /reusablebubble.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /applicationconfig HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:49] "GET /csvkeywords HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:57] "GET /keywordsalienceimage?x=198&y=20 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:53:59] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:54:01] "GET /? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:54:01] "GET /assets/css/style.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:54:01] "GET /assets/js/script.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/May/2018 13:54:01] "GET /applicationconfig HTTP/1.1" 200 -

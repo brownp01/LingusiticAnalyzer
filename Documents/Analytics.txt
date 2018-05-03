@@ -1,3 +1,4 @@
+2018-05-03 13:53:37.050063 ; [1.011 sec.] ; simple_description.pdf ; 11 ; simple_description_name_switch.txt ; 11 ; 
 2018-05-01 19:56:48.725129 ; [0.853 sec.] ; t_blant_original.pdf ; 9 ; t_blant_reword.txt ; 9 ; 
 2018-04-30 21:23:21.318070 ; [17.592 sec.] ; 100_page_kafka.pdf.pdf ; 118 ; BSI_14971.txt ; 885 ; 
 2018-04-30 20:55:24.729755 ; [20.85 sec.] ; BSI _14971.pdf ; 880 ; IEC_TR_80002-1.txt ; 1085 ; 
